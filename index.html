@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperliquid Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a0f;
+            color: #e4e4e7;
+            font-family: 'Noto Sans KR', sans-serif;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: #0f0f14;
+            border-right: 1px solid #1e1e28;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 20px;
+            margin-bottom: 32px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #22d3ee, #06b6d4);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            color: #22d3ee;
+            display: block;
+        }
+
+        .nav-menu { list-style: none; }
+
+        .nav-item {
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: rgba(34, 211, 238, 0.05);
+            color: #e4e4e7;
+        }
+
+        .nav-item.active {
+            background: rgba(34, 211, 238, 0.1);
+            border-left-color: #22d3ee;
+            color: #22d3ee;
+        }
+
+        .nav-icon { width: 20px; height: 20px; }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 24px 32px;
+            min-height: 100vh;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #22d3ee;
+            margin-bottom: 24px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22d3ee;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Page Header */
+        .page-header { margin-bottom: 28px; }
+        .page-header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .page-header p { color: #71717a; font-size: 0.9rem; }
+
+        /* Section */
+        .section { display: none; }
+        .section.active { display: block; }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: #12121a;
+            border: 1px solid #1e1e28;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #22d3ee;
+        }
+
+        .stat-sub {
+            font-size: 0.75rem;
+            color: #52525b;
+            margin-top: 4px;
+        }
+
+        /* Cards */
+        .card {
+            background: #12121a;
+            border: 1px solid #1e1e28;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            background: #1a1a24;
+            padding: 4px;
+            border-radius: 10px;
+            width: fit-content;
+        }
+
+        .tab {
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: #71717a;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover { color: #a1a1aa; }
+        .tab.active { background: #22d3ee; color: #0a0a0f; }
+
+        /* Sub tabs */
+        .sub-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #1e1e28;
+            padding-bottom: 12px;
+        }
+
+        .sub-tab {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: #71717a;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -13px;
+        }
+
+        .sub-tab:hover { color: #a1a1aa; }
+        .sub-tab.active { color: #22d3ee; border-bottom-color: #22d3ee; }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            background: #12121a;
+            z-index: 10;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 14px;
+            color: #71717a;
+            font-weight: 500;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #1e1e28;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #1e1e28;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        tr:hover { background: rgba(34, 211, 238, 0.02); }
+
+        .rank { color: #71717a; font-weight: 600; }
+        .rank.top3 { color: #22d3ee; }
+
+        .positive { color: #22c55e; }
+        .negative { color: #ef4444; }
+
+        .coin-name {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .direction {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .direction.long { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+        .direction.short { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+        .address a {
+            color: #a1a1aa;
+            text-decoration: none;
+        }
+        .address a:hover { color: #22d3ee; }
+
+        /* Risk indicator */
+        .risk-bar {
+            width: 60px;
+            height: 6px;
+            background: #1e1e28;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .risk-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .risk-low { background: #22c55e; }
+        .risk-medium { background: #eab308; }
+        .risk-high { background: #ef4444; }
+
+        /* Expand button */
+        .expand-btn {
+            background: none;
+            border: none;
+            color: #71717a;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+        .expand-btn:hover { color: #22d3ee; }
+        .expand-btn.expanded { transform: rotate(180deg); }
+
+        .positions-row { display: none; background: #0f0f14; }
+        .positions-row.visible { display: table-row; }
+
+        .positions-content { padding: 16px; }
+
+        .positions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .position-card {
+            background: #12121a;
+            border: 1px solid #1e1e28;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .position-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .position-coin { font-weight: 600; color: #ffffff; }
+
+        .position-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            font-size: 0.7rem;
+        }
+
+        .position-detail { display: flex; justify-content: space-between; }
+        .position-detail-label { color: #71717a; }
+        .position-detail-value { font-family: 'JetBrains Mono', monospace; color: #e4e4e7; }
+
+        /* Loading */
+        .loading { text-align: center; padding: 60px; color: #71717a; }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #1e1e28;
+            border-top-color: #22d3ee;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .last-updated {
+            font-size: 0.75rem;
+            color: #52525b;
+            text-align: right;
+            margin-top: 16px;
+        }
+
+        /* Top Markets */
+        .top-markets {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .market-chip {
+            background: #1a1a24;
+            border: 1px solid #1e1e28;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .market-chip-name {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .market-chip-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #71717a;
+        }
+
+        .market-chip-change {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            margin-top: 4px;
+        }
+
+        /* Funding bar */
+        .funding-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .funding-bar {
+            width: 80px;
+            height: 8px;
+            background: #1e1e28;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .funding-bar-fill {
+            position: absolute;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .funding-positive { background: #22c55e; left: 50%; }
+        .funding-negative { background: #ef4444; right: 50%; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+                padding: 12px 0;
+            }
+            .logo-text, .logo-sub, .nav-item span { display: none; }
+            .nav-item { justify-content: center; padding: 14px; }
+            .main-content { margin-left: 60px; padding: 16px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">HL</div>
+            <div>
+                <span class="logo-text">Hyperliquid</span>
+                <span class="logo-sub">Analytics</span>
+            </div>
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item active" data-section="dashboard">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+                <span>대시보드</span>
+            </li>
+            <li class="nav-item" data-section="markets">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                <span>마켓 & OI</span>
+            </li>
+            <li class="nav-item" data-section="funding">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="16"/>
+                    <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+                <span>펀딩비</span>
+            </li>
+            <li class="nav-item" data-section="liquidation">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <span>청산 위험</span>
+            </li>
+            <li class="nav-item" data-section="whales">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+                <span>고래 추적기</span>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            <span id="connection-status">연결 중...</span>
+        </div>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="page-header">
+                <h1>📊 대시보드</h1>
+                <p>Hyperliquid 프로토콜 거래 현황 개요</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">24시간 거래량</div>
+                    <div class="stat-value" id="stat-volume">$0</div>
+                    <div class="stat-sub">실시간</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">총 미결제약정 (OI)</div>
+                    <div class="stat-value" id="stat-oi">$0</div>
+                    <div class="stat-sub">플랫폼 전체</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">활성 마켓</div>
+                    <div class="stat-value" id="stat-markets">0</div>
+                    <div class="stat-sub">무기한 선물</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">총 트레이더</div>
+                    <div class="stat-value" id="stat-traders">0</div>
+                    <div class="stat-sub">리더보드 기준</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🔥 거래량 상위 마켓</h3>
+                </div>
+                <div class="top-markets" id="top-markets-grid"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">마켓 개요</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>마켓</th>
+                                <th>마크 가격</th>
+                                <th>24시간 변동</th>
+                                <th>24시간 거래량</th>
+                                <th>미결제약정</th>
+                                <th>펀딩비</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dashboard-markets-tbody">
+                            <tr><td colspan="6"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Markets & OI Section -->
+        <section id="markets" class="section">
+            <div class="page-header">
+                <h1>📈 마켓 & OI</h1>
+                <p>전체 마켓 가격, 거래량, 미결제약정 현황</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">전체 마켓</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>마켓</th>
+                                <th>마크 가격</th>
+                                <th>인덱스 가격</th>
+                                <th>24시간 변동</th>
+                                <th>24시간 거래량</th>
+                                <th>미결제약정</th>
+                                <th>OI (코인)</th>
+                                <th>펀딩비</th>
+                                <th>최대 레버리지</th>
+                            </tr>
+                        </thead>
+                        <tbody id="markets-tbody">
+                            <tr><td colspan="10"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funding Rates Section -->
+        <section id="funding" class="section">
+            <div class="page-header">
+                <h1>💰 펀딩비</h1>
+                <p>현재 펀딩비 및 연간화 수익률</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">펀딩비 현황 (절대값 기준 정렬)</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>마켓</th>
+                                <th>현재 펀딩비</th>
+                                <th>펀딩비 (시각화)</th>
+                                <th>연간화 수익률</th>
+                                <th>마크 가격</th>
+                                <th>미결제약정</th>
+                            </tr>
+                        </thead>
+                        <tbody id="funding-tbody">
+                            <tr><td colspan="7"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Liquidation Risk Section -->
+        <section id="liquidation" class="section">
+            <div class="page-header">
+                <h1>⚠️ 청산 위험</h1>
+                <p>고래 포지션 중 청산가에 가까운 포지션</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">청산 위험 포지션 (청산가 거리 50% 이내)</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>코인</th>
+                                <th>방향</th>
+                                <th>포지션 가치</th>
+                                <th>현재가</th>
+                                <th>청산가</th>
+                                <th>거리</th>
+                                <th>위험도</th>
+                                <th>레버리지</th>
+                                <th>트레이더</th>
+                            </tr>
+                        </thead>
+                        <tbody id="liquidation-tbody">
+                            <tr><td colspan="10"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Whale Tracker Section -->
+        <section id="whales" class="section">
+            <div class="page-header">
+                <h1>🐋 고래 추적기</h1>
+                <p>상위 트레이더 포지션 및 PnL 분석</p>
+            </div>
+
+            <div class="sub-tabs">
+                <button class="sub-tab active" data-subtab="pnl-traders">📈 PnL 상위 트레이더</button>
+                <button class="sub-tab" data-subtab="biggest-positions">💎 최대 포지션 (OI)</button>
+            </div>
+
+            <div id="pnl-traders" class="sub-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">PnL 상위 200 트레이더</h3>
+                        <div class="tabs">
+                            <button class="tab active" data-period="daily">일간</button>
+                            <button class="tab" data-period="weekly">주간</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>순위</th>
+                                    <th>트레이더</th>
+                                    <th>계좌 가치</th>
+                                    <th>수익 (PnL)</th>
+                                    <th>수익률</th>
+                                    <th>거래량</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="pnl-tbody">
+                                <tr><td colspan="7"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="biggest-positions" class="sub-section" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">최대 포지션 상위 200 (OI)</h3>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>순위</th>
+                                    <th>코인</th>
+                                    <th>방향</th>
+                                    <th>포지션 가치</th>
+                                    <th>수량</th>
+                                    <th>진입가</th>
+                                    <th>레버리지</th>
+                                    <th>미실현 PnL</th>
+                                    <th>트레이더</th>
+                                </tr>
+                            </thead>
+                            <tbody id="biggest-tbody">
+                                <tr><td colspan="9"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="last-updated" id="last-updated"></div>
+    </main>
+
+    <script>
+        let data = null;
+        let currentPeriod = 'daily';
+
+        // Formatters
+        const fmt = {
+            currency: (v, sign = false) => {
+                const n = parseFloat(v) || 0;
+                const f = Math.abs(n).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                if (sign && n !== 0) return n >= 0 ? '+' + f : '-' + f.replace('$', '$');
+                return n < 0 ? '-' + f : f;
+            },
+            bigCurrency: (v) => {
+                const n = parseFloat(v) || 0;
+                if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
+                if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+                if (n >= 1e3) return '$' + (n / 1e3).toFixed(2) + 'K';
+                return '$' + n.toFixed(0);
+            },
+            percent: (v) => {
+                const n = parseFloat(v) || 0;
+                return (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
+            },
+            percentFromDecimal: (v) => {
+                const n = (parseFloat(v) || 0) * 100;
+                return (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
+            },
+            addr: (a) => a ? a.slice(0, 6) + '...' + a.slice(-4) : '-',
+            num: (v, d = 2) => {
+                const n = parseFloat(v) || 0;
+                if (Math.abs(n) >= 1e6) return (n / 1e6).toFixed(2) + 'M';
+                if (Math.abs(n) >= 1e3) return (n / 1e3).toFixed(2) + 'K';
+                return n.toFixed(d);
+            },
+            price: (v) => {
+                const n = parseFloat(v) || 0;
+                if (n >= 1000) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+                if (n >= 1) return n.toFixed(2);
+                if (n >= 0.0001) return n.toFixed(4);
+                return n.toFixed(6);
+            },
+            funding: (v) => {
+                const n = parseFloat(v) || 0;
+                return (n >= 0 ? '+' : '') + n.toFixed(4) + '%';
+            }
+        };
+
+        // Render Dashboard
+        function renderDashboard() {
+            if (!data) return;
+            
+            const d = data.dashboard;
+            document.getElementById('stat-volume').textContent = fmt.bigCurrency(d.volume24h);
+            document.getElementById('stat-oi').textContent = fmt.bigCurrency(d.totalOI);
+            document.getElementById('stat-markets').textContent = d.activeMarkets;
+            document.getElementById('stat-traders').textContent = d.totalTraders?.toLocaleString() || '0';
+            document.getElementById('connection-status').textContent = '실시간';
+
+            // Top markets
+            const topMarkets = data.markets?.slice(0, 8) || [];
+            document.getElementById('top-markets-grid').innerHTML = topMarkets.map(m => `
+                <div class="market-chip">
+                    <div class="market-chip-name">${m.name}</div>
+                    <div class="market-chip-value">${fmt.bigCurrency(m.volume24h)}</div>
+                    <div class="market-chip-change ${m.change24h >= 0 ? 'positive' : 'negative'}">${fmt.percent(m.change24h)}</div>
+                </div>
+            `).join('');
+
+            // Dashboard markets table (top 20)
+            const markets = data.markets?.slice(0, 20) || [];
+            document.getElementById('dashboard-markets-tbody').innerHTML = markets.map(m => `
+                <tr>
+                    <td class="coin-name">${m.name}</td>
+                    <td>${fmt.price(m.markPx)}</td>
+                    <td class="${m.change24h >= 0 ? 'positive' : 'negative'}">${fmt.percent(m.change24h)}</td>
+                    <td>${fmt.bigCurrency(m.volume24h)}</td>
+                    <td>${fmt.bigCurrency(m.openInterest)}</td>
+                    <td class="${m.funding >= 0 ? 'positive' : 'negative'}">${fmt.funding(m.funding)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Render Markets
+        function renderMarkets() {
+            if (!data?.markets) return;
+            
+            document.getElementById('markets-tbody').innerHTML = data.markets.map((m, i) => `
+                <tr>
+                    <td><span class="rank ${i < 3 ? 'top3' : ''}">${i + 1}</span></td>
+                    <td class="coin-name">${m.name}</td>
+                    <td>${fmt.price(m.markPx)}</td>
+                    <td>${fmt.price(m.indexPx)}</td>
+                    <td class="${m.change24h >= 0 ? 'positive' : 'negative'}">${fmt.percent(m.change24h)}</td>
+                    <td>${fmt.bigCurrency(m.volume24h)}</td>
+                    <td>${fmt.bigCurrency(m.openInterest)}</td>
+                    <td>${fmt.num(m.openInterestCoins)}</td>
+                    <td class="${m.funding >= 0 ? 'positive' : 'negative'}">${fmt.funding(m.funding)}</td>
+                    <td>${m.maxLeverage}x</td>
+                </tr>
+            `).join('');
+        }
+
+        // Render Funding Rates
+        function renderFunding() {
+            if (!data?.fundingRates) return;
+            
+            const maxFunding = Math.max(...data.fundingRates.map(f => Math.abs(f.rate)));
+            
+            document.getElementById('funding-tbody').innerHTML = data.fundingRates.map((f, i) => {
+                const barWidth = Math.min((Math.abs(f.rate) / maxFunding) * 50, 50);
+                const barClass = f.rate >= 0 ? 'funding-positive' : 'funding-negative';
+                const barStyle = f.rate >= 0 
+                    ? `left: 50%; width: ${barWidth}%` 
+                    : `right: 50%; width: ${barWidth}%`;
+                
+                return `
+                    <tr>
+                        <td><span class="rank ${i < 3 ? 'top3' : ''}">${i + 1}</span></td>
+                        <td class="coin-name">${f.coin}</td>
+                        <td class="${f.rate >= 0 ? 'positive' : 'negative'}">${fmt.funding(f.rate)}</td>
+                        <td>
+                            <div class="funding-bar-container">
+                                <div class="funding-bar">
+                                    <div class="funding-bar-fill ${barClass}" style="${barStyle}"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="${f.annualized >= 0 ? 'positive' : 'negative'}">${fmt.percent(f.annualized)}</td>
+                        <td>${fmt.price(f.markPx)}</td>
+                        <td>${fmt.bigCurrency(f.openInterest)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Render Liquidation Risk
+        function renderLiquidation() {
+            if (!data?.liquidationRisks) return;
+            
+            document.getElementById('liquidation-tbody').innerHTML = data.liquidationRisks.length === 0 
+                ? '<tr><td colspan="10" style="text-align:center; padding:40px; color:#71717a;">청산 위험 포지션 없음</td></tr>'
+                : data.liquidationRisks.map((r, i) => {
+                    const riskLevel = r.distancePct < 10 ? 'high' : r.distancePct < 25 ? 'medium' : 'low';
+                    const riskWidth = Math.max(100 - r.distancePct * 2, 10);
+                    
+                    return `
+                        <tr>
+                            <td><span class="rank ${i < 3 ? 'top3' : ''}">${i + 1}</span></td>
+                            <td class="coin-name">${r.coin}</td>
+                            <td><span class="direction ${r.direction.toLowerCase()}">${r.direction === 'Long' ? '롱' : '숏'}</span></td>
+                            <td>${fmt.bigCurrency(r.positionValue)}</td>
+                            <td>${fmt.price(r.currentPx)}</td>
+                            <td>${fmt.price(r.liquidationPx)}</td>
+                            <td>${r.distancePct.toFixed(1)}%</td>
+                            <td>
+                                <div class="risk-bar">
+                                    <div class="risk-fill risk-${riskLevel}" style="width: ${riskWidth}%"></div>
+                                </div>
+                            </td>
+                            <td>${r.leverage}x</td>
+                            <td class="address"><a href="https://app.hyperliquid.xyz/explorer/address/${r.traderAddress}" target="_blank">${fmt.addr(r.traderAddress)}</a></td>
+                        </tr>
+                    `;
+                }).join('');
+        }
+
+        // Render PnL Traders
+        function renderPnLTraders(period) {
+            const traders = period === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
+            if (!traders) return;
+            
+            document.getElementById('pnl-tbody').innerHTML = traders.map((t, i) => {
+                const name = t.displayName || fmt.addr(t.address);
+                const hasPos = t.positions?.length > 0;
+                
+                const posHtml = hasPos ? `
+                    <tr class="positions-row" id="pos-${i}">
+                        <td colspan="7">
+                            <div class="positions-content">
+                                <div class="positions-grid">
+                                    ${t.positions.map(p => {
+                                        const uPnl = parseFloat(p.unrealizedPnl) || 0;
+                                        return `
+                                            <div class="position-card">
+                                                <div class="position-header">
+                                                    <span class="position-coin">${p.coin}</span>
+                                                    <span class="direction ${p.direction.toLowerCase()}">${p.direction === 'Long' ? '롱' : '숏'}</span>
+                                                </div>
+                                                <div class="position-details">
+                                                    <div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">${fmt.bigCurrency(p.positionValue)}</span></div>
+                                                    <div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">${p.leverage}x</span></div>
+                                                    <div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">${fmt.price(p.entryPx)}</span></div>
+                                                    <div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value ${uPnl >= 0 ? 'positive' : 'negative'}">${fmt.currency(uPnl, true)}</span></div>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                ` : '';
+                
+                return `
+                    <tr>
+                        <td><span class="rank ${i < 3 ? 'top3' : ''}">#${i + 1}</span></td>
+                        <td class="address"><a href="https://app.hyperliquid.xyz/explorer/address/${t.address}" target="_blank">${name}</a></td>
+                        <td>${fmt.bigCurrency(t.accountValue)}</td>
+                        <td class="${t.pnl >= 0 ? 'positive' : 'negative'}">${fmt.currency(t.pnl, true)}</td>
+                        <td class="${t.roi >= 0 ? 'positive' : 'negative'}">${fmt.percentFromDecimal(t.roi)}</td>
+                        <td>${fmt.bigCurrency(t.volume)}</td>
+                        <td>${hasPos ? `<button class="expand-btn" onclick="togglePos(${i})"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>` : ''}</td>
+                    </tr>
+                    ${posHtml}
+                `;
+            }).join('');
+        }
+
+        // Render Biggest Positions
+        function renderBiggestPositions() {
+            const positions = data?.whaleTracker?.biggestPositions;
+            if (!positions) return;
+            
+            document.getElementById('biggest-tbody').innerHTML = positions.map((p, i) => {
+                const uPnl = parseFloat(p.unrealizedPnl) || 0;
+                const name = p.traderName || fmt.addr(p.traderAddress);
+                
+                return `
+                    <tr>
+                        <td><span class="rank ${i < 3 ? 'top3' : ''}">#${i + 1}</span></td>
+                        <td class="coin-name">${p.coin}</td>
+                        <td><span class="direction ${p.direction.toLowerCase()}">${p.direction === 'Long' ? '롱' : '숏'}</span></td>
+                        <td>${fmt.bigCurrency(p.positionValue)}</td>
+                        <td>${fmt.num(p.size)}</td>
+                        <td>${fmt.price(p.entryPx)}</td>
+                        <td>${p.leverage}x</td>
+                        <td class="${uPnl >= 0 ? 'positive' : 'negative'}">${fmt.currency(uPnl, true)}</td>
+                        <td class="address"><a href="https://app.hyperliquid.xyz/explorer/address/${p.traderAddress}" target="_blank">${name}</a></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function togglePos(i) {
+            const row = document.getElementById(`pos-${i}`);
+            const btns = document.querySelectorAll('.expand-btn');
+            if (row) {
+                row.classList.toggle('visible');
+                if (btns[i]) btns[i].classList.toggle('expanded');
+            }
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                item.classList.add('active');
+                document.getElementById(item.dataset.section).classList.add('active');
+            });
+        });
+
+        // Sub tabs
+        document.querySelectorAll('.sub-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('pnl-traders').style.display = tab.dataset.subtab === 'pnl-traders' ? 'block' : 'none';
+                document.getElementById('biggest-positions').style.display = tab.dataset.subtab === 'biggest-positions' ? 'block' : 'none';
+            });
+        });
+
+        // Period tabs
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentPeriod = tab.dataset.period;
+                renderPnLTraders(currentPeriod);
+            });
+        });
+
+        // Load data
+        async function loadData() {
+            try {
+                const res = await fetch('data.json');
+                if (!res.ok) throw new Error('Failed to load data.json');
+                data = await res.json();
+                
+                renderDashboard();
+                renderMarkets();
+                renderFunding();
+                renderLiquidation();
+                renderPnLTraders('daily');
+                renderBiggestPositions();
+                
+                if (data.lastUpdated) {
+                    const d = new Date(data.lastUpdated);
+                    document.getElementById('last-updated').textContent = 
+                        `마지막 업데이트: ${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')} UTC`;
+                }
+            } catch (e) {
+                console.error(e);
+                document.getElementById('connection-status').textContent = '오프라인';
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

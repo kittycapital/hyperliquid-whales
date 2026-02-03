@@ -1,0 +1,69 @@
+{
+  "dashboard": {
+    "totalOI": 4250000000,
+    "volume24h": 8500000000,
+    "activeMarkets": 147,
+    "totalTraders": 12500
+  },
+  "markets": [
+    {"name": "BTC", "markPx": 97500.5, "indexPx": 97498.2, "change24h": 2.35, "volume24h": 3200000000, "openInterest": 1850000000, "openInterestCoins": 18974, "funding": 0.0085, "maxLeverage": 50},
+    {"name": "ETH", "markPx": 3450.25, "indexPx": 3449.8, "change24h": 1.82, "volume24h": 1800000000, "openInterest": 920000000, "openInterestCoins": 266666, "funding": 0.0072, "maxLeverage": 50},
+    {"name": "SOL", "markPx": 198.45, "indexPx": 198.35, "change24h": 4.25, "volume24h": 850000000, "openInterest": 450000000, "openInterestCoins": 2267573, "funding": 0.0125, "maxLeverage": 20},
+    {"name": "DOGE", "markPx": 0.3245, "indexPx": 0.3243, "change24h": 3.15, "volume24h": 420000000, "openInterest": 180000000, "openInterestCoins": 554700462, "funding": 0.0098, "maxLeverage": 20},
+    {"name": "XRP", "markPx": 2.45, "indexPx": 2.448, "change24h": -1.25, "volume24h": 380000000, "openInterest": 165000000, "openInterestCoins": 67346938, "funding": -0.0045, "maxLeverage": 20},
+    {"name": "AVAX", "markPx": 38.75, "indexPx": 38.72, "change24h": 2.85, "volume24h": 250000000, "openInterest": 125000000, "openInterestCoins": 3225806, "funding": 0.0065, "maxLeverage": 20},
+    {"name": "LINK", "markPx": 22.35, "indexPx": 22.32, "change24h": 1.55, "volume24h": 180000000, "openInterest": 95000000, "openInterestCoins": 4249441, "funding": 0.0055, "maxLeverage": 20},
+    {"name": "ARB", "markPx": 0.825, "indexPx": 0.824, "change24h": -0.85, "volume24h": 145000000, "openInterest": 78000000, "openInterestCoins": 94545454, "funding": -0.0032, "maxLeverage": 20},
+    {"name": "OP", "markPx": 1.85, "indexPx": 1.848, "change24h": 2.15, "volume24h": 125000000, "openInterest": 65000000, "openInterestCoins": 35135135, "funding": 0.0048, "maxLeverage": 20},
+    {"name": "SUI", "markPx": 4.25, "indexPx": 4.248, "change24h": 5.45, "volume24h": 280000000, "openInterest": 145000000, "openInterestCoins": 34117647, "funding": 0.0185, "maxLeverage": 20},
+    {"name": "PEPE", "markPx": 0.00001845, "indexPx": 0.00001843, "change24h": 8.25, "volume24h": 320000000, "openInterest": 165000000, "openInterestCoins": 8943089430894, "funding": 0.0245, "maxLeverage": 10},
+    {"name": "WIF", "markPx": 1.95, "indexPx": 1.948, "change24h": 6.35, "volume24h": 185000000, "openInterest": 85000000, "openInterestCoins": 43589743, "funding": 0.0165, "maxLeverage": 10}
+  ],
+  "fundingRates": [
+    {"coin": "PEPE", "rate": 0.0245, "annualized": 26.8425, "markPx": 0.00001845, "openInterest": 165000000},
+    {"coin": "SUI", "rate": 0.0185, "annualized": 20.2575, "markPx": 4.25, "openInterest": 145000000},
+    {"coin": "WIF", "rate": 0.0165, "annualized": 18.0675, "markPx": 1.95, "openInterest": 85000000},
+    {"coin": "SOL", "rate": 0.0125, "annualized": 13.6875, "markPx": 198.45, "openInterest": 450000000},
+    {"coin": "DOGE", "rate": 0.0098, "annualized": 10.7310, "markPx": 0.3245, "openInterest": 180000000},
+    {"coin": "BTC", "rate": 0.0085, "annualized": 9.3075, "markPx": 97500.5, "openInterest": 1850000000},
+    {"coin": "ETH", "rate": 0.0072, "annualized": 7.8840, "markPx": 3450.25, "openInterest": 920000000},
+    {"coin": "AVAX", "rate": 0.0065, "annualized": 7.1175, "markPx": 38.75, "openInterest": 125000000},
+    {"coin": "LINK", "rate": 0.0055, "annualized": 6.0225, "markPx": 22.35, "openInterest": 95000000},
+    {"coin": "OP", "rate": 0.0048, "annualized": 5.2560, "markPx": 1.85, "openInterest": 65000000},
+    {"coin": "XRP", "rate": -0.0045, "annualized": -4.9275, "markPx": 2.45, "openInterest": 165000000},
+    {"coin": "ARB", "rate": -0.0032, "annualized": -3.5040, "markPx": 0.825, "openInterest": 78000000}
+  ],
+  "liquidationRisks": [
+    {"coin": "BTC", "direction": "Long", "positionValue": 12500000, "size": 128.2, "entryPx": "95200", "currentPx": 97500.5, "liquidationPx": 89500, "distancePct": 8.2, "leverage": 10, "traderAddress": "0x1234567890abcdef1234567890abcdef12345678", "unrealizedPnl": "295000"},
+    {"coin": "ETH", "direction": "Short", "positionValue": 8500000, "size": 2463.7, "entryPx": "3520", "currentPx": 3450.25, "liquidationPx": 3750, "distancePct": 8.7, "leverage": 15, "traderAddress": "0xabcdef1234567890abcdef1234567890abcdef12", "unrealizedPnl": "172000"},
+    {"coin": "SOL", "direction": "Long", "positionValue": 5200000, "size": 26200, "entryPx": "185.5", "currentPx": 198.45, "liquidationPx": 175, "distancePct": 11.8, "leverage": 8, "traderAddress": "0x9876543210fedcba9876543210fedcba98765432", "unrealizedPnl": "339000"},
+    {"coin": "BTC", "direction": "Short", "positionValue": 4800000, "size": 49.2, "entryPx": "99500", "currentPx": 97500.5, "liquidationPx": 108000, "distancePct": 10.8, "leverage": 10, "traderAddress": "0xfedcba9876543210fedcba9876543210fedcba98", "unrealizedPnl": "98400"},
+    {"coin": "PEPE", "direction": "Long", "positionValue": 3500000, "size": 189702000000, "entryPx": "0.00001725", "currentPx": 0.00001845, "liquidationPx": 0.0000145, "distancePct": 21.4, "leverage": 5, "traderAddress": "0x1111222233334444555566667777888899990000", "unrealizedPnl": "227000"},
+    {"coin": "SUI", "direction": "Long", "positionValue": 2800000, "size": 658823, "entryPx": "3.95", "currentPx": 4.25, "liquidationPx": 3.45, "distancePct": 18.8, "leverage": 6, "traderAddress": "0xaaaabbbbccccddddeeeeffffgggghhhhiiiijjjj", "unrealizedPnl": "197600"}
+  ],
+  "whaleTracker": {
+    "daily": [
+      {"address": "0x1234567890abcdef1234567890abcdef12345678", "displayName": "HyperWhale", "accountValue": 45000000, "pnl": 2850000, "roi": 0.0678, "volume": 125000000, "positions": [{"coin": "BTC", "direction": "Long", "size": 256.5, "entryPx": "94500", "leverage": 5, "leverageType": "cross", "positionValue": 25008750, "unrealizedPnl": "769500", "returnOnEquity": "0.0308", "liquidationPx": "78500"}]},
+      {"address": "0xabcdef1234567890abcdef1234567890abcdef12", "displayName": "SolanaKing", "accountValue": 28000000, "pnl": 1920000, "roi": 0.0742, "volume": 89000000, "positions": [{"coin": "SOL", "direction": "Long", "size": 85000, "entryPx": "182.5", "leverage": 3, "leverageType": "cross", "positionValue": 16868250, "unrealizedPnl": "1355750", "returnOnEquity": "0.0804", "liquidationPx": "125"}]},
+      {"address": "0x9876543210fedcba9876543210fedcba98765432", "displayName": null, "accountValue": 18500000, "pnl": 1450000, "roi": 0.0851, "volume": 67000000, "positions": [{"coin": "ETH", "direction": "Long", "size": 3500, "entryPx": "3280", "leverage": 4, "leverageType": "cross", "positionValue": 12075875, "unrealizedPnl": "595875", "returnOnEquity": "0.0493", "liquidationPx": "2650"}]},
+      {"address": "0xfedcba9876543210fedcba9876543210fedcba98", "displayName": "MemeTrader", "accountValue": 12000000, "pnl": 1180000, "roi": 0.1092, "volume": 52000000, "positions": [{"coin": "PEPE", "direction": "Long", "size": 450000000000, "entryPx": "0.0000165", "leverage": 3, "leverageType": "cross", "positionValue": 8302500, "unrealizedPnl": "877500", "returnOnEquity": "0.1057", "liquidationPx": "0.0000115"}]},
+      {"address": "0x1111222233334444555566667777888899990000", "displayName": "ETHMaxi", "accountValue": 9500000, "pnl": 890000, "roi": 0.1035, "volume": 42000000, "positions": [{"coin": "ETH", "direction": "Long", "size": 1850, "entryPx": "3320", "leverage": 5, "leverageType": "cross", "positionValue": 6382962, "unrealizedPnl": "240963", "returnOnEquity": "0.0377", "liquidationPx": "2780"}]}
+    ],
+    "weekly": [
+      {"address": "0x1234567890abcdef1234567890abcdef12345678", "displayName": "HyperWhale", "accountValue": 45000000, "pnl": 8500000, "roi": 0.2328, "volume": 580000000, "positions": [{"coin": "BTC", "direction": "Long", "size": 256.5, "entryPx": "94500", "leverage": 5, "leverageType": "cross", "positionValue": 25008750, "unrealizedPnl": "769500", "returnOnEquity": "0.0308", "liquidationPx": "78500"}]},
+      {"address": "0xabcdef1234567890abcdef1234567890abcdef12", "displayName": "SolanaKing", "accountValue": 28000000, "pnl": 5200000, "roi": 0.2283, "volume": 420000000, "positions": [{"coin": "SOL", "direction": "Long", "size": 85000, "entryPx": "182.5", "leverage": 3, "leverageType": "cross", "positionValue": 16868250, "unrealizedPnl": "1355750", "returnOnEquity": "0.0804", "liquidationPx": "125"}]},
+      {"address": "0x9876543210fedcba9876543210fedcba98765432", "displayName": null, "accountValue": 18500000, "pnl": 3800000, "roi": 0.2586, "volume": 310000000, "positions": [{"coin": "ETH", "direction": "Long", "size": 3500, "entryPx": "3280", "leverage": 4, "leverageType": "cross", "positionValue": 12075875, "unrealizedPnl": "595875", "returnOnEquity": "0.0493", "liquidationPx": "2650"}]},
+      {"address": "0xfedcba9876543210fedcba9876543210fedcba98", "displayName": "MemeTrader", "accountValue": 12000000, "pnl": 2900000, "roi": 0.3189, "volume": 245000000, "positions": [{"coin": "PEPE", "direction": "Long", "size": 450000000000, "entryPx": "0.0000165", "leverage": 3, "leverageType": "cross", "positionValue": 8302500, "unrealizedPnl": "877500", "returnOnEquity": "0.1057", "liquidationPx": "0.0000115"}]},
+      {"address": "0x1111222233334444555566667777888899990000", "displayName": "ETHMaxi", "accountValue": 9500000, "pnl": 2150000, "roi": 0.2926, "volume": 185000000, "positions": [{"coin": "ETH", "direction": "Long", "size": 1850, "entryPx": "3320", "leverage": 5, "leverageType": "cross", "positionValue": 6382962, "unrealizedPnl": "240963", "returnOnEquity": "0.0377", "liquidationPx": "2780"}]}
+    ],
+    "biggestPositions": [
+      {"coin": "BTC", "direction": "Long", "size": 450.5, "entryPx": "93200", "leverage": 3, "leverageType": "cross", "positionValue": 43927237, "unrealizedPnl": "1938150", "traderAddress": "0xaaaa1111bbbb2222cccc3333dddd4444eeee5555", "traderName": "BTCGiant", "traderAccountValue": 85000000},
+      {"coin": "ETH", "direction": "Long", "size": 8500, "entryPx": "3280", "leverage": 4, "leverageType": "cross", "positionValue": 29327125, "unrealizedPnl": "1446125", "traderAddress": "0xbbbb2222cccc3333dddd4444eeee5555ffff6666", "traderName": "EthereumPro", "traderAccountValue": 62000000},
+      {"coin": "BTC", "direction": "Long", "size": 256.5, "entryPx": "94500", "leverage": 5, "leverageType": "cross", "positionValue": 25008750, "unrealizedPnl": "769500", "traderAddress": "0x1234567890abcdef1234567890abcdef12345678", "traderName": "HyperWhale", "traderAccountValue": 45000000},
+      {"coin": "SOL", "direction": "Long", "size": 125000, "entryPx": "178.5", "leverage": 2, "leverageType": "cross", "positionValue": 24806250, "unrealizedPnl": "2493750", "traderAddress": "0xcccc3333dddd4444eeee5555ffff6666gggg7777", "traderName": null, "traderAccountValue": 55000000},
+      {"coin": "BTC", "direction": "Short", "size": 185.2, "entryPx": "99800", "leverage": 5, "leverageType": "cross", "positionValue": 18057100, "unrealizedPnl": "425960", "traderAddress": "0xdddd4444eeee5555ffff6666gggg7777hhhh8888", "traderName": "ShortKing", "traderAccountValue": 38000000},
+      {"coin": "SOL", "direction": "Long", "size": 85000, "entryPx": "182.5", "leverage": 3, "leverageType": "cross", "positionValue": 16868250, "unrealizedPnl": "1355750", "traderAddress": "0xabcdef1234567890abcdef1234567890abcdef12", "traderName": "SolanaKing", "traderAccountValue": 28000000}
+    ]
+  },
+  "lastUpdated": "2026-02-03T09:30:00Z"
+}
