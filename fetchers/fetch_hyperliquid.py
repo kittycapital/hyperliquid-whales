@@ -194,25 +194,38 @@ def build_liq_map(traders, markets_dict):
         if curr <= 0: continue
         
         bucket_size = get_bucket_size(coin, curr)
-        min_p, max_p = curr * 0.7, curr * 1.3
-        buckets = defaultdict(lambda: {'long': {'10x': 0, '25x': 0, '50x': 0, '100x': 0, 'total': 0}, 'short': {'10x': 0, '25x': 0, '50x': 0, '100x': 0, 'total': 0}})
+        min_p, max_p = curr * 0.5, curr * 1.5
+        
+        long_buckets = defaultdict(lambda: {'10x': 0, '25x': 0, '50x': 0, '100x': 0})
+        short_buckets = defaultdict(lambda: {'10x': 0, '25x': 0, '50x': 0, '100x': 0})
         total_long, total_short = 0, 0
         
         for p in positions:
             liq = p['liquidationPx']
             if liq < min_p or liq > max_p: continue
-            key = math.floor(liq / bucket_size) * bucket_size
+            key = round(math.floor(liq / bucket_size) * bucket_size, 2)
             cat = get_lev_cat(p['leverage'])
             d = p['direction'].lower()
-            buckets[key][d][cat] += p['positionValue']
-            buckets[key][d]['total'] += p['positionValue']
-            if d == 'long': total_long += p['positionValue']
-            else: total_short += p['positionValue']
+            
+            if d == 'long':
+                long_buckets[key][cat] += p['positionValue']
+                total_long += p['positionValue']
+            else:
+                short_buckets[key][cat] += p['positionValue']
+                total_short += p['positionValue']
         
-        bucket_list = [{'price': k, 'priceEnd': k + bucket_size, 'long': v['long'], 'short': v['short']} for k, v in sorted(buckets.items()) if v['long']['total'] > 0 or v['short']['total'] > 0]
+        # Format for UI: longLiquidations and shortLiquidations arrays
+        long_list = [{'price': k, '10x': v['10x'], '25x': v['25x'], '50x': v['50x'], '100x': v['100x']} 
+                     for k, v in sorted(long_buckets.items()) if sum(v.values()) > 0]
+        short_list = [{'price': k, '10x': v['10x'], '25x': v['25x'], '50x': v['50x'], '100x': v['100x']} 
+                      for k, v in sorted(short_buckets.items()) if sum(v.values()) > 0]
         
-        if bucket_list:
-            result[coin] = {'buckets': bucket_list, 'currentPrice': curr, 'bucketSize': bucket_size, 'totalLongLiq': total_long, 'totalShortLiq': total_short}
+        if long_list or short_list:
+            result[coin] = {
+                'currentPrice': curr,
+                'longLiquidations': long_list,
+                'shortLiquidations': short_list
+            }
     
     print(f"   └─ {len(result)} coins mapped")
     return result
