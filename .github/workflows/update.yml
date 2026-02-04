@@ -1,34 +1,34 @@
-name: Update Hyperliquid Data
+name: Update DEX Data
 
 on:
   schedule:
-    # Run 4 times daily (07:00, 13:00, 19:00, 01:00 KST = 22:00, 04:00, 10:00, 16:00 UTC)
-    - cron: '0 22,4,10,16 * * *'
-  workflow_dispatch:  # Manual trigger
+    - cron: '0 */6 * * *'  # 6시간마다 실행
+  workflow_dispatch:  # 수동 실행 가능
 
 jobs:
-  update:
+  update-data:
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
+      
       - name: Install dependencies
         run: pip install requests
-
-      - name: Fetch data
-        run: python fetch_data.py
-
-      - name: Commit and push if changed
+      
+      - name: Run all DEX fetchers
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add data.json
-          git diff --staged --quiet || git commit -m "📊 Update data $(date -u +'%Y-%m-%d %H:%M') UTC"
-          git push
+          cd fetchers
+          python fetch_all.py
+        continue-on-error: true
+      
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🔄 Update DEX data (Hyperliquid, Drift, GMX)"
+          file_pattern: "data/*.json"
