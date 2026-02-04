@@ -1,0 +1,42 @@
+{
+  "dashboard": {"totalOI": 850000000, "volume24h": 1250000000, "activeMarkets": 12, "totalTraders": 3500},
+  "markets": [],
+  "whaleTracker": {
+    "daily": [
+      {"address": "0xGMX1234567890abcdef1234567890abcdef123456", "displayName": "GMXWhale", "accountValue": 18500000, "pnl": 1250000, "roi": 0.0725, "volume": 65000000, "positions": [{"coin": "BTC", "direction": "Long", "size": 85.5, "entryPx": "95200", "leverage": 10, "positionValue": 8539600, "unrealizedPnl": 385000}]},
+      {"address": "0xARB2345678901bcdef2345678901bcdef234567", "displayName": "ArbTrader", "accountValue": 12500000, "pnl": 920000, "roi": 0.0792, "volume": 48000000, "positions": [{"coin": "ETH", "direction": "Long", "size": 2800, "entryPx": "3250", "leverage": 8, "positionValue": 9520000, "unrealizedPnl": 420000}]},
+      {"address": "0xDEFI3456789012cdef3456789012cdef3456789", "displayName": null, "accountValue": 9800000, "pnl": 680000, "roi": 0.0745, "volume": 38000000, "positions": [{"coin": "ARB", "direction": "Long", "size": 2500000, "entryPx": "0.85", "leverage": 5, "positionValue": 2337500, "unrealizedPnl": 212500}]},
+      {"address": "0xLINK4567890123def4567890123def45678901", "displayName": "LinkMarine", "accountValue": 7200000, "pnl": 520000, "roi": 0.0778, "volume": 28000000, "positions": []},
+      {"address": "0xSOL56789012345ef56789012345ef567890123", "displayName": "SolanaFan", "accountValue": 5800000, "pnl": 380000, "roi": 0.0702, "volume": 22000000, "positions": []}
+    ],
+    "weekly": [
+      {"address": "0xGMX1234567890abcdef1234567890abcdef123456", "displayName": "GMXWhale", "accountValue": 18500000, "pnl": 3800000, "roi": 0.2586, "volume": 320000000, "positions": []},
+      {"address": "0xARB2345678901bcdef2345678901bcdef234567", "displayName": "ArbTrader", "accountValue": 12500000, "pnl": 2650000, "roi": 0.2690, "volume": 245000000, "positions": []},
+      {"address": "0xDEFI3456789012cdef3456789012cdef3456789", "displayName": null, "accountValue": 9800000, "pnl": 1920000, "roi": 0.2439, "volume": 185000000, "positions": []}
+    ],
+    "biggestPositions": [
+      {"coin": "BTC", "direction": "Long", "size": 180.5, "entryPx": "94800", "leverage": 8, "positionValue": 18012000, "unrealizedPnl": 892000, "traderAddress": "0xGMX1111222233334444555566667777888899990000", "traderName": "GMXKing"},
+      {"coin": "ETH", "direction": "Short", "size": 4500, "entryPx": "3420", "leverage": 10, "positionValue": 15390000, "unrealizedPnl": 756000, "traderAddress": "0xGMX2222333344445555666677778888999900001111", "traderName": "ETHBear"},
+      {"coin": "ARB", "direction": "Long", "size": 8500000, "entryPx": "0.92", "leverage": 5, "positionValue": 8330000, "unrealizedPnl": 510000, "traderAddress": "0xGMX3333444455556666777788889999000011112222", "traderName": "ArbMaxi"}
+    ]
+  },
+  "positionAggregation": {
+    "byPnlDaily": [
+      {"coin": "BTC", "long": 38000000, "short": 12000000, "longSize": 385, "shortSize": 122, "total": 50000000},
+      {"coin": "ETH", "long": 32000000, "short": 18000000, "longSize": 9500, "shortSize": 5340, "total": 50000000},
+      {"coin": "ARB", "long": 18000000, "short": 5500000, "longSize": 19500000, "shortSize": 5950000, "total": 23500000},
+      {"coin": "LINK", "long": 8500000, "short": 3200000, "longSize": 580000, "shortSize": 218000, "total": 11700000}
+    ],
+    "byPnlWeekly": [
+      {"coin": "BTC", "long": 45000000, "short": 15000000, "longSize": 458, "shortSize": 153, "total": 60000000},
+      {"coin": "ETH", "long": 38000000, "short": 22000000, "longSize": 11200, "shortSize": 6490, "total": 60000000},
+      {"coin": "ARB", "long": 22000000, "short": 8000000, "longSize": 23800000, "shortSize": 8650000, "total": 30000000}
+    ],
+    "bySize": [
+      {"coin": "BTC", "long": 52000000, "short": 18000000, "longSize": 528, "shortSize": 183, "total": 70000000},
+      {"coin": "ETH", "long": 42000000, "short": 25000000, "longSize": 12400, "shortSize": 7380, "total": 67000000},
+      {"coin": "ARB", "long": 25000000, "short": 10000000, "longSize": 27000000, "shortSize": 10800000, "total": 35000000}
+    ]
+  },
+  "lastUpdated": "2026-02-04T09:00:00Z"
+}

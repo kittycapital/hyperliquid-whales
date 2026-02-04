@@ -1,0 +1,40 @@
+{
+  "lastUpdated": "2026-02-04T09:00:00Z",
+  "dashboard": {"totalOI": 450000000, "volume24h": 680000000, "activeMarkets": 30, "totalTraders": 2800},
+  "whaleTracker": {
+    "daily": [
+      {"address": "DRiFT7gkhULXVdGu1A3KSDA6RQ3nLpMCE6FDVJHkx4rP", "displayName": "Drift Whale #1", "accountValue": 2500000, "pnl": 450000, "roi": 0.18, "volume": 15000000, "positions": [{"coin": "SOL", "direction": "Long", "size": 15000, "positionValue": 2250000, "entryPx": 150, "leverage": 5, "unrealizedPnl": 125000}, {"coin": "JUP", "direction": "Long", "size": 500000, "positionValue": 450000, "entryPx": 0.9, "leverage": 3, "unrealizedPnl": 45000}]},
+      {"address": "DRiFT8UhZPQLMxCcDeTe5Ai2Mv7qGLFGTKHLkMPVf9Rp", "displayName": "Drift Whale #2", "accountValue": 1800000, "pnl": 280000, "roi": 0.155, "volume": 12000000, "positions": [{"coin": "BTC", "direction": "Long", "size": 12, "positionValue": 1200000, "entryPx": 100000, "leverage": 10, "unrealizedPnl": 85000}]},
+      {"address": "DRiFT9Ukj3HXULFLMdHTe5Ai2Mv7qGLFGTKHLkMPVf9Xq", "displayName": "Drift Whale #3", "accountValue": 1500000, "pnl": 195000, "roi": 0.13, "volume": 9500000, "positions": [{"coin": "SOL", "direction": "Short", "size": 8000, "positionValue": 1200000, "entryPx": 155, "leverage": 8, "unrealizedPnl": 65000}]},
+      {"address": "DRiFTABcd3HXULFLMdHTe5Ai2Mv7qGLFGTKHLkMPVfXYz", "displayName": null, "accountValue": 1200000, "pnl": 156000, "roi": 0.13, "volume": 8000000, "positions": [{"coin": "WIF", "direction": "Long", "size": 500000, "positionValue": 900000, "entryPx": 1.8, "leverage": 5, "unrealizedPnl": 72000}]},
+      {"address": "DRiFTEFgh3HXULFLMdHTe5Ai2Mv7qGLFGTKHLkMPVfABc", "displayName": null, "accountValue": 950000, "pnl": 123500, "roi": 0.13, "volume": 6500000, "positions": [{"coin": "JTO", "direction": "Long", "size": 250000, "positionValue": 650000, "entryPx": 2.6, "leverage": 4, "unrealizedPnl": 52000}]}
+    ],
+    "weekly": [
+      {"address": "DRiFT7gkhULXVdGu1A3KSDA6RQ3nLpMCE6FDVJHkx4rP", "displayName": "Drift Whale #1", "accountValue": 2500000, "pnl": 750000, "roi": 0.30, "volume": 45000000, "positions": [{"coin": "SOL", "direction": "Long", "size": 15000, "positionValue": 2250000, "entryPx": 150, "leverage": 5, "unrealizedPnl": 125000}]},
+      {"address": "DRiFT8UhZPQLMxCcDeTe5Ai2Mv7qGLFGTKHLkMPVf9Rp", "displayName": "Drift Whale #2", "accountValue": 1800000, "pnl": 520000, "roi": 0.29, "volume": 38000000, "positions": [{"coin": "BTC", "direction": "Long", "size": 12, "positionValue": 1200000, "entryPx": 100000, "leverage": 10, "unrealizedPnl": 85000}]}
+    ],
+    "biggestPositions": [
+      {"coin": "SOL", "direction": "Long", "size": 15000, "positionValue": 2250000, "entryPx": 150, "leverage": 5, "unrealizedPnl": 125000, "traderAddress": "DRiFT7gkhULXVdGu1A3KSDA6RQ3nLpMCE6FDVJHkx4rP", "traderName": "Drift Whale #1"},
+      {"coin": "BTC", "direction": "Long", "size": 12, "positionValue": 1200000, "entryPx": 100000, "leverage": 10, "unrealizedPnl": 85000, "traderAddress": "DRiFT8UhZPQLMxCcDeTe5Ai2Mv7qGLFGTKHLkMPVf9Rp", "traderName": "Drift Whale #2"},
+      {"coin": "SOL", "direction": "Short", "size": 8000, "positionValue": 1200000, "entryPx": 155, "leverage": 8, "unrealizedPnl": 65000, "traderAddress": "DRiFT9Ukj3HXULFLMdHTe5Ai2Mv7qGLFGTKHLkMPVf9Xq", "traderName": "Drift Whale #3"},
+      {"coin": "WIF", "direction": "Long", "size": 500000, "positionValue": 900000, "entryPx": 1.8, "leverage": 5, "unrealizedPnl": 72000, "traderAddress": "DRiFTABcd3HXULFLMdHTe5Ai2Mv7qGLFGTKHLkMPVfXYz", "traderName": null}
+    ]
+  },
+  "positionAggregation": {
+    "byPnlDaily": [
+      {"coin": "SOL", "long": 3450000, "short": 1200000, "longSize": 23000, "shortSize": 8000},
+      {"coin": "BTC", "long": 1200000, "short": 400000, "longSize": 12, "shortSize": 4},
+      {"coin": "ETH", "long": 500000, "short": 600000, "longSize": 167, "shortSize": 200},
+      {"coin": "WIF", "long": 900000, "short": 200000, "longSize": 500000, "shortSize": 111111},
+      {"coin": "JUP", "long": 450000, "short": 150000, "longSize": 500000, "shortSize": 166667}
+    ],
+    "byPnlWeekly": [
+      {"coin": "SOL", "long": 3450000, "short": 1200000, "longSize": 23000, "shortSize": 8000},
+      {"coin": "BTC", "long": 1200000, "short": 400000, "longSize": 12, "shortSize": 4}
+    ],
+    "bySize": [
+      {"coin": "SOL", "long": 3450000, "short": 1200000, "longSize": 23000, "shortSize": 8000},
+      {"coin": "BTC", "long": 1200000, "short": 400000, "longSize": 12, "shortSize": 4}
+    ]
+  }
+}
