@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-04T10:17:24.240126Z",
+  "lastUpdated": "2026-02-04T10:29:18.841648Z",
   "dashboard": {
     "totalTraders": 200
   },
@@ -13,6 +13,15 @@
         "roi": 0,
         "volume": 0,
         "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
           {
             "coin": "SOL",
             "direction": "Long",
@@ -30,13 +39,41 @@
             "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
-          },
+          }
+        ]
+      },
+      {
+        "address": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
+        "displayName": null,
+        "accountValue": 0,
+        "pnl": 0,
+        "roi": 0,
+        "volume": 0,
+        "positions": [
           {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -231,11 +268,11 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
+            "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 0.85,
+            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -249,20 +286,20 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -315,6 +352,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -329,15 +375,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -399,20 +436,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JTO",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 2.95,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JTO",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 2.95,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -455,11 +492,11 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "BTC",
+            "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 97500,
+            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -473,15 +510,6 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "JUP",
             "direction": "Long",
             "size": 0,
@@ -491,11 +519,20 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "ETH",
+            "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 3380,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -784,11 +821,11 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
+            "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 0.85,
+            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -802,11 +839,11 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "ETH",
+            "coin": "JUP",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 3380,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -908,34 +945,6 @@
         ]
       },
       {
-        "address": "GfWRqpaXhddqAR8cfiSKAfmgynae9g9WYgwA3cNw6SZN",
-        "displayName": null,
-        "accountValue": 0,
-        "pnl": 0,
-        "roi": 0,
-        "volume": 0,
-        "positions": [
-          {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          }
-        ]
-      },
-      {
         "address": "2bwwmKTjkL3ZPsRNXBfaAS6wh1iBdaxmnyKZubLANm5M",
         "displayName": null,
         "accountValue": 0,
@@ -963,20 +972,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1049,43 +1058,6 @@
         ]
       },
       {
-        "address": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
-        "displayName": null,
-        "accountValue": 0,
-        "pnl": 0,
-        "roi": 0,
-        "volume": 0,
-        "positions": [
-          {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          }
-        ]
-      },
-      {
         "address": "4cYZeV23hobWR2yXzZDQCQoEePU6XtXKz5kaDrghsuNx",
         "displayName": null,
         "accountValue": 0,
@@ -1094,6 +1066,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -1110,13 +1091,41 @@
             "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
-          },
+          }
+        ]
+      },
+      {
+        "address": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
+        "displayName": null,
+        "accountValue": 0,
+        "pnl": 0,
+        "roi": 0,
+        "volume": 0,
+        "positions": [
           {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1130,15 +1139,6 @@
         "roi": 0,
         "volume": 0,
         "positions": [
-          {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
           {
             "coin": "SOL",
             "direction": "Long",
@@ -1154,6 +1154,15 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1225,20 +1234,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -1480,20 +1489,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1508,6 +1517,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -1522,15 +1540,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1545,6 +1554,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -1559,15 +1577,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1582,24 +1591,6 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
@@ -1609,11 +1600,29 @@
             "unrealizedPnl": 0
           },
           {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1628,20 +1637,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1684,20 +1693,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1711,6 +1720,15 @@
         "roi": 0,
         "volume": 0,
         "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
           {
             "coin": "SOL",
             "direction": "Long",
@@ -1726,15 +1744,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -1863,20 +1872,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -2194,20 +2203,20 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -2359,43 +2368,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          }
-        ]
-      },
-      {
-        "address": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
-        "displayName": null,
-        "accountValue": 0,
-        "pnl": 0,
-        "roi": 0,
-        "volume": 0,
-        "positions": [
-          {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -3092,20 +3064,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -3489,6 +3461,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -3503,15 +3484,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -3564,15 +3536,6 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -3582,20 +3545,29 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -3610,6 +3582,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -3624,15 +3605,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -3666,20 +3638,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -3808,24 +3780,6 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
@@ -3835,11 +3789,29 @@
             "unrealizedPnl": 0
           },
           {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -3941,25 +3913,6 @@
         ]
       },
       {
-        "address": "F46m1db8iy7BesAdsSuYD7hjcPTptxuDMMr5KKM9v7iq",
-        "displayName": null,
-        "accountValue": 0,
-        "pnl": 0,
-        "roi": 0,
-        "volume": 0,
-        "positions": [
-          {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          }
-        ]
-      },
-      {
         "address": "G1QTv7Y3ud5FnwWBBhMcGHFmtkGDNAcCoFQAFM9Yad5c",
         "displayName": null,
         "accountValue": 0,
@@ -4006,20 +3959,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -4414,20 +4367,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -4454,6 +4407,44 @@
       },
       {
         "address": "28eMs5pp5dc8SFKja1dBw2KqFM7C2Px9Dqq95CepXpEv",
+        "displayName": null,
+        "accountValue": 0,
+        "pnl": 0,
+        "roi": 0,
+        "volume": 0,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          }
+        ]
+      },
+      {
+        "address": "CDimbKzJJkQ1WJk9rUa7de7bny8z2GiZDH9a5SH8Sfoe",
+        "displayName": null,
+        "accountValue": 0,
+        "pnl": 0,
+        "roi": 0,
+        "volume": 0,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          }
+        ]
+      },
+      {
+        "address": "8HATNfH8Jt7VdZoYiRJoukhHveVy9WnnrkTMXqn5KXSc",
         "displayName": null,
         "accountValue": 0,
         "pnl": 0,
@@ -4482,6 +4473,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -4498,13 +4498,41 @@
             "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
-          },
+          }
+        ]
+      },
+      {
+        "address": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
+        "displayName": null,
+        "accountValue": 0,
+        "pnl": 0,
+        "roi": 0,
+        "volume": 0,
+        "positions": [
           {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -4699,11 +4727,11 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
+            "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 0.85,
+            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -4717,20 +4745,20 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -4783,6 +4811,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -4797,15 +4834,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -4867,20 +4895,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JTO",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 2.95,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JTO",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 2.95,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -4923,11 +4951,11 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "BTC",
+            "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 97500,
+            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -4941,15 +4969,6 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "JUP",
             "direction": "Long",
             "size": 0,
@@ -4959,11 +4978,20 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "ETH",
+            "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 3380,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -5252,11 +5280,11 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
+            "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 0.85,
+            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -5270,11 +5298,11 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "ETH",
+            "coin": "JUP",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
-            "entryPx": 3380,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -5376,34 +5404,6 @@
         ]
       },
       {
-        "address": "GfWRqpaXhddqAR8cfiSKAfmgynae9g9WYgwA3cNw6SZN",
-        "displayName": null,
-        "accountValue": 0,
-        "pnl": 0,
-        "roi": 0,
-        "volume": 0,
-        "positions": [
-          {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          }
-        ]
-      },
-      {
         "address": "2bwwmKTjkL3ZPsRNXBfaAS6wh1iBdaxmnyKZubLANm5M",
         "displayName": null,
         "accountValue": 0,
@@ -5431,20 +5431,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -5517,43 +5517,6 @@
         ]
       },
       {
-        "address": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
-        "displayName": null,
-        "accountValue": 0,
-        "pnl": 0,
-        "roi": 0,
-        "volume": 0,
-        "positions": [
-          {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          }
-        ]
-      },
-      {
         "address": "4cYZeV23hobWR2yXzZDQCQoEePU6XtXKz5kaDrghsuNx",
         "displayName": null,
         "accountValue": 0,
@@ -5562,6 +5525,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -5578,13 +5550,41 @@
             "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
-          },
+          }
+        ]
+      },
+      {
+        "address": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
+        "displayName": null,
+        "accountValue": 0,
+        "pnl": 0,
+        "roi": 0,
+        "volume": 0,
+        "positions": [
           {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -5598,15 +5598,6 @@
         "roi": 0,
         "volume": 0,
         "positions": [
-          {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
           {
             "coin": "SOL",
             "direction": "Long",
@@ -5622,6 +5613,15 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -5693,20 +5693,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           },
@@ -5948,20 +5948,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -5976,6 +5976,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -5990,15 +5999,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -6013,6 +6013,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -6027,15 +6036,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -6050,24 +6050,6 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
@@ -6077,11 +6059,29 @@
             "unrealizedPnl": 0
           },
           {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -6096,20 +6096,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -6152,20 +6152,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -6179,6 +6179,15 @@
         "roi": 0,
         "volume": 0,
         "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
           {
             "coin": "SOL",
             "direction": "Long",
@@ -6194,15 +6203,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -6331,20 +6331,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -6662,20 +6662,20 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -6827,43 +6827,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          }
-        ]
-      },
-      {
-        "address": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
-        "displayName": null,
-        "accountValue": 0,
-        "pnl": 0,
-        "roi": 0,
-        "volume": 0,
-        "positions": [
-          {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -7560,20 +7523,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -7957,6 +7920,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -7971,15 +7943,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -8032,15 +7995,6 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "JUP",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 0.85,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -8050,20 +8004,29 @@
             "unrealizedPnl": 0
           },
           {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "JUP",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 0.85,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -8078,6 +8041,15 @@
         "volume": 0,
         "positions": [
           {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "SOL",
             "direction": "Long",
             "size": 0,
@@ -8092,15 +8064,6 @@
             "size": 0,
             "positionValue": 0,
             "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 3380,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -8134,20 +8097,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -8276,24 +8239,6 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
@@ -8303,11 +8248,29 @@
             "unrealizedPnl": 0
           },
           {
+            "coin": "SOL",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 195,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -8409,25 +8372,6 @@
         ]
       },
       {
-        "address": "F46m1db8iy7BesAdsSuYD7hjcPTptxuDMMr5KKM9v7iq",
-        "displayName": null,
-        "accountValue": 0,
-        "pnl": 0,
-        "roi": 0,
-        "volume": 0,
-        "positions": [
-          {
-            "coin": "SOL",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 195,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          }
-        ]
-      },
-      {
         "address": "G1QTv7Y3ud5FnwWBBhMcGHFmtkGDNAcCoFQAFM9Yad5c",
         "displayName": null,
         "accountValue": 0,
@@ -8474,20 +8418,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "ETH",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 3380,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -8882,20 +8826,20 @@
         "volume": 0,
         "positions": [
           {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 0,
-            "positionValue": 0,
-            "entryPx": 97500,
-            "leverage": 1,
-            "unrealizedPnl": 0
-          },
-          {
             "coin": "DRIFT",
             "direction": "Long",
             "size": 0,
             "positionValue": 0,
             "entryPx": 0.95,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          },
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
             "leverage": 1,
             "unrealizedPnl": 0
           }
@@ -8938,9 +8882,58 @@
             "unrealizedPnl": 0
           }
         ]
+      },
+      {
+        "address": "CDimbKzJJkQ1WJk9rUa7de7bny8z2GiZDH9a5SH8Sfoe",
+        "displayName": null,
+        "accountValue": 0,
+        "pnl": 0,
+        "roi": 0,
+        "volume": 0,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          }
+        ]
+      },
+      {
+        "address": "8HATNfH8Jt7VdZoYiRJoukhHveVy9WnnrkTMXqn5KXSc",
+        "displayName": null,
+        "accountValue": 0,
+        "pnl": 0,
+        "roi": 0,
+        "volume": 0,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 0,
+            "positionValue": 0,
+            "entryPx": 97500,
+            "leverage": 1,
+            "unrealizedPnl": 0
+          }
+        ]
       }
     ],
     "biggestPositions": [
+      {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 3380,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "E6vCUxgcNfRLSu1wPHwqiN419LB22GAujb97tZDa91mh",
+        "traderName": null
+      },
       {
         "coin": "SOL",
         "direction": "Long",
@@ -8971,7 +8964,29 @@
         "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "E6vCUxgcNfRLSu1wPHwqiN419LB22GAujb97tZDa91mh",
+        "traderAddress": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
+        "traderName": null
+      },
+      {
+        "coin": "SOL",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 195,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 97500,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
         "traderName": null
       },
       {
@@ -9085,11 +9100,11 @@
         "traderName": null
       },
       {
-        "coin": "JUP",
+        "coin": "ETH",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 0.85,
+        "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "CNWy4ntRNKivbdkL5zBkt79sCBnsX1i6q5rWcWUZFzU1",
@@ -9107,22 +9122,22 @@
         "traderName": null
       },
       {
-        "coin": "ETH",
+        "coin": "DRIFT",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 3380,
+        "entryPx": 0.95,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "CNWy4ntRNKivbdkL5zBkt79sCBnsX1i6q5rWcWUZFzU1",
         "traderName": null
       },
       {
-        "coin": "DRIFT",
+        "coin": "JUP",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 0.95,
+        "entryPx": 0.85,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "CNWy4ntRNKivbdkL5zBkt79sCBnsX1i6q5rWcWUZFzU1",
@@ -9151,6 +9166,17 @@
         "traderName": null
       },
       {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 3380,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "5rRFJR9vsRWAmYPiodw4XNimDfVfQ6hRbzftEPL7XRsZ",
+        "traderName": null
+      },
+      {
         "coin": "SOL",
         "direction": "Long",
         "size": 0,
@@ -9167,17 +9193,6 @@
         "size": 0,
         "positionValue": 0,
         "entryPx": 97500,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "5rRFJR9vsRWAmYPiodw4XNimDfVfQ6hRbzftEPL7XRsZ",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "5rRFJR9vsRWAmYPiodw4XNimDfVfQ6hRbzftEPL7XRsZ",
@@ -9217,22 +9232,22 @@
         "traderName": null
       },
       {
-        "coin": "JTO",
+        "coin": "SOL",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 2.95,
+        "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "Mf6b9nCntRQktb2D8u5x4PBRp9wYeHVeiVvWBWQPG5M",
         "traderName": null
       },
       {
-        "coin": "SOL",
+        "coin": "JTO",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 195,
+        "entryPx": 2.95,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "Mf6b9nCntRQktb2D8u5x4PBRp9wYeHVeiVvWBWQPG5M",
@@ -9261,11 +9276,11 @@
         "traderName": null
       },
       {
-        "coin": "BTC",
+        "coin": "ETH",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 97500,
+        "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "FTkWuehxVpxwXHnfBvDHYTQwrxkg7n49bCsMsZsSrX5F",
@@ -9283,17 +9298,6 @@
         "traderName": null
       },
       {
-        "coin": "SOL",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 195,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "FTkWuehxVpxwXHnfBvDHYTQwrxkg7n49bCsMsZsSrX5F",
-        "traderName": null
-      },
-      {
         "coin": "JUP",
         "direction": "Long",
         "size": 0,
@@ -9305,11 +9309,22 @@
         "traderName": null
       },
       {
-        "coin": "ETH",
+        "coin": "SOL",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 3380,
+        "entryPx": 195,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "FTkWuehxVpxwXHnfBvDHYTQwrxkg7n49bCsMsZsSrX5F",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 97500,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "FTkWuehxVpxwXHnfBvDHYTQwrxkg7n49bCsMsZsSrX5F",
@@ -9492,11 +9507,11 @@
         "traderName": null
       },
       {
-        "coin": "JUP",
+        "coin": "ETH",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 0.85,
+        "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "8uRGWyC54iBPayWS3pw8NnhJG6Dt4rd77GUdLJx5zyk6",
@@ -9514,11 +9529,11 @@
         "traderName": null
       },
       {
-        "coin": "ETH",
+        "coin": "JUP",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 3380,
+        "entryPx": 0.85,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "8uRGWyC54iBPayWS3pw8NnhJG6Dt4rd77GUdLJx5zyk6",
@@ -9587,7 +9602,7 @@
         "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "GfWRqpaXhddqAR8cfiSKAfmgynae9g9WYgwA3cNw6SZN",
+        "traderAddress": "2bwwmKTjkL3ZPsRNXBfaAS6wh1iBdaxmnyKZubLANm5M",
         "traderName": null
       },
       {
@@ -9596,39 +9611,17 @@
         "size": 0,
         "positionValue": 0,
         "entryPx": 3380,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "GfWRqpaXhddqAR8cfiSKAfmgynae9g9WYgwA3cNw6SZN",
-        "traderName": null
-      },
-      {
-        "coin": "SOL",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 195,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "2bwwmKTjkL3ZPsRNXBfaAS6wh1iBdaxmnyKZubLANm5M",
-        "traderName": null
-      },
-      {
-        "coin": "SOL",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "6Fg1jJFdiZsvAjxx1vTM8vUQnKhSy85XbTufjKGpmu47",
         "traderName": null
       },
       {
-        "coin": "ETH",
+        "coin": "SOL",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 3380,
+        "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "6Fg1jJFdiZsvAjxx1vTM8vUQnKhSy85XbTufjKGpmu47",
@@ -9679,28 +9672,6 @@
         "traderName": null
       },
       {
-        "coin": "SOL",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 195,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
-        "traderName": null
-      },
-      {
-        "coin": "BTC",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 97500,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
-        "traderName": null
-      },
-      {
         "coin": "ETH",
         "direction": "Long",
         "size": 0,
@@ -9708,7 +9679,7 @@
         "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
+        "traderAddress": "4cYZeV23hobWR2yXzZDQCQoEePU6XtXKz5kaDrghsuNx",
         "traderName": null
       },
       {
@@ -9741,18 +9712,29 @@
         "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "4cYZeV23hobWR2yXzZDQCQoEePU6XtXKz5kaDrghsuNx",
+        "traderAddress": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
         "traderName": null
       },
       {
-        "coin": "JUP",
+        "coin": "SOL",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 0.85,
+        "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "3codT5zuMjVDSkmdKWhFb7DWUp839bQHC7HVehA3bQAH",
+        "traderAddress": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 97500,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "8RFF3RmeYUrXMzrxK6FCKPj1DBnVRP7jkMeHuyg7bDPQ",
         "traderName": null
       },
       {
@@ -9772,6 +9754,17 @@
         "size": 0,
         "positionValue": 0,
         "entryPx": 0.95,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "3codT5zuMjVDSkmdKWhFb7DWUp839bQHC7HVehA3bQAH",
+        "traderName": null
+      },
+      {
+        "coin": "JUP",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 0.85,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "3codT5zuMjVDSkmdKWhFb7DWUp839bQHC7HVehA3bQAH",
@@ -9811,22 +9804,22 @@
         "traderName": null
       },
       {
-        "coin": "JUP",
+        "coin": "SOL",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 0.85,
+        "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "31jrttmpopSCPN7fzsArmBZioPUmkvihcFyrTKT2SBV7",
         "traderName": null
       },
       {
-        "coin": "SOL",
+        "coin": "JUP",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 195,
+        "entryPx": 0.85,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "31jrttmpopSCPN7fzsArmBZioPUmkvihcFyrTKT2SBV7",
@@ -9976,17 +9969,6 @@
         "traderName": null
       },
       {
-        "coin": "SOL",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 195,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "Cj6YrjkYVmP9RATDdFtUFwNKcUNXL5MRZJmBzBudxwNX",
-        "traderName": null
-      },
-      {
         "coin": "ETH",
         "direction": "Long",
         "size": 0,
@@ -10005,6 +9987,28 @@
         "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
+        "traderAddress": "Cj6YrjkYVmP9RATDdFtUFwNKcUNXL5MRZJmBzBudxwNX",
+        "traderName": null
+      },
+      {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 3380,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "Gdtp8ri3MKFFXw2NYS9xoa13bAWMc4MHK2ZqSJnrm2ns",
+        "traderName": null
+      },
+      {
+        "coin": "SOL",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 195,
+        "leverage": 1,
+        "unrealizedPnl": 0,
         "traderAddress": "Gdtp8ri3MKFFXw2NYS9xoa13bAWMc4MHK2ZqSJnrm2ns",
         "traderName": null
       },
@@ -10027,7 +10031,7 @@
         "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "Gdtp8ri3MKFFXw2NYS9xoa13bAWMc4MHK2ZqSJnrm2ns",
+        "traderAddress": "CJGSR4tWPvPj5pPTA7FNwfjD8T3h6N8NrZbGiBjH9pZH",
         "traderName": null
       },
       {
@@ -10060,7 +10064,7 @@
         "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "CJGSR4tWPvPj5pPTA7FNwfjD8T3h6N8NrZbGiBjH9pZH",
+        "traderAddress": "9NtqnNwbXNt6CcvtUwUPVv2czF22XSopLvxtedUJmrcs",
         "traderName": null
       },
       {
@@ -10069,28 +10073,6 @@
         "size": 0,
         "positionValue": 0,
         "entryPx": 195,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "9NtqnNwbXNt6CcvtUwUPVv2czF22XSopLvxtedUJmrcs",
-        "traderName": null
-      },
-      {
-        "coin": "BTC",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 97500,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "9NtqnNwbXNt6CcvtUwUPVv2czF22XSopLvxtedUJmrcs",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "9NtqnNwbXNt6CcvtUwUPVv2czF22XSopLvxtedUJmrcs",
@@ -10108,14 +10090,14 @@
         "traderName": null
       },
       {
-        "coin": "SOL",
+        "coin": "BTC",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 195,
+        "entryPx": 97500,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "9C8Q5JVGD4kws7hfdQKLTBB6AA4PpawA5n71bfggLrTC",
+        "traderAddress": "9NtqnNwbXNt6CcvtUwUPVv2czF22XSopLvxtedUJmrcs",
         "traderName": null
       },
       {
@@ -10124,6 +10106,17 @@
         "size": 0,
         "positionValue": 0,
         "entryPx": 3380,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "9C8Q5JVGD4kws7hfdQKLTBB6AA4PpawA5n71bfggLrTC",
+        "traderName": null
+      },
+      {
+        "coin": "SOL",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "9C8Q5JVGD4kws7hfdQKLTBB6AA4PpawA5n71bfggLrTC",
@@ -10152,6 +10145,17 @@
         "traderName": null
       },
       {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 3380,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "EHxDsThCKTHe8X7PHxKF3zA6CJk8WvYeRByxqa8mzoU5",
+        "traderName": null
+      },
+      {
         "coin": "SOL",
         "direction": "Long",
         "size": 0,
@@ -10170,7 +10174,7 @@
         "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
-        "traderAddress": "EHxDsThCKTHe8X7PHxKF3zA6CJk8WvYeRByxqa8mzoU5",
+        "traderAddress": "2EWkUHfuaUfQR2v8x9bfosN3GZVSEdtU8dggS1WuGf1b",
         "traderName": null
       },
       {
@@ -10190,17 +10194,6 @@
         "size": 0,
         "positionValue": 0,
         "entryPx": 97500,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "2EWkUHfuaUfQR2v8x9bfosN3GZVSEdtU8dggS1WuGf1b",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 3380,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "2EWkUHfuaUfQR2v8x9bfosN3GZVSEdtU8dggS1WuGf1b",
@@ -10273,22 +10266,22 @@
         "traderName": null
       },
       {
-        "coin": "JUP",
+        "coin": "SOL",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 0.85,
+        "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "4hg2Fjirrtd5zuFRyGLjhJ8GpYMcaqrLhaEovk9Ck5sQ",
         "traderName": null
       },
       {
-        "coin": "SOL",
+        "coin": "JUP",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 195,
+        "entryPx": 0.85,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "4hg2Fjirrtd5zuFRyGLjhJ8GpYMcaqrLhaEovk9Ck5sQ",
@@ -10482,22 +10475,22 @@
         "traderName": null
       },
       {
-        "coin": "BTC",
+        "coin": "DRIFT",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 97500,
+        "entryPx": 0.95,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "4wKS77zCWHBbuaSi2Qaf1GoFn1KRbqp67s7Ayvy73k5Z",
         "traderName": null
       },
       {
-        "coin": "DRIFT",
+        "coin": "BTC",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 0.95,
+        "entryPx": 97500,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "4wKS77zCWHBbuaSi2Qaf1GoFn1KRbqp67s7Ayvy73k5Z",
@@ -10600,39 +10593,6 @@
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "9bYZqGFE93zYpAwRTe12LSQK6ZJuxtGey8oxfEoZRBZt",
-        "traderName": null
-      },
-      {
-        "coin": "SOL",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 195,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
-        "traderName": null
-      },
-      {
-        "coin": "BTC",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 97500,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 0,
-        "positionValue": 0,
-        "entryPx": 3380,
-        "leverage": 1,
-        "unrealizedPnl": 0,
-        "traderAddress": "BrRpSaQ6hFDw8darPCyP9Sw7sjydMFQqB4ECAotXSEci",
         "traderName": null
       },
       {
@@ -11054,22 +11014,22 @@
         "traderName": null
       },
       {
-        "coin": "JUP",
+        "coin": "SOL",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 0.85,
+        "entryPx": 195,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "A22xTk4TQuMz2mWpsbqZTspaAPcGULGyC73Hf4tvXvKQ",
         "traderName": null
       },
       {
-        "coin": "SOL",
+        "coin": "JUP",
         "direction": "Long",
         "size": 0,
         "positionValue": 0,
-        "entryPx": 195,
+        "entryPx": 0.85,
         "leverage": 1,
         "unrealizedPnl": 0,
         "traderAddress": "A22xTk4TQuMz2mWpsbqZTspaAPcGULGyC73Hf4tvXvKQ",
@@ -11140,11 +11100,40 @@
         "unrealizedPnl": 0,
         "traderAddress": "DMBEnDgXBJcmGkx9HaoZHPG9PRD4MKuo8RLU7gLro4wS",
         "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 97500,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "DMBEnDgXBJcmGkx9HaoZHPG9PRD4MKuo8RLU7gLro4wS",
+        "traderName": null
+      },
+      {
+        "coin": "SOL",
+        "direction": "Long",
+        "size": 0,
+        "positionValue": 0,
+        "entryPx": 195,
+        "leverage": 1,
+        "unrealizedPnl": 0,
+        "traderAddress": "9AnjgN2gVW6GKYfAYriBNY2oiVE8C9PGdFNMdHFYQwKy",
+        "traderName": null
       }
     ]
   },
   "positionAggregation": {
     "byPnlDaily": [
+      {
+        "coin": "ETH",
+        "long": 0,
+        "short": 0,
+        "longSize": 0,
+        "shortSize": 0
+      },
       {
         "coin": "SOL",
         "long": 0,
@@ -11154,13 +11143,6 @@
       },
       {
         "coin": "BTC",
-        "long": 0,
-        "short": 0,
-        "longSize": 0,
-        "shortSize": 0
-      },
-      {
-        "coin": "ETH",
         "long": 0,
         "short": 0,
         "longSize": 0,
@@ -11204,6 +11186,13 @@
     ],
     "byPnlWeekly": [
       {
+        "coin": "ETH",
+        "long": 0,
+        "short": 0,
+        "longSize": 0,
+        "shortSize": 0
+      },
+      {
         "coin": "SOL",
         "long": 0,
         "short": 0,
@@ -11212,13 +11201,6 @@
       },
       {
         "coin": "BTC",
-        "long": 0,
-        "short": 0,
-        "longSize": 0,
-        "shortSize": 0
-      },
-      {
-        "coin": "ETH",
         "long": 0,
         "short": 0,
         "longSize": 0,
@@ -11262,6 +11244,13 @@
     ],
     "bySize": [
       {
+        "coin": "ETH",
+        "long": 0,
+        "short": 0,
+        "longSize": 0,
+        "shortSize": 0
+      },
+      {
         "coin": "SOL",
         "long": 0,
         "short": 0,
@@ -11270,13 +11259,6 @@
       },
       {
         "coin": "BTC",
-        "long": 0,
-        "short": 0,
-        "longSize": 0,
-        "shortSize": 0
-      },
-      {
-        "coin": "ETH",
         "long": 0,
         "short": 0,
         "longSize": 0,
