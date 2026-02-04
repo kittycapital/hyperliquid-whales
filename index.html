@@ -9,82 +9,82 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; color: #e4e4e7; font-family: 'Noto Sans KR', sans-serif; min-height: 100vh; display: flex; }
+        body { background: #0f0f13; color: #e4e4e7; font-family: 'Noto Sans KR', sans-serif; min-height: 100vh; display: flex; }
         
-        .sidebar { width: 220px; background: #0a0a0a; border-right: 1px solid #1a1a1a; padding: 20px 0; position: fixed; height: 100vh; z-index: 100; }
+        .sidebar { width: 220px; background: #16161d; border-right: 1px solid #2a2a35; padding: 20px 0; position: fixed; height: 100vh; z-index: 100; }
         .logo { display: flex; align-items: center; gap: 12px; padding: 0 20px; margin-bottom: 32px; }
         .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #22d3ee, #06b6d4); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #000; }
         .logo-text { font-size: 1.1rem; font-weight: 600; color: #fff; }
         .logo-sub { font-size: 0.65rem; color: #22d3ee; display: block; }
         .nav-menu { list-style: none; }
         .nav-item { padding: 14px 20px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.2s; border-left: 3px solid transparent; color: #a1a1aa; font-size: 0.85rem; font-weight: 500; }
-        .nav-item:hover { background: rgba(34, 211, 238, 0.05); color: #e4e4e7; }
-        .nav-item.active { background: rgba(34, 211, 238, 0.1); border-left-color: #22d3ee; color: #22d3ee; }
+        .nav-item:hover { background: rgba(34, 211, 238, 0.08); color: #e4e4e7; }
+        .nav-item.active { background: rgba(34, 211, 238, 0.15); border-left-color: #22d3ee; color: #22d3ee; }
         .nav-icon { width: 18px; height: 18px; }
         
         .main-content { flex: 1; margin-left: 220px; padding: 24px 32px; min-height: 100vh; }
-        .status-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); padding: 6px 14px; border-radius: 20px; font-size: 0.7rem; color: #22d3ee; margin-bottom: 20px; }
+        .status-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34, 211, 238, 0.15); border: 1px solid rgba(34, 211, 238, 0.4); padding: 6px 14px; border-radius: 20px; font-size: 0.7rem; color: #22d3ee; margin-bottom: 20px; }
         .status-dot { width: 8px; height: 8px; background: #22d3ee; border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         .page-header { margin-bottom: 24px; }
         .page-header h1 { font-size: 1.6rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
-        .page-header p { color: #71717a; font-size: 0.85rem; }
+        .page-header p { color: #8b8b9a; font-size: 0.85rem; }
         .section { display: none; }
         .section.active { display: block; }
         
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 24px; }
-        .stat-card { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 12px; padding: 18px; }
-        .stat-label { font-size: 0.7rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+        .stat-card { background: #16161d; border: 1px solid #2a2a35; border-radius: 12px; padding: 18px; }
+        .stat-label { font-size: 0.7rem; color: #8b8b9a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
         .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 600; color: #22d3ee; }
-        .card { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .card { background: #16161d; border: 1px solid #2a2a35; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
         .card-title { font-size: 0.95rem; font-weight: 600; color: #fff; }
         
-        .tabs { display: flex; gap: 4px; background: #111; padding: 4px; border-radius: 8px; }
-        .tab { padding: 6px 12px; border-radius: 6px; border: none; background: transparent; color: #71717a; font-family: 'Noto Sans KR', sans-serif; font-size: 0.7rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-        .tab:hover { color: #a1a1aa; }
+        .tabs { display: flex; gap: 4px; background: #1e1e26; padding: 4px; border-radius: 8px; }
+        .tab { padding: 6px 12px; border-radius: 6px; border: none; background: transparent; color: #8b8b9a; font-family: 'Noto Sans KR', sans-serif; font-size: 0.7rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .tab:hover { color: #c1c1ca; }
         .tab.active { background: #22d3ee; color: #000; }
         .controls-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        select { appearance: none; background: #111 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2371717a' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E") no-repeat right 10px center; border: 1px solid #222; border-radius: 6px; padding: 8px 32px 8px 12px; color: #e4e4e7; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; cursor: pointer; min-width: 140px; }
+        select { appearance: none; background: #1e1e26 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238b8b9a' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E") no-repeat right 10px center; border: 1px solid #2a2a35; border-radius: 6px; padding: 8px 32px 8px 12px; color: #e4e4e7; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; cursor: pointer; min-width: 140px; }
         select:focus { outline: none; border-color: #22d3ee; }
         
         /* DEX Tabs */
         .dex-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
-        .dex-tab { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; border: 1px solid #222; background: #0a0a0a; color: #71717a; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-        .dex-tab:hover { border-color: #333; color: #a1a1aa; }
-        .dex-tab.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.1); color: #22d3ee; }
-        .dex-tab.active[data-dex="drift"] { border-color: #a855f7; background: rgba(168, 85, 247, 0.1); color: #a855f7; }
-        .dex-tab.active[data-dex="gmx"] { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .dex-tab { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; border: 1px solid #2a2a35; background: #16161d; color: #8b8b9a; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .dex-tab:hover { border-color: #3d3d4a; color: #c1c1ca; }
+        .dex-tab.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
+        .dex-tab.active[data-dex="drift"] { border-color: #a855f7; background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+        .dex-tab.active[data-dex="gmx"] { border-color: #3b82f6; background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
         .dex-tab img { width: 20px; height: 20px; border-radius: 50%; }
         .dex-tab .dex-name { font-weight: 600; }
         
         .table-container { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #1a1a1a; }
-        th { background: #111; color: #71717a; font-weight: 500; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; position: sticky; top: 0; z-index: 10; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #2a2a35; }
+        th { background: #1e1e26; color: #8b8b9a; font-weight: 500; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; position: sticky; top: 0; z-index: 10; }
         th.sortable { cursor: pointer; user-select: none; }
         th.sortable:hover { color: #22d3ee; }
         th.sort-active { color: #22d3ee; }
-        td { font-family: 'JetBrains Mono', monospace; color: #a1a1aa; }
-        tr:hover td { background: rgba(34, 211, 238, 0.03); }
-        .positive { color: #22c55e !important; }
-        .negative { color: #ef4444 !important; }
-        .bullish { color: #22c55e !important; }
-        .bearish { color: #ef4444 !important; }
+        td { font-family: 'JetBrains Mono', monospace; color: #b1b1ba; }
+        tr:hover td { background: rgba(34, 211, 238, 0.05); }
+        .positive { color: #4ade80 !important; }
+        .negative { color: #f87171 !important; }
+        .bullish { color: #4ade80 !important; }
+        .bearish { color: #f87171 !important; }
         .coin-name { color: #fff; font-weight: 500; }
         .address { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
         .address a { color: #22d3ee; text-decoration: none; }
         .address a:hover { text-decoration: underline; }
         .direction { padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
-        .direction.long { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
-        .direction.short { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
-        .rank { display: inline-flex; align-items: center; justify-content: center; min-width: 32px; padding: 2px 6px; background: #1a1a1a; border-radius: 4px; font-size: 0.7rem; color: #71717a; }
+        .direction.long { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+        .direction.short { background: rgba(248, 113, 113, 0.2); color: #f87171; }
+        .rank { display: inline-flex; align-items: center; justify-content: center; min-width: 32px; padding: 2px 6px; background: #2a2a35; border-radius: 4px; font-size: 0.7rem; color: #8b8b9a; }
         .rank.top3 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000; font-weight: 600; }
-        .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: #71717a; gap: 10px; }
-        .loading-spinner { width: 20px; height: 20px; border: 2px solid #1a1a1a; border-top-color: #22d3ee; border-radius: 50%; animation: spin 1s linear infinite; }
+        .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: #8b8b9a; gap: 10px; }
+        .loading-spinner { width: 20px; height: 20px; border: 2px solid #2a2a35; border-top-color: #22d3ee; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .no-data { text-align: center; padding: 40px; color: #71717a; }
-        .last-updated { text-align: center; margin-top: 20px; font-size: 0.75rem; color: #52525b; }
+        .no-data { text-align: center; padding: 40px; color: #8b8b9a; }
+        .last-updated { text-align: center; margin-top: 20px; font-size: 0.75rem; color: #6b6b7a; }
         
         .bar-chart { display: flex; flex-direction: column; gap: 6px; max-height: 400px; overflow-y: auto; padding-right: 10px; }
         .bar-row { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; }
@@ -93,89 +93,89 @@
         .bar-negative { flex: 1; display: flex; justify-content: flex-end; }
         .bar-positive { flex: 1; display: flex; justify-content: flex-start; }
         .bar { height: 100%; border-radius: 3px; min-width: 2px; transition: width 0.3s; display: flex; align-items: center; padding: 0 6px; font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; }
-        .bar.short { background: linear-gradient(90deg, #ef4444, #dc2626); color: #fff; justify-content: flex-end; }
-        .bar.long { background: linear-gradient(90deg, #16a34a, #22c55e); color: #fff; }
-        .bar-zero { width: 2px; background: #333; }
+        .bar.short { background: linear-gradient(90deg, #f87171, #ef4444); color: #fff; justify-content: flex-end; }
+        .bar.long { background: linear-gradient(90deg, #22c55e, #4ade80); color: #fff; }
+        .bar-zero { width: 2px; background: #3d3d4a; }
         .chart-container { position: relative; }
         .chart-legend { display: flex; gap: 20px; margin-bottom: 10px; justify-content: center; }
-        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: #71717a; }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: #8b8b9a; }
         .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
-        .legend-dot.long { background: linear-gradient(90deg, #16a34a, #22c55e); }
-        .legend-dot.short { background: linear-gradient(90deg, #ef4444, #dc2626); }
+        .legend-dot.long { background: linear-gradient(90deg, #22c55e, #4ade80); }
+        .legend-dot.short { background: linear-gradient(90deg, #f87171, #ef4444); }
         
         .sub-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
-        .sub-tab { padding: 10px 20px; border-radius: 8px; border: 1px solid #222; background: transparent; color: #71717a; font-family: 'Noto Sans KR', sans-serif; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-        .sub-tab:hover { border-color: #333; color: #a1a1aa; }
-        .sub-tab.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.1); color: #22d3ee; }
+        .sub-tab { padding: 10px 20px; border-radius: 8px; border: 1px solid #2a2a35; background: transparent; color: #8b8b9a; font-family: 'Noto Sans KR', sans-serif; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .sub-tab:hover { border-color: #3d3d4a; color: #c1c1ca; }
+        .sub-tab.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
         
-        .expand-btn { background: none; border: none; color: #71717a; cursor: pointer; padding: 4px; border-radius: 4px; transition: all 0.2s; }
-        .expand-btn:hover { background: #1a1a1a; color: #22d3ee; }
+        .expand-btn { background: none; border: none; color: #8b8b9a; cursor: pointer; padding: 4px; border-radius: 4px; transition: all 0.2s; }
+        .expand-btn:hover { background: #2a2a35; color: #22d3ee; }
         .expand-btn.expanded svg { transform: rotate(180deg); }
         .positions-row { display: none; }
         .positions-row.show { display: table-row; }
-        .positions-content { background: #111; border-radius: 8px; padding: 12px; }
+        .positions-content { background: #1e1e26; border-radius: 8px; padding: 12px; }
         .positions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-        .position-card { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 8px; padding: 12px; cursor: pointer; transition: all 0.2s; }
+        .position-card { background: #16161d; border: 1px solid #2a2a35; border-radius: 8px; padding: 12px; cursor: pointer; transition: all 0.2s; }
         .position-card:hover { border-color: #22d3ee; transform: translateY(-2px); }
         .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .position-coin { font-weight: 600; color: #fff; font-size: 0.85rem; }
         .position-details { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
         .position-detail { display: flex; flex-direction: column; }
-        .position-detail-label { font-size: 0.65rem; color: #52525b; }
-        .position-detail-value { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #a1a1aa; }
-        .position-hint { font-size: 0.65rem; color: #52525b; margin-top: 8px; text-align: center; border-top: 1px solid #1a1a1a; padding-top: 8px; }
+        .position-detail-label { font-size: 0.65rem; color: #6b6b7a; }
+        .position-detail-value { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #b1b1ba; }
+        .position-hint { font-size: 0.65rem; color: #6b6b7a; margin-top: 8px; text-align: center; border-top: 1px solid #2a2a35; padding-top: 8px; }
         
         .liq-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
-        .liq-price-box { background: #111; border: 1px solid #222; border-radius: 8px; padding: 10px 16px; text-align: center; }
-        .liq-price-label { font-size: 0.65rem; color: #71717a; margin-bottom: 4px; }
+        .liq-price-box { background: #1e1e26; border: 1px solid #2a2a35; border-radius: 8px; padding: 10px 16px; text-align: center; }
+        .liq-price-label { font-size: 0.65rem; color: #8b8b9a; margin-bottom: 4px; }
         .liq-price-value { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: #22d3ee; }
-        .liq-legend { display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; padding: 12px; background: #111; border-radius: 8px; }
+        .liq-legend { display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; padding: 12px; background: #1e1e26; border-radius: 8px; }
         .liq-legend-section { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .liq-legend-title { font-size: 0.7rem; color: #71717a; font-weight: 500; }
-        .liq-legend-item { display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #a1a1aa; }
+        .liq-legend-title { font-size: 0.7rem; color: #8b8b9a; font-weight: 500; }
+        .liq-legend-item { display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #b1b1ba; }
         .liq-legend-color { width: 14px; height: 14px; border-radius: 3px; }
         .liq-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
         .liq-summary-card { padding: 14px; border-radius: 8px; text-align: center; }
-        .liq-summary-card.long-card { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); }
-        .liq-summary-card.short-card { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); }
-        .liq-summary-label { font-size: 0.7rem; color: #71717a; margin-bottom: 4px; }
+        .liq-summary-card.long-card { background: rgba(248, 113, 113, 0.15); border: 1px solid rgba(248, 113, 113, 0.4); }
+        .liq-summary-card.short-card { background: rgba(74, 222, 128, 0.15); border: 1px solid rgba(74, 222, 128, 0.4); }
+        .liq-summary-label { font-size: 0.7rem; color: #8b8b9a; margin-bottom: 4px; }
         .liq-summary-value { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 600; }
-        .liq-summary-value.long { color: #ef4444; }
-        .liq-summary-value.short { color: #22c55e; }
-        .liq-chart-box { background: #111; border-radius: 8px; padding: 16px; }
+        .liq-summary-value.long { color: #f87171; }
+        .liq-summary-value.short { color: #4ade80; }
+        .liq-chart-box { background: #1e1e26; border-radius: 8px; padding: 16px; }
         .liq-chart-wrapper { height: 350px; position: relative; }
         
-        .guide-section { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+        .guide-section { background: #16161d; border: 1px solid #2a2a35; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
         .guide-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; transition: background 0.2s; }
-        .guide-header:hover { background: rgba(34, 211, 238, 0.05); }
+        .guide-header:hover { background: rgba(34, 211, 238, 0.08); }
         .guide-title { font-size: 0.9rem; font-weight: 600; color: #fff; }
-        .guide-toggle { display: flex; align-items: center; gap: 6px; color: #71717a; font-size: 0.75rem; }
+        .guide-toggle { display: flex; align-items: center; gap: 6px; color: #8b8b9a; font-size: 0.75rem; }
         .guide-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
         .guide-content.show { max-height: 600px; }
         .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; padding: 0 20px 20px; }
-        .guide-card { background: #111; border: 1px solid #1a1a1a; border-radius: 8px; padding: 14px; }
+        .guide-card { background: #1e1e26; border: 1px solid #2a2a35; border-radius: 8px; padding: 14px; }
         .guide-card-title { font-size: 0.8rem; font-weight: 600; color: #22d3ee; margin-bottom: 8px; }
-        .guide-card-content { font-size: 0.75rem; color: #a1a1aa; line-height: 1.6; }
+        .guide-card-content { font-size: 0.75rem; color: #b1b1ba; line-height: 1.6; }
         
         /* Modal styles */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
         .modal-overlay.show { display: flex; }
-        .modal { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 16px; width: 100%; max-width: 800px; max-height: 90vh; overflow: hidden; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #1a1a1a; }
+        .modal { background: #16161d; border: 1px solid #2a2a35; border-radius: 16px; width: 100%; max-width: 800px; max-height: 90vh; overflow: hidden; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #2a2a35; }
         .modal-title { display: flex; align-items: center; gap: 12px; }
         .modal-coin { font-size: 1.2rem; font-weight: 600; color: #fff; }
         .modal-direction { padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
-        .modal-direction.long { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
-        .modal-direction.short { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .modal-direction.long { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+        .modal-direction.short { background: rgba(248, 113, 113, 0.2); color: #f87171; }
         .modal-timeframes { display: flex; gap: 4px; }
-        .tf-btn { padding: 6px 12px; border-radius: 6px; border: 1px solid #222; background: transparent; color: #71717a; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
-        .tf-btn:hover { border-color: #333; color: #a1a1aa; }
-        .tf-btn.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.1); color: #22d3ee; }
-        .modal-close { background: none; border: none; color: #71717a; cursor: pointer; padding: 8px; border-radius: 8px; transition: all 0.2s; }
-        .modal-close:hover { background: #1a1a1a; color: #fff; }
-        .modal-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; padding: 16px 20px; border-bottom: 1px solid #1a1a1a; }
+        .tf-btn { padding: 6px 12px; border-radius: 6px; border: 1px solid #2a2a35; background: transparent; color: #8b8b9a; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
+        .tf-btn:hover { border-color: #3d3d4a; color: #c1c1ca; }
+        .tf-btn.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
+        .modal-close { background: none; border: none; color: #8b8b9a; cursor: pointer; padding: 8px; border-radius: 8px; transition: all 0.2s; }
+        .modal-close:hover { background: #2a2a35; color: #fff; }
+        .modal-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; padding: 16px 20px; border-bottom: 1px solid #2a2a35; }
         .modal-stat { text-align: center; }
-        .modal-stat-label { font-size: 0.65rem; color: #52525b; margin-bottom: 4px; }
+        .modal-stat-label { font-size: 0.65rem; color: #6b6b7a; margin-bottom: 4px; }
         .modal-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #fff; }
         .modal-chart { padding: 20px; height: 350px; position: relative; }
         .modal-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0.9); color: #71717a; gap: 10px; }
@@ -460,7 +460,7 @@
         function updateWhaleLastUpdated() { const data = whaleData[currentWhaleDex]; if (data?.lastUpdated) { const d = new Date(data.lastUpdated); document.getElementById('last-updated').textContent = `${DEX_CONFIG[currentWhaleDex].name} 마지막 업데이트: ${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')} UTC`; } else { document.getElementById('last-updated').textContent = ''; } if (data?.dashboard?.totalTraders) { document.getElementById('stat-traders').textContent = data.dashboard.totalTraders.toLocaleString(); } }
         function updateLiqLastUpdated() { const data = liqData[currentLiqDex]; if (data?.lastUpdated) { const d = new Date(data.lastUpdated); document.getElementById('liq-last-updated').textContent = `${DEX_CONFIG[currentLiqDex].name} 마지막 업데이트: ${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')} (${data.tradersCount || 0}명 트레이더)`; } else { document.getElementById('liq-last-updated').textContent = ''; } }
 
-        function updateLiqChart() { const data = liqData[currentLiqDex]; if (!data?.data?.[selectedLiqCoin]) { if (liqChart) { liqChart.destroy(); liqChart = null; } return; } const coinData = data.data[selectedLiqCoin]; document.getElementById('liq-current-price').textContent = fmt.px(coinData.currentPrice, selectedLiqCoin); const longData = coinData.longLiquidations || [], shortData = coinData.shortLiquidations || []; const totalLong = longData.reduce((s, d) => s + (d['10x']||0) + (d['25x']||0) + (d['50x']||0) + (d['100x']||0), 0), totalShort = shortData.reduce((s, d) => s + (d['10x']||0) + (d['25x']||0) + (d['50x']||0) + (d['100x']||0), 0); document.getElementById('liq-total-long').textContent = fmt.usd(totalLong); document.getElementById('liq-total-short').textContent = fmt.usd(totalShort); const allPrices = [...new Set([...longData.map(d => d.price), ...shortData.map(d => d.price)])].sort((a, b) => a - b); const longMap = {}, shortMap = {}; longData.forEach(d => longMap[d.price] = d); shortData.forEach(d => shortMap[d.price] = d); const labels = allPrices.map(p => fmt.px(p, selectedLiqCoin)); const long10x = allPrices.map(p => longMap[p] ? -longMap[p]['10x'] : 0), long25x = allPrices.map(p => longMap[p] ? -longMap[p]['25x'] : 0), long50x = allPrices.map(p => longMap[p] ? -longMap[p]['50x'] : 0), long100x = allPrices.map(p => longMap[p] ? -longMap[p]['100x'] : 0); const short10x = allPrices.map(p => shortMap[p] ? shortMap[p]['10x'] : 0), short25x = allPrices.map(p => shortMap[p] ? shortMap[p]['25x'] : 0), short50x = allPrices.map(p => shortMap[p] ? shortMap[p]['50x'] : 0), short100x = allPrices.map(p => shortMap[p] ? shortMap[p]['100x'] : 0); let currentPriceIndex = allPrices.findIndex(p => p >= coinData.currentPrice); if (currentPriceIndex === -1) currentPriceIndex = allPrices.length - 1; if (liqChart) liqChart.destroy(); const ctx = document.getElementById('liq-chart').getContext('2d'); liqChart = new Chart(ctx, { type: 'bar', data: { labels: labels, datasets: [ { label: 'Long 10x', data: long10x, backgroundColor: '#3b82f680', stack: 'long', barPercentage: 0.9, categoryPercentage: 0.9 }, { label: 'Long 25x', data: long25x, backgroundColor: '#eab30880', stack: 'long', barPercentage: 0.9, categoryPercentage: 0.9 }, { label: 'Long 50x', data: long50x, backgroundColor: '#f9731680', stack: 'long', barPercentage: 0.9, categoryPercentage: 0.9 }, { label: 'Long 100x', data: long100x, backgroundColor: '#ef444480', stack: 'long', barPercentage: 0.9, categoryPercentage: 0.9 }, { label: 'Short 10x', data: short10x, backgroundColor: '#3b82f680', stack: 'short', barPercentage: 0.9, categoryPercentage: 0.9 }, { label: 'Short 25x', data: short25x, backgroundColor: '#eab30880', stack: 'short', barPercentage: 0.9, categoryPercentage: 0.9 }, { label: 'Short 50x', data: short50x, backgroundColor: '#f9731680', stack: 'short', barPercentage: 0.9, categoryPercentage: 0.9 }, { label: 'Short 100x', data: short100x, backgroundColor: '#ef444480', stack: 'short', barPercentage: 0.9, categoryPercentage: 0.9 } ] }, options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' }, plugins: { legend: { display: false }, tooltip: { callbacks: { title: items => '가격: ' + items[0].label, label: ctx => { const v = Math.abs(ctx.raw); return v === 0 ? null : ctx.dataset.label + ': ' + fmt.usd(v); } }, filter: item => item.raw !== 0 } }, scales: { x: { stacked: true, grid: { color: '#1a1a1a' }, ticks: { color: '#71717a', maxRotation: 45, minRotation: 45, autoSkip: true, maxTicksLimit: 15 } }, y: { stacked: true, grid: { color: '#1a1a1a' }, ticks: { color: '#71717a', callback: v => fmt.usd(Math.abs(v)) } } } }, plugins: [{ id: 'currentPriceLine', afterDraw: function(chart) { const ctx = chart.ctx; const xAxis = chart.scales.x; const yAxis = chart.scales.y; const x = xAxis.getPixelForValue(currentPriceIndex); ctx.save(); ctx.beginPath(); ctx.setLineDash([5, 5]); ctx.strokeStyle = '#22d3ee'; ctx.lineWidth = 2; ctx.moveTo(x, yAxis.top); ctx.lineTo(x, yAxis.bottom); ctx.stroke(); ctx.restore(); } }] }); }
+        function updateLiqChart() { const data = liqData[currentLiqDex]; if (!data?.data?.[selectedLiqCoin]) { if (liqChart) { liqChart.destroy(); liqChart = null; } return; } const coinData = data.data[selectedLiqCoin]; document.getElementById('liq-current-price').textContent = fmt.px(coinData.currentPrice, selectedLiqCoin); const longData = coinData.longLiquidations || [], shortData = coinData.shortLiquidations || []; const totalLong = longData.reduce((s, d) => s + (d['10x']||0) + (d['25x']||0) + (d['50x']||0) + (d['100x']||0), 0), totalShort = shortData.reduce((s, d) => s + (d['10x']||0) + (d['25x']||0) + (d['50x']||0) + (d['100x']||0), 0); document.getElementById('liq-total-long').textContent = fmt.usd(totalLong); document.getElementById('liq-total-short').textContent = fmt.usd(totalShort); const allPrices = [...new Set([...longData.map(d => d.price), ...shortData.map(d => d.price)])].sort((a, b) => a - b); const longMap = {}, shortMap = {}; longData.forEach(d => longMap[d.price] = d); shortData.forEach(d => shortMap[d.price] = d); const labels = allPrices.map(p => fmt.px(p, selectedLiqCoin)); const long10x = allPrices.map(p => longMap[p] ? -longMap[p]['10x'] : 0), long25x = allPrices.map(p => longMap[p] ? -longMap[p]['25x'] : 0), long50x = allPrices.map(p => longMap[p] ? -longMap[p]['50x'] : 0), long100x = allPrices.map(p => longMap[p] ? -longMap[p]['100x'] : 0); const short10x = allPrices.map(p => shortMap[p] ? shortMap[p]['10x'] : 0), short25x = allPrices.map(p => shortMap[p] ? shortMap[p]['25x'] : 0), short50x = allPrices.map(p => shortMap[p] ? shortMap[p]['50x'] : 0), short100x = allPrices.map(p => shortMap[p] ? shortMap[p]['100x'] : 0); let currentPriceIndex = allPrices.findIndex(p => p >= coinData.currentPrice); if (currentPriceIndex === -1) currentPriceIndex = allPrices.length - 1; if (liqChart) liqChart.destroy(); const ctx = document.getElementById('liq-chart').getContext('2d'); liqChart = new Chart(ctx, { type: 'bar', data: { labels: labels, datasets: [ { label: 'Long 10x', data: long10x, backgroundColor: '#3b82f6aa', stack: 'long', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Long 25x', data: long25x, backgroundColor: '#eab308aa', stack: 'long', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Long 50x', data: long50x, backgroundColor: '#f97316aa', stack: 'long', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Long 100x', data: long100x, backgroundColor: '#ef4444aa', stack: 'long', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Short 10x', data: short10x, backgroundColor: '#3b82f6aa', stack: 'short', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Short 25x', data: short25x, backgroundColor: '#eab308aa', stack: 'short', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Short 50x', data: short50x, backgroundColor: '#f97316aa', stack: 'short', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Short 100x', data: short100x, backgroundColor: '#ef4444aa', stack: 'short', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 } ] }, options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' }, plugins: { legend: { display: false }, tooltip: { callbacks: { title: items => '가격: ' + items[0].label, label: ctx => { const v = Math.abs(ctx.raw); return v === 0 ? null : ctx.dataset.label + ': ' + fmt.usd(v); } }, filter: item => item.raw !== 0 } }, scales: { x: { stacked: true, grid: { color: '#2a2a35' }, ticks: { color: '#8b8b9a', maxRotation: 45, minRotation: 45, autoSkip: true, maxTicksLimit: 15 } }, y: { stacked: true, grid: { color: '#2a2a35' }, ticks: { color: '#8b8b9a', callback: v => fmt.usd(Math.abs(v)) } } } }, plugins: [{ id: 'currentPriceLine', afterDraw: function(chart) { const ctx = chart.ctx; const xAxis = chart.scales.x; const yAxis = chart.scales.y; const x = xAxis.getPixelForValue(currentPriceIndex); ctx.save(); ctx.beginPath(); ctx.setLineDash([5, 5]); ctx.strokeStyle = '#22d3ee'; ctx.lineWidth = 2; ctx.moveTo(x, yAxis.top); ctx.lineTo(x, yAxis.bottom); ctx.stroke(); ctx.restore(); } }] }); }
 
         function populateLiqCoins() { const data = liqData[currentLiqDex]; if (!data) { document.getElementById('liq-coin').innerHTML = '<option value="">데이터 없음</option>'; return; } const sel = document.getElementById('liq-coin'); sel.innerHTML = ''; let first = null; (data.coins || Object.keys(data.data || {})).forEach(coin => { const d = data.data?.[coin]; if (d && (d.longLiquidations?.length > 0 || d.shortLiquidations?.length > 0)) { const opt = document.createElement('option'); opt.value = coin; opt.textContent = coin + '/USD'; if (!first) { opt.selected = true; first = coin; } sel.appendChild(opt); } }); if (!first) sel.innerHTML = '<option value="">데이터 없음</option>'; else selectedLiqCoin = first; updateLiqChart(); }
 
