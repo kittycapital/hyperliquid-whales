@@ -241,33 +241,43 @@ def calculate_liquidation_prices(traders, prices):
     liquidations = {}
     
     for coin, price_data in prices.items():
-        if not price_data.get('price'):
-            continue
+        # Handle both dict and float price formats
+        if isinstance(price_data, dict):
+            current_price = price_data.get('price', 0)
+            oi = price_data.get('openInterest', 1000000)
+        else:
+            current_price = float(price_data) if price_data else 0
+            oi = 1000000
             
-        current_price = price_data['price']
+        if not current_price or current_price <= 0:
+            continue
+        
         long_liqs = defaultdict(lambda: {'10x': 0, '25x': 0, '50x': 0, '100x': 0})
         short_liqs = defaultdict(lambda: {'10x': 0, '25x': 0, '50x': 0, '100x': 0})
         
         # Generate synthetic liquidation levels based on current price
-        # This simulates where liquidations would occur at different leverage levels
         for leverage in [10, 25, 50, 100]:
-            # Long liquidation = entry * (1 - 1/leverage)
             liq_pct = 1 / leverage
-            long_liq_price = round(current_price * (1 - liq_pct * 0.9), 2)
-            short_liq_price = round(current_price * (1 + liq_pct * 0.9), 2)
             
-            # Estimate liquidation volume based on OI
-            oi = price_data.get('openInterest', 1000000)
-            base_volume = oi * 0.1 / leverage  # Rough distribution
-            
-            lev_key = f'{leverage}x'
-            long_liqs[long_liq_price][lev_key] += base_volume
-            short_liqs[short_liq_price][lev_key] += base_volume
+            # Multiple price levels per leverage
+            for offset in [0.5, 0.75, 1.0]:
+                long_liq_price = round(current_price * (1 - liq_pct * 0.9 * offset), 2)
+                short_liq_price = round(current_price * (1 + liq_pct * 0.9 * offset), 2)
+                
+                base_volume = oi * 0.05 / leverage
+                lev_key = f'{leverage}x'
+                long_liqs[long_liq_price][lev_key] += base_volume
+                short_liqs[short_liq_price][lev_key] += base_volume
+        
+        long_list = [{'price': p, '10x': d['10x'], '25x': d['25x'], '50x': d['50x'], '100x': d['100x']} 
+                     for p, d in sorted(long_liqs.items()) if sum(d.values()) > 0]
+        short_list = [{'price': p, '10x': d['10x'], '25x': d['25x'], '50x': d['50x'], '100x': d['100x']} 
+                      for p, d in sorted(short_liqs.items()) if sum(d.values()) > 0]
         
         liquidations[coin] = {
             'currentPrice': current_price,
-            'longLiquidations': [{'price': p, **data} for p, data in sorted(long_liqs.items())],
-            'shortLiquidations': [{'price': p, **data} for p, data in sorted(short_liqs.items())]
+            'longLiquidations': long_list,
+            'shortLiquidations': short_list
         }
     
     return liquidations
