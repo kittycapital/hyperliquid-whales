@@ -67,21 +67,6 @@ def get_gmx_prices():
                         prices[symbol] = float(price) / 1e30 if float(price) > 1e20 else float(price)
         except Exception as e:
             print(f"GMX stats API error: {e}")
-    except Exception as e:
-        print(f"Error fetching GMX prices: {e}")
-    
-    # Fallback to Binance
-    if not prices:
-        for symbol in GMX_MARKETS.keys():
-            try:
-                binance_symbol = f"{symbol}USDT"
-                url = f"https://api.binance.com/api/v3/ticker/price?symbol={binance_symbol}"
-                response = requests.get(url, timeout=10)
-                if response.status_code == 200:
-                    data = response.json()
-                    prices[symbol] = float(data.get('price', 0))
-            except:
-                pass
     
     return prices
 
