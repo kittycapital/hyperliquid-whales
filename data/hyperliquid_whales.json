@@ -1,0 +1,42 @@
+{
+  "dashboard": {"totalOI": 4250000000, "volume24h": 8500000000, "activeMarkets": 147, "totalTraders": 12500},
+  "markets": [],
+  "whaleTracker": {
+    "daily": [
+      {"address": "0x1234567890abcdef1234567890abcdef12345678", "displayName": "HyperWhale", "accountValue": 45000000, "pnl": 2850000, "roi": 0.0678, "volume": 125000000, "positions": [{"coin": "BTC", "direction": "Long", "size": 256.5, "entryPx": "94500", "leverage": 5, "positionValue": 25008750, "unrealizedPnl": 769500}]},
+      {"address": "0xabcdef1234567890abcdef1234567890abcdef12", "displayName": "SolanaKing", "accountValue": 28000000, "pnl": 1920000, "roi": 0.0742, "volume": 89000000, "positions": [{"coin": "SOL", "direction": "Long", "size": 85000, "entryPx": "182.5", "leverage": 3, "positionValue": 16868250, "unrealizedPnl": 1355750}]},
+      {"address": "0x9876543210fedcba9876543210fedcba98765432", "displayName": null, "accountValue": 18500000, "pnl": 1450000, "roi": 0.0851, "volume": 67000000, "positions": [{"coin": "ETH", "direction": "Long", "size": 3500, "entryPx": "3280", "leverage": 4, "positionValue": 12075875, "unrealizedPnl": 595875}]},
+      {"address": "0xfedcba9876543210fedcba9876543210fedcba98", "displayName": "MemeTrader", "accountValue": 12000000, "pnl": 1180000, "roi": 0.1092, "volume": 52000000, "positions": []},
+      {"address": "0x1111222233334444555566667777888899990000", "displayName": "ETHMaxi", "accountValue": 9500000, "pnl": 890000, "roi": 0.1035, "volume": 42000000, "positions": []}
+    ],
+    "weekly": [
+      {"address": "0x1234567890abcdef1234567890abcdef12345678", "displayName": "HyperWhale", "accountValue": 45000000, "pnl": 8500000, "roi": 0.2328, "volume": 580000000, "positions": []},
+      {"address": "0xabcdef1234567890abcdef1234567890abcdef12", "displayName": "SolanaKing", "accountValue": 28000000, "pnl": 5200000, "roi": 0.2283, "volume": 420000000, "positions": []},
+      {"address": "0x9876543210fedcba9876543210fedcba98765432", "displayName": null, "accountValue": 18500000, "pnl": 3800000, "roi": 0.2586, "volume": 310000000, "positions": []}
+    ],
+    "biggestPositions": [
+      {"coin": "BTC", "direction": "Long", "size": 450.5, "entryPx": "93200", "leverage": 3, "positionValue": 43927237, "unrealizedPnl": 1938150, "traderAddress": "0xaaaa1111bbbb2222cccc3333dddd4444eeee5555", "traderName": "BTCGiant"},
+      {"coin": "HYPE", "direction": "Long", "size": 1200000, "entryPx": "20.50", "leverage": 2, "positionValue": 29820000, "unrealizedPnl": 5220000, "traderAddress": "0xcccc3333dddd4444eeee5555ffff6666aaaa7777", "traderName": "HYPEKing"},
+      {"coin": "ETH", "direction": "Long", "size": 8500, "entryPx": "3280", "leverage": 4, "positionValue": 29327125, "unrealizedPnl": 1446125, "traderAddress": "0xbbbb2222cccc3333dddd4444eeee5555ffff6666", "traderName": "EthereumPro"}
+    ]
+  },
+  "positionAggregation": {
+    "byPnlDaily": [
+      {"coin": "HYPE", "long": 62500000, "short": 8500000, "longSize": 2850000, "shortSize": 385000, "total": 71000000},
+      {"coin": "ETH", "long": 48000000, "short": 22000000, "longSize": 14200, "shortSize": 6500, "total": 70000000},
+      {"coin": "BTC", "long": 45000000, "short": 18000000, "longSize": 465, "shortSize": 185, "total": 63000000},
+      {"coin": "SOL", "long": 28000000, "short": 5500000, "longSize": 145000, "shortSize": 28500, "total": 33500000}
+    ],
+    "byPnlWeekly": [
+      {"coin": "HYPE", "long": 78500000, "short": 12500000, "longSize": 3550000, "shortSize": 565000, "total": 91000000},
+      {"coin": "BTC", "long": 52000000, "short": 21000000, "longSize": 535, "shortSize": 216, "total": 73000000},
+      {"coin": "ETH", "long": 55000000, "short": 28000000, "longSize": 16500, "shortSize": 8400, "total": 83000000}
+    ],
+    "bySize": [
+      {"coin": "BTC", "long": 68000000, "short": 28000000, "longSize": 702, "shortSize": 289, "total": 96000000},
+      {"coin": "HYPE", "long": 72000000, "short": 15000000, "longSize": 3250000, "shortSize": 680000, "total": 87000000},
+      {"coin": "ETH", "long": 58000000, "short": 32000000, "longSize": 17200, "shortSize": 9500, "total": 90000000}
+    ]
+  },
+  "lastUpdated": "2026-02-03T12:00:00Z"
+}
