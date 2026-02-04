@@ -1,2462 +1,2462 @@
 {
-  "lastUpdated": "2026-02-04T10:40:04.835372Z",
+  "lastUpdated": "2026-02-04T10:54:28.698253Z",
   "dashboard": {
     "totalTraders": 50
   },
   "whaleTracker": {
     "daily": [
       {
-        "address": "0xGMX0010aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4894637,
-        "pnl": 744224,
-        "roi": 0.1520488649107176,
-        "volume": 68524918,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 1438,
-            "positionValue": 3636556.8367812014,
-            "entryPx": 3433.383005748853,
-            "leverage": 5,
-            "unrealizedPnl": 92338
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0048aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4874789,
-        "pnl": 536482,
-        "roi": 0.11005235303517752,
-        "volume": 73121835,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Long",
-            "size": 86,
-            "positionValue": 1546628.823880112,
-            "entryPx": 96971.77340456798,
-            "leverage": 5,
-            "unrealizedPnl": 66000
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0006aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #7",
-        "accountValue": 4860323,
-        "pnl": 1545544,
-        "roi": 0.3179920346857606,
-        "volume": 77765168,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 3216,
-            "positionValue": 1573046.1849720876,
-            "entryPx": 97419.57162615427,
-            "leverage": 10,
-            "unrealizedPnl": 29552
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0024aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4827171,
-        "pnl": 670517,
-        "roi": 0.13890475394387314,
-        "volume": 43444539,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 90,
-            "positionValue": 3351706.906790851,
-            "entryPx": 3408.8314857494856,
-            "leverage": 20,
-            "unrealizedPnl": -49603
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0021aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4753704,
-        "pnl": 1112442,
-        "roi": 0.23401583270645374,
-        "volume": 90320376,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 72,
-            "positionValue": 3607181.4422961394,
-            "entryPx": 96938.75016748437,
-            "leverage": 5,
-            "unrealizedPnl": 48231
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0004aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #5",
-        "accountValue": 4586613,
-        "pnl": -744333,
-        "roi": -0.16228380288461225,
-        "volume": 45866130,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 3124,
-            "positionValue": 2140591.0820763586,
-            "entryPx": 3467.255154310295,
-            "leverage": 25,
-            "unrealizedPnl": 58211
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0013aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4516592,
-        "pnl": 1336423,
-        "roi": 0.2958919025672454,
-        "volume": 49682512,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 78,
-            "positionValue": 2770455.3615662544,
-            "entryPx": 92547.25196304798,
-            "leverage": 5,
-            "unrealizedPnl": -33788
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0044aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4372337,
-        "pnl": 584234,
-        "roi": 0.13362053290951728,
-        "volume": 43723370,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 4884,
-            "positionValue": 2967568.7907867674,
-            "entryPx": 3418.994754109599,
-            "leverage": 25,
-            "unrealizedPnl": -47789
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0031aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4321354,
-        "pnl": -220136,
-        "roi": -0.050941441039081735,
-        "volume": 21606770,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 46,
-            "positionValue": 1373966.2647291995,
-            "entryPx": 99785.92901681122,
-            "leverage": 20,
-            "unrealizedPnl": 39264
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0032aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4224897,
-        "pnl": 541529,
-        "roi": 0.12817566913465583,
-        "volume": 25349382,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Short",
-            "size": 1421,
-            "positionValue": 1427965.0334335195,
-            "entryPx": 97589.06098424863,
-            "leverage": 20,
-            "unrealizedPnl": 28767
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0022aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4097089,
-        "pnl": 1583235,
-        "roi": 0.3864292428111764,
-        "volume": 20485445,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Short",
-            "size": 5,
-            "positionValue": 1522250.5542928767,
-            "entryPx": 3289.5633629303975,
-            "leverage": 20,
-            "unrealizedPnl": 26644
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0034aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4095054,
-        "pnl": -636002,
-        "roi": -0.15530979567058212,
-        "volume": 57330756,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 4494,
-            "positionValue": 1335665.199070465,
-            "entryPx": 3415.7856061749553,
-            "leverage": 10,
-            "unrealizedPnl": -36755
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0037aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4092588,
-        "pnl": 558977,
-        "roi": 0.13658276865396662,
-        "volume": 49111056,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 2634,
-            "positionValue": 1921511.251268899,
-            "entryPx": 95603.06863024773,
-            "leverage": 25,
-            "unrealizedPnl": 10755
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0033aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4060773,
-        "pnl": -791391,
-        "roi": -0.19488678633353798,
-        "volume": 77154687,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Short",
-            "size": 20,
-            "positionValue": 2643513.161175979,
-            "entryPx": 3411.1410422125878,
-            "leverage": 25,
-            "unrealizedPnl": -37401
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0020aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4014915,
-        "pnl": 1257174,
-        "roi": 0.31312593168223984,
-        "volume": 24089490,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 4,
-            "positionValue": 1664885.2040230741,
-            "entryPx": 94778.88444768364,
-            "leverage": 20,
-            "unrealizedPnl": 5846
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0027aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3975563,
-        "pnl": -981046,
-        "roi": -0.2467690739651214,
-        "volume": 47706756,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 56,
-            "positionValue": 2061902.8185253937,
-            "entryPx": 3411.141004589997,
-            "leverage": 25,
-            "unrealizedPnl": 29682
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0014aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3891837,
-        "pnl": 50288,
-        "roi": 0.012921404467864404,
-        "volume": 27242859,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 39,
-            "positionValue": 2321431.167110769,
-            "entryPx": 93776.52290255074,
-            "leverage": 25,
-            "unrealizedPnl": 34471
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0011aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3579225,
-        "pnl": 1490294,
-        "roi": 0.4163733769181876,
-        "volume": 32213025,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Long",
-            "size": 83,
-            "positionValue": 2199332.403114942,
-            "entryPx": 3367.0937855600882,
-            "leverage": 10,
-            "unrealizedPnl": 54969
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0035aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3563122,
-        "pnl": -812708,
-        "roi": -0.22808873791018103,
-        "volume": 24941854,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 32,
-            "positionValue": 1270827.4675610422,
-            "entryPx": 97257.67204321016,
-            "leverage": 10,
-            "unrealizedPnl": 8299
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0005aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #6",
-        "accountValue": 3532393,
-        "pnl": -537777,
-        "roi": -0.15224155409661383,
-        "volume": 70647860,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 91,
-            "positionValue": 2668673.7267591124,
-            "entryPx": 93556.70078222446,
-            "leverage": 10,
-            "unrealizedPnl": 35311
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0046aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3410241,
-        "pnl": 1481788,
-        "roi": 0.4345112266259188,
-        "volume": 20461446,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 1852,
-            "positionValue": 1989244.147492109,
-            "entryPx": 93122.45308982907,
-            "leverage": 20,
-            "unrealizedPnl": -24839
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0038aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3111261,
-        "pnl": 843731,
-        "roi": 0.27118618463703303,
-        "volume": 56002698,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 79,
-            "positionValue": 1007935.9078475159,
-            "entryPx": 94120.03927526512,
-            "leverage": 10,
-            "unrealizedPnl": 3439
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0036aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3030901,
-        "pnl": -118566,
-        "roi": -0.039119060635764744,
-        "volume": 27278109,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 40,
-            "positionValue": 1640670.8742674142,
-            "entryPx": 3546.0105398582755,
-            "leverage": 10,
-            "unrealizedPnl": 79541
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0039aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 2973238,
-        "pnl": 17774,
-        "roi": 0.005977994361702628,
-        "volume": 47571808,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 68,
-            "positionValue": 1768151.4832240639,
-            "entryPx": 97145.31838745243,
-            "leverage": 25,
-            "unrealizedPnl": 67542
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #3",
-        "accountValue": 2660101,
-        "pnl": 664077,
-        "roi": 0.24964352857278727,
-        "volume": 26601010,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 964,
-            "positionValue": 1986623.269199584,
-            "entryPx": 3568.85640272755,
-            "leverage": 25,
-            "unrealizedPnl": 29300
-          }
-        ]
-      },
-      {
         "address": "0xGMX0041aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "displayName": null,
-        "accountValue": 2559187,
-        "pnl": 1117997,
-        "roi": 0.4368563141341371,
-        "volume": 33269431,
+        "accountValue": 4525882,
+        "pnl": -658124,
+        "roi": -0.14541342438888155,
+        "volume": 49784702,
         "positions": [
           {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 745,
-            "positionValue": 1498266.086825761,
-            "entryPx": 3406.7772076950355,
-            "leverage": 20,
-            "unrealizedPnl": -21976
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 51,
+            "positionValue": 2865955.879767866,
+            "entryPx": 2305.252390257534,
+            "leverage": 5,
+            "unrealizedPnl": -28873
           }
         ]
       },
       {
         "address": "0xGMX0015aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "displayName": null,
-        "accountValue": 2482730,
-        "pnl": 283284,
-        "roi": 0.11410181534037128,
-        "volume": 37240950,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Long",
-            "size": 62,
-            "positionValue": 1224807.757403687,
-            "entryPx": 3373.0989821142557,
-            "leverage": 20,
-            "unrealizedPnl": 54094
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0019aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 2259034,
-        "pnl": 436555,
-        "roi": 0.19324853012393792,
-        "volume": 27108408,
+        "accountValue": 4395971,
+        "pnl": -932036,
+        "roi": -0.2120205069596683,
+        "volume": 35167768,
         "positions": [
           {
             "coin": "ETH",
             "direction": "Long",
-            "size": 2244,
-            "positionValue": 893051.0609104681,
-            "entryPx": 96654.25951434764,
-            "leverage": 25,
-            "unrealizedPnl": -3536
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0017aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 2140836,
-        "pnl": 550849,
-        "roi": 0.25730555726828214,
-        "volume": 40675884,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 28,
-            "positionValue": 833899.8323770325,
-            "entryPx": 3398.0211208544406,
-            "leverage": 5,
-            "unrealizedPnl": -7666
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0009aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #10",
-        "accountValue": 2036999,
-        "pnl": -138103,
-        "roi": -0.0677972841420148,
-        "volume": 40739980,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 256,
-            "positionValue": 941162.394849955,
-            "entryPx": 3239.6855767893644,
-            "leverage": 20,
-            "unrealizedPnl": 90366
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0008aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #9",
-        "accountValue": 2002411,
-        "pnl": 992408,
-        "roi": 0.4956065463084252,
-        "volume": 12014466,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 964,
-            "positionValue": 1064768.8290406738,
-            "entryPx": 3390.4346661786785,
+            "size": 75,
+            "positionValue": 2799557.311552535,
+            "entryPx": 78520.1125540292,
             "leverage": 10,
-            "unrealizedPnl": 34170
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0025aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1904897,
-        "pnl": 837952,
-        "roi": 0.43989360054638127,
-        "volume": 30478352,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 2391,
-            "positionValue": 1232306.2671131205,
-            "entryPx": 3361.2771818245815,
-            "leverage": 5,
-            "unrealizedPnl": -38803
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0001aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #2",
-        "accountValue": 1889567,
-        "pnl": 815172,
-        "roi": 0.4314067720276656,
-        "volume": 17006103,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 10,
-            "positionValue": 945588.3397202247,
-            "entryPx": 95660.91253053503,
-            "leverage": 20,
-            "unrealizedPnl": -46790
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0049aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1824551,
-        "pnl": -367430,
-        "roi": -0.2013810521054221,
-        "volume": 21894612,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 84,
-            "positionValue": 1420058.4211357892,
-            "entryPx": 93913.91078632216,
-            "leverage": 5,
-            "unrealizedPnl": -35973
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0040aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1758141,
-        "pnl": -400890,
-        "roi": -0.2280192544283991,
-        "volume": 17581410,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 1769,
-            "positionValue": 543059.6725722103,
-            "entryPx": 3274.876490743333,
-            "leverage": 5,
-            "unrealizedPnl": -16559
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0042aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1750328,
-        "pnl": 764054,
-        "roi": 0.4365204693063243,
-        "volume": 24504592,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 4129,
-            "positionValue": 607927.7955731488,
-            "entryPx": 3364.4012825384093,
-            "leverage": 20,
-            "unrealizedPnl": 46844
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0030aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1723816,
-        "pnl": 108963,
-        "roi": 0.06321034263517684,
-        "volume": 20685792,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 2035,
-            "positionValue": 775354.9423022877,
-            "entryPx": 93070.98051971594,
-            "leverage": 10,
-            "unrealizedPnl": -9601
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0028aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1626054,
-        "pnl": -394984,
-        "roi": -0.24290952206999275,
-        "volume": 17886594,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 2001,
-            "positionValue": 522213.91732978256,
-            "entryPx": 3476.168792093727,
-            "leverage": 25,
-            "unrealizedPnl": 86063
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0047aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1625499,
-        "pnl": 794246,
-        "roi": 0.48861672630989006,
-        "volume": 14629491,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 2,
-            "positionValue": 1010319.9751558651,
-            "entryPx": 97889.19260325105,
-            "leverage": 5,
-            "unrealizedPnl": 23382
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0016aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1610606,
-        "pnl": 170629,
-        "roi": 0.1059408694615567,
-        "volume": 20937878,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 3212,
-            "positionValue": 976881.7707056422,
-            "entryPx": 3338.3715959849687,
-            "leverage": 20,
-            "unrealizedPnl": -40334
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0043aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1302907,
-        "pnl": 475689,
-        "roi": 0.3650981996412637,
-        "volume": 24755233,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 58,
-            "positionValue": 757368.4379185876,
-            "entryPx": 99886.12185729791,
-            "leverage": 20,
-            "unrealizedPnl": -30194
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0018aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1217235,
-        "pnl": 210183,
-        "roi": 0.17267249134308493,
-        "volume": 18258525,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 51,
-            "positionValue": 748407.4535729703,
-            "entryPx": 95260.71577989202,
-            "leverage": 5,
-            "unrealizedPnl": 92050
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0012aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1119300,
-        "pnl": 454517,
-        "roi": 0.40607254534083803,
-        "volume": 22386000,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Short",
-            "size": 2481,
-            "positionValue": 632143.6859935495,
-            "entryPx": 95505.50009299272,
-            "leverage": 5,
-            "unrealizedPnl": 6091
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0023aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 750253,
-        "pnl": 59606,
-        "roi": 0.07944786625311728,
-        "volume": 13504554,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 4677,
-            "positionValue": 380434.0082329596,
-            "entryPx": 96239.08729359992,
-            "leverage": 5,
-            "unrealizedPnl": -10107
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #1",
-        "accountValue": 617104,
-        "pnl": 118082,
-        "roi": 0.19134862195027094,
-        "volume": 6171040,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 85,
-            "positionValue": 266880.2759942929,
-            "entryPx": 94252.26119476419,
-            "leverage": 25,
-            "unrealizedPnl": 67974
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0045aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 616977,
-        "pnl": 148487,
-        "roi": 0.24066861487543295,
-        "volume": 9254655,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 2833,
-            "positionValue": 493345.87439175945,
-            "entryPx": 3500.3130930946973,
-            "leverage": 20,
-            "unrealizedPnl": 65418
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0003aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #4",
-        "accountValue": 445774,
-        "pnl": 157843,
-        "roi": 0.35408749725197075,
-        "volume": 6686610,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 2296,
-            "positionValue": 143349.91085867444,
-            "entryPx": 100796.14472126236,
-            "leverage": 10,
-            "unrealizedPnl": 89242
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #8",
-        "accountValue": 143878,
-        "pnl": 378,
-        "roi": 0.002627225844117933,
-        "volume": 1007146,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Long",
-            "size": 39,
-            "positionValue": 96998.62753692799,
-            "entryPx": 101674.1370153949,
-            "leverage": 20,
-            "unrealizedPnl": 97989
+            "unrealizedPnl": 35647
           }
         ]
       },
       {
         "address": "0xGMX0029aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "displayName": null,
-        "accountValue": 73277,
-        "pnl": -2136,
-        "roi": -0.029149664969908704,
-        "volume": 1318986,
+        "accountValue": 4378234,
+        "pnl": -893487,
+        "roi": -0.20407474794631808,
+        "volume": 78808212,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 1881,
+            "positionValue": 1662540.3499378143,
+            "entryPx": 2363.823743458949,
+            "leverage": 20,
+            "unrealizedPnl": 84732
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0028aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 4186481,
+        "pnl": -393359,
+        "roi": -0.09395934198674256,
+        "volume": 29305367,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 4302,
+            "positionValue": 3191664.8792109187,
+            "entryPx": 2266.5324387660535,
+            "leverage": 5,
+            "unrealizedPnl": 35948
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0006aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #7",
+        "accountValue": 4147874,
+        "pnl": 798802,
+        "roi": 0.19258106683086323,
+        "volume": 78809606,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 42,
+            "positionValue": 1774353.4511752212,
+            "entryPx": 2248.349007409427,
+            "leverage": 25,
+            "unrealizedPnl": 37704
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #8",
+        "accountValue": 4036439,
+        "pnl": 205338,
+        "roi": 0.05087107720443688,
+        "volume": 52473707,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 50,
+            "positionValue": 1628085.780739847,
+            "entryPx": 75514.18307568731,
+            "leverage": 5,
+            "unrealizedPnl": -40545
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #3",
+        "accountValue": 4025046,
+        "pnl": -50079,
+        "roi": -0.012441845385121065,
+        "volume": 80500920,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 4968,
+            "positionValue": 2014009.3876791266,
+            "entryPx": 73467.81070743239,
+            "leverage": 10,
+            "unrealizedPnl": -38346
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0020aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3976909,
+        "pnl": 1723349,
+        "roi": 0.4333388065957758,
+        "volume": 51699817,
         "positions": [
           {
             "coin": "ARB",
             "direction": "Long",
-            "size": 5000,
-            "positionValue": 44054.9406918843,
-            "entryPx": 3437.334530686673,
+            "size": 4377,
+            "positionValue": 2038890.1019270238,
+            "entryPx": 2323.547937332632,
+            "leverage": 25,
+            "unrealizedPnl": 79136
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #1",
+        "accountValue": 3916329,
+        "pnl": 1614616,
+        "roi": 0.4122779265991187,
+        "volume": 27414303,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 4698,
+            "positionValue": 3047782.6570843887,
+            "entryPx": 2307.006756145872,
+            "leverage": 5,
+            "unrealizedPnl": 8274
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0030aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3697410,
+        "pnl": -458433,
+        "roi": -0.12398760213230342,
+        "volume": 40671510,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 2322,
+            "positionValue": 1387935.07662989,
+            "entryPx": 2258.57708788399,
             "leverage": 10,
-            "unrealizedPnl": 93046
+            "unrealizedPnl": 21896
           }
         ]
       },
       {
         "address": "0xGMX0026aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "displayName": null,
-        "accountValue": 63581,
-        "pnl": 28472,
-        "roi": 0.4478067347163461,
-        "volume": 445067,
+        "accountValue": 3559240,
+        "pnl": -215844,
+        "roi": -0.06064328339757926,
+        "volume": 28473920,
         "positions": [
           {
             "coin": "ARB",
             "direction": "Short",
-            "size": 8,
-            "positionValue": 19315.62567393725,
-            "entryPx": 94170.61237323996,
+            "size": 90,
+            "positionValue": 2783192.8441035827,
+            "entryPx": 73549.00682035464,
+            "leverage": 25,
+            "unrealizedPnl": 93409
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0040aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3513334,
+        "pnl": 376955,
+        "roi": 0.1072926741380125,
+        "volume": 28106672,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 4133,
+            "positionValue": 2380664.7981830207,
+            "entryPx": 2229.468816568736,
             "leverage": 5,
-            "unrealizedPnl": 34943
+            "unrealizedPnl": 41062
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0036aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3466978,
+        "pnl": 1393819,
+        "roi": 0.4020270679537049,
+        "volume": 65872582,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 4,
+            "positionValue": 1843178.702042016,
+            "entryPx": 2321.132517948194,
+            "leverage": 25,
+            "unrealizedPnl": 39022
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0027aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3357425,
+        "pnl": -128468,
+        "roi": -0.03826384803830316,
+        "volume": 67148500,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 38,
+            "positionValue": 1174317.8623165824,
+            "entryPx": 72635.557260363,
+            "leverage": 25,
+            "unrealizedPnl": 9174
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0017aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3357051,
+        "pnl": 391122,
+        "roi": 0.11650761337852776,
+        "volume": 20142306,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 38,
+            "positionValue": 1235081.4830268344,
+            "entryPx": 2200.2019109501825,
+            "leverage": 25,
+            "unrealizedPnl": -191
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0048aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3253724,
+        "pnl": 1482702,
+        "roi": 0.45569384496042076,
+        "volume": 42298412,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Long",
+            "size": 2053,
+            "positionValue": 1345005.3780081922,
+            "entryPx": 2262.5204658556586,
+            "leverage": 10,
+            "unrealizedPnl": 61645
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0039aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3194176,
+        "pnl": 723996,
+        "roi": 0.2266612735178024,
+        "volume": 47912640,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 4024,
+            "positionValue": 1946813.3377336606,
+            "entryPx": 2327.8233481794987,
+            "leverage": 5,
+            "unrealizedPnl": 45808
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0025aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3187673,
+        "pnl": 1360128,
+        "roi": 0.4266836654826264,
+        "volume": 35064403,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 97,
+            "positionValue": 1639652.0790584614,
+            "entryPx": 2175.0325257561253,
+            "leverage": 20,
+            "unrealizedPnl": 94992
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0043aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3137752,
+        "pnl": 3231,
+        "roi": 0.0010297180911684543,
+        "volume": 62755040,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Long",
+            "size": 4141,
+            "positionValue": 2247812.7703192206,
+            "entryPx": 2195.9316590975773,
+            "leverage": 20,
+            "unrealizedPnl": -29415
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0042aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3028746,
+        "pnl": 188153,
+        "roi": 0.06212240973657084,
+        "volume": 21201222,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 4641,
+            "positionValue": 2122979.391849055,
+            "entryPx": 2313.50921167128,
+            "leverage": 25,
+            "unrealizedPnl": -34091
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0046aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2953693,
+        "pnl": -726582,
+        "roi": -0.2459910356289567,
+        "volume": 47259088,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 3894,
+            "positionValue": 2088280.1888164945,
+            "entryPx": 77419.10889484361,
+            "leverage": 25,
+            "unrealizedPnl": -9098
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0018aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2919242,
+        "pnl": 1088191,
+        "roi": 0.3727649163721267,
+        "volume": 55465598,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 7,
+            "positionValue": 2318067.22879932,
+            "entryPx": 2187.0400558788624,
+            "leverage": 5,
+            "unrealizedPnl": 76241
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0037aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2811855,
+        "pnl": 200569,
+        "roi": 0.07132978051855447,
+        "volume": 28118550,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 68,
+            "positionValue": 1732826.0155318046,
+            "entryPx": 2166.8865845132736,
+            "leverage": 25,
+            "unrealizedPnl": -42827
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0022aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2766569,
+        "pnl": -82933,
+        "roi": -0.02997684135114649,
+        "volume": 41498535,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 3919,
+            "positionValue": 878372.5636176827,
+            "entryPx": 73343.52339974028,
+            "leverage": 5,
+            "unrealizedPnl": -44754
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0001aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #2",
+        "accountValue": 2279091,
+        "pnl": 639782,
+        "roi": 0.28071805820829443,
+        "volume": 38744547,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 43,
+            "positionValue": 805230.8355867723,
+            "entryPx": 2347.2542185175794,
+            "leverage": 25,
+            "unrealizedPnl": 20706
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0035aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2274254,
+        "pnl": 631211,
+        "roi": 0.27754639543340365,
+        "volume": 15919778,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 2729,
+            "positionValue": 735922.5343939067,
+            "entryPx": 2365.758245632252,
+            "leverage": 5,
+            "unrealizedPnl": 52649
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0012aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2261900,
+        "pnl": -280539,
+        "roi": -0.12402802953269375,
+        "volume": 22619000,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 593,
+            "positionValue": 1381317.4888304472,
+            "entryPx": 78017.03215160225,
+            "leverage": 25,
+            "unrealizedPnl": 70473
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0031aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2100707,
+        "pnl": 373983,
+        "roi": 0.17802720703077582,
+        "volume": 23107777,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 2338,
+            "positionValue": 652655.5360050255,
+            "entryPx": 78762.25896145943,
+            "leverage": 25,
+            "unrealizedPnl": 91698
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0008aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #9",
+        "accountValue": 1863010,
+        "pnl": -376820,
+        "roi": -0.20226407802427254,
+        "volume": 22356120,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 73,
+            "positionValue": 1250195.2865926626,
+            "entryPx": 76179.58691831343,
+            "leverage": 5,
+            "unrealizedPnl": 37859
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0034aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1656091,
+        "pnl": 734399,
+        "roi": 0.44345328849682775,
+        "volume": 14904819,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 12,
+            "positionValue": 679953.7567281468,
+            "entryPx": 74535.33493976454,
+            "leverage": 20,
+            "unrealizedPnl": 38245
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0003aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #4",
+        "accountValue": 1629596,
+        "pnl": -133144,
+        "roi": -0.0817036860669761,
+        "volume": 9777576,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 23,
+            "positionValue": 1226055.505625009,
+            "entryPx": 2188.6504481457177,
+            "leverage": 20,
+            "unrealizedPnl": -47117
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0011aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1594685,
+        "pnl": -381184,
+        "roi": -0.23903404120562996,
+        "volume": 7973425,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 4833,
+            "positionValue": 639300.7406561612,
+            "entryPx": 2153.6673600042527,
+            "leverage": 5,
+            "unrealizedPnl": -12740
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0032aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1527780,
+        "pnl": 126349,
+        "roi": 0.08270104334393695,
+        "volume": 7638900,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 4980,
+            "positionValue": 1055007.7444251932,
+            "entryPx": 2344.5688719252767,
+            "leverage": 25,
+            "unrealizedPnl": -40951
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0033aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1419966,
+        "pnl": -69670,
+        "roi": -0.04906455506681146,
+        "volume": 18459558,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 97,
+            "positionValue": 797254.9358481509,
+            "entryPx": 77115.1422867423,
+            "leverage": 25,
+            "unrealizedPnl": -1398
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0038aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1380002,
+        "pnl": 618231,
+        "roi": 0.4479928289959,
+        "volume": 16560024,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 9,
+            "positionValue": 552054.7429309962,
+            "entryPx": 2209.960347009941,
+            "leverage": 10,
+            "unrealizedPnl": 15400
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0010aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1285675,
+        "pnl": 416479,
+        "roi": 0.3239380092169483,
+        "volume": 14142425,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 41,
+            "positionValue": 652641.4984228899,
+            "entryPx": 74820.9474207598,
+            "leverage": 10,
+            "unrealizedPnl": 87978
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0005aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #6",
+        "accountValue": 1265157,
+        "pnl": -286509,
+        "roi": -0.2264612218088348,
+        "volume": 22772826,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Long",
+            "size": 69,
+            "positionValue": 704991.9957685018,
+            "entryPx": 78451.39915082279,
+            "leverage": 10,
+            "unrealizedPnl": 62049
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0044aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1220524,
+        "pnl": 501340,
+        "roi": 0.4107580023006512,
+        "volume": 14646288,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 68,
+            "positionValue": 496512.5952974446,
+            "entryPx": 76391.83610517552,
+            "leverage": 20,
+            "unrealizedPnl": 75413
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0023aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1213030,
+        "pnl": 152849,
+        "roi": 0.1260059520374599,
+        "volume": 15769390,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 61,
+            "positionValue": 675148.0143139181,
+            "entryPx": 2285.52083548209,
+            "leverage": 5,
+            "unrealizedPnl": -27646
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0009aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #10",
+        "accountValue": 1128761,
+        "pnl": 275400,
+        "roi": 0.24398433326452632,
+        "volume": 9030088,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 1111,
+            "positionValue": 678330.9090692906,
+            "entryPx": 2248.5011212476124,
+            "leverage": 10,
+            "unrealizedPnl": 82372
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0049aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 997436,
+        "pnl": 343887,
+        "roi": 0.34477099282560486,
+        "volume": 10971796,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 2550,
+            "positionValue": 543733.9114748308,
+            "entryPx": 75190.66448872075,
+            "leverage": 20,
+            "unrealizedPnl": 95375
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0045aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 954988,
+        "pnl": 111927,
+        "roi": 0.1172025198222386,
+        "volume": 19099760,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 3187,
+            "positionValue": 545268.408985853,
+            "entryPx": 73243.028558332,
+            "leverage": 10,
+            "unrealizedPnl": 85939
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0004aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #5",
+        "accountValue": 849238,
+        "pnl": -122420,
+        "roi": -0.14415275811963196,
+        "volume": 11040094,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 54,
+            "positionValue": 464386.36002176086,
+            "entryPx": 73835.24773100828,
+            "leverage": 20,
+            "unrealizedPnl": 91604
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0019aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 843201,
+        "pnl": 226058,
+        "roi": 0.26809503309412586,
+        "volume": 10961613,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 1367,
+            "positionValue": 561110.7262092893,
+            "entryPx": 78862.92592909631,
+            "leverage": 25,
+            "unrealizedPnl": 57766
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0021aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 839949,
+        "pnl": 352047,
+        "roi": 0.4191290185475547,
+        "volume": 14279133,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 2643,
+            "positionValue": 313806.4247653817,
+            "entryPx": 76219.67579845339,
+            "leverage": 10,
+            "unrealizedPnl": 94949
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0024aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 692239,
+        "pnl": 108558,
+        "roi": 0.15682156018369378,
+        "volume": 6230151,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 379,
+            "positionValue": 306056.88009851763,
+            "entryPx": 78333.12564087923,
+            "leverage": 5,
+            "unrealizedPnl": 78
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0047aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 269753,
+        "pnl": 113103,
+        "roi": 0.419283566818534,
+        "volume": 2158024,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 22,
+            "positionValue": 123868.2764359745,
+            "entryPx": 2333.853873833008,
+            "leverage": 10,
+            "unrealizedPnl": 7013
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0014aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 132285,
+        "pnl": 10075,
+        "roi": 0.07616131836564992,
+        "volume": 2381130,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 3272,
+            "positionValue": 54188.12280072664,
+            "entryPx": 74177.30536346021,
+            "leverage": 25,
+            "unrealizedPnl": -19290
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0016aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 104801,
+        "pnl": 19888,
+        "roi": 0.1897691815917787,
+        "volume": 1048010,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 98,
+            "positionValue": 65508.89994784589,
+            "entryPx": 77807.12870814394,
+            "leverage": 10,
+            "unrealizedPnl": 58864
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0013aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 83880,
+        "pnl": -19584,
+        "roi": -0.2334763948497854,
+        "volume": 1174320,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Long",
+            "size": 3948,
+            "positionValue": 58081.2744170979,
+            "entryPx": 74654.17172028896,
+            "leverage": 20,
+            "unrealizedPnl": 77081
           }
         ]
       }
     ],
     "weekly": [
       {
-        "address": "0xGMX0010aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4894637,
-        "pnl": 744224,
-        "roi": 0.1520488649107176,
-        "volume": 68524918,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 1438,
-            "positionValue": 3636556.8367812014,
-            "entryPx": 3433.383005748853,
-            "leverage": 5,
-            "unrealizedPnl": 92338
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0048aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4874789,
-        "pnl": 536482,
-        "roi": 0.11005235303517752,
-        "volume": 73121835,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Long",
-            "size": 86,
-            "positionValue": 1546628.823880112,
-            "entryPx": 96971.77340456798,
-            "leverage": 5,
-            "unrealizedPnl": 66000
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0006aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #7",
-        "accountValue": 4860323,
-        "pnl": 1545544,
-        "roi": 0.3179920346857606,
-        "volume": 77765168,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 3216,
-            "positionValue": 1573046.1849720876,
-            "entryPx": 97419.57162615427,
-            "leverage": 10,
-            "unrealizedPnl": 29552
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0024aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4827171,
-        "pnl": 670517,
-        "roi": 0.13890475394387314,
-        "volume": 43444539,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 90,
-            "positionValue": 3351706.906790851,
-            "entryPx": 3408.8314857494856,
-            "leverage": 20,
-            "unrealizedPnl": -49603
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0021aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4753704,
-        "pnl": 1112442,
-        "roi": 0.23401583270645374,
-        "volume": 90320376,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 72,
-            "positionValue": 3607181.4422961394,
-            "entryPx": 96938.75016748437,
-            "leverage": 5,
-            "unrealizedPnl": 48231
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0004aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #5",
-        "accountValue": 4586613,
-        "pnl": -744333,
-        "roi": -0.16228380288461225,
-        "volume": 45866130,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 3124,
-            "positionValue": 2140591.0820763586,
-            "entryPx": 3467.255154310295,
-            "leverage": 25,
-            "unrealizedPnl": 58211
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0013aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4516592,
-        "pnl": 1336423,
-        "roi": 0.2958919025672454,
-        "volume": 49682512,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 78,
-            "positionValue": 2770455.3615662544,
-            "entryPx": 92547.25196304798,
-            "leverage": 5,
-            "unrealizedPnl": -33788
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0044aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4372337,
-        "pnl": 584234,
-        "roi": 0.13362053290951728,
-        "volume": 43723370,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 4884,
-            "positionValue": 2967568.7907867674,
-            "entryPx": 3418.994754109599,
-            "leverage": 25,
-            "unrealizedPnl": -47789
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0031aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4321354,
-        "pnl": -220136,
-        "roi": -0.050941441039081735,
-        "volume": 21606770,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 46,
-            "positionValue": 1373966.2647291995,
-            "entryPx": 99785.92901681122,
-            "leverage": 20,
-            "unrealizedPnl": 39264
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0032aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4224897,
-        "pnl": 541529,
-        "roi": 0.12817566913465583,
-        "volume": 25349382,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Short",
-            "size": 1421,
-            "positionValue": 1427965.0334335195,
-            "entryPx": 97589.06098424863,
-            "leverage": 20,
-            "unrealizedPnl": 28767
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0022aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4097089,
-        "pnl": 1583235,
-        "roi": 0.3864292428111764,
-        "volume": 20485445,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Short",
-            "size": 5,
-            "positionValue": 1522250.5542928767,
-            "entryPx": 3289.5633629303975,
-            "leverage": 20,
-            "unrealizedPnl": 26644
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0034aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4095054,
-        "pnl": -636002,
-        "roi": -0.15530979567058212,
-        "volume": 57330756,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 4494,
-            "positionValue": 1335665.199070465,
-            "entryPx": 3415.7856061749553,
-            "leverage": 10,
-            "unrealizedPnl": -36755
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0037aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4092588,
-        "pnl": 558977,
-        "roi": 0.13658276865396662,
-        "volume": 49111056,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 2634,
-            "positionValue": 1921511.251268899,
-            "entryPx": 95603.06863024773,
-            "leverage": 25,
-            "unrealizedPnl": 10755
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0033aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4060773,
-        "pnl": -791391,
-        "roi": -0.19488678633353798,
-        "volume": 77154687,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Short",
-            "size": 20,
-            "positionValue": 2643513.161175979,
-            "entryPx": 3411.1410422125878,
-            "leverage": 25,
-            "unrealizedPnl": -37401
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0020aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 4014915,
-        "pnl": 1257174,
-        "roi": 0.31312593168223984,
-        "volume": 24089490,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 4,
-            "positionValue": 1664885.2040230741,
-            "entryPx": 94778.88444768364,
-            "leverage": 20,
-            "unrealizedPnl": 5846
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0027aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3975563,
-        "pnl": -981046,
-        "roi": -0.2467690739651214,
-        "volume": 47706756,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 56,
-            "positionValue": 2061902.8185253937,
-            "entryPx": 3411.141004589997,
-            "leverage": 25,
-            "unrealizedPnl": 29682
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0014aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3891837,
-        "pnl": 50288,
-        "roi": 0.012921404467864404,
-        "volume": 27242859,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 39,
-            "positionValue": 2321431.167110769,
-            "entryPx": 93776.52290255074,
-            "leverage": 25,
-            "unrealizedPnl": 34471
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0011aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3579225,
-        "pnl": 1490294,
-        "roi": 0.4163733769181876,
-        "volume": 32213025,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Long",
-            "size": 83,
-            "positionValue": 2199332.403114942,
-            "entryPx": 3367.0937855600882,
-            "leverage": 10,
-            "unrealizedPnl": 54969
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0035aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3563122,
-        "pnl": -812708,
-        "roi": -0.22808873791018103,
-        "volume": 24941854,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 32,
-            "positionValue": 1270827.4675610422,
-            "entryPx": 97257.67204321016,
-            "leverage": 10,
-            "unrealizedPnl": 8299
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0005aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #6",
-        "accountValue": 3532393,
-        "pnl": -537777,
-        "roi": -0.15224155409661383,
-        "volume": 70647860,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 91,
-            "positionValue": 2668673.7267591124,
-            "entryPx": 93556.70078222446,
-            "leverage": 10,
-            "unrealizedPnl": 35311
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0046aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3410241,
-        "pnl": 1481788,
-        "roi": 0.4345112266259188,
-        "volume": 20461446,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 1852,
-            "positionValue": 1989244.147492109,
-            "entryPx": 93122.45308982907,
-            "leverage": 20,
-            "unrealizedPnl": -24839
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0038aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3111261,
-        "pnl": 843731,
-        "roi": 0.27118618463703303,
-        "volume": 56002698,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 79,
-            "positionValue": 1007935.9078475159,
-            "entryPx": 94120.03927526512,
-            "leverage": 10,
-            "unrealizedPnl": 3439
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0036aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 3030901,
-        "pnl": -118566,
-        "roi": -0.039119060635764744,
-        "volume": 27278109,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 40,
-            "positionValue": 1640670.8742674142,
-            "entryPx": 3546.0105398582755,
-            "leverage": 10,
-            "unrealizedPnl": 79541
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0039aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 2973238,
-        "pnl": 17774,
-        "roi": 0.005977994361702628,
-        "volume": 47571808,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 68,
-            "positionValue": 1768151.4832240639,
-            "entryPx": 97145.31838745243,
-            "leverage": 25,
-            "unrealizedPnl": 67542
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #3",
-        "accountValue": 2660101,
-        "pnl": 664077,
-        "roi": 0.24964352857278727,
-        "volume": 26601010,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 964,
-            "positionValue": 1986623.269199584,
-            "entryPx": 3568.85640272755,
-            "leverage": 25,
-            "unrealizedPnl": 29300
-          }
-        ]
-      },
-      {
         "address": "0xGMX0041aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "displayName": null,
-        "accountValue": 2559187,
-        "pnl": 1117997,
-        "roi": 0.4368563141341371,
-        "volume": 33269431,
+        "accountValue": 4525882,
+        "pnl": -658124,
+        "roi": -0.14541342438888155,
+        "volume": 49784702,
         "positions": [
           {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 745,
-            "positionValue": 1498266.086825761,
-            "entryPx": 3406.7772076950355,
-            "leverage": 20,
-            "unrealizedPnl": -21976
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 51,
+            "positionValue": 2865955.879767866,
+            "entryPx": 2305.252390257534,
+            "leverage": 5,
+            "unrealizedPnl": -28873
           }
         ]
       },
       {
         "address": "0xGMX0015aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "displayName": null,
-        "accountValue": 2482730,
-        "pnl": 283284,
-        "roi": 0.11410181534037128,
-        "volume": 37240950,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Long",
-            "size": 62,
-            "positionValue": 1224807.757403687,
-            "entryPx": 3373.0989821142557,
-            "leverage": 20,
-            "unrealizedPnl": 54094
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0019aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 2259034,
-        "pnl": 436555,
-        "roi": 0.19324853012393792,
-        "volume": 27108408,
+        "accountValue": 4395971,
+        "pnl": -932036,
+        "roi": -0.2120205069596683,
+        "volume": 35167768,
         "positions": [
           {
             "coin": "ETH",
             "direction": "Long",
-            "size": 2244,
-            "positionValue": 893051.0609104681,
-            "entryPx": 96654.25951434764,
-            "leverage": 25,
-            "unrealizedPnl": -3536
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0017aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 2140836,
-        "pnl": 550849,
-        "roi": 0.25730555726828214,
-        "volume": 40675884,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 28,
-            "positionValue": 833899.8323770325,
-            "entryPx": 3398.0211208544406,
-            "leverage": 5,
-            "unrealizedPnl": -7666
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0009aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #10",
-        "accountValue": 2036999,
-        "pnl": -138103,
-        "roi": -0.0677972841420148,
-        "volume": 40739980,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 256,
-            "positionValue": 941162.394849955,
-            "entryPx": 3239.6855767893644,
-            "leverage": 20,
-            "unrealizedPnl": 90366
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0008aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #9",
-        "accountValue": 2002411,
-        "pnl": 992408,
-        "roi": 0.4956065463084252,
-        "volume": 12014466,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 964,
-            "positionValue": 1064768.8290406738,
-            "entryPx": 3390.4346661786785,
+            "size": 75,
+            "positionValue": 2799557.311552535,
+            "entryPx": 78520.1125540292,
             "leverage": 10,
-            "unrealizedPnl": 34170
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0025aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1904897,
-        "pnl": 837952,
-        "roi": 0.43989360054638127,
-        "volume": 30478352,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 2391,
-            "positionValue": 1232306.2671131205,
-            "entryPx": 3361.2771818245815,
-            "leverage": 5,
-            "unrealizedPnl": -38803
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0001aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #2",
-        "accountValue": 1889567,
-        "pnl": 815172,
-        "roi": 0.4314067720276656,
-        "volume": 17006103,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 10,
-            "positionValue": 945588.3397202247,
-            "entryPx": 95660.91253053503,
-            "leverage": 20,
-            "unrealizedPnl": -46790
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0049aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1824551,
-        "pnl": -367430,
-        "roi": -0.2013810521054221,
-        "volume": 21894612,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Long",
-            "size": 84,
-            "positionValue": 1420058.4211357892,
-            "entryPx": 93913.91078632216,
-            "leverage": 5,
-            "unrealizedPnl": -35973
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0040aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1758141,
-        "pnl": -400890,
-        "roi": -0.2280192544283991,
-        "volume": 17581410,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 1769,
-            "positionValue": 543059.6725722103,
-            "entryPx": 3274.876490743333,
-            "leverage": 5,
-            "unrealizedPnl": -16559
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0042aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1750328,
-        "pnl": 764054,
-        "roi": 0.4365204693063243,
-        "volume": 24504592,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 4129,
-            "positionValue": 607927.7955731488,
-            "entryPx": 3364.4012825384093,
-            "leverage": 20,
-            "unrealizedPnl": 46844
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0030aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1723816,
-        "pnl": 108963,
-        "roi": 0.06321034263517684,
-        "volume": 20685792,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 2035,
-            "positionValue": 775354.9423022877,
-            "entryPx": 93070.98051971594,
-            "leverage": 10,
-            "unrealizedPnl": -9601
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0028aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1626054,
-        "pnl": -394984,
-        "roi": -0.24290952206999275,
-        "volume": 17886594,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 2001,
-            "positionValue": 522213.91732978256,
-            "entryPx": 3476.168792093727,
-            "leverage": 25,
-            "unrealizedPnl": 86063
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0047aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1625499,
-        "pnl": 794246,
-        "roi": 0.48861672630989006,
-        "volume": 14629491,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 2,
-            "positionValue": 1010319.9751558651,
-            "entryPx": 97889.19260325105,
-            "leverage": 5,
-            "unrealizedPnl": 23382
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0016aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1610606,
-        "pnl": 170629,
-        "roi": 0.1059408694615567,
-        "volume": 20937878,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Long",
-            "size": 3212,
-            "positionValue": 976881.7707056422,
-            "entryPx": 3338.3715959849687,
-            "leverage": 20,
-            "unrealizedPnl": -40334
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0043aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1302907,
-        "pnl": 475689,
-        "roi": 0.3650981996412637,
-        "volume": 24755233,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 58,
-            "positionValue": 757368.4379185876,
-            "entryPx": 99886.12185729791,
-            "leverage": 20,
-            "unrealizedPnl": -30194
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0018aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1217235,
-        "pnl": 210183,
-        "roi": 0.17267249134308493,
-        "volume": 18258525,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Short",
-            "size": 51,
-            "positionValue": 748407.4535729703,
-            "entryPx": 95260.71577989202,
-            "leverage": 5,
-            "unrealizedPnl": 92050
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0012aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 1119300,
-        "pnl": 454517,
-        "roi": 0.40607254534083803,
-        "volume": 22386000,
-        "positions": [
-          {
-            "coin": "BTC",
-            "direction": "Short",
-            "size": 2481,
-            "positionValue": 632143.6859935495,
-            "entryPx": 95505.50009299272,
-            "leverage": 5,
-            "unrealizedPnl": 6091
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0023aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 750253,
-        "pnl": 59606,
-        "roi": 0.07944786625311728,
-        "volume": 13504554,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 4677,
-            "positionValue": 380434.0082329596,
-            "entryPx": 96239.08729359992,
-            "leverage": 5,
-            "unrealizedPnl": -10107
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #1",
-        "accountValue": 617104,
-        "pnl": 118082,
-        "roi": 0.19134862195027094,
-        "volume": 6171040,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Short",
-            "size": 85,
-            "positionValue": 266880.2759942929,
-            "entryPx": 94252.26119476419,
-            "leverage": 25,
-            "unrealizedPnl": 67974
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0045aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": null,
-        "accountValue": 616977,
-        "pnl": 148487,
-        "roi": 0.24066861487543295,
-        "volume": 9254655,
-        "positions": [
-          {
-            "coin": "ETH",
-            "direction": "Short",
-            "size": 2833,
-            "positionValue": 493345.87439175945,
-            "entryPx": 3500.3130930946973,
-            "leverage": 20,
-            "unrealizedPnl": 65418
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0003aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #4",
-        "accountValue": 445774,
-        "pnl": 157843,
-        "roi": 0.35408749725197075,
-        "volume": 6686610,
-        "positions": [
-          {
-            "coin": "LINK",
-            "direction": "Long",
-            "size": 2296,
-            "positionValue": 143349.91085867444,
-            "entryPx": 100796.14472126236,
-            "leverage": 10,
-            "unrealizedPnl": 89242
-          }
-        ]
-      },
-      {
-        "address": "0xGMX0007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "displayName": "GMX Trader #8",
-        "accountValue": 143878,
-        "pnl": 378,
-        "roi": 0.002627225844117933,
-        "volume": 1007146,
-        "positions": [
-          {
-            "coin": "ARB",
-            "direction": "Long",
-            "size": 39,
-            "positionValue": 96998.62753692799,
-            "entryPx": 101674.1370153949,
-            "leverage": 20,
-            "unrealizedPnl": 97989
+            "unrealizedPnl": 35647
           }
         ]
       },
       {
         "address": "0xGMX0029aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "displayName": null,
-        "accountValue": 73277,
-        "pnl": -2136,
-        "roi": -0.029149664969908704,
-        "volume": 1318986,
+        "accountValue": 4378234,
+        "pnl": -893487,
+        "roi": -0.20407474794631808,
+        "volume": 78808212,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 1881,
+            "positionValue": 1662540.3499378143,
+            "entryPx": 2363.823743458949,
+            "leverage": 20,
+            "unrealizedPnl": 84732
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0028aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 4186481,
+        "pnl": -393359,
+        "roi": -0.09395934198674256,
+        "volume": 29305367,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 4302,
+            "positionValue": 3191664.8792109187,
+            "entryPx": 2266.5324387660535,
+            "leverage": 5,
+            "unrealizedPnl": 35948
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0006aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #7",
+        "accountValue": 4147874,
+        "pnl": 798802,
+        "roi": 0.19258106683086323,
+        "volume": 78809606,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 42,
+            "positionValue": 1774353.4511752212,
+            "entryPx": 2248.349007409427,
+            "leverage": 25,
+            "unrealizedPnl": 37704
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #8",
+        "accountValue": 4036439,
+        "pnl": 205338,
+        "roi": 0.05087107720443688,
+        "volume": 52473707,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 50,
+            "positionValue": 1628085.780739847,
+            "entryPx": 75514.18307568731,
+            "leverage": 5,
+            "unrealizedPnl": -40545
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #3",
+        "accountValue": 4025046,
+        "pnl": -50079,
+        "roi": -0.012441845385121065,
+        "volume": 80500920,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 4968,
+            "positionValue": 2014009.3876791266,
+            "entryPx": 73467.81070743239,
+            "leverage": 10,
+            "unrealizedPnl": -38346
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0020aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3976909,
+        "pnl": 1723349,
+        "roi": 0.4333388065957758,
+        "volume": 51699817,
         "positions": [
           {
             "coin": "ARB",
             "direction": "Long",
-            "size": 5000,
-            "positionValue": 44054.9406918843,
-            "entryPx": 3437.334530686673,
+            "size": 4377,
+            "positionValue": 2038890.1019270238,
+            "entryPx": 2323.547937332632,
+            "leverage": 25,
+            "unrealizedPnl": 79136
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #1",
+        "accountValue": 3916329,
+        "pnl": 1614616,
+        "roi": 0.4122779265991187,
+        "volume": 27414303,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 4698,
+            "positionValue": 3047782.6570843887,
+            "entryPx": 2307.006756145872,
+            "leverage": 5,
+            "unrealizedPnl": 8274
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0030aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3697410,
+        "pnl": -458433,
+        "roi": -0.12398760213230342,
+        "volume": 40671510,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 2322,
+            "positionValue": 1387935.07662989,
+            "entryPx": 2258.57708788399,
             "leverage": 10,
-            "unrealizedPnl": 93046
+            "unrealizedPnl": 21896
           }
         ]
       },
       {
         "address": "0xGMX0026aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "displayName": null,
-        "accountValue": 63581,
-        "pnl": 28472,
-        "roi": 0.4478067347163461,
-        "volume": 445067,
+        "accountValue": 3559240,
+        "pnl": -215844,
+        "roi": -0.06064328339757926,
+        "volume": 28473920,
         "positions": [
           {
             "coin": "ARB",
             "direction": "Short",
-            "size": 8,
-            "positionValue": 19315.62567393725,
-            "entryPx": 94170.61237323996,
+            "size": 90,
+            "positionValue": 2783192.8441035827,
+            "entryPx": 73549.00682035464,
+            "leverage": 25,
+            "unrealizedPnl": 93409
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0040aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3513334,
+        "pnl": 376955,
+        "roi": 0.1072926741380125,
+        "volume": 28106672,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 4133,
+            "positionValue": 2380664.7981830207,
+            "entryPx": 2229.468816568736,
             "leverage": 5,
-            "unrealizedPnl": 34943
+            "unrealizedPnl": 41062
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0036aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3466978,
+        "pnl": 1393819,
+        "roi": 0.4020270679537049,
+        "volume": 65872582,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 4,
+            "positionValue": 1843178.702042016,
+            "entryPx": 2321.132517948194,
+            "leverage": 25,
+            "unrealizedPnl": 39022
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0027aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3357425,
+        "pnl": -128468,
+        "roi": -0.03826384803830316,
+        "volume": 67148500,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 38,
+            "positionValue": 1174317.8623165824,
+            "entryPx": 72635.557260363,
+            "leverage": 25,
+            "unrealizedPnl": 9174
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0017aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3357051,
+        "pnl": 391122,
+        "roi": 0.11650761337852776,
+        "volume": 20142306,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 38,
+            "positionValue": 1235081.4830268344,
+            "entryPx": 2200.2019109501825,
+            "leverage": 25,
+            "unrealizedPnl": -191
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0048aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3253724,
+        "pnl": 1482702,
+        "roi": 0.45569384496042076,
+        "volume": 42298412,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Long",
+            "size": 2053,
+            "positionValue": 1345005.3780081922,
+            "entryPx": 2262.5204658556586,
+            "leverage": 10,
+            "unrealizedPnl": 61645
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0039aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3194176,
+        "pnl": 723996,
+        "roi": 0.2266612735178024,
+        "volume": 47912640,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 4024,
+            "positionValue": 1946813.3377336606,
+            "entryPx": 2327.8233481794987,
+            "leverage": 5,
+            "unrealizedPnl": 45808
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0025aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3187673,
+        "pnl": 1360128,
+        "roi": 0.4266836654826264,
+        "volume": 35064403,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 97,
+            "positionValue": 1639652.0790584614,
+            "entryPx": 2175.0325257561253,
+            "leverage": 20,
+            "unrealizedPnl": 94992
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0043aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3137752,
+        "pnl": 3231,
+        "roi": 0.0010297180911684543,
+        "volume": 62755040,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Long",
+            "size": 4141,
+            "positionValue": 2247812.7703192206,
+            "entryPx": 2195.9316590975773,
+            "leverage": 20,
+            "unrealizedPnl": -29415
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0042aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 3028746,
+        "pnl": 188153,
+        "roi": 0.06212240973657084,
+        "volume": 21201222,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 4641,
+            "positionValue": 2122979.391849055,
+            "entryPx": 2313.50921167128,
+            "leverage": 25,
+            "unrealizedPnl": -34091
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0046aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2953693,
+        "pnl": -726582,
+        "roi": -0.2459910356289567,
+        "volume": 47259088,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 3894,
+            "positionValue": 2088280.1888164945,
+            "entryPx": 77419.10889484361,
+            "leverage": 25,
+            "unrealizedPnl": -9098
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0018aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2919242,
+        "pnl": 1088191,
+        "roi": 0.3727649163721267,
+        "volume": 55465598,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 7,
+            "positionValue": 2318067.22879932,
+            "entryPx": 2187.0400558788624,
+            "leverage": 5,
+            "unrealizedPnl": 76241
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0037aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2811855,
+        "pnl": 200569,
+        "roi": 0.07132978051855447,
+        "volume": 28118550,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 68,
+            "positionValue": 1732826.0155318046,
+            "entryPx": 2166.8865845132736,
+            "leverage": 25,
+            "unrealizedPnl": -42827
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0022aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2766569,
+        "pnl": -82933,
+        "roi": -0.02997684135114649,
+        "volume": 41498535,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 3919,
+            "positionValue": 878372.5636176827,
+            "entryPx": 73343.52339974028,
+            "leverage": 5,
+            "unrealizedPnl": -44754
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0001aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #2",
+        "accountValue": 2279091,
+        "pnl": 639782,
+        "roi": 0.28071805820829443,
+        "volume": 38744547,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 43,
+            "positionValue": 805230.8355867723,
+            "entryPx": 2347.2542185175794,
+            "leverage": 25,
+            "unrealizedPnl": 20706
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0035aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2274254,
+        "pnl": 631211,
+        "roi": 0.27754639543340365,
+        "volume": 15919778,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 2729,
+            "positionValue": 735922.5343939067,
+            "entryPx": 2365.758245632252,
+            "leverage": 5,
+            "unrealizedPnl": 52649
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0012aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2261900,
+        "pnl": -280539,
+        "roi": -0.12402802953269375,
+        "volume": 22619000,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 593,
+            "positionValue": 1381317.4888304472,
+            "entryPx": 78017.03215160225,
+            "leverage": 25,
+            "unrealizedPnl": 70473
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0031aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 2100707,
+        "pnl": 373983,
+        "roi": 0.17802720703077582,
+        "volume": 23107777,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 2338,
+            "positionValue": 652655.5360050255,
+            "entryPx": 78762.25896145943,
+            "leverage": 25,
+            "unrealizedPnl": 91698
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0008aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #9",
+        "accountValue": 1863010,
+        "pnl": -376820,
+        "roi": -0.20226407802427254,
+        "volume": 22356120,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 73,
+            "positionValue": 1250195.2865926626,
+            "entryPx": 76179.58691831343,
+            "leverage": 5,
+            "unrealizedPnl": 37859
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0034aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1656091,
+        "pnl": 734399,
+        "roi": 0.44345328849682775,
+        "volume": 14904819,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 12,
+            "positionValue": 679953.7567281468,
+            "entryPx": 74535.33493976454,
+            "leverage": 20,
+            "unrealizedPnl": 38245
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0003aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #4",
+        "accountValue": 1629596,
+        "pnl": -133144,
+        "roi": -0.0817036860669761,
+        "volume": 9777576,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 23,
+            "positionValue": 1226055.505625009,
+            "entryPx": 2188.6504481457177,
+            "leverage": 20,
+            "unrealizedPnl": -47117
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0011aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1594685,
+        "pnl": -381184,
+        "roi": -0.23903404120562996,
+        "volume": 7973425,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 4833,
+            "positionValue": 639300.7406561612,
+            "entryPx": 2153.6673600042527,
+            "leverage": 5,
+            "unrealizedPnl": -12740
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0032aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1527780,
+        "pnl": 126349,
+        "roi": 0.08270104334393695,
+        "volume": 7638900,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 4980,
+            "positionValue": 1055007.7444251932,
+            "entryPx": 2344.5688719252767,
+            "leverage": 25,
+            "unrealizedPnl": -40951
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0033aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1419966,
+        "pnl": -69670,
+        "roi": -0.04906455506681146,
+        "volume": 18459558,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 97,
+            "positionValue": 797254.9358481509,
+            "entryPx": 77115.1422867423,
+            "leverage": 25,
+            "unrealizedPnl": -1398
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0038aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1380002,
+        "pnl": 618231,
+        "roi": 0.4479928289959,
+        "volume": 16560024,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Short",
+            "size": 9,
+            "positionValue": 552054.7429309962,
+            "entryPx": 2209.960347009941,
+            "leverage": 10,
+            "unrealizedPnl": 15400
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0010aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1285675,
+        "pnl": 416479,
+        "roi": 0.3239380092169483,
+        "volume": 14142425,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 41,
+            "positionValue": 652641.4984228899,
+            "entryPx": 74820.9474207598,
+            "leverage": 10,
+            "unrealizedPnl": 87978
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0005aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #6",
+        "accountValue": 1265157,
+        "pnl": -286509,
+        "roi": -0.2264612218088348,
+        "volume": 22772826,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Long",
+            "size": 69,
+            "positionValue": 704991.9957685018,
+            "entryPx": 78451.39915082279,
+            "leverage": 10,
+            "unrealizedPnl": 62049
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0044aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1220524,
+        "pnl": 501340,
+        "roi": 0.4107580023006512,
+        "volume": 14646288,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 68,
+            "positionValue": 496512.5952974446,
+            "entryPx": 76391.83610517552,
+            "leverage": 20,
+            "unrealizedPnl": 75413
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0023aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 1213030,
+        "pnl": 152849,
+        "roi": 0.1260059520374599,
+        "volume": 15769390,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Short",
+            "size": 61,
+            "positionValue": 675148.0143139181,
+            "entryPx": 2285.52083548209,
+            "leverage": 5,
+            "unrealizedPnl": -27646
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0009aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #10",
+        "accountValue": 1128761,
+        "pnl": 275400,
+        "roi": 0.24398433326452632,
+        "volume": 9030088,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 1111,
+            "positionValue": 678330.9090692906,
+            "entryPx": 2248.5011212476124,
+            "leverage": 10,
+            "unrealizedPnl": 82372
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0049aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 997436,
+        "pnl": 343887,
+        "roi": 0.34477099282560486,
+        "volume": 10971796,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 2550,
+            "positionValue": 543733.9114748308,
+            "entryPx": 75190.66448872075,
+            "leverage": 20,
+            "unrealizedPnl": 95375
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0045aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 954988,
+        "pnl": 111927,
+        "roi": 0.1172025198222386,
+        "volume": 19099760,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 3187,
+            "positionValue": 545268.408985853,
+            "entryPx": 73243.028558332,
+            "leverage": 10,
+            "unrealizedPnl": 85939
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0004aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": "GMX Trader #5",
+        "accountValue": 849238,
+        "pnl": -122420,
+        "roi": -0.14415275811963196,
+        "volume": 11040094,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 54,
+            "positionValue": 464386.36002176086,
+            "entryPx": 73835.24773100828,
+            "leverage": 20,
+            "unrealizedPnl": 91604
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0019aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 843201,
+        "pnl": 226058,
+        "roi": 0.26809503309412586,
+        "volume": 10961613,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 1367,
+            "positionValue": 561110.7262092893,
+            "entryPx": 78862.92592909631,
+            "leverage": 25,
+            "unrealizedPnl": 57766
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0021aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 839949,
+        "pnl": 352047,
+        "roi": 0.4191290185475547,
+        "volume": 14279133,
+        "positions": [
+          {
+            "coin": "ETH",
+            "direction": "Long",
+            "size": 2643,
+            "positionValue": 313806.4247653817,
+            "entryPx": 76219.67579845339,
+            "leverage": 10,
+            "unrealizedPnl": 94949
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0024aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 692239,
+        "pnl": 108558,
+        "roi": 0.15682156018369378,
+        "volume": 6230151,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Short",
+            "size": 379,
+            "positionValue": 306056.88009851763,
+            "entryPx": 78333.12564087923,
+            "leverage": 5,
+            "unrealizedPnl": 78
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0047aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 269753,
+        "pnl": 113103,
+        "roi": 0.419283566818534,
+        "volume": 2158024,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Long",
+            "size": 22,
+            "positionValue": 123868.2764359745,
+            "entryPx": 2333.853873833008,
+            "leverage": 10,
+            "unrealizedPnl": 7013
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0014aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 132285,
+        "pnl": 10075,
+        "roi": 0.07616131836564992,
+        "volume": 2381130,
+        "positions": [
+          {
+            "coin": "ARB",
+            "direction": "Long",
+            "size": 3272,
+            "positionValue": 54188.12280072664,
+            "entryPx": 74177.30536346021,
+            "leverage": 25,
+            "unrealizedPnl": -19290
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0016aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 104801,
+        "pnl": 19888,
+        "roi": 0.1897691815917787,
+        "volume": 1048010,
+        "positions": [
+          {
+            "coin": "BTC",
+            "direction": "Short",
+            "size": 98,
+            "positionValue": 65508.89994784589,
+            "entryPx": 77807.12870814394,
+            "leverage": 10,
+            "unrealizedPnl": 58864
+          }
+        ]
+      },
+      {
+        "address": "0xGMX0013aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "displayName": null,
+        "accountValue": 83880,
+        "pnl": -19584,
+        "roi": -0.2334763948497854,
+        "volume": 1174320,
+        "positions": [
+          {
+            "coin": "LINK",
+            "direction": "Long",
+            "size": 3948,
+            "positionValue": 58081.2744170979,
+            "entryPx": 74654.17172028896,
+            "leverage": 20,
+            "unrealizedPnl": 77081
           }
         ]
       }
     ],
     "biggestPositions": [
       {
-        "coin": "ARB",
+        "coin": "LINK",
         "direction": "Short",
-        "size": 1438,
-        "positionValue": 3636556.8367812014,
-        "entryPx": 3433.383005748853,
+        "size": 4302,
+        "positionValue": 3191664.8792109187,
+        "entryPx": 2266.5324387660535,
         "leverage": 5,
-        "unrealizedPnl": 92338,
-        "traderAddress": "0xGMX0010aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Long",
-        "size": 72,
-        "positionValue": 3607181.4422961394,
-        "entryPx": 96938.75016748437,
-        "leverage": 5,
-        "unrealizedPnl": 48231,
-        "traderAddress": "0xGMX0021aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Short",
-        "size": 90,
-        "positionValue": 3351706.906790851,
-        "entryPx": 3408.8314857494856,
-        "leverage": 20,
-        "unrealizedPnl": -49603,
-        "traderAddress": "0xGMX0024aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Long",
-        "size": 4884,
-        "positionValue": 2967568.7907867674,
-        "entryPx": 3418.994754109599,
-        "leverage": 25,
-        "unrealizedPnl": -47789,
-        "traderAddress": "0xGMX0044aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Short",
-        "size": 78,
-        "positionValue": 2770455.3615662544,
-        "entryPx": 92547.25196304798,
-        "leverage": 5,
-        "unrealizedPnl": -33788,
-        "traderAddress": "0xGMX0013aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Short",
-        "size": 91,
-        "positionValue": 2668673.7267591124,
-        "entryPx": 93556.70078222446,
-        "leverage": 10,
-        "unrealizedPnl": 35311,
-        "traderAddress": "0xGMX0005aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #6"
-      },
-      {
-        "coin": "BTC",
-        "direction": "Short",
-        "size": 20,
-        "positionValue": 2643513.161175979,
-        "entryPx": 3411.1410422125878,
-        "leverage": 25,
-        "unrealizedPnl": -37401,
-        "traderAddress": "0xGMX0033aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ARB",
-        "direction": "Short",
-        "size": 39,
-        "positionValue": 2321431.167110769,
-        "entryPx": 93776.52290255074,
-        "leverage": 25,
-        "unrealizedPnl": 34471,
-        "traderAddress": "0xGMX0014aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ARB",
-        "direction": "Long",
-        "size": 83,
-        "positionValue": 2199332.403114942,
-        "entryPx": 3367.0937855600882,
-        "leverage": 10,
-        "unrealizedPnl": 54969,
-        "traderAddress": "0xGMX0011aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Short",
-        "size": 3124,
-        "positionValue": 2140591.0820763586,
-        "entryPx": 3467.255154310295,
-        "leverage": 25,
-        "unrealizedPnl": 58211,
-        "traderAddress": "0xGMX0004aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #5"
-      },
-      {
-        "coin": "LINK",
-        "direction": "Long",
-        "size": 56,
-        "positionValue": 2061902.8185253937,
-        "entryPx": 3411.141004589997,
-        "leverage": 25,
-        "unrealizedPnl": 29682,
-        "traderAddress": "0xGMX0027aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Short",
-        "size": 1852,
-        "positionValue": 1989244.147492109,
-        "entryPx": 93122.45308982907,
-        "leverage": 20,
-        "unrealizedPnl": -24839,
-        "traderAddress": "0xGMX0046aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Short",
-        "size": 964,
-        "positionValue": 1986623.269199584,
-        "entryPx": 3568.85640272755,
-        "leverage": 25,
-        "unrealizedPnl": 29300,
-        "traderAddress": "0xGMX0002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #3"
-      },
-      {
-        "coin": "ARB",
-        "direction": "Short",
-        "size": 2634,
-        "positionValue": 1921511.251268899,
-        "entryPx": 95603.06863024773,
-        "leverage": 25,
-        "unrealizedPnl": 10755,
-        "traderAddress": "0xGMX0037aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 68,
-        "positionValue": 1768151.4832240639,
-        "entryPx": 97145.31838745243,
-        "leverage": 25,
-        "unrealizedPnl": 67542,
-        "traderAddress": "0xGMX0039aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Long",
-        "size": 4,
-        "positionValue": 1664885.2040230741,
-        "entryPx": 94778.88444768364,
-        "leverage": 20,
-        "unrealizedPnl": 5846,
-        "traderAddress": "0xGMX0020aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Short",
-        "size": 40,
-        "positionValue": 1640670.8742674142,
-        "entryPx": 3546.0105398582755,
-        "leverage": 10,
-        "unrealizedPnl": 79541,
-        "traderAddress": "0xGMX0036aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Long",
-        "size": 3216,
-        "positionValue": 1573046.1849720876,
-        "entryPx": 97419.57162615427,
-        "leverage": 10,
-        "unrealizedPnl": 29552,
-        "traderAddress": "0xGMX0006aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #7"
-      },
-      {
-        "coin": "ARB",
-        "direction": "Long",
-        "size": 86,
-        "positionValue": 1546628.823880112,
-        "entryPx": 96971.77340456798,
-        "leverage": 5,
-        "unrealizedPnl": 66000,
-        "traderAddress": "0xGMX0048aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "unrealizedPnl": 35948,
+        "traderAddress": "0xGMX0028aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "BTC",
-        "direction": "Short",
-        "size": 5,
-        "positionValue": 1522250.5542928767,
-        "entryPx": 3289.5633629303975,
-        "leverage": 20,
-        "unrealizedPnl": 26644,
-        "traderAddress": "0xGMX0022aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
+        "direction": "Long",
+        "size": 4698,
+        "positionValue": 3047782.6570843887,
+        "entryPx": 2307.006756145872,
+        "leverage": 5,
+        "unrealizedPnl": 8274,
+        "traderAddress": "0xGMX0000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #1"
       },
       {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 745,
-        "positionValue": 1498266.086825761,
-        "entryPx": 3406.7772076950355,
-        "leverage": 20,
-        "unrealizedPnl": -21976,
+        "coin": "BTC",
+        "direction": "Short",
+        "size": 51,
+        "positionValue": 2865955.879767866,
+        "entryPx": 2305.252390257534,
+        "leverage": 5,
+        "unrealizedPnl": -28873,
         "traderAddress": "0xGMX0041aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
-        "coin": "BTC",
-        "direction": "Short",
-        "size": 1421,
-        "positionValue": 1427965.0334335195,
-        "entryPx": 97589.06098424863,
-        "leverage": 20,
-        "unrealizedPnl": 28767,
-        "traderAddress": "0xGMX0032aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
         "coin": "ETH",
         "direction": "Long",
-        "size": 84,
-        "positionValue": 1420058.4211357892,
-        "entryPx": 93913.91078632216,
-        "leverage": 5,
-        "unrealizedPnl": -35973,
-        "traderAddress": "0xGMX0049aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 46,
-        "positionValue": 1373966.2647291995,
-        "entryPx": 99785.92901681122,
-        "leverage": 20,
-        "unrealizedPnl": 39264,
-        "traderAddress": "0xGMX0031aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "BTC",
-        "direction": "Long",
-        "size": 4494,
-        "positionValue": 1335665.199070465,
-        "entryPx": 3415.7856061749553,
+        "size": 75,
+        "positionValue": 2799557.311552535,
+        "entryPx": 78520.1125540292,
         "leverage": 10,
-        "unrealizedPnl": -36755,
-        "traderAddress": "0xGMX0034aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ARB",
-        "direction": "Short",
-        "size": 32,
-        "positionValue": 1270827.4675610422,
-        "entryPx": 97257.67204321016,
-        "leverage": 10,
-        "unrealizedPnl": 8299,
-        "traderAddress": "0xGMX0035aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 2391,
-        "positionValue": 1232306.2671131205,
-        "entryPx": 3361.2771818245815,
-        "leverage": 5,
-        "unrealizedPnl": -38803,
-        "traderAddress": "0xGMX0025aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ARB",
-        "direction": "Long",
-        "size": 62,
-        "positionValue": 1224807.757403687,
-        "entryPx": 3373.0989821142557,
-        "leverage": 20,
-        "unrealizedPnl": 54094,
+        "unrealizedPnl": 35647,
         "traderAddress": "0xGMX0015aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "ARB",
         "direction": "Short",
-        "size": 964,
-        "positionValue": 1064768.8290406738,
-        "entryPx": 3390.4346661786785,
-        "leverage": 10,
-        "unrealizedPnl": 34170,
-        "traderAddress": "0xGMX0008aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #9"
-      },
-      {
-        "coin": "LINK",
-        "direction": "Short",
-        "size": 2,
-        "positionValue": 1010319.9751558651,
-        "entryPx": 97889.19260325105,
-        "leverage": 5,
-        "unrealizedPnl": 23382,
-        "traderAddress": "0xGMX0047aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "LINK",
-        "direction": "Short",
-        "size": 79,
-        "positionValue": 1007935.9078475159,
-        "entryPx": 94120.03927526512,
-        "leverage": 10,
-        "unrealizedPnl": 3439,
-        "traderAddress": "0xGMX0038aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "BTC",
-        "direction": "Long",
-        "size": 3212,
-        "positionValue": 976881.7707056422,
-        "entryPx": 3338.3715959849687,
-        "leverage": 20,
-        "unrealizedPnl": -40334,
-        "traderAddress": "0xGMX0016aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "BTC",
-        "direction": "Long",
-        "size": 10,
-        "positionValue": 945588.3397202247,
-        "entryPx": 95660.91253053503,
-        "leverage": 20,
-        "unrealizedPnl": -46790,
-        "traderAddress": "0xGMX0001aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #2"
-      },
-      {
-        "coin": "LINK",
-        "direction": "Long",
-        "size": 256,
-        "positionValue": 941162.394849955,
-        "entryPx": 3239.6855767893644,
-        "leverage": 20,
-        "unrealizedPnl": 90366,
-        "traderAddress": "0xGMX0009aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #10"
-      },
-      {
-        "coin": "ETH",
-        "direction": "Long",
-        "size": 2244,
-        "positionValue": 893051.0609104681,
-        "entryPx": 96654.25951434764,
+        "size": 90,
+        "positionValue": 2783192.8441035827,
+        "entryPx": 73549.00682035464,
         "leverage": 25,
-        "unrealizedPnl": -3536,
-        "traderAddress": "0xGMX0019aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "unrealizedPnl": 93409,
+        "traderAddress": "0xGMX0026aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
-        "coin": "LINK",
-        "direction": "Short",
-        "size": 28,
-        "positionValue": 833899.8323770325,
-        "entryPx": 3398.0211208544406,
+        "coin": "ARB",
+        "direction": "Long",
+        "size": 4133,
+        "positionValue": 2380664.7981830207,
+        "entryPx": 2229.468816568736,
         "leverage": 5,
-        "unrealizedPnl": -7666,
-        "traderAddress": "0xGMX0017aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Short",
-        "size": 2035,
-        "positionValue": 775354.9423022877,
-        "entryPx": 93070.98051971594,
-        "leverage": 10,
-        "unrealizedPnl": -9601,
-        "traderAddress": "0xGMX0030aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "unrealizedPnl": 41062,
+        "traderAddress": "0xGMX0040aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "ARB",
         "direction": "Short",
-        "size": 58,
-        "positionValue": 757368.4379185876,
-        "entryPx": 99886.12185729791,
+        "size": 7,
+        "positionValue": 2318067.22879932,
+        "entryPx": 2187.0400558788624,
+        "leverage": 5,
+        "unrealizedPnl": 76241,
+        "traderAddress": "0xGMX0018aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "LINK",
+        "direction": "Long",
+        "size": 4141,
+        "positionValue": 2247812.7703192206,
+        "entryPx": 2195.9316590975773,
         "leverage": 20,
-        "unrealizedPnl": -30194,
+        "unrealizedPnl": -29415,
         "traderAddress": "0xGMX0043aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "ARB",
         "direction": "Short",
-        "size": 51,
-        "positionValue": 748407.4535729703,
-        "entryPx": 95260.71577989202,
-        "leverage": 5,
-        "unrealizedPnl": 92050,
-        "traderAddress": "0xGMX0018aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "BTC",
-        "direction": "Short",
-        "size": 2481,
-        "positionValue": 632143.6859935495,
-        "entryPx": 95505.50009299272,
-        "leverage": 5,
-        "unrealizedPnl": 6091,
-        "traderAddress": "0xGMX0012aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": null
-      },
-      {
-        "coin": "ETH",
-        "direction": "Short",
-        "size": 4129,
-        "positionValue": 607927.7955731488,
-        "entryPx": 3364.4012825384093,
-        "leverage": 20,
-        "unrealizedPnl": 46844,
+        "size": 4641,
+        "positionValue": 2122979.391849055,
+        "entryPx": 2313.50921167128,
+        "leverage": 25,
+        "unrealizedPnl": -34091,
         "traderAddress": "0xGMX0042aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
-        "coin": "LINK",
+        "coin": "ETH",
         "direction": "Short",
-        "size": 1769,
-        "positionValue": 543059.6725722103,
-        "entryPx": 3274.876490743333,
-        "leverage": 5,
-        "unrealizedPnl": -16559,
-        "traderAddress": "0xGMX0040aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "size": 3894,
+        "positionValue": 2088280.1888164945,
+        "entryPx": 77419.10889484361,
+        "leverage": 25,
+        "unrealizedPnl": -9098,
+        "traderAddress": "0xGMX0046aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Long",
+        "size": 4377,
+        "positionValue": 2038890.1019270238,
+        "entryPx": 2323.547937332632,
+        "leverage": 25,
+        "unrealizedPnl": 79136,
+        "traderAddress": "0xGMX0020aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "BTC",
         "direction": "Long",
-        "size": 2001,
-        "positionValue": 522213.91732978256,
-        "entryPx": 3476.168792093727,
+        "size": 4968,
+        "positionValue": 2014009.3876791266,
+        "entryPx": 73467.81070743239,
+        "leverage": 10,
+        "unrealizedPnl": -38346,
+        "traderAddress": "0xGMX0002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #3"
+      },
+      {
+        "coin": "LINK",
+        "direction": "Short",
+        "size": 4024,
+        "positionValue": 1946813.3377336606,
+        "entryPx": 2327.8233481794987,
+        "leverage": 5,
+        "unrealizedPnl": 45808,
+        "traderAddress": "0xGMX0039aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Long",
+        "size": 4,
+        "positionValue": 1843178.702042016,
+        "entryPx": 2321.132517948194,
         "leverage": 25,
-        "unrealizedPnl": 86063,
-        "traderAddress": "0xGMX0028aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "unrealizedPnl": 39022,
+        "traderAddress": "0xGMX0036aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Short",
+        "size": 42,
+        "positionValue": 1774353.4511752212,
+        "entryPx": 2248.349007409427,
+        "leverage": 25,
+        "unrealizedPnl": 37704,
+        "traderAddress": "0xGMX0006aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #7"
+      },
+      {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 68,
+        "positionValue": 1732826.0155318046,
+        "entryPx": 2166.8865845132736,
+        "leverage": 25,
+        "unrealizedPnl": -42827,
+        "traderAddress": "0xGMX0037aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Short",
+        "size": 1881,
+        "positionValue": 1662540.3499378143,
+        "entryPx": 2363.823743458949,
+        "leverage": 20,
+        "unrealizedPnl": 84732,
+        "traderAddress": "0xGMX0029aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Long",
+        "size": 97,
+        "positionValue": 1639652.0790584614,
+        "entryPx": 2175.0325257561253,
+        "leverage": 20,
+        "unrealizedPnl": 94992,
+        "traderAddress": "0xGMX0025aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Short",
+        "size": 50,
+        "positionValue": 1628085.780739847,
+        "entryPx": 75514.18307568731,
+        "leverage": 5,
+        "unrealizedPnl": -40545,
+        "traderAddress": "0xGMX0007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #8"
+      },
+      {
+        "coin": "LINK",
+        "direction": "Short",
+        "size": 2322,
+        "positionValue": 1387935.07662989,
+        "entryPx": 2258.57708788399,
+        "leverage": 10,
+        "unrealizedPnl": 21896,
+        "traderAddress": "0xGMX0030aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "ETH",
         "direction": "Short",
-        "size": 2833,
-        "positionValue": 493345.87439175945,
-        "entryPx": 3500.3130930946973,
-        "leverage": 20,
-        "unrealizedPnl": 65418,
-        "traderAddress": "0xGMX0045aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "size": 593,
+        "positionValue": 1381317.4888304472,
+        "entryPx": 78017.03215160225,
+        "leverage": 25,
+        "unrealizedPnl": 70473,
+        "traderAddress": "0xGMX0012aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "LINK",
         "direction": "Long",
-        "size": 4677,
-        "positionValue": 380434.0082329596,
-        "entryPx": 96239.08729359992,
+        "size": 2053,
+        "positionValue": 1345005.3780081922,
+        "entryPx": 2262.5204658556586,
+        "leverage": 10,
+        "unrealizedPnl": 61645,
+        "traderAddress": "0xGMX0048aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Long",
+        "size": 73,
+        "positionValue": 1250195.2865926626,
+        "entryPx": 76179.58691831343,
         "leverage": 5,
-        "unrealizedPnl": -10107,
-        "traderAddress": "0xGMX0023aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "unrealizedPnl": 37859,
+        "traderAddress": "0xGMX0008aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #9"
+      },
+      {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 38,
+        "positionValue": 1235081.4830268344,
+        "entryPx": 2200.2019109501825,
+        "leverage": 25,
+        "unrealizedPnl": -191,
+        "traderAddress": "0xGMX0017aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "LINK",
         "direction": "Short",
-        "size": 85,
-        "positionValue": 266880.2759942929,
-        "entryPx": 94252.26119476419,
-        "leverage": 25,
-        "unrealizedPnl": 67974,
-        "traderAddress": "0xGMX0000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #1"
-      },
-      {
-        "coin": "LINK",
-        "direction": "Long",
-        "size": 2296,
-        "positionValue": 143349.91085867444,
-        "entryPx": 100796.14472126236,
-        "leverage": 10,
-        "unrealizedPnl": 89242,
+        "size": 23,
+        "positionValue": 1226055.505625009,
+        "entryPx": 2188.6504481457177,
+        "leverage": 20,
+        "unrealizedPnl": -47117,
         "traderAddress": "0xGMX0003aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": "GMX Trader #4"
       },
       {
-        "coin": "ARB",
+        "coin": "ETH",
+        "direction": "Short",
+        "size": 38,
+        "positionValue": 1174317.8623165824,
+        "entryPx": 72635.557260363,
+        "leverage": 25,
+        "unrealizedPnl": 9174,
+        "traderAddress": "0xGMX0027aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
         "direction": "Long",
-        "size": 39,
-        "positionValue": 96998.62753692799,
-        "entryPx": 101674.1370153949,
-        "leverage": 20,
-        "unrealizedPnl": 97989,
-        "traderAddress": "0xGMX0007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "traderName": "GMX Trader #8"
+        "size": 4980,
+        "positionValue": 1055007.7444251932,
+        "entryPx": 2344.5688719252767,
+        "leverage": 25,
+        "unrealizedPnl": -40951,
+        "traderAddress": "0xGMX0032aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 3919,
+        "positionValue": 878372.5636176827,
+        "entryPx": 73343.52339974028,
+        "leverage": 5,
+        "unrealizedPnl": -44754,
+        "traderAddress": "0xGMX0022aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Short",
+        "size": 43,
+        "positionValue": 805230.8355867723,
+        "entryPx": 2347.2542185175794,
+        "leverage": 25,
+        "unrealizedPnl": 20706,
+        "traderAddress": "0xGMX0001aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #2"
+      },
+      {
+        "coin": "BTC",
+        "direction": "Short",
+        "size": 97,
+        "positionValue": 797254.9358481509,
+        "entryPx": 77115.1422867423,
+        "leverage": 25,
+        "unrealizedPnl": -1398,
+        "traderAddress": "0xGMX0033aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "LINK",
+        "direction": "Short",
+        "size": 2729,
+        "positionValue": 735922.5343939067,
+        "entryPx": 2365.758245632252,
+        "leverage": 5,
+        "unrealizedPnl": 52649,
+        "traderAddress": "0xGMX0035aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "LINK",
+        "direction": "Long",
+        "size": 69,
+        "positionValue": 704991.9957685018,
+        "entryPx": 78451.39915082279,
+        "leverage": 10,
+        "unrealizedPnl": 62049,
+        "traderAddress": "0xGMX0005aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #6"
       },
       {
         "coin": "ARB",
         "direction": "Long",
-        "size": 5000,
-        "positionValue": 44054.9406918843,
-        "entryPx": 3437.334530686673,
+        "size": 12,
+        "positionValue": 679953.7567281468,
+        "entryPx": 74535.33493976454,
+        "leverage": 20,
+        "unrealizedPnl": 38245,
+        "traderAddress": "0xGMX0034aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Long",
+        "size": 1111,
+        "positionValue": 678330.9090692906,
+        "entryPx": 2248.5011212476124,
         "leverage": 10,
-        "unrealizedPnl": 93046,
-        "traderAddress": "0xGMX0029aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "unrealizedPnl": 82372,
+        "traderAddress": "0xGMX0009aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #10"
+      },
+      {
+        "coin": "ETH",
+        "direction": "Short",
+        "size": 61,
+        "positionValue": 675148.0143139181,
+        "entryPx": 2285.52083548209,
+        "leverage": 5,
+        "unrealizedPnl": -27646,
+        "traderAddress": "0xGMX0023aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Long",
+        "size": 2338,
+        "positionValue": 652655.5360050255,
+        "entryPx": 78762.25896145943,
+        "leverage": 25,
+        "unrealizedPnl": 91698,
+        "traderAddress": "0xGMX0031aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Long",
+        "size": 41,
+        "positionValue": 652641.4984228899,
+        "entryPx": 74820.9474207598,
+        "leverage": 10,
+        "unrealizedPnl": 87978,
+        "traderAddress": "0xGMX0010aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ETH",
+        "direction": "Short",
+        "size": 4833,
+        "positionValue": 639300.7406561612,
+        "entryPx": 2153.6673600042527,
+        "leverage": 5,
+        "unrealizedPnl": -12740,
+        "traderAddress": "0xGMX0011aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       },
       {
         "coin": "ARB",
         "direction": "Short",
-        "size": 8,
-        "positionValue": 19315.62567393725,
-        "entryPx": 94170.61237323996,
+        "size": 1367,
+        "positionValue": 561110.7262092893,
+        "entryPx": 78862.92592909631,
+        "leverage": 25,
+        "unrealizedPnl": 57766,
+        "traderAddress": "0xGMX0019aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "LINK",
+        "direction": "Short",
+        "size": 9,
+        "positionValue": 552054.7429309962,
+        "entryPx": 2209.960347009941,
+        "leverage": 10,
+        "unrealizedPnl": 15400,
+        "traderAddress": "0xGMX0038aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 3187,
+        "positionValue": 545268.408985853,
+        "entryPx": 73243.028558332,
+        "leverage": 10,
+        "unrealizedPnl": 85939,
+        "traderAddress": "0xGMX0045aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Long",
+        "size": 2550,
+        "positionValue": 543733.9114748308,
+        "entryPx": 75190.66448872075,
+        "leverage": 20,
+        "unrealizedPnl": 95375,
+        "traderAddress": "0xGMX0049aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Short",
+        "size": 68,
+        "positionValue": 496512.5952974446,
+        "entryPx": 76391.83610517552,
+        "leverage": 20,
+        "unrealizedPnl": 75413,
+        "traderAddress": "0xGMX0044aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 54,
+        "positionValue": 464386.36002176086,
+        "entryPx": 73835.24773100828,
+        "leverage": 20,
+        "unrealizedPnl": 91604,
+        "traderAddress": "0xGMX0004aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": "GMX Trader #5"
+      },
+      {
+        "coin": "ETH",
+        "direction": "Long",
+        "size": 2643,
+        "positionValue": 313806.4247653817,
+        "entryPx": 76219.67579845339,
+        "leverage": 10,
+        "unrealizedPnl": 94949,
+        "traderAddress": "0xGMX0021aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Short",
+        "size": 379,
+        "positionValue": 306056.88009851763,
+        "entryPx": 78333.12564087923,
         "leverage": 5,
-        "unrealizedPnl": 34943,
-        "traderAddress": "0xGMX0026aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "unrealizedPnl": 78,
+        "traderAddress": "0xGMX0024aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Long",
+        "size": 22,
+        "positionValue": 123868.2764359745,
+        "entryPx": 2333.853873833008,
+        "leverage": 10,
+        "unrealizedPnl": 7013,
+        "traderAddress": "0xGMX0047aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "BTC",
+        "direction": "Short",
+        "size": 98,
+        "positionValue": 65508.89994784589,
+        "entryPx": 77807.12870814394,
+        "leverage": 10,
+        "unrealizedPnl": 58864,
+        "traderAddress": "0xGMX0016aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "LINK",
+        "direction": "Long",
+        "size": 3948,
+        "positionValue": 58081.2744170979,
+        "entryPx": 74654.17172028896,
+        "leverage": 20,
+        "unrealizedPnl": 77081,
+        "traderAddress": "0xGMX0013aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "traderName": null
+      },
+      {
+        "coin": "ARB",
+        "direction": "Long",
+        "size": 3272,
+        "positionValue": 54188.12280072664,
+        "entryPx": 74177.30536346021,
+        "leverage": 25,
+        "unrealizedPnl": -19290,
+        "traderAddress": "0xGMX0014aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "traderName": null
       }
     ]
@@ -2464,92 +2464,92 @@
   "positionAggregation": {
     "byPnlDaily": [
       {
-        "coin": "LINK",
-        "long": 13339530.754545052,
-        "short": 15450361.523040239,
-        "longSize": 15461,
-        "shortSize": 6272
-      },
-      {
         "coin": "ARB",
-        "long": 5111822.552627554,
-        "short": 11740187.06892808,
-        "longSize": 5270,
-        "shortSize": 5224
-      },
-      {
-        "coin": "ETH",
-        "long": 8185799.583938401,
-        "short": 6636328.12132556,
-        "longSize": 5578,
-        "shortSize": 10927
+        "long": 8845906.427583681,
+        "short": 10216005.447097056,
+        "longSize": 16727,
+        "shortSize": 6602
       },
       {
         "coin": "BTC",
-        "long": 3780349.2268261146,
-        "short": 6225872.434895924,
-        "longSize": 9717,
-        "shortSize": 3927
+        "long": 9808846.340345096,
+        "short": 7970844.35226367,
+        "longSize": 15949,
+        "shortSize": 2212
+      },
+      {
+        "coin": "ETH",
+        "long": 7969298.567501852,
+        "short": 5958364.294933602,
+        "longSize": 9984,
+        "shortSize": 9419
+      },
+      {
+        "coin": "LINK",
+        "long": 4355891.418513012,
+        "short": 9040446.07652438,
+        "longSize": 10211,
+        "shortSize": 13409
       }
     ],
     "byPnlWeekly": [
       {
-        "coin": "LINK",
-        "long": 13339530.754545052,
-        "short": 15450361.523040239,
-        "longSize": 15461,
-        "shortSize": 6272
-      },
-      {
         "coin": "ARB",
-        "long": 5111822.552627554,
-        "short": 11740187.06892808,
-        "longSize": 5270,
-        "shortSize": 5224
-      },
-      {
-        "coin": "ETH",
-        "long": 8185799.583938401,
-        "short": 6636328.12132556,
-        "longSize": 5578,
-        "shortSize": 10927
+        "long": 8845906.427583681,
+        "short": 10216005.447097056,
+        "longSize": 16727,
+        "shortSize": 6602
       },
       {
         "coin": "BTC",
-        "long": 3780349.2268261146,
-        "short": 6225872.434895924,
-        "longSize": 9717,
-        "shortSize": 3927
+        "long": 9808846.340345096,
+        "short": 7970844.35226367,
+        "longSize": 15949,
+        "shortSize": 2212
+      },
+      {
+        "coin": "ETH",
+        "long": 7969298.567501852,
+        "short": 5958364.294933602,
+        "longSize": 9984,
+        "shortSize": 9419
+      },
+      {
+        "coin": "LINK",
+        "long": 4355891.418513012,
+        "short": 9040446.07652438,
+        "longSize": 10211,
+        "shortSize": 13409
       }
     ],
     "bySize": [
       {
-        "coin": "LINK",
-        "long": 13339530.754545052,
-        "short": 15450361.523040239,
-        "longSize": 15461,
-        "shortSize": 6272
-      },
-      {
         "coin": "ARB",
-        "long": 5111822.552627554,
-        "short": 11740187.06892808,
-        "longSize": 5270,
-        "shortSize": 5224
-      },
-      {
-        "coin": "ETH",
-        "long": 8185799.583938401,
-        "short": 6636328.12132556,
-        "longSize": 5578,
-        "shortSize": 10927
+        "long": 8845906.427583681,
+        "short": 10216005.447097056,
+        "longSize": 16727,
+        "shortSize": 6602
       },
       {
         "coin": "BTC",
-        "long": 3780349.2268261146,
-        "short": 6225872.434895924,
-        "longSize": 9717,
-        "shortSize": 3927
+        "long": 9808846.340345096,
+        "short": 7970844.35226367,
+        "longSize": 15949,
+        "shortSize": 2212
+      },
+      {
+        "coin": "ETH",
+        "long": 7969298.567501852,
+        "short": 5958364.294933602,
+        "longSize": 9984,
+        "shortSize": 9419
+      },
+      {
+        "coin": "LINK",
+        "long": 4355891.418513012,
+        "short": 9040446.07652438,
+        "longSize": 10211,
+        "shortSize": 13409
       }
     ]
   }
