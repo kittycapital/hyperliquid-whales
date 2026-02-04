@@ -341,9 +341,24 @@ def main():
     # Fetch data
     traders, prices = fetch_drift_leaderboard()
     
+    # Always ensure we have prices with fallback
+    FALLBACK_PRICES = {
+        'SOL': {'price': 195, 'openInterest': 50000000},
+        'BTC': {'price': 97500, 'openInterest': 200000000},
+        'ETH': {'price': 3380, 'openInterest': 100000000},
+        'JUP': {'price': 0.85, 'openInterest': 10000000},
+        'WIF': {'price': 1.85, 'openInterest': 8000000},
+        'PYTH': {'price': 0.38, 'openInterest': 5000000},
+        'JTO': {'price': 2.95, 'openInterest': 6000000},
+        'DRIFT': {'price': 0.95, 'openInterest': 4000000}
+    }
+    
+    if not prices or len(prices) < 3:
+        print("Warning: Insufficient prices fetched, using fallback prices")
+        prices = FALLBACK_PRICES
+    
     if not traders:
         print("Warning: No trader data fetched. Creating sample data.")
-        prices = get_market_prices()
         
         # Generate sample traders
         import random
@@ -393,21 +408,7 @@ def main():
         }
     }
     
-    # Build liquidation data
-    # Ensure we have prices - add fallback if empty
-    if not prices:
-        print("Warning: No prices fetched, using fallback prices")
-        prices = {
-            'SOL': {'price': 195, 'openInterest': 50000000},
-            'BTC': {'price': 97500, 'openInterest': 200000000},
-            'ETH': {'price': 3380, 'openInterest': 100000000},
-            'JUP': {'price': 0.85, 'openInterest': 10000000},
-            'WIF': {'price': 1.85, 'openInterest': 8000000},
-            'PYTH': {'price': 0.38, 'openInterest': 5000000},
-            'JTO': {'price': 2.95, 'openInterest': 6000000},
-            'DRIFT': {'price': 0.95, 'openInterest': 4000000}
-        }
-    
+    # Build liquidation data - prices are guaranteed to have data now
     liq_result = calculate_liquidation_prices(traders, prices)
     print(f"  Liquidation data generated for {len(liq_result)} markets")
     
@@ -425,7 +426,7 @@ def main():
     
     with open('data/drift_liq.json', 'w') as f:
         json.dump(liq_data, f, indent=2)
-    print(f"✓ Saved drift_liq.json ({len(prices)} markets)")
+    print(f"✓ Saved drift_liq.json ({len(liq_result)} markets)")
     
     print("\nDrift data fetch complete!")
 
