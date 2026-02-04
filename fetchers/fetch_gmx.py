@@ -35,39 +35,76 @@ GMX_MARKETS = {
 }
 
 def get_gmx_prices():
-    """Get current prices from Binance (more reliable)"""
+    """Get current prices from CoinGecko (works from GitHub Actions)"""
     prices = {}
     
-    # Use Binance for reliable prices
-    for symbol in GMX_MARKETS.keys():
-        try:
-            binance_symbol = f"{symbol}USDT"
-            url = f"https://api.binance.com/api/v3/ticker/price?symbol={binance_symbol}"
-            response = requests.get(url, timeout=10)
-            if response.status_code == 200:
-                data = response.json()
-                prices[symbol] = float(data.get('price', 0))
-        except:
-            pass
+    # CoinGecko IDs mapping for GMX markets
+    COINGECKO_IDS = {
+        'BTC': 'bitcoin',
+        'ETH': 'ethereum',
+        'LINK': 'chainlink',
+        'UNI': 'uniswap',
+        'AVAX': 'avalanche-2',
+        'SOL': 'solana',
+        'ARB': 'arbitrum',
+        'DOGE': 'dogecoin',
+        'LTC': 'litecoin',
+        'XRP': 'ripple'
+    }
     
-    # Try GMX stats as backup
+    # Fallback prices
+    FALLBACK_PRICES = {
+        'BTC': 97500, 'ETH': 3380, 'LINK': 18.5, 'UNI': 12.5,
+        'AVAX': 35.2, 'SOL': 195, 'ARB': 0.85, 'DOGE': 0.32,
+        'LTC': 125, 'XRP': 2.45
+    }
+    
+    # Try CoinGecko API
+    try:
+        ids = ','.join(COINGECKO_IDS.values())
+        url = f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd&include_24hr_vol=true"
+        print("  Fetching prices from CoinGecko...")
+        response = requests.get(url, timeout=30, headers={'Accept': 'application/json'})
+        
+        if response.status_code == 200:
+            data = response.json()
+            for symbol, gecko_id in COINGECKO_IDS.items():
+                if gecko_id in data:
+                    price = data[gecko_id].get('usd', 0)
+                    if price > 0:
+                        prices[symbol] = price
+            print(f"  Got {len(prices)} prices from CoinGecko")
+        else:
+            print(f"  CoinGecko returned status {response.status_code}")
+    except Exception as e:
+        print(f"  CoinGecko error: {e}")
+    
+    # Fallback: Try Binance
     if len(prices) < 3:
-        try:
-            url = f"{GMX_STATS_API}/prices"
-            response = requests.get(url, timeout=30)
-            if response.status_code == 200:
-                data = response.json()
-                for token, price in data.items():
-                    symbol = None
-                    for sym, addr in GMX_MARKETS.items():
-                        if addr.lower() in token.lower() or sym.lower() in token.lower():
-                            symbol = sym
-                            break
-                    if symbol and symbol not in prices:
-                        prices[symbol] = float(price) / 1e30 if float(price) > 1e20 else float(price)
-        except Exception as e:
-            print(f"GMX stats API error: {e}")
+        print("  Trying Binance as fallback...")
+        for symbol in COINGECKO_IDS.keys():
+            if symbol in prices:
+                continue
+            try:
+                binance_symbol = f"{symbol}USDT"
+                url = f"https://api.binance.com/api/v3/ticker/price?symbol={binance_symbol}"
+                response = requests.get(url, timeout=10)
+                if response.status_code == 200:
+                    data = response.json()
+                    price = float(data.get('price', 0))
+                    if price > 0:
+                        prices[symbol] = price
+            except:
+                pass
     
+    # Final fallback
+    if len(prices) < 3:
+        print("  Using fallback prices...")
+        for symbol, price in FALLBACK_PRICES.items():
+            if symbol not in prices:
+                prices[symbol] = price
+    
+    print(f"  Got prices for {len(prices)} markets: {list(prices.keys())}")
     return prices
 
 def get_gmx_stats():
