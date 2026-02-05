@@ -1,434 +1,510 @@
 #!/usr/bin/env python3
 """
-Drift Protocol Data Fetcher
-Fetches whale positions and liquidation data from Drift Protocol (Solana)
+Drift Protocol Data Fetcher (Fixed)
+Uses real Drift APIs:
+- data.api.drift.trade - Market data, contracts, prices
+- dlob.drift.trade - Top makers per market
+- mainnet-beta.api.drift.trade - User positions
 """
 
 import json
 import requests
 from datetime import datetime
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+import math
+import os
 
 # Drift API endpoints
-DRIFT_MAINNET_API = "https://mainnet-beta.api.drift.trade"
-DRIFT_DLOB_API = "https://dlob.drift.trade"
 DRIFT_DATA_API = "https://data.api.drift.trade"
+DRIFT_DLOB_API = "https://dlob.drift.trade"
+DRIFT_MAINNET_API = "https://mainnet-beta.api.drift.trade"
 
-# Market configurations (Drift market indices)
-DRIFT_MARKETS = {
-    0: "SOL",
-    1: "BTC", 
-    2: "ETH",
-    3: "APT",
-    4: "MATIC",
-    5: "ARB",
-    6: "DOGE",
-    7: "BNB",
-    8: "SUI",
-    9: "1MPEPE",
-    10: "OP",
-    11: "RENDER",
-    12: "XRP",
-    13: "HNT",
-    14: "INJ",
-    15: "LINK",
-    16: "RLB",
-    17: "PYTH",
-    18: "TIA",
-    19: "JTO",
-    20: "SEI",
-    21: "AVAX",
-    22: "WIF",
-    23: "JUP",
-    24: "DYM",
-    25: "TAO",
-    26: "W",
-    27: "KMNO",
-    28: "TNSR",
-    29: "DRIFT"
-}
+# Markets to scan for top makers
+MAJOR_MARKETS = ['SOL', 'BTC', 'ETH', 'JUP', 'WIF', 'PYTH', 'JTO', 'DRIFT',
+                 'RENDER', 'BONK', 'W', 'TNSR', 'HNT', 'SUI', 'APT', 'SEI',
+                 'AVAX', 'LINK', 'DOGE', 'INJ', 'XRP', 'OP', 'ARB', 'TIA']
 
-def get_market_prices():
-    """Get current prices for all Drift markets"""
-    prices = {}
-    
-    # Fallback prices in case APIs fail
-    FALLBACK_PRICES = {
-        'SOL': 195, 'BTC': 97500, 'ETH': 3380, 'JUP': 0.85,
-        'WIF': 1.85, 'PYTH': 0.38, 'JTO': 2.95, 'DRIFT': 0.95,
-        'BONK': 0.000025, 'RENDER': 7.5, 'W': 0.35
-    }
-    
-    # Try Binance first (more reliable)
+MAX_WORKERS = 8
+TOP_N = 200
+
+
+def safe_float(val, default=0):
+    """Safely convert to float"""
     try:
-        for idx, symbol in DRIFT_MARKETS.items():
-            if symbol == "1MPEPE":
-                continue
-            binance_symbol = f"{symbol}USDT"
-            url = f"https://api.binance.com/api/v3/ticker/price?symbol={binance_symbol}"
-            response = requests.get(url, timeout=10)
-            if response.status_code == 200:
-                data = response.json()
-                prices[symbol] = {
-                    'price': float(data.get('price', 0)),
-                    'fundingRate': 0,
-                    'openInterest': 1000000  # Default estimate
-                }
-    except Exception as e:
-        print(f"Binance prices error: {e}")
-    
-    # Try Drift Data API for additional info
+        if val is None or val == '':
+            return default
+        return float(val)
+    except (ValueError, TypeError):
+        return default
+
+
+def get_market_data():
+    """Get market data from Drift Data API"""
+    print("📊 Fetching Drift market data...")
+    prices = {}
+
+    # Try /contracts endpoint
     try:
         url = f"{DRIFT_DATA_API}/contracts"
-        response = requests.get(url, timeout=30)
-        if response.status_code == 200:
-            data = response.json()
-            # Handle if data is a list
+        r = requests.get(url, timeout=30, headers={'Accept': 'application/json'})
+        if r.status_code == 200:
+            data = r.json()
             if isinstance(data, list):
-                for market in data:
-                    if isinstance(market, dict):
-                        symbol = market.get('symbol', '').replace('-PERP', '')
-                        if symbol and symbol in prices:
-                            prices[symbol]['fundingRate'] = float(market.get('fundingRate', 0) or 0)
-                            prices[symbol]['openInterest'] = float(market.get('openInterest', 0) or 0) / 1e6
-            # Handle if data is a dict with markets key
+                for m in data:
+                    if not isinstance(m, dict):
+                        continue
+                    symbol = m.get('symbol', '').replace('-PERP', '').replace('1M', '')
+                    price = safe_float(m.get('oraclePrice') or m.get('markPrice') or m.get('lastPrice'))
+                    # Some Drift prices come in raw precision (1e6)
+                    if price > 1e10:
+                        price = price / 1e6
+                    if symbol and price > 0:
+                        prices[symbol] = {
+                            'price': price,
+                            'fundingRate': safe_float(m.get('fundingRate') or m.get('lastFundingRate')),
+                            'openInterest': safe_float(m.get('openInterest') or m.get('baseAssetAmountWithAmm')) / 1e6 if safe_float(m.get('openInterest', 0)) > 1e10 else safe_float(m.get('openInterest', 0)),
+                            'volume24h': safe_float(m.get('volume24h') or m.get('baseVolume24h', 0)),
+                        }
             elif isinstance(data, dict):
-                markets = data.get('markets', data.get('perp', []))
-                for market in markets:
-                    if isinstance(market, dict):
-                        symbol = market.get('symbol', '').replace('-PERP', '')
-                        if symbol:
-                            price = float(market.get('oraclePrice', 0) or market.get('price', 0) or 0)
-                            if price > 1e10:  # Needs scaling
-                                price = price / 1e6
+                markets = data.get('markets', data.get('perp', data.get('contracts', [])))
+                for m in markets:
+                    if not isinstance(m, dict):
+                        continue
+                    symbol = m.get('symbol', '').replace('-PERP', '')
+                    price = safe_float(m.get('oraclePrice') or m.get('price'))
+                    if price > 1e10:
+                        price = price / 1e6
+                    if symbol and price > 0:
+                        prices[symbol] = {
+                            'price': price,
+                            'fundingRate': safe_float(m.get('fundingRate')),
+                            'openInterest': safe_float(m.get('openInterest', 0)),
+                            'volume24h': safe_float(m.get('volume24h', 0)),
+                        }
+            print(f"  ✓ Got {len(prices)} markets from /contracts")
+    except Exception as e:
+        print(f"  ⚠ Drift /contracts error: {e}")
+
+    # Fallback: try /perpMarkets
+    if len(prices) < 3:
+        try:
+            url = f"{DRIFT_DATA_API}/perpMarkets"
+            r = requests.get(url, timeout=30, headers={'Accept': 'application/json'})
+            if r.status_code == 200:
+                data = r.json()
+                if isinstance(data, list):
+                    for m in data:
+                        symbol = m.get('symbol', '').replace('-PERP', '')
+                        price = safe_float(m.get('oraclePrice') or m.get('price'))
+                        if price > 1e10:
+                            price = price / 1e6
+                        if symbol and price > 0:
                             prices[symbol] = {
                                 'price': price,
-                                'fundingRate': float(market.get('fundingRate', 0) or 0),
-                                'openInterest': float(market.get('openInterest', 0) or 0) / 1e6
+                                'fundingRate': safe_float(m.get('fundingRate')),
+                                'openInterest': safe_float(m.get('openInterest', 0)),
+                                'volume24h': safe_float(m.get('volume24h', 0)),
                             }
-    except Exception as e:
-        print(f"Drift Data API error: {e}")
-    
-    # Count valid prices (with price > 0)
-    valid_count = sum(1 for p in prices.values() if isinstance(p, dict) and p.get('price', 0) > 0)
-    print(f"  Got {valid_count} valid prices from APIs")
-    
-    # Use fallback prices if APIs failed or have insufficient data
-    if valid_count < 3:
-        print("  Using fallback prices...")
-        for symbol, price in FALLBACK_PRICES.items():
-            if symbol not in prices or not prices[symbol].get('price', 0):
-                prices[symbol] = {
-                    'price': price,
-                    'fundingRate': 0,
-                    'openInterest': 10000000
-                }
-    
-    # Final validation - ensure all entries have valid price
-    cleaned = {}
-    for sym, data in prices.items():
-        if isinstance(data, dict) and data.get('price', 0) > 0:
-            cleaned[sym] = data
-    
-    print(f"  Returning {len(cleaned)} markets with prices")
-    return cleaned
+                print(f"  ✓ Got {len(prices)} markets from /perpMarkets")
+        except Exception as e:
+            print(f"  ⚠ Drift /perpMarkets error: {e}")
 
-def get_top_makers(market_name, side='bid', limit=50):
+    # Final fallback: Binance prices for major markets
+    if len(prices) < 3:
+        print("  ⚠ Using Binance prices as fallback...")
+        for symbol in MAJOR_MARKETS[:10]:
+            if symbol in prices and prices[symbol].get('price', 0) > 0:
+                continue
+            try:
+                binance_sym = f"{symbol}USDT"
+                if symbol == 'BONK':
+                    binance_sym = '1000BONKUSDT'
+                url = f"https://api.binance.com/api/v3/ticker/24hr?symbol={binance_sym}"
+                r = requests.get(url, timeout=10)
+                if r.status_code == 200:
+                    d = r.json()
+                    price = safe_float(d.get('lastPrice'))
+                    if symbol == 'BONK':
+                        price = price / 1000
+                    if price > 0:
+                        prices[symbol] = {
+                            'price': price,
+                            'fundingRate': 0,
+                            'openInterest': safe_float(d.get('quoteVolume', 0)) * 0.1,
+                            'volume24h': safe_float(d.get('quoteVolume', 0)),
+                        }
+            except:
+                pass
+        print(f"  ✓ Total {len(prices)} markets with prices")
+
+    return prices
+
+
+def get_top_makers(market_name, side='bid', limit=100):
     """Get top makers for a market from DLOB"""
     try:
         url = f"{DRIFT_DLOB_API}/topMakers?marketName={market_name}-PERP&side={side}&limit={limit}"
-        response = requests.get(url, timeout=30)
-        if response.status_code == 200:
-            return response.json()
+        r = requests.get(url, timeout=20)
+        if r.status_code == 200:
+            data = r.json()
+            return data if isinstance(data, list) else []
     except Exception as e:
-        print(f"Error fetching top makers for {market_name}: {e}")
+        pass
     return []
 
-def get_user_positions(user_account):
-    """Get positions for a specific user account"""
+
+def fetch_user_positions(user_account):
+    """Get positions for a user from Drift mainnet API"""
     try:
         url = f"{DRIFT_MAINNET_API}/user?userAccount={user_account}"
-        response = requests.get(url, timeout=30)
-        if response.status_code == 200:
-            return response.json()
-    except Exception as e:
-        print(f"Error fetching user {user_account}: {e}")
-    return None
+        r = requests.get(url, timeout=20)
+        if r.status_code == 200:
+            data = r.json()
+            if not data:
+                return []
 
-def fetch_drift_leaderboard():
-    """
-    Fetch leaderboard data by aggregating top makers across markets
-    Since Drift doesn't have a public leaderboard API, we aggregate from topMakers
-    """
-    print("Fetching Drift whale data...")
-    
-    prices = get_market_prices()
+            positions = []
+            perp_positions = data.get('perpPositions', data.get('assetPositions', []))
+
+            for p in perp_positions:
+                if isinstance(p, dict):
+                    # Handle nested position objects
+                    pos = p.get('position', p)
+                    base_amount = safe_float(pos.get('baseAssetAmount') or pos.get('szi', 0))
+                    if base_amount == 0:
+                        continue
+
+                    # Drift amounts may be in raw precision
+                    if abs(base_amount) > 1e12:
+                        base_amount = base_amount / 1e9
+
+                    market_idx = pos.get('marketIndex', 0)
+                    coin = pos.get('coin', pos.get('symbol', f'MARKET_{market_idx}'))
+                    if '-PERP' in str(coin):
+                        coin = coin.replace('-PERP', '')
+
+                    entry_price = safe_float(pos.get('entryPrice') or pos.get('entryPx', 0))
+                    if entry_price > 1e10:
+                        entry_price = entry_price / 1e6
+
+                    quote_entry = safe_float(pos.get('quoteEntryAmount') or pos.get('quoteAssetAmount', 0))
+                    if abs(quote_entry) > 1e10:
+                        quote_entry = quote_entry / 1e6
+
+                    position_value = abs(base_amount * entry_price) if entry_price > 0 else abs(quote_entry)
+                    upnl = safe_float(pos.get('unrealizedPnl') or pos.get('unsettledPnl', 0))
+                    if abs(upnl) > 1e10:
+                        upnl = upnl / 1e6
+
+                    leverage_val = safe_float(pos.get('leverage', 0))
+                    if leverage_val == 0 and position_value > 0:
+                        # Estimate leverage
+                        leverage_val = 5  # Default estimate
+
+                    liq_price = safe_float(pos.get('liquidationPrice') or pos.get('liquidationPx', 0))
+                    if liq_price > 1e10:
+                        liq_price = liq_price / 1e6
+
+                    positions.append({
+                        'coin': coin,
+                        'direction': 'Long' if base_amount > 0 else 'Short',
+                        'size': abs(base_amount),
+                        'entryPx': entry_price,
+                        'leverage': leverage_val,
+                        'positionValue': position_value,
+                        'unrealizedPnl': upnl,
+                        'liquidationPx': str(liq_price) if liq_price > 0 else '',
+                    })
+
+            return positions
+    except Exception as e:
+        pass
+    return []
+
+
+def collect_whale_addresses(prices):
+    """Collect unique whale addresses from top makers across markets"""
+    print("\n🐋 Collecting whale addresses from top makers...")
     all_traders = {}
-    
-    # Collect top makers from each market
-    major_markets = ['SOL', 'BTC', 'ETH', 'JUP', 'WIF', 'PYTH', 'JTO', 'DRIFT']
-    
-    for market in major_markets:
-        print(f"  Fetching top makers for {market}...")
-        
-        # Get both bid and ask side makers
+    markets_to_scan = [m for m in MAJOR_MARKETS if m in prices][:15]
+
+    for market in markets_to_scan:
         for side in ['bid', 'ask']:
             makers = get_top_makers(market, side, limit=100)
             if not makers:
                 continue
-                
+
             for maker in makers:
-                # Handle both string (address only) and dict responses
                 if isinstance(maker, str):
                     address = maker
                     size = 0
                 elif isinstance(maker, dict):
                     address = maker.get('userAccount', '') or maker.get('maker', '') or maker.get('address', '')
-                    size = float(maker.get('size', 0) or maker.get('makerSize', 0) or 0)
+                    size = safe_float(maker.get('size') or maker.get('makerSize', 0))
                 else:
                     continue
-                    
+
                 if not address:
                     continue
-                
+
                 if address not in all_traders:
                     all_traders[address] = {
                         'address': address,
                         'markets': set(),
                         'totalSize': 0,
-                        'positions': []
                     }
-                
+
                 all_traders[address]['markets'].add(market)
                 all_traders[address]['totalSize'] += size
-    
-    # Convert to list and sort by total size
-    traders_list = list(all_traders.values())
-    traders_list.sort(key=lambda x: x['totalSize'], reverse=True)
-    
-    # Format for output (top 200)
-    formatted_traders = []
-    for i, trader in enumerate(traders_list[:200]):
-        # Estimate account value based on position sizes
-        est_value = trader['totalSize'] * 10  # Rough estimate
-        
-        formatted_traders.append({
-            'address': trader['address'],
-            'displayName': None,
-            'accountValue': est_value,
-            'pnl': 0,  # Would need historical data
-            'roi': 0,
-            'volume': trader['totalSize'],
-            'positions': [{
-                'coin': market,
-                'direction': 'Long',
-                'size': 0,
-                'positionValue': 0,
-                'entryPx': prices.get(market, {}).get('price', 0),
-                'leverage': 1,
-                'unrealizedPnl': 0
-            } for market in list(trader['markets'])[:5]]
-        })
-    
-    return formatted_traders, prices
 
-def aggregate_positions(traders, prices):
+        print(f"  ├─ {market}: {len(all_traders)} unique addresses so far")
+
+    print(f"  └─ Total: {len(all_traders)} unique whale addresses")
+    return all_traders
+
+
+def fetch_all_positions(addresses):
+    """Fetch positions for all addresses concurrently"""
+    pos_map = {}
+    total = len(addresses)
+    print(f"\n📡 Fetching positions for {total} addresses...")
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
+        futures = {ex.submit(fetch_user_positions, a): a for a in addresses}
+        done = 0
+        for f in as_completed(futures):
+            addr = futures[f]
+            done += 1
+            try:
+                pos_map[addr] = f.result()
+            except:
+                pos_map[addr] = []
+            if done % 50 == 0 or done == total:
+                print(f"  └─ {done}/{total}")
+            time.sleep(0.05)
+
+    has_positions = sum(1 for v in pos_map.values() if v)
+    print(f"  └─ Done: {has_positions}/{total} addresses have positions")
+    return pos_map
+
+
+def aggregate_positions(traders):
     """Aggregate positions by coin"""
-    aggregation = defaultdict(lambda: {'long': 0, 'short': 0, 'longSize': 0, 'shortSize': 0})
-    
-    for trader in traders:
-        for pos in trader.get('positions', []):
-            coin = pos['coin']
-            value = pos.get('positionValue', 0)
-            size = pos.get('size', 0)
-            
-            if pos['direction'] == 'Long':
-                aggregation[coin]['long'] += value
-                aggregation[coin]['longSize'] += size
+    agg = defaultdict(lambda: {'long': 0, 'short': 0, 'longSize': 0, 'shortSize': 0})
+    for t in traders:
+        for p in t.get('positions', []):
+            c = p['coin']
+            if p['direction'] == 'Long':
+                agg[c]['long'] += p['positionValue']
+                agg[c]['longSize'] += p['size']
             else:
-                aggregation[coin]['short'] += value
-                aggregation[coin]['shortSize'] += size
-    
-    # Format output
-    result = []
-    for coin, data in sorted(aggregation.items(), key=lambda x: x[1]['long'] + x[1]['short'], reverse=True):
-        result.append({
-            'coin': coin,
-            'long': data['long'],
-            'short': data['short'],
-            'longSize': data['longSize'],
-            'shortSize': data['shortSize']
-        })
-    
+                agg[c]['short'] += p['positionValue']
+                agg[c]['shortSize'] += p['size']
+
+    result = [{'coin': c, **d, 'total': d['long'] + d['short']} for c, d in agg.items()]
+    result.sort(key=lambda x: x['total'], reverse=True)
+    return result[:25]
+
+
+def get_bucket_size(coin, price):
+    """Determine bucket size for liquidation map"""
+    buckets = {'BTC': 1000, 'ETH': 50, 'SOL': 5, 'BNB': 10}
+    if coin in buckets:
+        return buckets[coin]
+    if price >= 10000: return 500
+    if price >= 1000: return 100
+    if price >= 100: return 10
+    if price >= 10: return 1
+    if price >= 1: return 0.1
+    return 0.01
+
+
+def get_lev_cat(lev):
+    if lev >= 100: return '100x'
+    if lev >= 50: return '50x'
+    if lev >= 25: return '25x'
+    return '10x'
+
+
+def build_liq_map(traders, prices):
+    """Build liquidation map from real position data"""
+    print("🗺️  Building liquidation map...")
+    liq_by_coin = defaultdict(list)
+
+    for t in traders:
+        for p in t.get('positions', []):
+            liq = p.get('liquidationPx')
+            if not liq:
+                continue
+            try:
+                liq = float(liq)
+                if liq <= 0 or liq > 1e12:
+                    continue
+                liq_by_coin[p['coin']].append({
+                    **p,
+                    'liquidationPx': liq,
+                    'traderAddress': t.get('address', '')
+                })
+            except:
+                continue
+
+    result = {}
+    for coin, positions in liq_by_coin.items():
+        if len(positions) < 2:
+            continue
+        price_data = prices.get(coin, {})
+        curr = price_data.get('price', 0) if isinstance(price_data, dict) else safe_float(price_data)
+        if curr <= 0:
+            continue
+
+        bucket_size = get_bucket_size(coin, curr)
+        min_p, max_p = curr * 0.5, curr * 1.5
+
+        long_buckets = defaultdict(lambda: {'10x': 0, '25x': 0, '50x': 0, '100x': 0})
+        short_buckets = defaultdict(lambda: {'10x': 0, '25x': 0, '50x': 0, '100x': 0})
+
+        for p in positions:
+            liq = p['liquidationPx']
+            if liq < min_p or liq > max_p:
+                continue
+            key = round(math.floor(liq / bucket_size) * bucket_size, 2)
+            cat = get_lev_cat(p['leverage'])
+
+            if p['direction'] == 'Long':
+                long_buckets[key][cat] += p['positionValue']
+            else:
+                short_buckets[key][cat] += p['positionValue']
+
+        long_list = [{'price': k, '10x': v['10x'], '25x': v['25x'], '50x': v['50x'], '100x': v['100x']}
+                     for k, v in sorted(long_buckets.items()) if sum(v.values()) > 0]
+        short_list = [{'price': k, '10x': v['10x'], '25x': v['25x'], '50x': v['50x'], '100x': v['100x']}
+                      for k, v in sorted(short_buckets.items()) if sum(v.values()) > 0]
+
+        if long_list or short_list:
+            result[coin] = {
+                'currentPrice': curr,
+                'longLiquidations': long_list,
+                'shortLiquidations': short_list
+            }
+
+    print(f"  └─ {len(result)} coins mapped")
     return result
 
-def calculate_liquidation_prices(traders, prices):
-    """
-    Calculate liquidation price distribution
-    For Drift, we estimate based on typical leverage
-    """
-    liquidations = {}
-    
-    for coin, price_data in prices.items():
-        # Handle both dict and float price formats
-        if isinstance(price_data, dict):
-            current_price = price_data.get('price', 0)
-            oi = price_data.get('openInterest', 1000000)
-        else:
-            current_price = float(price_data) if price_data else 0
-            oi = 1000000
-            
-        if not current_price or current_price <= 0:
-            continue
-        
-        long_liqs = defaultdict(lambda: {'10x': 0, '25x': 0, '50x': 0, '100x': 0})
-        short_liqs = defaultdict(lambda: {'10x': 0, '25x': 0, '50x': 0, '100x': 0})
-        
-        # Generate synthetic liquidation levels based on current price
-        for leverage in [10, 25, 50, 100]:
-            liq_pct = 1 / leverage
-            
-            # Multiple price levels per leverage
-            for offset in [0.5, 0.75, 1.0]:
-                long_liq_price = round(current_price * (1 - liq_pct * 0.9 * offset), 2)
-                short_liq_price = round(current_price * (1 + liq_pct * 0.9 * offset), 2)
-                
-                base_volume = oi * 0.05 / leverage
-                lev_key = f'{leverage}x'
-                long_liqs[long_liq_price][lev_key] += base_volume
-                short_liqs[short_liq_price][lev_key] += base_volume
-        
-        long_list = [{'price': p, '10x': d['10x'], '25x': d['25x'], '50x': d['50x'], '100x': d['100x']} 
-                     for p, d in sorted(long_liqs.items()) if sum(d.values()) > 0]
-        short_list = [{'price': p, '10x': d['10x'], '25x': d['25x'], '50x': d['50x'], '100x': d['100x']} 
-                      for p, d in sorted(short_liqs.items()) if sum(d.values()) > 0]
-        
-        liquidations[coin] = {
-            'currentPrice': current_price,
-            'longLiquidations': long_list,
-            'shortLiquidations': short_list
-        }
-    
-    return liquidations
 
-def get_biggest_positions(traders, limit=200):
+def get_biggest_positions(traders, n=TOP_N):
     """Get the biggest individual positions"""
-    all_positions = []
-    
-    for trader in traders:
-        for pos in trader.get('positions', []):
-            all_positions.append({
-                'coin': pos['coin'],
-                'direction': pos['direction'],
-                'size': pos.get('size', 0),
-                'positionValue': pos.get('positionValue', 0),
-                'entryPx': pos.get('entryPx', 0),
-                'leverage': pos.get('leverage', 1),
-                'unrealizedPnl': pos.get('unrealizedPnl', 0),
-                'traderAddress': trader['address'],
-                'traderName': trader.get('displayName')
+    all_pos = []
+    for t in traders:
+        for p in t.get('positions', []):
+            all_pos.append({
+                **p,
+                'traderAddress': t.get('address', ''),
+                'traderName': t.get('displayName'),
+                'traderAccountValue': t.get('accountValue', 0)
             })
-    
-    # Sort by position value
-    all_positions.sort(key=lambda x: x['positionValue'], reverse=True)
-    return all_positions[:limit]
+    all_pos.sort(key=lambda x: x.get('positionValue', 0), reverse=True)
+    return all_pos[:n]
+
 
 def main():
-    print("=" * 50)
-    print("Drift Protocol Data Fetcher")
-    print("=" * 50)
-    
-    # Fetch data
-    traders, prices = fetch_drift_leaderboard()
-    
-    # Always ensure we have prices with fallback
-    FALLBACK_PRICES = {
-        'SOL': {'price': 195, 'openInterest': 50000000},
-        'BTC': {'price': 97500, 'openInterest': 200000000},
-        'ETH': {'price': 3380, 'openInterest': 100000000},
-        'JUP': {'price': 0.85, 'openInterest': 10000000},
-        'WIF': {'price': 1.85, 'openInterest': 8000000},
-        'PYTH': {'price': 0.38, 'openInterest': 5000000},
-        'JTO': {'price': 2.95, 'openInterest': 6000000},
-        'DRIFT': {'price': 0.95, 'openInterest': 4000000}
-    }
-    
-    if not prices or len(prices) < 3:
-        print("Warning: Insufficient prices fetched, using fallback prices")
-        prices = FALLBACK_PRICES
-    
-    if not traders:
-        print("Warning: No trader data fetched. Creating sample data.")
-        
-        # Generate sample traders
-        import random
-        sol_price = prices.get('SOL', {}).get('price', 200) if isinstance(prices.get('SOL'), dict) else prices.get('SOL', 200)
-        btc_price = prices.get('BTC', {}).get('price', 97000) if isinstance(prices.get('BTC'), dict) else prices.get('BTC', 97000)
-        
-        sample_traders = []
-        for i in range(50):
-            acc_value = random.randint(100000, 3000000)
-            pnl = random.randint(-acc_value//5, acc_value//3)
-            sample_traders.append({
-                'address': f'DRiFT{i:04d}' + 'x' * 38,
-                'displayName': f'Drift Whale #{i+1}' if i < 10 else None,
-                'accountValue': acc_value,
-                'pnl': pnl,
-                'roi': pnl / acc_value if acc_value > 0 else 0,
-                'volume': acc_value * random.randint(5, 15),
-                'positions': [
-                    {
-                        'coin': random.choice(['SOL', 'BTC', 'ETH', 'JUP', 'WIF']),
-                        'direction': random.choice(['Long', 'Short']),
-                        'size': random.randint(100, 10000),
-                        'positionValue': acc_value * random.uniform(0.4, 0.8),
-                        'entryPx': sol_price * random.uniform(0.95, 1.05) if random.random() > 0.3 else btc_price * random.uniform(0.95, 1.05),
-                        'leverage': random.choice([3, 5, 8, 10]),
-                        'unrealizedPnl': random.randint(-30000, 80000)
-                    }
-                ]
-            })
-        traders = sorted(sample_traders, key=lambda x: x['accountValue'], reverse=True)
-    
-    # Build whale data
+    print("=" * 60)
+    print("🚀 Drift Protocol Data Fetcher (v2)")
+    print(f"⏰ Started at: {datetime.utcnow().isoformat()}Z")
+    print("=" * 60)
+
+    # Step 1: Get market data (prices, OI, funding)
+    prices = get_market_data()
+    if not prices:
+        print("❌ Failed to get any market data")
+        return
+
+    # Step 2: Collect whale addresses from top makers
+    all_traders_raw = collect_whale_addresses(prices)
+
+    if not all_traders_raw:
+        print("❌ Failed to collect any whale addresses")
+        return
+
+    # Sort by total maker size, take top addresses
+    sorted_traders = sorted(all_traders_raw.values(), key=lambda x: x['totalSize'], reverse=True)
+    addresses_to_fetch = [t['address'] for t in sorted_traders[:TOP_N]]
+
+    # Step 3: Fetch actual positions
+    pos_map = fetch_all_positions(addresses_to_fetch)
+
+    # Step 4: Build trader list with real positions
+    print("\n📋 Processing traders...")
+    traders = []
+    for t in sorted_traders[:TOP_N]:
+        addr = t['address']
+        positions = pos_map.get(addr, [])
+        total_value = sum(p.get('positionValue', 0) for p in positions)
+        total_pnl = sum(p.get('unrealizedPnl', 0) for p in positions)
+
+        traders.append({
+            'address': addr,
+            'displayName': None,
+            'accountValue': total_value if total_value > 0 else t['totalSize'] * 10,
+            'pnl': total_pnl,
+            'roi': total_pnl / total_value if total_value > 0 else 0,
+            'volume': t['totalSize'],
+            'positions': positions,
+        })
+
+    # Sort by account value
+    traders.sort(key=lambda x: x['accountValue'], reverse=True)
+
+    # Step 5: Aggregation & liquidation map
+    print("\n📊 Aggregating positions...")
+    agg = aggregate_positions(traders)
+    liq_map = build_liq_map(traders, prices)
+    biggest = get_biggest_positions(traders)
+
+    # Step 6: Save
+    os.makedirs('data', exist_ok=True)
+
     whale_data = {
         'lastUpdated': datetime.utcnow().isoformat() + 'Z',
         'dashboard': {
-            'totalTraders': len(traders)
+            'totalTraders': len(traders),
         },
         'whaleTracker': {
             'daily': traders,
             'weekly': traders,
-            'biggestPositions': get_biggest_positions(traders)
+            'biggestPositions': biggest,
         },
         'positionAggregation': {
-            'byPnlDaily': aggregate_positions(traders, prices),
-            'byPnlWeekly': aggregate_positions(traders, prices),
-            'bySize': aggregate_positions(traders, prices)
+            'byPnlDaily': agg,
+            'byPnlWeekly': agg,
+            'bySize': agg,
         }
     }
-    
-    # Build liquidation data - prices are guaranteed to have data now
-    liq_result = calculate_liquidation_prices(traders, prices)
-    print(f"  Liquidation data generated for {len(liq_result)} markets")
-    
+
+    with open('data/drift_whales.json', 'w') as f:
+        json.dump(whale_data, f)
+    print(f"✅ Saved drift_whales.json ({len(traders)} traders)")
+
     liq_data = {
         'lastUpdated': datetime.utcnow().isoformat() + 'Z',
         'tradersCount': len(traders),
-        'coins': list(liq_result.keys()) if liq_result else list(prices.keys()),
-        'data': liq_result
+        'coins': list(liq_map.keys()) if liq_map else list(prices.keys())[:10],
+        'data': liq_map
     }
-    
-    # Save files
-    with open('data/drift_whales.json', 'w') as f:
-        json.dump(whale_data, f, indent=2)
-    print(f"✓ Saved drift_whales.json ({len(traders)} traders)")
-    
+
     with open('data/drift_liq.json', 'w') as f:
-        json.dump(liq_data, f, indent=2)
-    print(f"✓ Saved drift_liq.json ({len(liq_result)} markets)")
-    
-    print("\nDrift data fetch complete!")
+        json.dump(liq_data, f)
+    print(f"✅ Saved drift_liq.json ({len(liq_map)} coins)")
+
+    traders_with_pos = sum(1 for t in traders if t.get('positions'))
+    print(f"\n{'='*60}")
+    print(f"📊 Markets: {len(prices)}")
+    print(f"👥 Traders: {len(traders)} ({traders_with_pos} with positions)")
+    print(f"🗺️  Liquidation coins: {len(liq_map)}")
+    print(f"⏰ Completed at: {datetime.utcnow().isoformat()}Z")
+    print("=" * 60)
+
 
 if __name__ == "__main__":
     main()
