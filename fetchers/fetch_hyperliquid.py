@@ -364,9 +364,62 @@ def main():
     with open('data/hyperliquid_liq.json', 'w') as f:
         json.dump(liq_output, f)
     
+    # === History: Daily whale sentiment snapshot ===
+    TRACK_COINS = ['BTC', 'ETH', 'SOL', 'HYPE']
+    
+    def calc_sentiment(trader_list, coins):
+        """Calculate long/short count and value for target coins from trader positions."""
+        result = {}
+        for coin in coins:
+            lc, sc, lv, sv = 0, 0, 0.0, 0.0
+            for t in trader_list:
+                for p in t.get('positions', []):
+                    if p.get('coin') != coin:
+                        continue
+                    val = p.get('positionValue', 0)
+                    if p.get('direction') == 'Long':
+                        lc += 1; lv += val
+                    else:
+                        sc += 1; sv += val
+            result[coin] = {'longCount': lc, 'shortCount': sc, 'longVal': round(lv), 'shortVal': round(sv)}
+        return result
+    
+    top50 = daily[:50]
+    sentiment_500 = calc_sentiment(daily, TRACK_COINS)
+    sentiment_50 = calc_sentiment(top50, TRACK_COINS)
+    
+    today = datetime.utcnow().strftime('%Y-%m-%d')
+    today_entry = {'date': today}
+    for coin in TRACK_COINS:
+        price = markets_dict.get(coin, {}).get('markPx', 0)
+        today_entry[coin] = {
+            'price': round(price, 2),
+            'top500': sentiment_500.get(coin, {}),
+            'top50': sentiment_50.get(coin, {})
+        }
+    
+    # Load existing history and append/update
+    history_path = 'data/history.json'
+    history = []
+    if os.path.exists(history_path):
+        try:
+            with open(history_path, 'r') as f:
+                history = json.load(f)
+        except:
+            history = []
+    
+    # Replace if same date exists, otherwise append
+    history = [h for h in history if h.get('date') != today]
+    history.append(today_entry)
+    history.sort(key=lambda x: x['date'])
+    
+    with open(history_path, 'w') as f:
+        json.dump(history, f, indent=2)
+    
     print(f"\n✅ Saved to whale_data.json ({os.path.getsize('whale_data.json') / 1024:.1f} KB)")
     print(f"✅ Saved to data/hyperliquid_whales.json")
     print(f"✅ Saved to data/hyperliquid_liq.json")
+    print(f"✅ Saved to data/history.json ({len(history)} days, {os.path.getsize(history_path) / 1024:.1f} KB)")
 
 if __name__ == '__main__':
     main()
