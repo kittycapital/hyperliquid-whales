@@ -106,9 +106,6 @@
         .sub-tab:hover { border-color: #3d3d4a; color: #c1c1ca; }
         .sub-tab.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
         
-        .expand-btn { background: none; border: none; color: #8b8b9a; cursor: pointer; padding: 4px; border-radius: 4px; transition: all 0.2s; }
-        .expand-btn:hover { background: #2a2a35; color: #22d3ee; }
-        .expand-btn.expanded svg { transform: rotate(180deg); }
         .positions-row { display: none; }
         .positions-row.show { display: table-row; }
         .positions-content { background: #1e1e26; border-radius: 8px; padding: 12px; }
@@ -183,6 +180,48 @@
         .inline-chart-close:hover { background: #2a2a35; color: #fff; }
         .position-card.selected { border-color: #22d3ee; background: rgba(34, 211, 238, 0.08); }
         
+        /* Position badge */
+        .pos-badge { display: inline-flex; align-items: center; gap: 5px; color: #22d3ee; font-size: 0.7rem; cursor: pointer; padding: 4px 10px; border-radius: 6px; transition: all 0.2s; font-family: 'Noto Sans KR', sans-serif; white-space: nowrap; }
+        .pos-badge:hover { background: rgba(34, 211, 238, 0.15); }
+        .pos-badge .pos-count { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+        .pos-badge svg { transition: transform 0.2s; }
+        .pos-badge.expanded svg { transform: rotate(180deg); }
+        
+        /* Sort indicators */
+        th.sortable { position: relative; padding-right: 18px !important; }
+        th.sortable::after { content: '↕'; position: absolute; right: 4px; opacity: 0.3; font-size: 0.6rem; }
+        th.sort-asc::after { content: '↑'; opacity: 1; color: #22d3ee; }
+        th.sort-desc::after { content: '↓'; opacity: 1; color: #22d3ee; }
+        
+        /* Biggest position row click */
+        tr.biggest-row { cursor: pointer; transition: background 0.15s; }
+        tr.biggest-row:hover td { background: rgba(34, 211, 238, 0.08); }
+        tr.biggest-row.selected td { background: rgba(34, 211, 238, 0.1); }
+        .biggest-chart-row { display: none; }
+        .biggest-chart-row.show { display: table-row; }
+        
+        /* Mobile card layout */
+        .mobile-cards { display: none; }
+        .m-card { background: #1a1a22; border: 1px solid #2a2a35; border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+        .m-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .m-card-top-left { display: flex; align-items: center; gap: 8px; }
+        .m-card-addr { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+        .m-card-addr a { color: #22d3ee; text-decoration: none; }
+        .m-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .m-card-item {}
+        .m-card-label { font-size: 0.6rem; color: #6b6b7a; margin-bottom: 2px; }
+        .m-card-val { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #b1b1ba; }
+        .m-card-footer { margin-top: 10px; padding-top: 10px; border-top: 1px solid #2a2a35; }
+        .m-card-badge { display: flex; align-items: center; justify-content: center; gap: 6px; color: #22d3ee; font-size: 0.75rem; cursor: pointer; padding: 6px; border-radius: 6px; transition: all 0.2s; }
+        .m-card-badge:hover { background: rgba(34, 211, 238, 0.15); }
+        .m-card-badge.expanded svg { transform: rotate(180deg); }
+        .m-card-badge svg { transition: transform 0.2s; }
+        .m-card-positions { display: none; margin-top: 10px; }
+        .m-card-positions.show { display: block; }
+        .m-card-chart-btn { display: flex; align-items: center; justify-content: center; gap: 6px; color: #22d3ee; font-size: 0.75rem; cursor: pointer; padding: 8px; border-radius: 6px; margin-top: 10px; border: 1px dashed rgba(34, 211, 238, 0.3); transition: all 0.2s; }
+        .m-card-chart-btn:hover { background: rgba(34, 211, 238, 0.1); }
+        .m-biggest-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+        
         @media (max-width: 768px) {
             .inline-chart-body { height: 200px; }
             .inline-chart-stats { gap: 10px; padding: 8px 12px; }
@@ -197,6 +236,8 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .dex-tabs { flex-wrap: wrap; }
             .dex-tab { padding: 8px 12px; font-size: 0.75rem; }
+            .table-container.has-mobile { display: none; }
+            .mobile-cards { display: block; }
         }
     </style>
 </head>
@@ -345,8 +386,8 @@
                 <div class="chart-container"><div id="pos-chart" class="bar-chart"></div></div>
             </div>
             <div class="sub-tabs"><button class="sub-tab active" data-tab="pnl">📈 PnL 상위 트레이더</button><button class="sub-tab" data-tab="biggest">💎 최대 포지션 (OI)</button></div>
-            <div id="pnl-section"><div class="card"><div class="card-header"><h3 class="card-title">PnL 상위 500</h3><div class="tabs" id="trader-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div></div><div class="table-container"><table><thead><tr><th>순위</th><th>트레이더</th><th>계좌 가치</th><th>수익 (PnL)</th><th>수익률</th><th>거래량</th><th></th></tr></thead><tbody id="pnl-tbody"><tr><td colspan="7"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div></div></div>
-            <div id="biggest-section" style="display:none;"><div class="card"><div class="card-header"><h3 class="card-title">최대 포지션 상위 500</h3></div><div class="table-container"><table><thead><tr><th>순위</th><th>코인</th><th>방향</th><th>포지션 가치</th><th>수량</th><th>진입가</th><th>레버리지</th><th>미실현 PnL</th><th>트레이더</th></tr></thead><tbody id="biggest-tbody"><tr><td colspan="9"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div></div></div>
+            <div id="pnl-section"><div class="card"><div class="card-header"><h3 class="card-title">PnL 상위 500</h3><div class="tabs" id="trader-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div></div><div class="table-container has-mobile"><table id="pnl-table"><thead><tr><th>순위</th><th>트레이더</th><th class="sortable" data-sort="accountValue">계좌 가치</th><th class="sortable" data-sort="pnl">수익 (PnL)</th><th class="sortable" data-sort="roi">수익률</th><th class="sortable" data-sort="volume">거래량</th><th>포지션</th></tr></thead><tbody id="pnl-tbody"><tr><td colspan="7"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div><div class="mobile-cards" id="pnl-mobile"></div></div></div>
+            <div id="biggest-section" style="display:none;"><div class="card"><div class="card-header"><h3 class="card-title">최대 포지션 상위 500</h3></div><div class="table-container has-mobile"><table id="biggest-table"><thead><tr><th>순위</th><th>코인</th><th>방향</th><th class="sortable" data-sort="positionValue">포지션 가치</th><th class="sortable" data-sort="size">수량</th><th>진입가</th><th class="sortable" data-sort="leverage">레버리지</th><th class="sortable" data-sort="unrealizedPnl">미실현 PnL</th><th>트레이더</th></tr></thead><tbody id="biggest-tbody"><tr><td colspan="9"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div><div class="mobile-cards" id="biggest-mobile"></div></div></div>
         </section>
 
         <div class="last-updated" id="last-updated"></div>
@@ -366,7 +407,10 @@
         let posData = 'pnl', posPeriod = 'daily', posUnit = 'value', traderPeriod = 'daily';
         let selectedLiqCoin = 'BTC', liqDataMode = 'pnl', liqPeriod = 'daily';
         let fundingSortField = 'funding', fundingSortDir = 'desc';
+        let pnlSortField = null, pnlSortDir = 'desc';
+        let bigSortField = null, bigSortDir = 'desc';
         let currentPosition = null, currentTimeframe = '1h';
+        let currentBigIdx = null;
 
         const fmt = {
             usd: v => { const n = Math.abs(parseFloat(v)||0); return (v<0?'-':'')+'$'+(n>=1e9?(n/1e9).toFixed(2)+'B':n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n.toFixed(0)); },
@@ -414,66 +458,147 @@
 
         function getExplorerUrl(address) { return DEX_CONFIG[currentWhaleDex].explorerUrl + address; }
 
-        function renderPnL() { const data = whaleData[currentWhaleDex]; const traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly; if (!traders) { document.getElementById('pnl-tbody').innerHTML = '<tr><td colspan="7"><div class="no-data">데이터 없음</div></td></tr>'; return; } document.getElementById('pnl-tbody').innerHTML = traders.map((t,i) => { const name = t.displayName || fmt.addr(t.address), hasPos = t.positions?.length > 0; return `<tr><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="address"><a href="${getExplorerUrl(t.address)}" target="_blank">${name}</a></td><td>${fmt.usd(t.accountValue)}</td><td class="${t.pnl>=0?'positive':'negative'}">${fmt.usd(t.pnl)}</td><td class="${t.roi>=0?'positive':'negative'}">${fmt.pctDec(t.roi)}</td><td>${fmt.usd(t.volume)}</td><td>${hasPos?`<button class="expand-btn" onclick="togglePos(${i})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>`:''}</td></tr>${hasPos?`<tr class="positions-row" id="pos-${i}"><td colspan="7"><div class="positions-content"><div class="positions-grid">${t.positions.map((p,pi) => `<div class="position-card" id="pcard-${i}-${pi}" onclick="openInlineChart(${i}, ${pi})"><div class="position-header"><span class="position-coin">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">${fmt.usd(p.positionValue)}</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">${p.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">${fmt.px(p.entryPx, p.coin)}</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</span></div></div><div class="position-hint">📈 차트 보기</div></div>`).join('')}</div><div class="inline-chart-section" id="chart-${i}"></div></div></td></tr>`:''}`;}).join(''); }
-        function renderBiggest() { const data = whaleData[currentWhaleDex]; const pos = data?.whaleTracker?.biggestPositions || []; if (!pos.length) { document.getElementById('biggest-tbody').innerHTML = '<tr><td colspan="9"><div class="no-data">데이터 없음</div></td></tr>'; return; } document.getElementById('biggest-tbody').innerHTML = pos.map((p,i) => `<tr><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="coin-name">${p.coin}</td><td><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></td><td>${fmt.usd(p.positionValue)}</td><td>${fmt.num(p.size)}</td><td>${fmt.px(p.entryPx, p.coin)}</td><td>${p.leverage}x</td><td class="${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</td><td class="address"><a href="${getExplorerUrl(p.traderAddress)}" target="_blank">${p.traderName||fmt.addr(p.traderAddress)}</a></td></tr>`).join(''); }
-        function getPosAgg() { const data = whaleData[currentWhaleDex]; if (!data?.positionAggregation) return []; if (posData === 'pnl') return posPeriod === 'daily' ? data.positionAggregation.byPnlDaily : data.positionAggregation.byPnlWeekly; return data.positionAggregation.bySize; }
-        function renderPosChart() { const agg = getPosAgg(); if (!agg?.length) { document.getElementById('pos-chart').innerHTML = '<div class="no-data">데이터 없음</div>'; return; } const useVal = posUnit === 'value'; const max = Math.max(...agg.map(d => Math.max(useVal?d.long:d.longSize, useVal?d.short:d.shortSize))); document.getElementById('pos-chart').innerHTML = agg.map(d => { const lv = useVal?d.long:d.longSize, sv = useVal?d.short:d.shortSize; const lw = max>0?(lv/max)*100:0, sw = max>0?(sv/max)*100:0; return `<div class="bar-row"><div class="bar-label">${d.coin}</div><div class="bar-container"><div class="bar-negative"><div class="bar short" style="width:${sw}%">${sv>0?(useVal?fmt.usd(sv):fmt.num(sv)):''}</div></div><div class="bar-positive"><div class="bar long" style="width:${lw}%">${lv>0?(useVal?fmt.usd(lv):fmt.num(lv)):''}</div></div></div></div>`; }).join(''); }
+        function updateSortHeaders(tableId, field, dir) { const table = document.getElementById(tableId); if (!table) return; table.querySelectorAll('th.sortable').forEach(th => { th.classList.remove('sort-asc', 'sort-desc', 'sort-active'); if (th.dataset.sort === field) { th.classList.add(dir === 'asc' ? 'sort-asc' : 'sort-desc', 'sort-active'); } }); }
 
-        function togglePos(idx) { const row = document.getElementById(`pos-${idx}`); const btn = row?.previousElementSibling?.querySelector('.expand-btn'); if (row) { const wasOpen = row.classList.contains('show'); row.classList.toggle('show'); btn?.classList.toggle('expanded'); if (wasOpen && currentChartTraderIdx === idx) { closeInlineChart(); } } }
-        let currentChartTraderIdx = null, currentChartPosIdx = null;
+        function sortPnL(field) { if (pnlSortField === field) pnlSortDir = pnlSortDir === 'desc' ? 'asc' : 'desc'; else { pnlSortField = field; pnlSortDir = 'desc'; } renderPnL(); }
+        function sortBig(field) { if (bigSortField === field) bigSortDir = bigSortDir === 'desc' ? 'asc' : 'desc'; else { bigSortField = field; bigSortDir = 'desc'; } renderBiggest(); }
 
-        function openInlineChart(traderIdx, posIdx) {
+        function renderPnL() {
             const data = whaleData[currentWhaleDex];
-            const traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
+            let traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
+            if (!traders) { document.getElementById('pnl-tbody').innerHTML = '<tr><td colspan="7"><div class="no-data">데이터 없음</div></td></tr>'; document.getElementById('pnl-mobile').innerHTML = '<div class="no-data">데이터 없음</div>'; return; }
+            
+            traders = [...traders];
+            if (pnlSortField) { traders.sort((a, b) => { const av = parseFloat(a[pnlSortField]) || 0, bv = parseFloat(b[pnlSortField]) || 0; return pnlSortDir === 'desc' ? bv - av : av - bv; }); }
+            
+            // Desktop table
+            document.getElementById('pnl-tbody').innerHTML = traders.map((t, i) => {
+                const name = t.displayName || fmt.addr(t.address), hasPos = t.positions?.length > 0, posCount = t.positions?.length || 0;
+                const badge = hasPos ? `<span class="pos-badge" onclick="togglePos(${i})"><span class="pos-count">📊 ${posCount}</span> 포지션 보기 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>` : '<span style="color:#3d3d4a;font-size:0.7rem">—</span>';
+                return `<tr><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="address"><a href="${getExplorerUrl(t.address)}" target="_blank">${name}</a></td><td>${fmt.usd(t.accountValue)}</td><td class="${t.pnl>=0?'positive':'negative'}">${fmt.usd(t.pnl)}</td><td class="${t.roi>=0?'positive':'negative'}">${fmt.pctDec(t.roi)}</td><td>${fmt.usd(t.volume)}</td><td>${badge}</td></tr>${hasPos?`<tr class="positions-row" id="pos-${i}"><td colspan="7"><div class="positions-content"><div class="positions-grid">${t.positions.map((p,pi) => `<div class="position-card" id="pcard-${i}-${pi}" onclick="openInlineChart(${i}, ${pi})"><div class="position-header"><span class="position-coin">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">${fmt.usd(p.positionValue)}</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">${p.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">${fmt.px(p.entryPx, p.coin)}</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</span></div></div><div class="position-hint">📈 차트 보기</div></div>`).join('')}</div><div class="inline-chart-section" id="chart-${i}"></div></div></td></tr>`:''}`;
+            }).join('');
+            
+            // Mobile cards
+            document.getElementById('pnl-mobile').innerHTML = traders.map((t, i) => {
+                const name = t.displayName || fmt.addr(t.address), hasPos = t.positions?.length > 0, posCount = t.positions?.length || 0;
+                return `<div class="m-card"><div class="m-card-top"><div class="m-card-top-left"><span class="rank ${i<3?'top3':''}">#${i+1}</span><span class="m-card-addr"><a href="${getExplorerUrl(t.address)}" target="_blank">${name}</a></span></div></div><div class="m-card-grid"><div class="m-card-item"><div class="m-card-label">계좌 가치</div><div class="m-card-val">${fmt.usd(t.accountValue)}</div></div><div class="m-card-item"><div class="m-card-label">수익 (PnL)</div><div class="m-card-val ${t.pnl>=0?'positive':'negative'}">${fmt.usd(t.pnl)}</div></div><div class="m-card-item"><div class="m-card-label">수익률</div><div class="m-card-val ${t.roi>=0?'positive':'negative'}">${fmt.pctDec(t.roi)}</div></div><div class="m-card-item"><div class="m-card-label">거래량</div><div class="m-card-val">${fmt.usd(t.volume)}</div></div></div>${hasPos?`<div class="m-card-footer"><div class="m-card-badge" onclick="toggleMobilePos(${i})"><span class="pos-count">📊 ${posCount}</span> 포지션 보기 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="m-card-positions" id="mpos-${i}"><div class="positions-grid">${t.positions.map((p,pi) => `<div class="position-card" id="mpcard-${i}-${pi}" onclick="openMobileInlineChart(${i}, ${pi})"><div class="position-header"><span class="position-coin">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">${fmt.usd(p.positionValue)}</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">${p.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">${fmt.px(p.entryPx, p.coin)}</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</span></div></div><div class="position-hint">📈 차트 보기</div></div>`).join('')}</div><div class="inline-chart-section" id="mchart-${i}"></div></div></div>`:''}</div>`;
+            }).join('');
+            
+            updateSortHeaders('pnl-table', pnlSortField, pnlSortDir);
+            // Rebind sort handlers
+            document.querySelectorAll('#pnl-table th.sortable').forEach(th => { th.onclick = () => sortPnL(th.dataset.sort); });
+        }
+
+        function toggleMobilePos(idx) { const el = document.getElementById(`mpos-${idx}`); const badge = el?.previousElementSibling; if (el) { el.classList.toggle('show'); badge?.classList.toggle('expanded'); } }
+
+        let mobileChartTraderIdx = null, mobileChartPosIdx = null;
+        function openMobileInlineChart(traderIdx, posIdx) {
+            const data = whaleData[currentWhaleDex];
+            let traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
+            if (pnlSortField) { traders = [...traders]; traders.sort((a, b) => { const av = parseFloat(a[pnlSortField]) || 0, bv = parseFloat(b[pnlSortField]) || 0; return pnlSortDir === 'desc' ? bv - av : av - bv; }); }
             if (!traders?.[traderIdx]?.positions?.[posIdx]) return;
-
-            // If clicking same card, toggle off
-            if (currentChartTraderIdx === traderIdx && currentChartPosIdx === posIdx) {
-                closeInlineChart();
-                return;
+            if (mobileChartTraderIdx === traderIdx && mobileChartPosIdx === posIdx) { closeMobileInlineChart(); return; }
+            if (mobileChartTraderIdx !== null) {
+                const prev = document.getElementById(`mchart-${mobileChartTraderIdx}`);
+                if (prev) { prev.classList.remove('show'); prev.innerHTML = ''; }
+                const pc = document.getElementById(`mpcard-${mobileChartTraderIdx}-${mobileChartPosIdx}`);
+                if (pc) pc.classList.remove('selected');
             }
-
-            // Close previous chart if open in different trader
-            if (currentChartTraderIdx !== null && currentChartTraderIdx !== traderIdx) {
-                const prevChart = document.getElementById(`chart-${currentChartTraderIdx}`);
-                if (prevChart) { prevChart.classList.remove('show'); prevChart.innerHTML = ''; }
-                const prevCard = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`);
-                if (prevCard) prevCard.classList.remove('selected');
-            }
-
-            // Deselect previous card in same trader
-            if (currentChartPosIdx !== null) {
-                const prevCard = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`);
-                if (prevCard) prevCard.classList.remove('selected');
-            }
-
-            currentChartTraderIdx = traderIdx;
-            currentChartPosIdx = posIdx;
-            currentPosition = traders[traderIdx].positions[posIdx];
-            currentTimeframe = '1h';
-            const p = currentPosition;
-
-            // Highlight selected card
-            const card = document.getElementById(`pcard-${traderIdx}-${posIdx}`);
+            mobileChartTraderIdx = traderIdx; mobileChartPosIdx = posIdx;
+            currentPosition = traders[traderIdx].positions[posIdx]; currentTimeframe = '1h';
+            const card = document.getElementById(`mpcard-${traderIdx}-${posIdx}`);
             if (card) card.classList.add('selected');
+            const container = document.getElementById(`mchart-${traderIdx}`);
+            renderInlineChartHTML(container, currentPosition, 'mobile');
+            container.classList.add('show');
+            setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+        }
+        function closeMobileInlineChart() {
+            if (mobileChartTraderIdx !== null) {
+                const c = document.getElementById(`mchart-${mobileChartTraderIdx}`); if (c) { c.classList.remove('show'); c.innerHTML = ''; }
+                const pc = document.getElementById(`mpcard-${mobileChartTraderIdx}-${mobileChartPosIdx}`); if (pc) pc.classList.remove('selected');
+            }
+            if (positionChart) { positionChart.destroy(); positionChart = null; }
+            currentPosition = null; mobileChartTraderIdx = null; mobileChartPosIdx = null;
+        }
 
-            // Build inline chart HTML
-            const container = document.getElementById(`chart-${traderIdx}`);
+        function renderBiggest() {
+            const data = whaleData[currentWhaleDex];
+            let pos = data?.whaleTracker?.biggestPositions || [];
+            if (!pos.length) { document.getElementById('biggest-tbody').innerHTML = '<tr><td colspan="9"><div class="no-data">데이터 없음</div></td></tr>'; document.getElementById('biggest-mobile').innerHTML = '<div class="no-data">데이터 없음</div>'; return; }
+            
+            pos = [...pos];
+            if (bigSortField) { pos.sort((a, b) => { const av = parseFloat(a[bigSortField]) || 0, bv = parseFloat(b[bigSortField]) || 0; return bigSortDir === 'desc' ? bv - av : av - bv; }); }
+            
+            // Desktop table
+            document.getElementById('biggest-tbody').innerHTML = pos.map((p, i) => {
+                return `<tr class="biggest-row" onclick="openBiggestChart(${i})"><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="coin-name">${p.coin}</td><td><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></td><td>${fmt.usd(p.positionValue)}</td><td>${fmt.num(p.size)}</td><td>${fmt.px(p.entryPx, p.coin)}</td><td>${p.leverage}x</td><td class="${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</td><td class="address"><a href="${getExplorerUrl(p.traderAddress)}" target="_blank" onclick="event.stopPropagation()">${p.traderName||fmt.addr(p.traderAddress)}</a></td></tr><tr class="biggest-chart-row" id="bigchart-${i}"><td colspan="9"><div class="positions-content"><div class="inline-chart-section" id="bigchartc-${i}"></div></div></td></tr>`;
+            }).join('');
+            
+            // Mobile cards
+            document.getElementById('biggest-mobile').innerHTML = pos.map((p, i) => {
+                return `<div class="m-card"><div class="m-biggest-top"><span class="rank ${i<3?'top3':''}">#${i+1}</span><span class="coin-name" style="font-size:0.9rem">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span><span style="color:#8b8b9a;font-size:0.75rem">${p.leverage}x</span></div><div class="m-card-grid"><div class="m-card-item"><div class="m-card-label">포지션 가치</div><div class="m-card-val">${fmt.usd(p.positionValue)}</div></div><div class="m-card-item"><div class="m-card-label">진입가</div><div class="m-card-val">${fmt.px(p.entryPx, p.coin)}</div></div><div class="m-card-item"><div class="m-card-label">미실현 PnL</div><div class="m-card-val ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</div></div><div class="m-card-item"><div class="m-card-label">트레이더</div><div class="m-card-val"><a href="${getExplorerUrl(p.traderAddress)}" target="_blank" style="color:#22d3ee;text-decoration:none;font-size:0.7rem">${p.traderName||fmt.addr(p.traderAddress)}</a></div></div></div><div class="m-card-chart-btn" onclick="openBiggestMobileChart(${i})">📈 차트 보기</div><div class="inline-chart-section" id="mbigchartc-${i}"></div></div>`;
+            }).join('');
+            
+            updateSortHeaders('biggest-table', bigSortField, bigSortDir);
+            document.querySelectorAll('#biggest-table th.sortable').forEach(th => { th.onclick = () => sortBig(th.dataset.sort); });
+        }
+
+        function openBiggestChart(idx) {
+            const data = whaleData[currentWhaleDex];
+            let pos = data?.whaleTracker?.biggestPositions || [];
+            if (bigSortField) { pos = [...pos]; pos.sort((a, b) => { const av = parseFloat(a[bigSortField]) || 0, bv = parseFloat(b[bigSortField]) || 0; return bigSortDir === 'desc' ? bv - av : av - bv; }); }
+            if (!pos[idx]) return;
+            // Toggle off
+            if (currentBigIdx === idx) { closeBiggestChart(); return; }
+            // Close previous
+            if (currentBigIdx !== null) { closeBiggestChart(); }
+            currentBigIdx = idx;
+            currentPosition = { coin: pos[idx].coin, direction: pos[idx].direction, positionValue: pos[idx].positionValue, entryPx: pos[idx].entryPx, leverage: pos[idx].leverage, unrealizedPnl: pos[idx].unrealizedPnl };
+            currentTimeframe = '1h';
+            // Highlight row
+            const rows = document.querySelectorAll('.biggest-row'); rows[idx]?.classList.add('selected');
+            const chartRow = document.getElementById(`bigchart-${idx}`);
+            const container = document.getElementById(`bigchartc-${idx}`);
+            renderInlineChartHTML(container, currentPosition, 'biggest');
+            container.classList.add('show');
+            chartRow.classList.add('show');
+            setTimeout(() => chartRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+        }
+        function closeBiggestChart() {
+            if (currentBigIdx !== null) {
+                const rows = document.querySelectorAll('.biggest-row'); rows[currentBigIdx]?.classList.remove('selected');
+                const chartRow = document.getElementById(`bigchart-${currentBigIdx}`); if (chartRow) chartRow.classList.remove('show');
+                const container = document.getElementById(`bigchartc-${currentBigIdx}`); if (container) { container.classList.remove('show'); container.innerHTML = ''; }
+            }
+            if (positionChart) { positionChart.destroy(); positionChart = null; }
+            currentPosition = null; currentBigIdx = null;
+        }
+
+        function openBiggestMobileChart(idx) {
+            const data = whaleData[currentWhaleDex];
+            let pos = data?.whaleTracker?.biggestPositions || [];
+            if (bigSortField) { pos = [...pos]; pos.sort((a, b) => { const av = parseFloat(a[bigSortField]) || 0, bv = parseFloat(b[bigSortField]) || 0; return bigSortDir === 'desc' ? bv - av : av - bv; }); }
+            if (!pos[idx]) return;
+            if (currentBigIdx === idx) { closeBiggestChart(); return; }
+            if (currentBigIdx !== null) { const prev = document.getElementById(`mbigchartc-${currentBigIdx}`); if (prev) { prev.classList.remove('show'); prev.innerHTML = ''; } }
+            currentBigIdx = idx;
+            currentPosition = { coin: pos[idx].coin, direction: pos[idx].direction, positionValue: pos[idx].positionValue, entryPx: pos[idx].entryPx, leverage: pos[idx].leverage, unrealizedPnl: pos[idx].unrealizedPnl };
+            currentTimeframe = '1h';
+            const container = document.getElementById(`mbigchartc-${idx}`);
+            renderInlineChartHTML(container, currentPosition, 'mbiggest');
+            container.classList.add('show');
+            setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+        }
+
+        function renderInlineChartHTML(container, p, prefix) {
+            const id = prefix + '-' + Date.now();
             container.innerHTML = `
                 <div class="inline-chart-header">
-                    <div class="inline-chart-title">
-                        <span class="inline-chart-coin">${p.coin}</span>
-                        <span class="inline-chart-dir ${p.direction.toLowerCase()}">${p.direction === 'Long' ? 'LONG' : 'SHORT'}</span>
-                    </div>
+                    <div class="inline-chart-title"><span class="inline-chart-coin">${p.coin}</span><span class="inline-chart-dir ${p.direction.toLowerCase()}">${p.direction === 'Long' ? 'LONG' : 'SHORT'}</span></div>
                     <div style="display:flex;gap:4px;align-items:center;">
-                        <button class="inline-tf-btn" data-tf="5m">5m</button>
-                        <button class="inline-tf-btn" data-tf="15m">15m</button>
-                        <button class="inline-tf-btn active" data-tf="1h">1h</button>
-                        <button class="inline-tf-btn" data-tf="4h">4h</button>
-                        <button class="inline-tf-btn" data-tf="1D">1D</button>
-                        <button class="inline-chart-close" onclick="closeInlineChart()">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                        </button>
+                        <button class="inline-tf-btn" data-tf="5m">5m</button><button class="inline-tf-btn" data-tf="15m">15m</button><button class="inline-tf-btn active" data-tf="1h">1h</button><button class="inline-tf-btn" data-tf="4h">4h</button><button class="inline-tf-btn" data-tf="1D">1D</button>
+                        <button class="inline-chart-close" onclick="closeAllCharts()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                     </div>
                 </div>
                 <div class="inline-chart-stats">
@@ -483,30 +608,48 @@
                     <div class="inline-chart-stat"><div class="inline-chart-stat-label">레버리지</div><div class="inline-chart-stat-value">${p.leverage}x</div></div>
                     <div class="inline-chart-stat"><div class="inline-chart-stat-label">미실현 PnL</div><div class="inline-chart-stat-value ${p.unrealizedPnl >= 0 ? 'positive' : 'negative'}">${fmt.usd(p.unrealizedPnl)}</div></div>
                 </div>
-                <div class="inline-chart-body">
-                    <canvas id="inline-pos-chart"></canvas>
-                    <div class="inline-chart-loading" id="inline-loading"><div class="loading-spinner"></div>차트 로딩 중...</div>
-                </div>
-                <div class="inline-chart-legend">
-                    <div class="inline-chart-legend-item"><div class="inline-chart-legend-line entry"></div>진입가</div>
-                    <div class="inline-chart-legend-item"><div class="inline-chart-legend-line current"></div>현재가</div>
-                </div>`;
-            container.classList.add('show');
-
-            // Bind timeframe buttons
-            container.querySelectorAll('.inline-tf-btn').forEach(btn => {
-                btn.onclick = (e) => {
-                    e.stopPropagation();
-                    container.querySelectorAll('.inline-tf-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentTimeframe = btn.dataset.tf;
-                    loadInlineChart();
-                };
-            });
-
+                <div class="inline-chart-body"><canvas id="inline-pos-chart"></canvas><div class="inline-chart-loading" id="inline-loading"><div class="loading-spinner"></div>차트 로딩 중...</div></div>
+                <div class="inline-chart-legend"><div class="inline-chart-legend-item"><div class="inline-chart-legend-line entry"></div>진입가</div><div class="inline-chart-legend-item"><div class="inline-chart-legend-line current"></div>현재가</div></div>`;
+            container.querySelectorAll('.inline-tf-btn').forEach(btn => { btn.onclick = (e) => { e.stopPropagation(); container.querySelectorAll('.inline-tf-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentTimeframe = btn.dataset.tf; loadInlineChart(); }; });
             loadInlineChart();
+        }
 
-            // Scroll chart into view
+        function closeAllCharts() { closeInlineChart(); closeMobileInlineChart(); closeBiggestChart(); }
+        function getPosAgg() { const data = whaleData[currentWhaleDex]; if (!data?.positionAggregation) return []; if (posData === 'pnl') return posPeriod === 'daily' ? data.positionAggregation.byPnlDaily : data.positionAggregation.byPnlWeekly; return data.positionAggregation.bySize; }
+        function renderPosChart() { const agg = getPosAgg(); if (!agg?.length) { document.getElementById('pos-chart').innerHTML = '<div class="no-data">데이터 없음</div>'; return; } const useVal = posUnit === 'value'; const max = Math.max(...agg.map(d => Math.max(useVal?d.long:d.longSize, useVal?d.short:d.shortSize))); document.getElementById('pos-chart').innerHTML = agg.map(d => { const lv = useVal?d.long:d.longSize, sv = useVal?d.short:d.shortSize; const lw = max>0?(lv/max)*100:0, sw = max>0?(sv/max)*100:0; return `<div class="bar-row"><div class="bar-label">${d.coin}</div><div class="bar-container"><div class="bar-negative"><div class="bar short" style="width:${sw}%">${sv>0?(useVal?fmt.usd(sv):fmt.num(sv)):''}</div></div><div class="bar-positive"><div class="bar long" style="width:${lw}%">${lv>0?(useVal?fmt.usd(lv):fmt.num(lv)):''}</div></div></div></div>`; }).join(''); }
+
+        function togglePos(idx) { const row = document.getElementById(`pos-${idx}`); const badge = row?.previousElementSibling?.querySelector('.pos-badge'); if (row) { const wasOpen = row.classList.contains('show'); row.classList.toggle('show'); badge?.classList.toggle('expanded'); if (wasOpen && currentChartTraderIdx === idx) { closeInlineChart(); } } }
+        let currentChartTraderIdx = null, currentChartPosIdx = null;
+
+        function getSortedTraders() {
+            const data = whaleData[currentWhaleDex];
+            let traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
+            if (!traders) return null;
+            if (pnlSortField) { traders = [...traders]; traders.sort((a, b) => { const av = parseFloat(a[pnlSortField]) || 0, bv = parseFloat(b[pnlSortField]) || 0; return pnlSortDir === 'desc' ? bv - av : av - bv; }); }
+            return traders;
+        }
+
+        function openInlineChart(traderIdx, posIdx) {
+            const traders = getSortedTraders();
+            if (!traders?.[traderIdx]?.positions?.[posIdx]) return;
+            if (currentChartTraderIdx === traderIdx && currentChartPosIdx === posIdx) { closeInlineChart(); return; }
+            if (currentChartTraderIdx !== null && currentChartTraderIdx !== traderIdx) {
+                const prevChart = document.getElementById(`chart-${currentChartTraderIdx}`);
+                if (prevChart) { prevChart.classList.remove('show'); prevChart.innerHTML = ''; }
+                const prevCard = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`);
+                if (prevCard) prevCard.classList.remove('selected');
+            }
+            if (currentChartPosIdx !== null) {
+                const prevCard = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`);
+                if (prevCard) prevCard.classList.remove('selected');
+            }
+            currentChartTraderIdx = traderIdx; currentChartPosIdx = posIdx;
+            currentPosition = traders[traderIdx].positions[posIdx]; currentTimeframe = '1h';
+            const card = document.getElementById(`pcard-${traderIdx}-${posIdx}`);
+            if (card) card.classList.add('selected');
+            const container = document.getElementById(`chart-${traderIdx}`);
+            renderInlineChartHTML(container, currentPosition, 'desktop');
+            container.classList.add('show');
             setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
         }
 
@@ -518,9 +661,7 @@
                 if (card) card.classList.remove('selected');
             }
             if (positionChart) { positionChart.destroy(); positionChart = null; }
-            currentPosition = null;
-            currentChartTraderIdx = null;
-            currentChartPosIdx = null;
+            currentPosition = null; currentChartTraderIdx = null; currentChartPosIdx = null;
         }
 
         async function loadInlineChart() {
