@@ -230,6 +230,15 @@
         
         .tooltip { position: fixed; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 8px 12px; font-size: 0.75rem; color: #e4e4e7; pointer-events: none; z-index: 2000; display: none; max-width: 250px; }
         
+        /* Sentiment */
+        .sent-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .sent-stat { background: #1e1e26; border-radius: 8px; padding: 12px; text-align: center; }
+        .sent-stat-label { font-size: 0.65rem; color: #8b8b9a; margin-bottom: 4px; }
+        .sent-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; }
+        .sent-chart-box { background: #1e1e26; border-radius: 8px; padding: 16px; }
+        .sent-chart-wrapper { height: 380px; position: relative; }
+        @media (max-width: 768px) { .sent-chart-wrapper { height: 280px; } }
+        
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main-content { margin-left: 0; padding: 16px; }
@@ -252,6 +261,7 @@
             <li class="nav-item" data-section="funding"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>펀딩비</li>
             <li class="nav-item" data-section="liquidation"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>청산 지도</li>
             <li class="nav-item" data-section="whales"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>고래 추적기</li>
+            <li class="nav-item" data-section="sentiment"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>고래 센티먼트</li>
         </ul>
     </nav>
 
@@ -388,6 +398,68 @@
             <div class="sub-tabs"><button class="sub-tab active" data-tab="pnl">📈 PnL 상위 트레이더</button><button class="sub-tab" data-tab="biggest">💎 최대 포지션 (OI)</button></div>
             <div id="pnl-section"><div class="card"><div class="card-header"><h3 class="card-title">PnL 상위 500</h3><div class="tabs" id="trader-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div></div><div class="table-container has-mobile"><table id="pnl-table"><thead><tr><th>순위</th><th>트레이더</th><th class="sortable" data-sort="accountValue">계좌 가치</th><th class="sortable" data-sort="pnl">수익 (PnL)</th><th class="sortable" data-sort="roi">수익률</th><th class="sortable" data-sort="volume">거래량</th><th>포지션</th></tr></thead><tbody id="pnl-tbody"><tr><td colspan="7"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div><div class="mobile-cards" id="pnl-mobile"></div></div></div>
             <div id="biggest-section" style="display:none;"><div class="card"><div class="card-header"><h3 class="card-title">최대 포지션 상위 500 <span style="font-size:0.7rem;color:#22d3ee;font-weight:400;margin-left:8px">클릭해서 차트를 보세요</span></h3></div><div class="table-container has-mobile"><table id="biggest-table"><thead><tr><th>순위</th><th>코인</th><th>방향</th><th class="sortable" data-sort="positionValue">포지션 가치</th><th class="sortable" data-sort="size">수량</th><th>진입가</th><th class="sortable" data-sort="leverage">레버리지</th><th class="sortable" data-sort="unrealizedPnl">미실현 PnL</th><th>트레이더</th></tr></thead><tbody id="biggest-tbody"><tr><td colspan="9"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div><div class="mobile-cards" id="biggest-mobile"></div></div></div>
+        </section>
+
+        <!-- Sentiment Section -->
+        <section id="sentiment" class="section">
+            <div class="page-header"><h1>📈 고래 센티먼트</h1><p>상위 트레이더들의 롱/숏 포지션 변화와 가격 추이</p></div>
+            
+            <div class="guide-section">
+                <div class="guide-header" onclick="toggleSentimentGuide()">
+                    <div class="guide-title">💡 고래 센티먼트 활용 가이드</div>
+                    <div class="guide-toggle"><span id="sentiment-guide-toggle-text">펼치기</span><svg id="sentiment-guide-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+                </div>
+                <div class="guide-content" id="sentiment-guide-content">
+                    <div class="guide-grid">
+                        <div class="guide-card"><div class="guide-card-title">🐋 고래 롱 비율이란?</div><div class="guide-card-content">PnL 상위 500 트레이더 중 해당 코인에 <strong class="bullish">롱</strong> 포지션을 보유한 비율입니다.<br>70% 이상이면 강한 매수 심리를 의미합니다.</div></div>
+                        <div class="guide-card"><div class="guide-card-title">🧠 스마트머니 (Top 50)</div><div class="guide-card-content">PnL 상위 50명은 <strong>수익률이 검증된</strong> 트레이더입니다.<br>이들의 포지션 변화는 전체 500명보다 더 강한 시그널일 수 있습니다.</div></div>
+                        <div class="guide-card"><div class="guide-card-title">📊 가격과 비교하기</div><div class="guide-card-content">고래 롱 비율이 <strong>먼저 상승</strong>하고 가격이 따라오면<br>→ 고래가 가격 움직임을 <strong class="bullish">선행</strong>한 것!<br>데이터가 쌓일수록 패턴이 보입니다.</div></div>
+                        <div class="guide-card"><div class="guide-card-title">⏳ 데이터 축적</div><div class="guide-card-content">매일 07:00 KST에 스냅샷이 기록됩니다.<br>최소 <strong>2주</strong> 이상 쌓여야 트렌드가 의미 있어요.<br>꾸준히 확인해보세요!</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">코인별 고래 센티먼트</h3>
+                    <div class="controls-row">
+                        <div class="tabs" id="sent-coin-tabs">
+                            <button class="tab active" data-coin="BTC">BTC</button>
+                            <button class="tab" data-coin="ETH">ETH</button>
+                            <button class="tab" data-coin="SOL">SOL</button>
+                            <button class="tab" data-coin="HYPE">HYPE</button>
+                        </div>
+                        <div class="tabs" id="sent-group-tabs">
+                            <button class="tab active" data-group="top500">전체 500</button>
+                            <button class="tab" data-group="top50">스마트머니 50</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sent-stats" id="sent-stats"></div>
+                
+                <div class="sent-chart-box">
+                    <div class="sent-chart-wrapper">
+                        <canvas id="sent-chart"></canvas>
+                    </div>
+                    <div id="sent-no-data" class="no-data" style="display:none;">
+                        <div style="font-size:2rem;margin-bottom:10px">📊</div>
+                        데이터 수집이 시작되었습니다.<br>
+                        <span style="color:#22d3ee">매일 07:00 KST</span>에 스냅샷이 기록됩니다.<br>
+                        최소 2일 이상 쌓이면 차트가 표시됩니다.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header"><h3 class="card-title">📋 일별 상세 데이터</h3></div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>날짜</th><th>가격</th><th>롱 수</th><th>숏 수</th><th>롱 비율</th><th>롱 금액</th><th>숏 금액</th><th>금액 롱비율</th></tr></thead>
+                        <tbody id="sent-tbody"><tr><td colspan="8"><div class="no-data">데이터 수집 중...</div></td></tr></tbody>
+                    </table>
+                </div>
+            </div>
         </section>
 
         <div class="last-updated" id="last-updated"></div>
@@ -707,7 +779,135 @@
         document.querySelectorAll('#liq-data-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#liq-data-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); liqDataMode = t.dataset.v; document.getElementById('liq-period-tabs').style.display = liqDataMode === 'pnl' ? 'flex' : 'none'; populateLiqCoins(); }; });
         document.querySelectorAll('#liq-period-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#liq-period-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); liqPeriod = t.dataset.v; populateLiqCoins(); }; });
 
-        async function init() { await Promise.all([loadWhaleData('hyperliquid'), loadLiqData('hyperliquid')]); fetchLive(); }
+        // === Sentiment Section ===
+        let sentHistory = [], sentCoin = 'BTC', sentGroup = 'top500', sentChart = null;
+        let sentimentGuideExpanded = false;
+        function toggleSentimentGuide() { sentimentGuideExpanded = !sentimentGuideExpanded; document.getElementById('sentiment-guide-content').classList.toggle('show', sentimentGuideExpanded); document.getElementById('sentiment-guide-toggle-text').textContent = sentimentGuideExpanded ? '접기' : '펼치기'; document.getElementById('sentiment-guide-arrow').style.transform = sentimentGuideExpanded ? 'rotate(180deg)' : 'rotate(0deg)'; }
+
+        async function loadSentiment() {
+            try {
+                const r = await fetch('data/history.json');
+                if (!r.ok) throw new Error('No history');
+                sentHistory = await r.json();
+            } catch(e) { sentHistory = []; }
+            renderSentiment();
+        }
+
+        async function renderSentiment() {
+            const data = sentHistory.filter(d => d[sentCoin]);
+            const noDataEl = document.getElementById('sent-no-data');
+            const chartWrapper = document.querySelector('.sent-chart-wrapper');
+            
+            if (data.length < 1) {
+                noDataEl.style.display = 'block';
+                chartWrapper.style.display = 'none';
+                document.getElementById('sent-stats').innerHTML = '';
+                document.getElementById('sent-tbody').innerHTML = '<tr><td colspan="8"><div class="no-data">데이터 수집 중... 매일 07:00 KST에 업데이트됩니다.</div></td></tr>';
+                return;
+            }
+            noDataEl.style.display = 'none';
+            chartWrapper.style.display = 'block';
+
+            const groupKey = sentGroup === 'top50' ? 'top50' : 'top500';
+            
+            // Latest stats
+            const latest = data[data.length - 1];
+            const c = latest[sentCoin];
+            const g = c[groupKey];
+            const totalCount = g.longCount + g.shortCount;
+            const longPct = totalCount > 0 ? (g.longCount / totalCount * 100) : 0;
+            const totalVal = g.longVal + g.shortVal;
+            const longValPct = totalVal > 0 ? (g.longVal / totalVal * 100) : 0;
+            
+            const prev = data.length >= 2 ? data[data.length - 2] : null;
+            let pctChange = '';
+            if (prev && prev[sentCoin]) {
+                const pg = prev[sentCoin][groupKey];
+                const prevTotal = pg.longCount + pg.shortCount;
+                const prevPct = prevTotal > 0 ? (pg.longCount / prevTotal * 100) : 0;
+                const diff = longPct - prevPct;
+                pctChange = diff !== 0 ? `<span class="${diff > 0 ? 'positive' : 'negative'}" style="font-size:0.7rem;margin-left:4px">${diff > 0 ? '▲' : '▼'}${Math.abs(diff).toFixed(1)}%p</span>` : '';
+            }
+
+            document.getElementById('sent-stats').innerHTML = `
+                <div class="sent-stat"><div class="sent-stat-label">현재 가격</div><div class="sent-stat-value" style="color:#22d3ee">${fmt.px(c.price, sentCoin)}</div></div>
+                <div class="sent-stat"><div class="sent-stat-label">롱 비율 (수)</div><div class="sent-stat-value ${longPct >= 50 ? 'positive' : 'negative'}">${longPct.toFixed(1)}%${pctChange}</div></div>
+                <div class="sent-stat"><div class="sent-stat-label">롱 비율 (금액)</div><div class="sent-stat-value ${longValPct >= 50 ? 'positive' : 'negative'}">${longValPct.toFixed(1)}%</div></div>
+                <div class="sent-stat"><div class="sent-stat-label">롱 / 숏</div><div class="sent-stat-value" style="color:#e4e4e7;font-size:0.85rem"><span class="positive">${g.longCount}</span> / <span class="negative">${g.shortCount}</span></div></div>
+                <div class="sent-stat"><div class="sent-stat-label">기록일수</div><div class="sent-stat-value" style="color:#8b8b9a">${data.length}일</div></div>`;
+
+            // Table
+            const tableRows = [...data].reverse().map(d => {
+                const cd = d[sentCoin]; const gd = cd[groupKey];
+                const tc = gd.longCount + gd.shortCount;
+                const lp = tc > 0 ? (gd.longCount / tc * 100) : 0;
+                const tv = gd.longVal + gd.shortVal;
+                const lvp = tv > 0 ? (gd.longVal / tv * 100) : 0;
+                return `<tr><td>${d.date}</td><td>${fmt.px(cd.price, sentCoin)}</td><td class="positive">${gd.longCount}</td><td class="negative">${gd.shortCount}</td><td class="${lp >= 50 ? 'positive' : 'negative'}">${lp.toFixed(1)}%</td><td class="positive">${fmt.usd(gd.longVal)}</td><td class="negative">${fmt.usd(gd.shortVal)}</td><td class="${lvp >= 50 ? 'positive' : 'negative'}">${lvp.toFixed(1)}%</td></tr>`;
+            }).join('');
+            document.getElementById('sent-tbody').innerHTML = tableRows || '<tr><td colspan="8"><div class="no-data">데이터 없음</div></td></tr>';
+
+            // Chart - dual Y axis
+            const labels = data.map(d => { const dt = new Date(d.date); return `${dt.getMonth()+1}/${dt.getDate()}`; });
+            const prices = data.map(d => d[sentCoin].price);
+            const longRatios = data.map(d => {
+                const gd = d[sentCoin][groupKey];
+                const tc = gd.longCount + gd.shortCount;
+                return tc > 0 ? (gd.longCount / tc * 100) : 50;
+            });
+
+            if (sentChart) sentChart.destroy();
+            const ctx = document.getElementById('sent-chart').getContext('2d');
+            sentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: sentCoin + ' 가격', data: prices, borderColor: '#22d3ee', backgroundColor: 'rgba(34, 211, 238, 0.08)', borderWidth: 2, fill: true, tension: 0.3, pointRadius: data.length > 30 ? 0 : 4, pointHoverRadius: 5, pointBackgroundColor: '#22d3ee', yAxisID: 'yPrice' },
+                        { label: '고래 롱 비율 (%)', data: longRatios, borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.1)', borderWidth: 2, fill: true, tension: 0.3, pointRadius: data.length > 30 ? 0 : 4, pointHoverRadius: 5, pointBackgroundColor: '#f59e0b', borderDash: [4, 2], yAxisID: 'yRatio' }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    interaction: { intersect: false, mode: 'index' },
+                    plugins: {
+                        legend: { display: true, position: 'top', labels: { color: '#8b8b9a', font: { size: 11 }, usePointStyle: true, pointStyle: 'line' } },
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.yAxisID === 'yPrice' ? sentCoin + ': ' + fmt.px(ctx.raw, sentCoin) : '롱 비율: ' + ctx.raw.toFixed(1) + '%' } }
+                    },
+                    scales: {
+                        x: { grid: { color: '#1e1e26' }, ticks: { color: '#71717a', font: { size: 10 }, maxTicksLimit: 12 } },
+                        yPrice: { type: 'linear', position: 'left', grid: { color: '#1e1e26' }, ticks: { color: '#22d3ee', font: { size: 10 }, callback: v => fmt.px(v, sentCoin) }, title: { display: true, text: '가격', color: '#22d3ee', font: { size: 11 } } },
+                        yRatio: { type: 'linear', position: 'right', min: 0, max: 100, grid: { display: false }, ticks: { color: '#f59e0b', font: { size: 10 }, callback: v => v + '%' }, title: { display: true, text: '롱 비율 (%)', color: '#f59e0b', font: { size: 11 } } }
+                    }
+                },
+                plugins: [{
+                    id: 'sentimentZone',
+                    beforeDraw: function(chart) {
+                        const ctx = chart.ctx;
+                        const yRatio = chart.scales.yRatio;
+                        const xAxis = chart.scales.x;
+                        const y50 = yRatio.getPixelForValue(50);
+                        // Bearish zone (below 50%)
+                        ctx.save();
+                        ctx.fillStyle = 'rgba(248, 113, 113, 0.04)';
+                        ctx.fillRect(xAxis.left, y50, xAxis.right - xAxis.left, yRatio.bottom - y50);
+                        // Bullish zone (above 50%)
+                        ctx.fillStyle = 'rgba(74, 222, 128, 0.04)';
+                        ctx.fillRect(xAxis.left, yRatio.top, xAxis.right - xAxis.left, y50 - yRatio.top);
+                        // 50% line
+                        ctx.beginPath(); ctx.setLineDash([3, 3]); ctx.strokeStyle = '#3d3d4a'; ctx.lineWidth = 1;
+                        ctx.moveTo(xAxis.left, y50); ctx.lineTo(xAxis.right, y50); ctx.stroke();
+                        ctx.restore();
+                    }
+                }]
+            });
+        }
+
+        // Sentiment tab handlers
+        document.querySelectorAll('#sent-coin-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#sent-coin-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); sentCoin = t.dataset.coin; renderSentiment(); }; });
+        document.querySelectorAll('#sent-group-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#sent-group-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); sentGroup = t.dataset.group; renderSentiment(); }; });
+
+        async function init() { await Promise.all([loadWhaleData('hyperliquid'), loadLiqData('hyperliquid'), loadSentiment()]); fetchLive(); }
         setInterval(fetchLive, 30000);
         init();
     </script>
