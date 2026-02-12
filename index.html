@@ -53,8 +53,6 @@
         .dex-tab { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; border: 1px solid #2a2a35; background: #16161d; color: #8b8b9a; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
         .dex-tab:hover { border-color: #3d3d4a; color: #c1c1ca; }
         .dex-tab.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
-        .dex-tab.active[data-dex="drift"] { border-color: #a855f7; background: rgba(168, 85, 247, 0.15); color: #a855f7; }
-        .dex-tab.active[data-dex="gmx"] { border-color: #3b82f6; background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
         .dex-tab img { width: 20px; height: 20px; border-radius: 50%; }
         .dex-tab .dex-name { font-weight: 600; }
         
@@ -255,21 +253,13 @@
 
         <!-- Liquidation Map -->
         <section id="liquidation" class="section">
-            <div class="page-header"><h1>⚠️ 청산 지도</h1><p>Top 200 트레이더 기준 청산 가격 분포</p></div>
+            <div class="page-header"><h1>⚠️ 청산 지도</h1><p>Top 500 트레이더 기준 청산 가격 분포</p></div>
             
             <!-- DEX Tabs for Liquidation -->
             <div class="dex-tabs" id="liq-dex-tabs">
                 <button class="dex-tab active" data-dex="hyperliquid">
                     <img src="https://app.hyperliquid.xyz/favicon.ico" alt="HL" onerror="this.style.display='none'">
                     <span class="dex-name">Hyperliquid</span>
-                </button>
-                <button class="dex-tab" data-dex="drift">
-                    <img src="https://app.drift.trade/favicon.ico" alt="Drift" onerror="this.style.display='none'">
-                    <span class="dex-name">Drift</span>
-                </button>
-                <button class="dex-tab" data-dex="gmx">
-                    <img src="https://app.gmx.io/favicon.ico" alt="GMX" onerror="this.style.display='none'">
-                    <span class="dex-name">GMX</span>
                 </button>
             </div>
             
@@ -321,14 +311,6 @@
                     <img src="https://app.hyperliquid.xyz/favicon.ico" alt="HL" onerror="this.style.display='none'">
                     <span class="dex-name">Hyperliquid</span>
                 </button>
-                <button class="dex-tab" data-dex="drift">
-                    <img src="https://app.drift.trade/favicon.ico" alt="Drift" onerror="this.style.display='none'">
-                    <span class="dex-name">Drift</span>
-                </button>
-                <button class="dex-tab" data-dex="gmx">
-                    <img src="https://app.gmx.io/favicon.ico" alt="GMX" onerror="this.style.display='none'">
-                    <span class="dex-name">GMX</span>
-                </button>
             </div>
             
             <!-- Whale Tracker Guide -->
@@ -340,7 +322,7 @@
                 <div class="guide-content" id="whale-guide-content">
                     <div class="guide-grid">
                         <div class="guide-card"><div class="guide-card-title">📊 포지션 집계 차트</div><div class="guide-card-content">상위 트레이더들의 포지션을 코인별로 집계합니다.<br><strong class="bullish">오른쪽(롱)</strong> vs <strong class="bearish">왼쪽(숏)</strong><br>고래들이 어떤 코인에 베팅하는지 파악하세요.</div></div>
-                        <div class="guide-card"><div class="guide-card-title">📈 PnL vs 포지션 사이즈</div><div class="guide-card-content"><strong>PnL 상위 200</strong>: 수익 기준 정렬<br>→ 실력 있는 트레이더 추적<br><strong>포지션 사이즈 기준</strong>: 규모 기준<br>→ 자금력 있는 트레이더 추적</div></div>
+                        <div class="guide-card"><div class="guide-card-title">📈 PnL vs 포지션 사이즈</div><div class="guide-card-content"><strong>PnL 상위 500</strong>: 수익 기준 정렬<br>→ 실력 있는 트레이더 추적<br><strong>포지션 사이즈 기준</strong>: 규모 기준<br>→ 자금력 있는 트레이더 추적</div></div>
                         <div class="guide-card"><div class="guide-card-title">🔍 트레이더 상세 보기</div><div class="guide-card-content">테이블에서 <strong>▼ 버튼</strong>을 클릭하면<br>해당 트레이더의 개별 포지션이 펼쳐집니다.<br>각 포지션의 코인, 방향, 진입가를 확인하세요.</div></div>
                         <div class="guide-card"><div class="guide-card-title">📉 진입가 차트 보기</div><div class="guide-card-content">펼쳐진 <strong>포지션 카드를 클릭</strong>하면<br>가격 차트와 함께 <strong class="bearish">진입가 라인</strong>이 표시됩니다.<br>고래가 어디서 진입했는지 시각적으로 확인!</div></div>
                     </div>
@@ -351,7 +333,7 @@
                 <div class="card-header">
                     <h3 class="card-title">📊 탑 트레이더 포지션 집계</h3>
                     <div class="controls-row">
-                        <div class="tabs" id="pos-data-tabs"><button class="tab active" data-v="pnl">PnL 상위 200</button><button class="tab" data-v="size">상위 200 포지션 사이즈</button></div>
+                        <div class="tabs" id="pos-data-tabs"><button class="tab active" data-v="pnl">PnL 상위 500</button><button class="tab" data-v="size">상위 500 포지션 사이즈</button></div>
                         <div class="tabs" id="pos-period-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div>
                         <div class="tabs" id="pos-unit-tabs"><button class="tab active" data-v="value">금액($)</button><button class="tab" data-v="size">수량</button></div>
                     </div>
@@ -360,8 +342,8 @@
                 <div class="chart-container"><div id="pos-chart" class="bar-chart"></div></div>
             </div>
             <div class="sub-tabs"><button class="sub-tab active" data-tab="pnl">📈 PnL 상위 트레이더</button><button class="sub-tab" data-tab="biggest">💎 최대 포지션 (OI)</button></div>
-            <div id="pnl-section"><div class="card"><div class="card-header"><h3 class="card-title">PnL 상위 200</h3><div class="tabs" id="trader-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div></div><div class="table-container"><table><thead><tr><th>순위</th><th>트레이더</th><th>계좌 가치</th><th>수익 (PnL)</th><th>수익률</th><th>거래량</th><th></th></tr></thead><tbody id="pnl-tbody"><tr><td colspan="7"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div></div></div>
-            <div id="biggest-section" style="display:none;"><div class="card"><div class="card-header"><h3 class="card-title">최대 포지션 상위 200</h3></div><div class="table-container"><table><thead><tr><th>순위</th><th>코인</th><th>방향</th><th>포지션 가치</th><th>수량</th><th>진입가</th><th>레버리지</th><th>미실현 PnL</th><th>트레이더</th></tr></thead><tbody id="biggest-tbody"><tr><td colspan="9"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div></div></div>
+            <div id="pnl-section"><div class="card"><div class="card-header"><h3 class="card-title">PnL 상위 500</h3><div class="tabs" id="trader-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div></div><div class="table-container"><table><thead><tr><th>순위</th><th>트레이더</th><th>계좌 가치</th><th>수익 (PnL)</th><th>수익률</th><th>거래량</th><th></th></tr></thead><tbody id="pnl-tbody"><tr><td colspan="7"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div></div></div>
+            <div id="biggest-section" style="display:none;"><div class="card"><div class="card-header"><h3 class="card-title">최대 포지션 상위 500</h3></div><div class="table-container"><table><thead><tr><th>순위</th><th>코인</th><th>방향</th><th>포지션 가치</th><th>수량</th><th>진입가</th><th>레버리지</th><th>미실현 PnL</th><th>트레이더</th></tr></thead><tbody id="biggest-tbody"><tr><td colspan="9"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div></div></div>
         </section>
 
         <div class="last-updated" id="last-updated"></div>
@@ -409,9 +391,7 @@
     <script>
         // DEX Configuration
         const DEX_CONFIG = {
-            hyperliquid: { name: 'Hyperliquid', whaleFile: 'data/hyperliquid_whales.json', liqFile: 'data/hyperliquid_liq.json', explorerUrl: 'https://app.hyperliquid.xyz/explorer/address/', color: '#22d3ee' },
-            drift: { name: 'Drift', whaleFile: 'data/drift_whales.json', liqFile: 'data/drift_liq.json', explorerUrl: 'https://app.drift.trade/?userAccount=', color: '#a855f7' },
-            gmx: { name: 'GMX', whaleFile: 'data/gmx_whales.json', liqFile: 'data/gmx_liq.json', explorerUrl: 'https://arbiscan.io/address/', color: '#3b82f6' }
+            hyperliquid: { name: 'Hyperliquid', whaleFile: 'data/hyperliquid_whales.json', liqFile: 'data/hyperliquid_liq.json', explorerUrl: 'https://app.hyperliquid.xyz/explorer/address/', color: '#22d3ee' }
         };
 
         let currentWhaleDex = 'hyperliquid', currentLiqDex = 'hyperliquid';
