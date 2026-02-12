@@ -155,33 +155,39 @@
         .guide-card-title { font-size: 0.8rem; font-weight: 600; color: #22d3ee; margin-bottom: 8px; }
         .guide-card-content { font-size: 0.75rem; color: #b1b1ba; line-height: 1.6; }
         
-        /* Modal styles */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
-        .modal-overlay.show { display: flex; }
-        .modal { background: #16161d; border: 1px solid #2a2a35; border-radius: 16px; width: 100%; max-width: 800px; max-height: 90vh; overflow: hidden; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #2a2a35; }
-        .modal-title { display: flex; align-items: center; gap: 12px; }
-        .modal-coin { font-size: 1.2rem; font-weight: 600; color: #fff; }
-        .modal-direction { padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
-        .modal-direction.long { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
-        .modal-direction.short { background: rgba(248, 113, 113, 0.2); color: #f87171; }
-        .modal-timeframes { display: flex; gap: 4px; }
-        .tf-btn { padding: 6px 12px; border-radius: 6px; border: 1px solid #2a2a35; background: transparent; color: #8b8b9a; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
-        .tf-btn:hover { border-color: #3d3d4a; color: #c1c1ca; }
-        .tf-btn.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
-        .modal-close { background: none; border: none; color: #8b8b9a; cursor: pointer; padding: 8px; border-radius: 8px; transition: all 0.2s; }
-        .modal-close:hover { background: #2a2a35; color: #fff; }
-        .modal-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; padding: 16px 20px; border-bottom: 1px solid #2a2a35; }
-        .modal-stat { text-align: center; }
-        .modal-stat-label { font-size: 0.65rem; color: #6b6b7a; margin-bottom: 4px; }
-        .modal-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #fff; }
-        .modal-chart { padding: 20px; height: 350px; position: relative; }
-        .modal-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0.9); color: #71717a; gap: 10px; }
-        .modal-legend { display: flex; justify-content: center; gap: 20px; padding: 12px 20px; border-top: 1px solid #1a1a1a; }
-        .modal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: #71717a; }
-        .modal-legend-line { width: 20px; height: 2px; }
-        .modal-legend-line.entry { border-top: 2px dashed #ef4444; height: 0; }
-        .modal-legend-line.current { background: #22d3ee; }
+        /* Inline Chart styles */
+        .inline-chart-section { display: none; margin-top: 12px; background: #16161d; border: 1px solid #2a2a35; border-radius: 10px; overflow: hidden; animation: slideDown 0.25s ease-out; }
+        .inline-chart-section.show { display: block; }
+        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 500px; } }
+        .inline-chart-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid #2a2a35; flex-wrap: wrap; gap: 8px; }
+        .inline-chart-title { display: flex; align-items: center; gap: 10px; }
+        .inline-chart-coin { font-size: 1rem; font-weight: 600; color: #fff; }
+        .inline-chart-dir { padding: 3px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: 600; }
+        .inline-chart-dir.long { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+        .inline-chart-dir.short { background: rgba(248, 113, 113, 0.2); color: #f87171; }
+        .inline-chart-stats { display: flex; gap: 16px; flex-wrap: wrap; padding: 10px 16px; border-bottom: 1px solid #2a2a35; }
+        .inline-chart-stat { text-align: center; }
+        .inline-chart-stat-label { font-size: 0.6rem; color: #6b6b7a; margin-bottom: 2px; }
+        .inline-chart-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #fff; }
+        .inline-chart-body { position: relative; height: 250px; padding: 12px; }
+        .inline-chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0.85); color: #71717a; gap: 8px; z-index: 5; }
+        .inline-chart-legend { display: flex; justify-content: center; gap: 16px; padding: 8px 16px; border-top: 1px solid #1a1a1a; }
+        .inline-chart-legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.65rem; color: #71717a; }
+        .inline-chart-legend-line { width: 16px; height: 2px; }
+        .inline-chart-legend-line.entry { border-top: 2px dashed #ef4444; height: 0; }
+        .inline-chart-legend-line.current { background: #22d3ee; }
+        .inline-tf-btn { padding: 4px 10px; border-radius: 5px; border: 1px solid #2a2a35; background: transparent; color: #8b8b9a; font-size: 0.65rem; cursor: pointer; transition: all 0.2s; }
+        .inline-tf-btn:hover { border-color: #3d3d4a; color: #c1c1ca; }
+        .inline-tf-btn.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
+        .inline-chart-close { background: none; border: none; color: #8b8b9a; cursor: pointer; padding: 4px; border-radius: 6px; transition: all 0.2s; }
+        .inline-chart-close:hover { background: #2a2a35; color: #fff; }
+        .position-card.selected { border-color: #22d3ee; background: rgba(34, 211, 238, 0.08); }
+        
+        @media (max-width: 768px) {
+            .inline-chart-body { height: 200px; }
+            .inline-chart-stats { gap: 10px; padding: 8px 12px; }
+            .inline-chart-header { padding: 10px 12px; }
+        }
         
         .tooltip { position: fixed; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 8px 12px; font-size: 0.75rem; color: #e4e4e7; pointer-events: none; z-index: 2000; display: none; max-width: 250px; }
         
@@ -189,7 +195,6 @@
             .sidebar { display: none; }
             .main-content { margin-left: 0; padding: 16px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .modal-stats { grid-template-columns: repeat(3, 1fr); }
             .dex-tabs { flex-wrap: wrap; }
             .dex-tab { padding: 8px 12px; font-size: 0.75rem; }
         }
@@ -349,43 +354,6 @@
         <div class="last-updated" id="last-updated"></div>
     </main>
 
-    <!-- Position Chart Modal -->
-    <div class="modal-overlay" id="position-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-title">
-                    <span class="modal-coin" id="modal-coin">BTC</span>
-                    <span class="modal-direction" id="modal-direction">LONG</span>
-                </div>
-                <div class="modal-timeframes">
-                    <button class="tf-btn" data-tf="5m">5m</button>
-                    <button class="tf-btn" data-tf="15m">15m</button>
-                    <button class="tf-btn active" data-tf="1h">1h</button>
-                    <button class="tf-btn" data-tf="4h">4h</button>
-                    <button class="tf-btn" data-tf="1D">1D</button>
-                </div>
-                <button class="modal-close" onclick="closePositionModal()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
-            </div>
-            <div class="modal-stats">
-                <div class="modal-stat"><div class="modal-stat-label">Size</div><div class="modal-stat-value" id="modal-size">-</div></div>
-                <div class="modal-stat"><div class="modal-stat-label">Entry</div><div class="modal-stat-value" id="modal-entry">-</div></div>
-                <div class="modal-stat"><div class="modal-stat-label">Current</div><div class="modal-stat-value" id="modal-current">-</div></div>
-                <div class="modal-stat"><div class="modal-stat-label">Leverage</div><div class="modal-stat-value" id="modal-leverage">-</div></div>
-                <div class="modal-stat"><div class="modal-stat-label">Unrealized PnL</div><div class="modal-stat-value" id="modal-pnl">-</div></div>
-            </div>
-            <div class="modal-chart">
-                <canvas id="position-chart"></canvas>
-                <div class="modal-loading" id="modal-loading"><div class="loading-spinner"></div>차트 로딩 중...</div>
-            </div>
-            <div class="modal-legend">
-                <div class="modal-legend-item"><div class="modal-legend-line entry" style="border-top: 2px dashed #ef4444; height: 0;"></div>Entry Price</div>
-                <div class="modal-legend-item"><div class="modal-legend-line current"></div>Current Price</div>
-            </div>
-        </div>
-    </div>
-
     <div class="tooltip" id="tooltip"></div>
 
     <script>
@@ -446,19 +414,142 @@
 
         function getExplorerUrl(address) { return DEX_CONFIG[currentWhaleDex].explorerUrl + address; }
 
-        function renderPnL() { const data = whaleData[currentWhaleDex]; const traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly; if (!traders) { document.getElementById('pnl-tbody').innerHTML = '<tr><td colspan="7"><div class="no-data">데이터 없음</div></td></tr>'; return; } document.getElementById('pnl-tbody').innerHTML = traders.map((t,i) => { const name = t.displayName || fmt.addr(t.address), hasPos = t.positions?.length > 0; return `<tr><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="address"><a href="${getExplorerUrl(t.address)}" target="_blank">${name}</a></td><td>${fmt.usd(t.accountValue)}</td><td class="${t.pnl>=0?'positive':'negative'}">${fmt.usd(t.pnl)}</td><td class="${t.roi>=0?'positive':'negative'}">${fmt.pctDec(t.roi)}</td><td>${fmt.usd(t.volume)}</td><td>${hasPos?`<button class="expand-btn" onclick="togglePos(${i})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>`:''}</td></tr>${hasPos?`<tr class="positions-row" id="pos-${i}"><td colspan="7"><div class="positions-content"><div class="positions-grid">${t.positions.map((p,pi) => `<div class="position-card" onclick="openPositionModal(${i}, ${pi})"><div class="position-header"><span class="position-coin">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">${fmt.usd(p.positionValue)}</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">${p.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">${fmt.px(p.entryPx, p.coin)}</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</span></div></div><div class="position-hint">📈 클릭하여 차트 보기</div></div>`).join('')}</div></div></td></tr>`:''}`;}).join(''); }
+        function renderPnL() { const data = whaleData[currentWhaleDex]; const traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly; if (!traders) { document.getElementById('pnl-tbody').innerHTML = '<tr><td colspan="7"><div class="no-data">데이터 없음</div></td></tr>'; return; } document.getElementById('pnl-tbody').innerHTML = traders.map((t,i) => { const name = t.displayName || fmt.addr(t.address), hasPos = t.positions?.length > 0; return `<tr><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="address"><a href="${getExplorerUrl(t.address)}" target="_blank">${name}</a></td><td>${fmt.usd(t.accountValue)}</td><td class="${t.pnl>=0?'positive':'negative'}">${fmt.usd(t.pnl)}</td><td class="${t.roi>=0?'positive':'negative'}">${fmt.pctDec(t.roi)}</td><td>${fmt.usd(t.volume)}</td><td>${hasPos?`<button class="expand-btn" onclick="togglePos(${i})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>`:''}</td></tr>${hasPos?`<tr class="positions-row" id="pos-${i}"><td colspan="7"><div class="positions-content"><div class="positions-grid">${t.positions.map((p,pi) => `<div class="position-card" id="pcard-${i}-${pi}" onclick="openInlineChart(${i}, ${pi})"><div class="position-header"><span class="position-coin">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">${fmt.usd(p.positionValue)}</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">${p.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">${fmt.px(p.entryPx, p.coin)}</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</span></div></div><div class="position-hint">📈 차트 보기</div></div>`).join('')}</div><div class="inline-chart-section" id="chart-${i}"></div></div></td></tr>`:''}`;}).join(''); }
         function renderBiggest() { const data = whaleData[currentWhaleDex]; const pos = data?.whaleTracker?.biggestPositions || []; if (!pos.length) { document.getElementById('biggest-tbody').innerHTML = '<tr><td colspan="9"><div class="no-data">데이터 없음</div></td></tr>'; return; } document.getElementById('biggest-tbody').innerHTML = pos.map((p,i) => `<tr><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="coin-name">${p.coin}</td><td><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></td><td>${fmt.usd(p.positionValue)}</td><td>${fmt.num(p.size)}</td><td>${fmt.px(p.entryPx, p.coin)}</td><td>${p.leverage}x</td><td class="${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</td><td class="address"><a href="${getExplorerUrl(p.traderAddress)}" target="_blank">${p.traderName||fmt.addr(p.traderAddress)}</a></td></tr>`).join(''); }
         function getPosAgg() { const data = whaleData[currentWhaleDex]; if (!data?.positionAggregation) return []; if (posData === 'pnl') return posPeriod === 'daily' ? data.positionAggregation.byPnlDaily : data.positionAggregation.byPnlWeekly; return data.positionAggregation.bySize; }
         function renderPosChart() { const agg = getPosAgg(); if (!agg?.length) { document.getElementById('pos-chart').innerHTML = '<div class="no-data">데이터 없음</div>'; return; } const useVal = posUnit === 'value'; const max = Math.max(...agg.map(d => Math.max(useVal?d.long:d.longSize, useVal?d.short:d.shortSize))); document.getElementById('pos-chart').innerHTML = agg.map(d => { const lv = useVal?d.long:d.longSize, sv = useVal?d.short:d.shortSize; const lw = max>0?(lv/max)*100:0, sw = max>0?(sv/max)*100:0; return `<div class="bar-row"><div class="bar-label">${d.coin}</div><div class="bar-container"><div class="bar-negative"><div class="bar short" style="width:${sw}%">${sv>0?(useVal?fmt.usd(sv):fmt.num(sv)):''}</div></div><div class="bar-positive"><div class="bar long" style="width:${lw}%">${lv>0?(useVal?fmt.usd(lv):fmt.num(lv)):''}</div></div></div></div>`; }).join(''); }
 
-        function togglePos(idx) { const row = document.getElementById(`pos-${idx}`); const btn = row?.previousElementSibling?.querySelector('.expand-btn'); if (row) { row.classList.toggle('show'); btn?.classList.toggle('expanded'); } }
-        function openPositionModal(traderIdx, posIdx) { const data = whaleData[currentWhaleDex]; const traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly; if (!traders?.[traderIdx]?.positions?.[posIdx]) return; currentPosition = traders[traderIdx].positions[posIdx]; const p = currentPosition; document.getElementById('modal-coin').textContent = p.coin; const dirEl = document.getElementById('modal-direction'); dirEl.textContent = p.direction === 'Long' ? 'LONG' : 'SHORT'; dirEl.className = 'modal-direction ' + p.direction.toLowerCase(); document.getElementById('modal-size').textContent = fmt.usd(p.positionValue); document.getElementById('modal-entry').textContent = fmt.px(p.entryPx, p.coin); document.getElementById('modal-current').textContent = '-'; document.getElementById('modal-leverage').textContent = p.leverage + 'x'; document.getElementById('modal-pnl').textContent = fmt.usd(p.unrealizedPnl); document.getElementById('modal-pnl').className = 'modal-stat-value ' + (p.unrealizedPnl >= 0 ? 'positive' : 'negative'); document.getElementById('position-modal').classList.add('show'); loadPositionChart(); }
-        function closePositionModal() { document.getElementById('position-modal').classList.remove('show'); currentPosition = null; if (positionChart) { positionChart.destroy(); positionChart = null; } }
+        function togglePos(idx) { const row = document.getElementById(`pos-${idx}`); const btn = row?.previousElementSibling?.querySelector('.expand-btn'); if (row) { const wasOpen = row.classList.contains('show'); row.classList.toggle('show'); btn?.classList.toggle('expanded'); if (wasOpen && currentChartTraderIdx === idx) { closeInlineChart(); } } }
+        let currentChartTraderIdx = null, currentChartPosIdx = null;
 
-        async function loadPositionChart() { if (!currentPosition) return; const loading = document.getElementById('modal-loading'); loading.style.display = 'flex'; try { const coin = currentPosition.coin; const entryPrice = currentPosition.entryPx; const symbol = coin + 'USDT'; const interval = currentTimeframe === '1D' ? '1d' : currentTimeframe; const response = await fetch(`https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=100`); const data = await response.json(); if (data && data.length > 0) { const labels = data.map(d => { const date = new Date(d[0]); if (currentTimeframe === '1D') return date.toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' }); return date.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }); }); const prices = data.map(d => parseFloat(d[4])); const currentPrice = prices[prices.length - 1]; document.getElementById('modal-current').textContent = fmt.px(currentPrice, coin); if (positionChart) positionChart.destroy(); const ctx = document.getElementById('position-chart').getContext('2d'); positionChart = new Chart(ctx, { type: 'line', data: { labels: labels, datasets: [{ label: coin + ' Price', data: prices, borderColor: '#22d3ee', backgroundColor: 'rgba(34, 211, 238, 0.1)', borderWidth: 2, fill: true, tension: 0.1, pointRadius: 0, pointHoverRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => fmt.px(ctx.raw, coin) } } }, scales: { x: { grid: { color: '#1a1a1a' }, ticks: { color: '#71717a', maxTicksLimit: 8 } }, y: { grid: { color: '#1a1a1a' }, ticks: { color: '#71717a', callback: v => fmt.px(v, coin) } } } }, plugins: [{ id: 'priceLines', afterDraw: function(chart) { const ctx = chart.ctx; const xAxis = chart.scales.x; const yAxis = chart.scales.y; const entryY = yAxis.getPixelForValue(entryPrice); if (entryY >= yAxis.top && entryY <= yAxis.bottom) { ctx.save(); ctx.beginPath(); ctx.setLineDash([5, 5]); ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2; ctx.moveTo(xAxis.left, entryY); ctx.lineTo(xAxis.right, entryY); ctx.stroke(); ctx.fillStyle = '#ef4444'; ctx.fillRect(xAxis.right - 80, entryY - 10, 80, 20); ctx.fillStyle = '#fff'; ctx.font = '10px JetBrains Mono'; ctx.textAlign = 'center'; ctx.fillText('Entry: ' + fmt.px(entryPrice, currentPosition.coin).replace('$',''), xAxis.right - 40, entryY + 4); ctx.restore(); } const currentY = yAxis.getPixelForValue(currentPrice); if (currentY >= yAxis.top && currentY <= yAxis.bottom) { ctx.save(); ctx.beginPath(); ctx.strokeStyle = '#22d3ee'; ctx.lineWidth = 2; ctx.moveTo(xAxis.left, currentY); ctx.lineTo(xAxis.right, currentY); ctx.stroke(); ctx.fillStyle = '#22d3ee'; ctx.fillRect(xAxis.right - 80, currentY - 10, 80, 20); ctx.fillStyle = '#000'; ctx.font = '10px JetBrains Mono'; ctx.textAlign = 'center'; ctx.fillText('Current: ' + fmt.px(currentPrice, currentPosition.coin).replace('$',''), xAxis.right - 40, currentY + 4); ctx.restore(); } } }] }); } } catch(e) { console.error('Chart error:', e); } loading.style.display = 'none'; }
+        function openInlineChart(traderIdx, posIdx) {
+            const data = whaleData[currentWhaleDex];
+            const traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
+            if (!traders?.[traderIdx]?.positions?.[posIdx]) return;
 
-        document.querySelectorAll('.tf-btn').forEach(btn => { btn.onclick = () => { document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentTimeframe = btn.dataset.tf; loadPositionChart(); }; });
-        document.getElementById('position-modal').onclick = e => { if (e.target.id === 'position-modal') closePositionModal(); };
+            // If clicking same card, toggle off
+            if (currentChartTraderIdx === traderIdx && currentChartPosIdx === posIdx) {
+                closeInlineChart();
+                return;
+            }
+
+            // Close previous chart if open in different trader
+            if (currentChartTraderIdx !== null && currentChartTraderIdx !== traderIdx) {
+                const prevChart = document.getElementById(`chart-${currentChartTraderIdx}`);
+                if (prevChart) { prevChart.classList.remove('show'); prevChart.innerHTML = ''; }
+                const prevCard = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`);
+                if (prevCard) prevCard.classList.remove('selected');
+            }
+
+            // Deselect previous card in same trader
+            if (currentChartPosIdx !== null) {
+                const prevCard = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`);
+                if (prevCard) prevCard.classList.remove('selected');
+            }
+
+            currentChartTraderIdx = traderIdx;
+            currentChartPosIdx = posIdx;
+            currentPosition = traders[traderIdx].positions[posIdx];
+            currentTimeframe = '1h';
+            const p = currentPosition;
+
+            // Highlight selected card
+            const card = document.getElementById(`pcard-${traderIdx}-${posIdx}`);
+            if (card) card.classList.add('selected');
+
+            // Build inline chart HTML
+            const container = document.getElementById(`chart-${traderIdx}`);
+            container.innerHTML = `
+                <div class="inline-chart-header">
+                    <div class="inline-chart-title">
+                        <span class="inline-chart-coin">${p.coin}</span>
+                        <span class="inline-chart-dir ${p.direction.toLowerCase()}">${p.direction === 'Long' ? 'LONG' : 'SHORT'}</span>
+                    </div>
+                    <div style="display:flex;gap:4px;align-items:center;">
+                        <button class="inline-tf-btn" data-tf="5m">5m</button>
+                        <button class="inline-tf-btn" data-tf="15m">15m</button>
+                        <button class="inline-tf-btn active" data-tf="1h">1h</button>
+                        <button class="inline-tf-btn" data-tf="4h">4h</button>
+                        <button class="inline-tf-btn" data-tf="1D">1D</button>
+                        <button class="inline-chart-close" onclick="closeInlineChart()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="inline-chart-stats">
+                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">포지션</div><div class="inline-chart-stat-value">${fmt.usd(p.positionValue)}</div></div>
+                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">진입가</div><div class="inline-chart-stat-value">${fmt.px(p.entryPx, p.coin)}</div></div>
+                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">현재가</div><div class="inline-chart-stat-value" id="inline-current">-</div></div>
+                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">레버리지</div><div class="inline-chart-stat-value">${p.leverage}x</div></div>
+                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">미실현 PnL</div><div class="inline-chart-stat-value ${p.unrealizedPnl >= 0 ? 'positive' : 'negative'}">${fmt.usd(p.unrealizedPnl)}</div></div>
+                </div>
+                <div class="inline-chart-body">
+                    <canvas id="inline-pos-chart"></canvas>
+                    <div class="inline-chart-loading" id="inline-loading"><div class="loading-spinner"></div>차트 로딩 중...</div>
+                </div>
+                <div class="inline-chart-legend">
+                    <div class="inline-chart-legend-item"><div class="inline-chart-legend-line entry"></div>진입가</div>
+                    <div class="inline-chart-legend-item"><div class="inline-chart-legend-line current"></div>현재가</div>
+                </div>`;
+            container.classList.add('show');
+
+            // Bind timeframe buttons
+            container.querySelectorAll('.inline-tf-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    container.querySelectorAll('.inline-tf-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentTimeframe = btn.dataset.tf;
+                    loadInlineChart();
+                };
+            });
+
+            loadInlineChart();
+
+            // Scroll chart into view
+            setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+        }
+
+        function closeInlineChart() {
+            if (currentChartTraderIdx !== null) {
+                const container = document.getElementById(`chart-${currentChartTraderIdx}`);
+                if (container) { container.classList.remove('show'); container.innerHTML = ''; }
+                const card = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`);
+                if (card) card.classList.remove('selected');
+            }
+            if (positionChart) { positionChart.destroy(); positionChart = null; }
+            currentPosition = null;
+            currentChartTraderIdx = null;
+            currentChartPosIdx = null;
+        }
+
+        async function loadInlineChart() {
+            if (!currentPosition) return;
+            const loading = document.getElementById('inline-loading');
+            if (loading) loading.style.display = 'flex';
+            try {
+                const coin = currentPosition.coin;
+                const entryPrice = currentPosition.entryPx;
+                const symbol = coin + 'USDT';
+                const interval = currentTimeframe === '1D' ? '1d' : currentTimeframe;
+                const response = await fetch(`https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=100`);
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    const labels = data.map(d => { const date = new Date(d[0]); if (currentTimeframe === '1D') return date.toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' }); return date.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }); });
+                    const prices = data.map(d => parseFloat(d[4]));
+                    const currentPrice = prices[prices.length - 1];
+                    const currentEl = document.getElementById('inline-current');
+                    if (currentEl) currentEl.textContent = fmt.px(currentPrice, coin);
+                    if (positionChart) positionChart.destroy();
+                    const canvas = document.getElementById('inline-pos-chart');
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    positionChart = new Chart(ctx, { type: 'line', data: { labels: labels, datasets: [{ label: coin + ' Price', data: prices, borderColor: '#22d3ee', backgroundColor: 'rgba(34, 211, 238, 0.1)', borderWidth: 2, fill: true, tension: 0.1, pointRadius: 0, pointHoverRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => fmt.px(ctx.raw, coin) } } }, scales: { x: { grid: { color: '#1a1a1a' }, ticks: { color: '#71717a', maxTicksLimit: 6, font: { size: 10 } } }, y: { grid: { color: '#1a1a1a' }, ticks: { color: '#71717a', callback: v => fmt.px(v, coin), font: { size: 10 } } } } }, plugins: [{ id: 'priceLines', afterDraw: function(chart) { const ctx = chart.ctx; const xAxis = chart.scales.x; const yAxis = chart.scales.y; const entryY = yAxis.getPixelForValue(entryPrice); if (entryY >= yAxis.top && entryY <= yAxis.bottom) { ctx.save(); ctx.beginPath(); ctx.setLineDash([5, 5]); ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2; ctx.moveTo(xAxis.left, entryY); ctx.lineTo(xAxis.right, entryY); ctx.stroke(); ctx.fillStyle = '#ef4444'; ctx.fillRect(xAxis.right - 70, entryY - 9, 70, 18); ctx.fillStyle = '#fff'; ctx.font = '9px JetBrains Mono'; ctx.textAlign = 'center'; ctx.fillText('Entry: ' + fmt.px(entryPrice, currentPosition.coin).replace('$',''), xAxis.right - 35, entryY + 3); ctx.restore(); } const currentY = yAxis.getPixelForValue(currentPrice); if (currentY >= yAxis.top && currentY <= yAxis.bottom) { ctx.save(); ctx.beginPath(); ctx.strokeStyle = '#22d3ee'; ctx.lineWidth = 2; ctx.moveTo(xAxis.left, currentY); ctx.lineTo(xAxis.right, currentY); ctx.stroke(); ctx.fillStyle = '#22d3ee'; ctx.fillRect(xAxis.right - 70, currentY - 9, 70, 18); ctx.fillStyle = '#000'; ctx.font = '9px JetBrains Mono'; ctx.textAlign = 'center'; ctx.fillText('Now: ' + fmt.px(currentPrice, currentPosition.coin).replace('$',''), xAxis.right - 35, currentY + 3); ctx.restore(); } } }] });
+                }
+            } catch(e) { console.error('Chart error:', e); }
+            if (loading) loading.style.display = 'none';
+        }
+
         document.querySelectorAll('.nav-item').forEach(n => n.onclick = () => { document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active')); document.querySelectorAll('.section').forEach(x => x.classList.remove('active')); n.classList.add('active'); document.getElementById(n.dataset.section).classList.add('active'); });
         document.querySelectorAll('.sub-tab').forEach(t => t.onclick = () => { document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); document.getElementById('pnl-section').style.display = t.dataset.tab === 'pnl' ? 'block' : 'none'; document.getElementById('biggest-section').style.display = t.dataset.tab === 'biggest' ? 'block' : 'none'; });
         document.querySelectorAll('#trader-tabs .tab').forEach(t => t.onclick = () => { document.querySelectorAll('#trader-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); traderPeriod = t.dataset.v; renderPnL(); });
