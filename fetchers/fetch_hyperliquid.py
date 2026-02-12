@@ -384,9 +384,7 @@ def main():
             result[coin] = {'longCount': lc, 'shortCount': sc, 'longVal': round(lv), 'shortVal': round(sv)}
         return result
     
-    top50 = daily[:50]
-    sentiment_500 = calc_sentiment(daily, TRACK_COINS)
-    sentiment_50 = calc_sentiment(top50, TRACK_COINS)
+    sentiment_500 = calc_sentiment(by_value, TRACK_COINS)
     
     today = datetime.utcnow().strftime('%Y-%m-%d')
     today_entry = {'date': today}
@@ -394,8 +392,7 @@ def main():
         price = markets_dict.get(coin, {}).get('markPx', 0)
         today_entry[coin] = {
             'price': round(price, 2),
-            'top500': sentiment_500.get(coin, {}),
-            'top50': sentiment_50.get(coin, {})
+            'top500': sentiment_500.get(coin, {})
         }
     
     # Load existing history and append/update
