@@ -346,12 +346,19 @@ def main():
     with open('data/hyperliquid_whales.json', 'w') as f:
         json.dump(whale_output, f)
     
-    # Liquidation data (new format)
+    # Liquidation data (new format - includes all 3 datasets)
+    def make_liq_section(liq_map):
+        return {
+            'coins': list(liq_map.keys()) if liq_map else [],
+            'data': liq_map
+        }
+    
     liq_output = {
         'lastUpdated': datetime.utcnow().isoformat() + 'Z',
         'tradersCount': len(traders),
-        'coins': list(liq_daily.keys()) if liq_daily else [],
-        'data': liq_daily
+        'byPnlDaily': make_liq_section(liq_daily),
+        'byPnlWeekly': make_liq_section(liq_weekly),
+        'bySize': make_liq_section(liq_size)
     }
     
     with open('data/hyperliquid_liq.json', 'w') as f:
