@@ -2,63 +2,63 @@
   {
     "date": "2026-02-12",
     "BTC": {
-      "price": 67429.0,
+      "price": 67492.0,
       "top500": {
         "longCount": 22,
         "shortCount": 40,
-        "longVal": 106335498,
-        "shortVal": 287963295
+        "longVal": 106346043,
+        "shortVal": 288080191
       },
       "top50": {
         "longCount": 1,
         "shortCount": 2,
-        "longVal": 33764188,
-        "shortVal": 58904183
+        "longVal": 33581334,
+        "shortVal": 58954518
       }
     },
     "ETH": {
-      "price": 1957.7,
+      "price": 1962.8,
       "top500": {
-        "longCount": 9,
-        "shortCount": 49,
-        "longVal": 4840020,
-        "shortVal": 283252639
+        "longCount": 8,
+        "shortCount": 50,
+        "longVal": 4844187,
+        "shortVal": 283543111
       },
       "top50": {
         "longCount": 1,
         "shortCount": 4,
-        "longVal": 783080,
-        "shortVal": 73506910
+        "longVal": 784680,
+        "shortVal": 73568982
       }
     },
     "SOL": {
-      "price": 80.3,
+      "price": 80.37,
       "top500": {
-        "longCount": 10,
-        "shortCount": 31,
-        "longVal": 17460209,
-        "shortVal": 78151194
+        "longCount": 9,
+        "shortCount": 32,
+        "longVal": 17438142,
+        "shortVal": 78391108
       },
       "top50": {
         "longCount": 0,
         "shortCount": 2,
         "longVal": 0,
-        "shortVal": 19032753
+        "shortVal": 19220049
       }
     },
     "HYPE": {
-      "price": 30.74,
+      "price": 30.72,
       "top500": {
-        "longCount": 38,
-        "shortCount": 28,
-        "longVal": 194376490,
-        "shortVal": 92622999
+        "longCount": 39,
+        "shortCount": 27,
+        "longVal": 194118922,
+        "shortVal": 92468120
       },
       "top50": {
         "longCount": 3,
         "shortCount": 1,
-        "longVal": 90999379,
-        "shortVal": 9025384
+        "longVal": 90884480,
+        "shortVal": 9001896
       }
     }
   }
