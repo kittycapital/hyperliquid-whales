@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Multi-DEX Data Fetcher Runner
-Runs fetchers for Hyperliquid, Drift, and GMX
+DEX Data Fetcher Runner
+Runs fetcher for Hyperliquid
 """
 
 import subprocess
@@ -51,22 +51,10 @@ def main():
     
     results = {}
     
-    # Run Hyperliquid fetcher (primary)
+    # Run Hyperliquid fetcher
     results['Hyperliquid'] = run_fetcher(
         'Hyperliquid',
         os.path.join(fetchers_dir, 'fetch_hyperliquid.py')
-    )
-    
-    # Run Drift fetcher
-    results['Drift'] = run_fetcher(
-        'Drift',
-        os.path.join(fetchers_dir, 'fetch_drift.py')
-    )
-    
-    # Run GMX fetcher
-    results['GMX'] = run_fetcher(
-        'GMX',
-        os.path.join(fetchers_dir, 'fetch_gmx.py')
     )
     
     # Summary
