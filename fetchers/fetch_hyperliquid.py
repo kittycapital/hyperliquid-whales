@@ -16,7 +16,7 @@ import math
 
 INFO_URL = "https://api.hyperliquid.xyz/info"
 LEADERBOARD_URL = "https://stats-data.hyperliquid.xyz/Mainnet/leaderboard"
-TOP_N = 200
+TOP_N = 500
 MAX_WORKERS = 10
 
 def api_request(payload):
