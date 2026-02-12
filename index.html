@@ -412,7 +412,7 @@
                 <div class="guide-content" id="sentiment-guide-content">
                     <div class="guide-grid">
                         <div class="guide-card"><div class="guide-card-title">🐋 고래 롱 비율이란?</div><div class="guide-card-content">PnL 상위 500 트레이더 중 해당 코인에 <strong class="bullish">롱</strong> 포지션을 보유한 비율입니다.<br>70% 이상이면 강한 매수 심리를 의미합니다.</div></div>
-                        <div class="guide-card"><div class="guide-card-title">🧠 스마트머니 (Top 50)</div><div class="guide-card-content">PnL 상위 50명은 <strong>수익률이 검증된</strong> 트레이더입니다.<br>이들의 포지션 변화는 전체 500명보다 더 강한 시그널일 수 있습니다.</div></div>
+                        <div class="guide-card"><div class="guide-card-title">🐋 대형 계좌 500이란?</div><div class="guide-card-content">계좌 가치(Account Value) 기준 상위 500명의 포지션을 매일 기록합니다.<br>큰 자금을 보유한 트레이더 = <strong>오래 살아남은 경험 있는 고래</strong>입니다.</div></div>
                         <div class="guide-card"><div class="guide-card-title">📊 가격과 비교하기</div><div class="guide-card-content">고래 롱 비율이 <strong>먼저 상승</strong>하고 가격이 따라오면<br>→ 고래가 가격 움직임을 <strong class="bullish">선행</strong>한 것!<br>데이터가 쌓일수록 패턴이 보입니다.</div></div>
                         <div class="guide-card"><div class="guide-card-title">⏳ 데이터 축적</div><div class="guide-card-content">매일 07:00 KST에 스냅샷이 기록됩니다.<br>최소 <strong>2주</strong> 이상 쌓여야 트렌드가 의미 있어요.<br>꾸준히 확인해보세요!</div></div>
                     </div>
@@ -421,17 +421,13 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">코인별 고래 센티먼트</h3>
+                    <h3 class="card-title">코인별 고래 센티먼트 <span style="font-size:0.7rem;color:#8b8b9a;font-weight:400;margin-left:8px">대형 계좌 500 기준</span></h3>
                     <div class="controls-row">
                         <div class="tabs" id="sent-coin-tabs">
                             <button class="tab active" data-coin="BTC">BTC</button>
                             <button class="tab" data-coin="ETH">ETH</button>
                             <button class="tab" data-coin="SOL">SOL</button>
                             <button class="tab" data-coin="HYPE">HYPE</button>
-                        </div>
-                        <div class="tabs" id="sent-group-tabs">
-                            <button class="tab active" data-group="top500">전체 500</button>
-                            <button class="tab" data-group="top50">스마트머니 50</button>
                         </div>
                     </div>
                 </div>
@@ -780,7 +776,7 @@
         document.querySelectorAll('#liq-period-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#liq-period-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); liqPeriod = t.dataset.v; populateLiqCoins(); }; });
 
         // === Sentiment Section ===
-        let sentHistory = [], sentCoin = 'BTC', sentGroup = 'top500', sentChart = null;
+        let sentHistory = [], sentCoin = 'BTC', sentChart = null;
         let sentimentGuideExpanded = false;
         function toggleSentimentGuide() { sentimentGuideExpanded = !sentimentGuideExpanded; document.getElementById('sentiment-guide-content').classList.toggle('show', sentimentGuideExpanded); document.getElementById('sentiment-guide-toggle-text').textContent = sentimentGuideExpanded ? '접기' : '펼치기'; document.getElementById('sentiment-guide-arrow').style.transform = sentimentGuideExpanded ? 'rotate(180deg)' : 'rotate(0deg)'; }
 
@@ -808,7 +804,7 @@
             noDataEl.style.display = 'none';
             chartWrapper.style.display = 'block';
 
-            const groupKey = sentGroup === 'top50' ? 'top50' : 'top500';
+            const groupKey = 'top500';
             
             // Latest stats
             const latest = data[data.length - 1];
@@ -905,7 +901,6 @@
 
         // Sentiment tab handlers
         document.querySelectorAll('#sent-coin-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#sent-coin-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); sentCoin = t.dataset.coin; renderSentiment(); }; });
-        document.querySelectorAll('#sent-group-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#sent-group-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); sentGroup = t.dataset.group; renderSentiment(); }; });
 
         async function init() { await Promise.all([loadWhaleData('hyperliquid'), loadLiqData('hyperliquid'), loadSentiment()]); fetchLive(); }
         setInterval(fetchLive, 30000);
