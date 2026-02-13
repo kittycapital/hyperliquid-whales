@@ -9,796 +9,390 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0f0f13; color: #e4e4e7; font-family: 'Noto Sans KR', sans-serif; min-height: 100vh; }
-        
-        /* Top Navigation */
-        .top-nav { width: 100%; background: #16161d; border-bottom: 1px solid #2a2a35; padding: 0 20px; position: sticky; top: 0; z-index: 100; }
-        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; padding: 14px 0 0; }
-        .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-        .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #22d3ee, #06b6d4); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; color: #000; }
-        .logo-text { font-size: 1rem; font-weight: 600; color: #fff; }
-        .logo-sub { font-size: 0.6rem; color: #22d3ee; display: block; }
-        .nav-menu { display: flex; gap: 2px; list-style: none; }
-        .nav-item { padding: 10px 16px; cursor: pointer; transition: all 0.2s; color: #a1a1aa; font-size: 0.8rem; font-weight: 500; border-bottom: 2px solid transparent; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-        .nav-item:hover { color: #e4e4e7; background: rgba(34, 211, 238, 0.05); }
-        .nav-item.active { color: #22d3ee; border-bottom-color: #22d3ee; }
-        .nav-icon { width: 16px; height: 16px; }
-        
-        .main-content { max-width: 1200px; margin: 0 auto; padding: 24px 20px; min-height: calc(100vh - 100px); }
-        .status-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34, 211, 238, 0.15); border: 1px solid rgba(34, 211, 238, 0.4); padding: 6px 14px; border-radius: 20px; font-size: 0.7rem; color: #22d3ee; margin-bottom: 20px; }
-        .status-dot { width: 8px; height: 8px; background: #22d3ee; border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .page-header { margin-bottom: 24px; }
-        .page-header h1 { font-size: 1.6rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
-        .page-header p { color: #8b8b9a; font-size: 0.85rem; }
-        .section { display: none; }
-        .section.active { display: block; }
-        
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 24px; }
-        .stat-card { background: #16161d; border: 1px solid #2a2a35; border-radius: 12px; padding: 18px; }
-        .stat-label { font-size: 0.7rem; color: #8b8b9a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-        .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 600; color: #22d3ee; }
-        .card { background: #16161d; border: 1px solid #2a2a35; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
-        .card-title { font-size: 0.95rem; font-weight: 600; color: #fff; }
-        
-        .tabs { display: flex; gap: 4px; background: #1e1e26; padding: 4px; border-radius: 8px; }
-        .tab { padding: 6px 12px; border-radius: 6px; border: none; background: transparent; color: #8b8b9a; font-family: 'Noto Sans KR', sans-serif; font-size: 0.7rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-        .tab:hover { color: #c1c1ca; }
-        .tab.active { background: #22d3ee; color: #000; }
-        .controls-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        select { appearance: none; background: #1e1e26 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238b8b9a' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E") no-repeat right 10px center; border: 1px solid #2a2a35; border-radius: 6px; padding: 8px 32px 8px 12px; color: #e4e4e7; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; cursor: pointer; min-width: 140px; }
-        select:focus { outline: none; border-color: #22d3ee; }
-        
-        .dex-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
-        .dex-tab { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; border: 1px solid #2a2a35; background: #16161d; color: #8b8b9a; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-        .dex-tab:hover { border-color: #3d3d4a; color: #c1c1ca; }
-        .dex-tab.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
-        .dex-tab img { width: 20px; height: 20px; border-radius: 50%; }
-        .dex-tab .dex-name { font-weight: 600; }
-        
-        .table-container { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #2a2a35; }
-        th { background: #1e1e26; color: #8b8b9a; font-weight: 500; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; position: sticky; top: 0; z-index: 10; }
-        th.sortable { cursor: pointer; user-select: none; }
-        th.sortable:hover { color: #22d3ee; }
-        th.sort-active { color: #22d3ee; }
-        td { font-family: 'JetBrains Mono', monospace; color: #b1b1ba; }
-        tr:hover td { background: rgba(34, 211, 238, 0.05); }
-        .positive { color: #4ade80 !important; }
-        .negative { color: #f87171 !important; }
-        .bullish { color: #4ade80 !important; }
-        .bearish { color: #f87171 !important; }
-        .coin-name { color: #fff; font-weight: 500; }
-        .address { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
-        .address a { color: #22d3ee; text-decoration: none; }
-        .address a:hover { text-decoration: underline; }
-        .direction { padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
-        .direction.long { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
-        .direction.short { background: rgba(248, 113, 113, 0.2); color: #f87171; }
-        .rank { display: inline-flex; align-items: center; justify-content: center; min-width: 32px; padding: 2px 6px; background: #2a2a35; border-radius: 4px; font-size: 0.7rem; color: #8b8b9a; }
-        .rank.top3 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000; font-weight: 600; }
-        .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: #8b8b9a; gap: 10px; }
-        .loading-spinner { width: 20px; height: 20px; border: 2px solid #2a2a35; border-top-color: #22d3ee; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .no-data { text-align: center; padding: 40px; color: #8b8b9a; }
-        .last-updated { text-align: center; margin-top: 20px; font-size: 0.75rem; color: #6b6b7a; }
-        
-        .bar-chart { display: flex; flex-direction: column; gap: 6px; padding-right: 10px; }
-        .bar-row { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; }
-        .bar-label { width: 60px; text-align: right; color: #fff; font-weight: 500; font-family: 'JetBrains Mono', monospace; }
-        .bar-container { flex: 1; display: flex; height: 24px; }
-        .bar-negative { flex: 1; display: flex; justify-content: flex-end; }
-        .bar-positive { flex: 1; display: flex; justify-content: flex-start; }
-        .bar { height: 100%; border-radius: 3px; min-width: 2px; transition: width 0.3s; display: flex; align-items: center; padding: 0 6px; font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; }
-        .bar.short { background: linear-gradient(90deg, #f87171, #ef4444); color: #fff; justify-content: flex-end; }
-        .bar.long { background: linear-gradient(90deg, #22c55e, #4ade80); color: #fff; }
-        .bar-zero { width: 2px; background: #3d3d4a; }
-        .chart-container { position: relative; }
-        .chart-legend { display: flex; gap: 20px; margin-bottom: 10px; justify-content: center; }
-        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: #8b8b9a; }
-        .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
-        .legend-dot.long { background: linear-gradient(90deg, #22c55e, #4ade80); }
-        .legend-dot.short { background: linear-gradient(90deg, #f87171, #ef4444); }
-        
-        .sub-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
-        .sub-tab { padding: 10px 20px; border-radius: 8px; border: 1px solid #2a2a35; background: transparent; color: #8b8b9a; font-family: 'Noto Sans KR', sans-serif; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-        .sub-tab:hover { border-color: #3d3d4a; color: #c1c1ca; }
-        .sub-tab.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
-        
-        .positions-row { display: none; }
-        .positions-row.show { display: table-row; }
-        .positions-content { background: #1e1e26; border-radius: 8px; padding: 12px; }
-        .positions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-        .position-card { background: #16161d; border: 1px solid #2a2a35; border-radius: 8px; padding: 12px; cursor: pointer; transition: all 0.2s; }
-        .position-card:hover { border-color: #22d3ee; transform: translateY(-2px); }
-        .position-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .position-coin { font-weight: 600; color: #fff; font-size: 0.85rem; }
-        .position-details { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-        .position-detail { display: flex; flex-direction: column; }
-        .position-detail-label { font-size: 0.65rem; color: #6b6b7a; }
-        .position-detail-value { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #b1b1ba; }
-        .position-hint { font-size: 0.65rem; color: #6b6b7a; margin-top: 8px; text-align: center; border-top: 1px solid #2a2a35; padding-top: 8px; }
-        
-        .liq-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
-        .liq-price-box { background: #1e1e26; border: 1px solid #2a2a35; border-radius: 8px; padding: 10px 16px; text-align: center; }
-        .liq-price-label { font-size: 0.65rem; color: #8b8b9a; margin-bottom: 4px; }
-        .liq-price-value { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: #22d3ee; }
-        .liq-legend { display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; padding: 12px; background: #1e1e26; border-radius: 8px; }
-        .liq-legend-section { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .liq-legend-title { font-size: 0.7rem; color: #8b8b9a; font-weight: 500; }
-        .liq-legend-item { display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #b1b1ba; }
-        .liq-legend-color { width: 14px; height: 14px; border-radius: 3px; }
-        .liq-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-        .liq-summary-card { padding: 14px; border-radius: 8px; text-align: center; }
-        .liq-summary-card.long-card { background: rgba(248, 113, 113, 0.15); border: 1px solid rgba(248, 113, 113, 0.4); }
-        .liq-summary-card.short-card { background: rgba(74, 222, 128, 0.15); border: 1px solid rgba(74, 222, 128, 0.4); }
-        .liq-summary-label { font-size: 0.7rem; color: #8b8b9a; margin-bottom: 4px; }
-        .liq-summary-value { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 600; }
-        .liq-summary-value.long { color: #f87171; }
-        .liq-summary-value.short { color: #4ade80; }
-        .liq-chart-box { background: #1e1e26; border-radius: 8px; padding: 16px; }
-        .liq-chart-wrapper { height: 350px; position: relative; }
-        
-        /* Share Bar */
-        .share-bar { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; margin-bottom: 20px; background: #16161d; border: 1px solid #2a2a35; border-radius: 10px; }
-        .share-bar-label { font-size: 0.75rem; color: #6b6b7a; margin-right: 4px; }
-        .share-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid #2a2a35; background: transparent; color: #b1b1ba; font-size: 0.72rem; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: all 0.2s; }
-        .share-btn:hover { border-color: #4a4a5a; color: #fff; background: rgba(255,255,255,0.05); }
-        .share-btn.twitter:hover { border-color: #1d9bf0; color: #1d9bf0; }
-        .share-btn.kakao:hover { border-color: #fee500; color: #fee500; }
-        .share-btn.telegram:hover { border-color: #26a5e4; color: #26a5e4; }
-        .share-btn.copy:hover { border-color: #22d3ee; color: #22d3ee; }
-        .share-btn svg { width: 16px; height: 16px; }
-        .share-toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #22d3ee; color: #000; padding: 10px 24px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; z-index: 9999; display: none; animation: toastIn 0.3s ease; }
-        @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
-        
-        /* Inline Chart styles */
-        .inline-chart-section { display: none; margin-top: 12px; background: #16161d; border: 1px solid #2a2a35; border-radius: 10px; overflow: hidden; animation: slideDown 0.25s ease-out; }
-        .inline-chart-section.show { display: block; }
-        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 500px; } }
-        .inline-chart-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid #2a2a35; flex-wrap: wrap; gap: 8px; }
-        .inline-chart-title { display: flex; align-items: center; gap: 10px; }
-        .inline-chart-coin { font-size: 1rem; font-weight: 600; color: #fff; }
-        .inline-chart-dir { padding: 3px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: 600; }
-        .inline-chart-dir.long { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
-        .inline-chart-dir.short { background: rgba(248, 113, 113, 0.2); color: #f87171; }
-        .inline-chart-stats { display: flex; gap: 16px; flex-wrap: wrap; padding: 10px 16px; border-bottom: 1px solid #2a2a35; }
-        .inline-chart-stat { text-align: center; }
-        .inline-chart-stat-label { font-size: 0.6rem; color: #6b6b7a; margin-bottom: 2px; }
-        .inline-chart-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #fff; }
-        .inline-chart-body { position: relative; height: 250px; padding: 12px; }
-        .inline-chart-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0.85); color: #71717a; gap: 8px; z-index: 5; }
-        .inline-chart-legend { display: flex; justify-content: center; gap: 16px; padding: 8px 16px; border-top: 1px solid #1a1a1a; }
-        .inline-chart-legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.65rem; color: #71717a; }
-        .inline-chart-legend-line { width: 16px; height: 2px; }
-        .inline-chart-legend-line.entry { border-top: 2px dashed #ef4444; height: 0; }
-        .inline-chart-legend-line.current { background: #22d3ee; }
-        .inline-tf-btn { padding: 4px 10px; border-radius: 5px; border: 1px solid #2a2a35; background: transparent; color: #8b8b9a; font-size: 0.65rem; cursor: pointer; transition: all 0.2s; }
-        .inline-tf-btn:hover { border-color: #3d3d4a; color: #c1c1ca; }
-        .inline-tf-btn.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
-        .inline-chart-close { background: none; border: none; color: #8b8b9a; cursor: pointer; padding: 4px; border-radius: 6px; transition: all 0.2s; }
-        .inline-chart-close:hover { background: #2a2a35; color: #fff; }
-        .position-card.selected { border-color: #22d3ee; background: rgba(34, 211, 238, 0.08); }
-        
-        .pos-badge { display: inline-flex; align-items: center; gap: 5px; color: #22d3ee; font-size: 0.7rem; cursor: pointer; padding: 4px 10px; border-radius: 6px; transition: all 0.2s; font-family: 'Noto Sans KR', sans-serif; white-space: nowrap; }
-        .pos-badge:hover { background: rgba(34, 211, 238, 0.15); }
-        .pos-badge .pos-count { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
-        .pos-badge svg { transition: transform 0.2s; }
-        .pos-badge.expanded svg { transform: rotate(180deg); }
-        
-        th.sortable { position: relative; padding-right: 18px !important; }
-        th.sortable::after { content: '↕'; position: absolute; right: 4px; opacity: 0.3; font-size: 0.6rem; }
-        th.sort-asc::after { content: '↑'; opacity: 1; color: #22d3ee; }
-        th.sort-desc::after { content: '↓'; opacity: 1; color: #22d3ee; }
-        
-        tr.biggest-row { cursor: pointer; transition: background 0.15s; }
-        tr.biggest-row:hover td { background: rgba(34, 211, 238, 0.08); }
-        tr.biggest-row.selected td { background: rgba(34, 211, 238, 0.1); }
-        .biggest-chart-row { display: none; }
-        .biggest-chart-row.show { display: table-row; }
-        
-        .mobile-cards { display: none; }
-        .m-card { background: #1a1a22; border: 1px solid #2a2a35; border-radius: 10px; padding: 14px; margin-bottom: 10px; }
-        .m-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .m-card-top-left { display: flex; align-items: center; gap: 8px; }
-        .m-card-addr { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
-        .m-card-addr a { color: #22d3ee; text-decoration: none; }
-        .m-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .m-card-item {}
-        .m-card-label { font-size: 0.6rem; color: #6b6b7a; margin-bottom: 2px; }
-        .m-card-val { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #b1b1ba; }
-        .m-card-footer { margin-top: 10px; padding-top: 10px; border-top: 1px solid #2a2a35; }
-        .m-card-badge { display: flex; align-items: center; justify-content: center; gap: 6px; color: #22d3ee; font-size: 0.75rem; cursor: pointer; padding: 6px; border-radius: 6px; transition: all 0.2s; }
-        .m-card-badge:hover { background: rgba(34, 211, 238, 0.15); }
-        .m-card-badge.expanded svg { transform: rotate(180deg); }
-        .m-card-badge svg { transition: transform 0.2s; }
-        .m-card-positions { display: none; margin-top: 10px; }
-        .m-card-positions.show { display: block; }
-        .m-card-chart-btn { display: flex; align-items: center; justify-content: center; gap: 6px; color: #22d3ee; font-size: 0.75rem; cursor: pointer; padding: 8px; border-radius: 6px; margin-top: 10px; border: 1px dashed rgba(34, 211, 238, 0.3); transition: all 0.2s; }
-        .m-card-chart-btn:hover { background: rgba(34, 211, 238, 0.1); }
-        .m-biggest-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-        
-        .tooltip { position: fixed; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 8px 12px; font-size: 0.75rem; color: #e4e4e7; pointer-events: none; z-index: 2000; display: none; max-width: 250px; }
-        
-        .sent-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 16px; }
-        .sent-stat { background: #1e1e26; border-radius: 8px; padding: 12px; text-align: center; }
-        .sent-stat-label { font-size: 0.65rem; color: #8b8b9a; margin-bottom: 4px; }
-        .sent-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; }
-        .sent-chart-box { background: #1e1e26; border-radius: 8px; padding: 16px; }
-        .sent-chart-wrapper { height: 380px; position: relative; }
-        
-        @media (max-width: 768px) {
-            .nav-menu { gap: 0; overflow-x: auto; width: 100%; justify-content: flex-start; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
-            .nav-item { padding: 8px 12px; font-size: 0.72rem; }
-            .nav-icon { display: none; }
-            .main-content { padding: 16px 12px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .dex-tabs { flex-wrap: wrap; }
-            .dex-tab { padding: 8px 12px; font-size: 0.75rem; }
-            .table-container.has-mobile { display: none; }
-            .mobile-cards { display: block; }
-            .inline-chart-body { height: 200px; }
-            .inline-chart-stats { gap: 10px; padding: 8px 12px; }
-            .inline-chart-header { padding: 10px 12px; }
-            .sent-chart-wrapper { height: 280px; }
-            .share-bar { flex-wrap: wrap; gap: 8px; }
-            .share-btn { padding: 6px 10px; font-size: 0.68rem; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#000;color:#e4e4e7;font-family:'Noto Sans KR',sans-serif;min-height:100vh}
+        .top-nav{width:100%;background:#0a0a0a;border-bottom:1px solid #1a1a1a;padding:0 20px;position:sticky;top:0;z-index:100}
+        .nav-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;padding:14px 0 0}
+        .logo{margin-bottom:12px}
+        .logo-text{font-size:1.05rem;font-weight:600;color:#fff;letter-spacing:-0.02em}
+        .logo-sub{font-size:0.6rem;color:#22d3ee;display:block;text-align:center}
+        .nav-menu{display:flex;gap:2px;list-style:none}
+        .nav-item{padding:10px 16px;cursor:pointer;transition:all 0.2s;color:#71717a;font-size:0.8rem;font-weight:500;border-bottom:2px solid transparent;display:flex;align-items:center;gap:6px;white-space:nowrap}
+        .nav-item:hover{color:#e4e4e7;background:rgba(34,211,238,0.05)}
+        .nav-item.active{color:#22d3ee;border-bottom-color:#22d3ee}
+        .nav-icon{width:16px;height:16px}
+        .main-content{max-width:1200px;margin:0 auto;padding:24px 20px;min-height:calc(100vh - 100px)}
+        .status-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);padding:6px 14px;border-radius:20px;font-size:0.7rem;color:#22d3ee;margin-bottom:20px}
+        .status-dot{width:8px;height:8px;background:#22d3ee;border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+        .page-header{margin-bottom:24px}
+        .page-header h1{font-size:1.6rem;font-weight:600;color:#fff;margin-bottom:6px}
+        .page-header p{color:#6b6b7a;font-size:0.85rem}
+        .section{display:none}.section.active{display:block}
+        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px}
+        .stat-card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;padding:18px}
+        .stat-label{font-size:0.7rem;color:#6b6b7a;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px}
+        .stat-value{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:600;color:#22d3ee}
+        .card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;padding:20px;margin-bottom:20px}
+        .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+        .card-title{font-size:0.95rem;font-weight:600;color:#fff}
+        .tabs{display:flex;gap:4px;background:#111;padding:4px;border-radius:8px}
+        .tab{padding:6px 12px;border-radius:6px;border:none;background:transparent;color:#6b6b7a;font-family:'Noto Sans KR',sans-serif;font-size:0.7rem;font-weight:500;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+        .tab:hover{color:#a1a1aa}.tab.active{background:#22d3ee;color:#000}
+        .controls-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+        select{appearance:none;background:#111 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b6b7a' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E") no-repeat right 10px center;border:1px solid #1a1a1a;border-radius:6px;padding:8px 32px 8px 12px;color:#e4e4e7;font-family:'JetBrains Mono',monospace;font-size:0.8rem;cursor:pointer;min-width:140px}
+        select:focus{outline:none;border-color:#22d3ee}
+        .dex-tabs{display:flex;gap:8px;margin-bottom:20px}
+        .dex-tab{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid #1a1a1a;background:#0a0a0a;color:#6b6b7a;font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+        .dex-tab:hover{border-color:#333;color:#a1a1aa}
+        .dex-tab.active{border-color:#22d3ee;background:rgba(34,211,238,0.1);color:#22d3ee}
+        .dex-tab img{width:20px;height:20px;border-radius:50%}.dex-tab .dex-name{font-weight:600}
+        .table-container{overflow-x:auto}
+        table{width:100%;border-collapse:collapse;font-size:0.8rem}
+        th,td{padding:12px;text-align:left;border-bottom:1px solid #1a1a1a}
+        th{background:#0d0d0d;color:#6b6b7a;font-weight:500;text-transform:uppercase;font-size:0.65rem;letter-spacing:0.05em;position:sticky;top:0;z-index:10}
+        th.sortable{cursor:pointer;user-select:none}th.sortable:hover{color:#22d3ee}th.sort-active{color:#22d3ee}
+        td{font-family:'JetBrains Mono',monospace;color:#a1a1aa}
+        tr:hover td{background:rgba(34,211,238,0.03)}
+        .positive{color:#4ade80!important}.negative{color:#f87171!important}.bullish{color:#4ade80!important}.bearish{color:#f87171!important}
+        .coin-name{color:#fff;font-weight:500}
+        .address{max-width:150px;overflow:hidden;text-overflow:ellipsis}.address a{color:#22d3ee;text-decoration:none}.address a:hover{text-decoration:underline}
+        .direction{padding:3px 8px;border-radius:4px;font-size:0.7rem;font-weight:600}
+        .direction.long{background:rgba(74,222,128,0.15);color:#4ade80}.direction.short{background:rgba(248,113,113,0.15);color:#f87171}
+        .rank{display:inline-flex;align-items:center;justify-content:center;min-width:32px;padding:2px 6px;background:#1a1a1a;border-radius:4px;font-size:0.7rem;color:#6b6b7a}
+        .rank.top3{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#000;font-weight:600}
+        .loading{display:flex;align-items:center;justify-content:center;padding:40px;color:#6b6b7a;gap:10px}
+        .loading-spinner{width:20px;height:20px;border:2px solid #1a1a1a;border-top-color:#22d3ee;border-radius:50%;animation:spin 1s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .no-data{text-align:center;padding:40px;color:#6b6b7a}
+        .last-updated{text-align:center;margin-top:20px;font-size:0.75rem;color:#4a4a5a}
+        .bar-chart{display:flex;flex-direction:column;gap:6px;padding-right:10px}
+        .bar-row{display:flex;align-items:center;gap:10px;font-size:0.75rem}
+        .bar-label{width:60px;text-align:right;color:#fff;font-weight:500;font-family:'JetBrains Mono',monospace}
+        .bar-container{flex:1;display:flex;height:24px}
+        .bar-negative{flex:1;display:flex;justify-content:flex-end}.bar-positive{flex:1;display:flex;justify-content:flex-start}
+        .bar{height:100%;border-radius:3px;min-width:2px;transition:width 0.3s;display:flex;align-items:center;padding:0 6px;font-size:0.65rem;font-family:'JetBrains Mono',monospace}
+        .bar.short{background:linear-gradient(90deg,#f87171,#ef4444);color:#fff;justify-content:flex-end}
+        .bar.long{background:linear-gradient(90deg,#22c55e,#4ade80);color:#fff}
+        .chart-container{position:relative}
+        .chart-legend{display:flex;gap:20px;margin-bottom:10px;justify-content:center}
+        .legend-item{display:flex;align-items:center;gap:6px;font-size:0.75rem;color:#6b6b7a}
+        .legend-dot{width:12px;height:12px;border-radius:3px}
+        .legend-dot.long{background:linear-gradient(90deg,#22c55e,#4ade80)}.legend-dot.short{background:linear-gradient(90deg,#f87171,#ef4444)}
+        .sub-tabs{display:flex;gap:8px;margin-bottom:16px}
+        .sub-tab{padding:10px 20px;border-radius:8px;border:1px solid #1a1a1a;background:transparent;color:#6b6b7a;font-family:'Noto Sans KR',sans-serif;font-size:0.8rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+        .sub-tab:hover{border-color:#333;color:#a1a1aa}
+        .sub-tab.active{border-color:#22d3ee;background:rgba(34,211,238,0.1);color:#22d3ee}
+        .positions-row{display:none}.positions-row.show{display:table-row}
+        .positions-content{background:#111;border-radius:8px;padding:12px}
+        .positions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+        .position-card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:8px;padding:12px;cursor:pointer;transition:all 0.2s}
+        .position-card:hover{border-color:#22d3ee;transform:translateY(-2px)}
+        .position-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+        .position-coin{font-weight:600;color:#fff;font-size:0.85rem}
+        .position-details{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+        .position-detail{display:flex;flex-direction:column}
+        .position-detail-label{font-size:0.65rem;color:#4a4a5a}
+        .position-detail-value{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#a1a1aa}
+        .position-hint{font-size:0.65rem;color:#4a4a5a;margin-top:8px;text-align:center;border-top:1px solid #1a1a1a;padding-top:8px}
+        .liq-header-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+        .liq-price-box{background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:10px 16px;text-align:center}
+        .liq-price-label{font-size:0.65rem;color:#6b6b7a;margin-bottom:4px}
+        .liq-price-value{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:600;color:#22d3ee}
+        .liq-legend{display:flex;gap:20px;margin-bottom:16px;flex-wrap:wrap;align-items:center;padding:12px;background:#0d0d0d;border-radius:8px}
+        .liq-legend-section{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+        .liq-legend-title{font-size:0.7rem;color:#6b6b7a;font-weight:500}
+        .liq-legend-item{display:flex;align-items:center;gap:4px;font-size:0.7rem;color:#a1a1aa}
+        .liq-legend-color{width:14px;height:14px;border-radius:3px}
+        .liq-summary{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+        .liq-summary-card{padding:14px;border-radius:8px;text-align:center}
+        .liq-summary-card.long-card{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3)}
+        .liq-summary-card.short-card{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3)}
+        .liq-summary-label{font-size:0.7rem;color:#6b6b7a;margin-bottom:4px}
+        .liq-summary-value{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:600}
+        .liq-summary-value.long{color:#f87171}.liq-summary-value.short{color:#4ade80}
+        .liq-chart-box{background:#0d0d0d;border-radius:8px;padding:16px}
+        .liq-chart-wrapper{height:350px;position:relative}
+        .watermark{position:relative}.watermark::after{content:'herdvibe.com';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:rgba(255,255,255,0.08);pointer-events:none;z-index:2;letter-spacing:2px}
+        .share-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;margin-bottom:20px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:10px}
+        .share-bar-label{font-size:0.75rem;color:#4a4a5a;margin-right:4px}
+        .share-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid #1a1a1a;background:transparent;color:#a1a1aa;font-size:0.72rem;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:all 0.2s}
+        .share-btn:hover{border-color:#333;color:#fff;background:rgba(255,255,255,0.03)}
+        .share-btn.twitter:hover{border-color:#1d9bf0;color:#1d9bf0}
+        .share-btn.kakao:hover{border-color:#fee500;color:#fee500}
+        .share-btn.telegram:hover{border-color:#26a5e4;color:#26a5e4}
+        .share-btn.copy:hover{border-color:#22d3ee;color:#22d3ee}
+        .share-btn svg{width:16px;height:16px}
+        .share-toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#22d3ee;color:#000;padding:10px 24px;border-radius:8px;font-size:0.8rem;font-weight:600;z-index:9999;display:none;animation:toastIn 0.3s ease}
+        @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+        .inline-chart-section{display:none;margin-top:12px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:10px;overflow:hidden;animation:slideDown 0.25s ease-out}
+        .inline-chart-section.show{display:block}
+        @keyframes slideDown{from{opacity:0;max-height:0}to{opacity:1;max-height:500px}}
+        .inline-chart-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #1a1a1a;flex-wrap:wrap;gap:8px}
+        .inline-chart-title{display:flex;align-items:center;gap:10px}
+        .inline-chart-coin{font-size:1rem;font-weight:600;color:#fff}
+        .inline-chart-dir{padding:3px 8px;border-radius:5px;font-size:0.7rem;font-weight:600}
+        .inline-chart-dir.long{background:rgba(74,222,128,0.15);color:#4ade80}
+        .inline-chart-dir.short{background:rgba(248,113,113,0.15);color:#f87171}
+        .inline-chart-stats{display:flex;gap:16px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid #1a1a1a}
+        .inline-chart-stat{text-align:center}
+        .inline-chart-stat-label{font-size:0.6rem;color:#4a4a5a;margin-bottom:2px}
+        .inline-chart-stat-value{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#fff}
+        .inline-chart-body{position:relative;height:250px;padding:12px}
+        .inline-chart-loading{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);color:#555;gap:8px;z-index:5}
+        .inline-chart-legend{display:flex;justify-content:center;gap:16px;padding:8px 16px;border-top:1px solid #111}
+        .inline-chart-legend-item{display:flex;align-items:center;gap:5px;font-size:0.65rem;color:#555}
+        .inline-chart-legend-line{width:16px;height:2px}
+        .inline-chart-legend-line.entry{border-top:2px dashed #ef4444;height:0}
+        .inline-chart-legend-line.current{background:#22d3ee}
+        .inline-tf-btn{padding:4px 10px;border-radius:5px;border:1px solid #1a1a1a;background:transparent;color:#6b6b7a;font-size:0.65rem;cursor:pointer;transition:all 0.2s}
+        .inline-tf-btn:hover{border-color:#333;color:#a1a1aa}
+        .inline-tf-btn.active{border-color:#22d3ee;background:rgba(34,211,238,0.1);color:#22d3ee}
+        .inline-chart-close{background:none;border:none;color:#6b6b7a;cursor:pointer;padding:4px;border-radius:6px;transition:all 0.2s}
+        .inline-chart-close:hover{background:#1a1a1a;color:#fff}
+        .position-card.selected{border-color:#22d3ee;background:rgba(34,211,238,0.05)}
+        .pos-badge{display:inline-flex;align-items:center;gap:5px;color:#22d3ee;font-size:0.7rem;cursor:pointer;padding:4px 10px;border-radius:6px;transition:all 0.2s;font-family:'Noto Sans KR',sans-serif;white-space:nowrap}
+        .pos-badge:hover{background:rgba(34,211,238,0.1)}
+        .pos-badge .pos-count{font-family:'JetBrains Mono',monospace;font-weight:600}
+        .pos-badge svg{transition:transform 0.2s}.pos-badge.expanded svg{transform:rotate(180deg)}
+        th.sortable{position:relative;padding-right:18px!important}
+        th.sortable::after{content:'↕';position:absolute;right:4px;opacity:0.3;font-size:0.6rem}
+        th.sort-asc::after{content:'↑';opacity:1;color:#22d3ee}
+        th.sort-desc::after{content:'↓';opacity:1;color:#22d3ee}
+        tr.biggest-row{cursor:pointer;transition:background 0.15s}
+        tr.biggest-row:hover td{background:rgba(34,211,238,0.05)}
+        tr.biggest-row.selected td{background:rgba(34,211,238,0.08)}
+        .biggest-chart-row{display:none}.biggest-chart-row.show{display:table-row}
+        .mobile-cards{display:none}
+        .m-card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:10px;padding:14px;margin-bottom:10px}
+        .m-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+        .m-card-top-left{display:flex;align-items:center;gap:8px}
+        .m-card-addr{font-family:'JetBrains Mono',monospace;font-size:0.8rem}.m-card-addr a{color:#22d3ee;text-decoration:none}
+        .m-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+        .m-card-label{font-size:0.6rem;color:#4a4a5a;margin-bottom:2px}
+        .m-card-val{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:#a1a1aa}
+        .m-card-footer{margin-top:10px;padding-top:10px;border-top:1px solid #1a1a1a}
+        .m-card-badge{display:flex;align-items:center;justify-content:center;gap:6px;color:#22d3ee;font-size:0.75rem;cursor:pointer;padding:6px;border-radius:6px;transition:all 0.2s}
+        .m-card-badge:hover{background:rgba(34,211,238,0.1)}
+        .m-card-badge.expanded svg{transform:rotate(180deg)}.m-card-badge svg{transition:transform 0.2s}
+        .m-card-positions{display:none;margin-top:10px}.m-card-positions.show{display:block}
+        .m-card-chart-btn{display:flex;align-items:center;justify-content:center;gap:6px;color:#22d3ee;font-size:0.75rem;cursor:pointer;padding:8px;border-radius:6px;margin-top:10px;border:1px dashed rgba(34,211,238,0.2);transition:all 0.2s}
+        .m-card-chart-btn:hover{background:rgba(34,211,238,0.08)}
+        .m-biggest-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+        .tooltip{position:fixed;background:#111;border:1px solid #222;border-radius:8px;padding:8px 12px;font-size:0.75rem;color:#e4e4e7;pointer-events:none;z-index:2000;display:none;max-width:250px}
+        .sent-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+        .sent-stat{background:#0d0d0d;border-radius:8px;padding:12px;text-align:center}
+        .sent-stat-label{font-size:0.65rem;color:#6b6b7a;margin-bottom:4px}
+        .sent-stat-value{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:600}
+        .sent-chart-box{background:#0d0d0d;border-radius:8px;padding:16px}
+        .sent-chart-wrapper{height:380px;position:relative}
+        @media(max-width:768px){
+            .nav-menu{gap:0;overflow-x:auto;width:100%;justify-content:flex-start;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+            .nav-item{padding:8px 12px;font-size:0.72rem}.nav-icon{display:none}
+            .main-content{padding:16px 12px}.stats-grid{grid-template-columns:repeat(2,1fr)}
+            .dex-tabs{flex-wrap:wrap}.dex-tab{padding:8px 12px;font-size:0.75rem}
+            .table-container.has-mobile{display:none}.mobile-cards{display:block}
+            .inline-chart-body{height:200px}.inline-chart-stats{gap:10px;padding:8px 12px}.inline-chart-header{padding:10px 12px}
+            .sent-chart-wrapper{height:280px}
+            .share-bar{flex-wrap:wrap;gap:8px}.share-btn{padding:6px 10px;font-size:0.68rem}
+            .watermark::after{font-size:14px}
         }
     </style>
 </head>
 <body>
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <div class="nav-inner">
-            <div class="logo">
-                <div class="logo-icon">HL</div>
-                <div><div class="logo-text">하이퍼리퀴드</div><span class="logo-sub">Tracker Dashboard</span></div>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item active" data-section="overview"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>개요</li>
-                <li class="nav-item" data-section="funding"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>펀딩비</li>
-                <li class="nav-item" data-section="liquidation"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>청산 지도</li>
-                <li class="nav-item" data-section="whales"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>고래 추적기</li>
-                <li class="nav-item" data-section="sentiment"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>고래 센티먼트</li>
-            </ul>
-        </div>
-    </nav>
-
+    <nav class="top-nav"><div class="nav-inner">
+        <div class="logo"><div class="logo-text">하이퍼리퀴드 트래커</div><span class="logo-sub">Tracker Dashboard</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item active" data-section="overview"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>개요</li>
+            <li class="nav-item" data-section="funding"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>펀딩비</li>
+            <li class="nav-item" data-section="liquidation"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>청산 지도</li>
+            <li class="nav-item" data-section="whales"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>고래 추적기</li>
+            <li class="nav-item" data-section="sentiment"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>고래 센티먼트</li>
+        </ul>
+    </div></nav>
     <main class="main-content">
-        <!-- Overview Section -->
         <section id="overview" class="section active">
             <div class="status-badge"><div class="status-dot"></div>실시간 업데이트</div>
             <div class="page-header"><h1>📊 하이퍼리퀴드 대시보드</h1><p>Hyperliquid 무기한 선물 실시간 데이터</p></div>
-            <div class="stats-grid">
-                <div class="stat-card"><div class="stat-label">24시간 거래량</div><div class="stat-value" id="stat-vol">-</div></div>
-                <div class="stat-card"><div class="stat-label">미결제약정</div><div class="stat-value" id="stat-oi">-</div></div>
-                <div class="stat-card"><div class="stat-label">활성 마켓</div><div class="stat-value" id="stat-mkts">-</div></div>
-                <div class="stat-card"><div class="stat-label">추적 트레이더</div><div class="stat-value" id="stat-traders">-</div></div>
-            </div>
-            <div class="card">
-                <div class="card-header"><h3 class="card-title">📈 실시간 가격</h3><div class="tabs" id="live-tabs"><button class="tab active" data-v="all">전체</button><button class="tab" data-v="top">Top 10</button></div></div>
-                <div class="table-container"><table><thead><tr><th>코인</th><th>가격</th><th>24h 변동</th><th>미결제약정</th><th>24h 거래량</th><th>펀딩 (1H)</th></tr></thead><tbody id="live-tbody"><tr><td colspan="6"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div>
-            </div>
+            <div class="stats-grid"><div class="stat-card"><div class="stat-label">24시간 거래량</div><div class="stat-value" id="stat-vol">-</div></div><div class="stat-card"><div class="stat-label">미결제약정</div><div class="stat-value" id="stat-oi">-</div></div><div class="stat-card"><div class="stat-label">활성 마켓</div><div class="stat-value" id="stat-mkts">-</div></div><div class="stat-card"><div class="stat-label">추적 트레이더</div><div class="stat-value" id="stat-traders">-</div></div></div>
+            <div class="card"><div class="card-header"><h3 class="card-title">📈 실시간 가격</h3><div class="tabs" id="live-tabs"><button class="tab active" data-v="all">전체</button><button class="tab" data-v="top">Top 10</button></div></div><div class="table-container"><table><thead><tr><th>코인</th><th>가격</th><th>24h 변동</th><th>미결제약정</th><th>24h 거래량</th><th>펀딩 (1H)</th></tr></thead><tbody id="live-tbody"><tr><td colspan="6"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div></div>
         </section>
-
-        <!-- Funding Section -->
         <section id="funding" class="section">
             <div class="page-header"><h1>💰 펀딩비 현황</h1><p>실시간 펀딩비 및 예상 연간 수익률</p></div>
-            <div class="card">
-                <div class="card-header"><h3 class="card-title">실시간 펀딩비</h3></div>
-                <div class="table-container"><table id="funding"><thead><tr><th>코인</th><th class="sortable" data-sort="funding">펀딩 (1H)</th><th class="sortable" data-sort="apy">연간 APY</th><th>다음 펀딩까지</th><th class="sortable" data-sort="oi">미결제약정</th></tr></thead><tbody id="funding-tbody"><tr><td colspan="5"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div>
-            </div>
+            <div class="card"><div class="card-header"><h3 class="card-title">실시간 펀딩비</h3></div><div class="table-container"><table id="funding"><thead><tr><th>코인</th><th class="sortable" data-sort="funding">펀딩 (1H)</th><th class="sortable" data-sort="apy">연간 APY</th><th>다음 펀딩까지</th><th class="sortable" data-sort="oi">미결제약정</th></tr></thead><tbody id="funding-tbody"><tr><td colspan="5"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div></div>
         </section>
-
-        <!-- Liquidation Map -->
         <section id="liquidation" class="section">
             <div class="page-header"><h1>⚠️ 청산 지도</h1><p>Top 500 트레이더 기준 청산 가격 분포</p></div>
-            
-            <!-- Share Bar -->
-            <div class="share-bar" id="share-liq">
-                <span class="share-bar-label">공유하기</span>
-                <button class="share-btn twitter" onclick="shareTwitter('liq')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>트위터</button>
-                <button class="share-btn kakao" onclick="shareKakao('liq')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.724 1.8 5.113 4.508 6.459-.2.742-.723 2.688-.828 3.107-.13.52.19.512.399.373.164-.109 2.612-1.773 3.67-2.492.733.104 1.49.159 2.251.159 5.523 0 10-3.463 10-7.606C22 6.463 17.523 3 12 3z"/></svg>카카오톡</button>
-                <button class="share-btn telegram" onclick="shareTelegram('liq')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>텔레그램</button>
-                <button class="share-btn copy" onclick="copyLink('liq')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>링크복사</button>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div class="controls-row">
-                        <div class="tabs" id="liq-data-tabs"><button class="tab active" data-v="pnl">PnL 상위 500</button><button class="tab" data-v="size">상위 500 포지션 사이즈</button></div>
-                        <div class="tabs" id="liq-period-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div>
-                    </div>
-                </div>
-                <div class="liq-header-row">
-                    <div class="controls-row"><select id="liq-coin"><option value="">로딩 중...</option></select></div>
-                    <div class="liq-price-box"><div class="liq-price-label">현재 가격</div><div class="liq-price-value" id="liq-current-price">-</div></div>
-                </div>
-                <div class="liq-legend">
-                    <div class="liq-legend-section">
-                        <span class="liq-legend-title">레버리지:</span>
-                        <div class="liq-legend-item"><div class="liq-legend-color" style="background:#3b82f6"></div>10x</div>
-                        <div class="liq-legend-item"><div class="liq-legend-color" style="background:#eab308"></div>25x</div>
-                        <div class="liq-legend-item"><div class="liq-legend-color" style="background:#f97316"></div>50x</div>
-                        <div class="liq-legend-item"><div class="liq-legend-color" style="background:#ef4444"></div>100x</div>
-                    </div>
-                </div>
-                <div class="liq-summary">
-                    <div class="liq-summary-card long-card"><div class="liq-summary-label">누적 롱 청산</div><div class="liq-summary-value long" id="liq-total-long">-</div></div>
-                    <div class="liq-summary-card short-card"><div class="liq-summary-label">누적 숏 청산</div><div class="liq-summary-value short" id="liq-total-short">-</div></div>
-                </div>
-                <div class="liq-chart-box"><div class="liq-chart-wrapper"><canvas id="liq-chart"></canvas></div></div>
-            </div>
+            <div class="share-bar"><span class="share-bar-label">공유하기</span><button class="share-btn twitter" onclick="shareTwitter('liq')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>트위터</button><button class="share-btn kakao" onclick="shareKakao('liq')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.724 1.8 5.113 4.508 6.459-.2.742-.723 2.688-.828 3.107-.13.52.19.512.399.373.164-.109 2.612-1.773 3.67-2.492.733.104 1.49.159 2.251.159 5.523 0 10-3.463 10-7.606C22 6.463 17.523 3 12 3z"/></svg>카카오톡</button><button class="share-btn telegram" onclick="shareTelegram('liq')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>텔레그램</button><button class="share-btn copy" onclick="copyLink()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>링크복사</button></div>
+            <div class="card"><div class="card-header"><div class="controls-row"><div class="tabs" id="liq-data-tabs"><button class="tab active" data-v="pnl">PnL 상위 500</button><button class="tab" data-v="size">상위 500 포지션 사이즈</button></div><div class="tabs" id="liq-period-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div></div></div><div class="liq-header-row"><div class="controls-row"><select id="liq-coin"><option value="">로딩 중...</option></select></div><div class="liq-price-box"><div class="liq-price-label">현재 가격</div><div class="liq-price-value" id="liq-current-price">-</div></div></div><div class="liq-legend"><div class="liq-legend-section"><span class="liq-legend-title">레버리지:</span><div class="liq-legend-item"><div class="liq-legend-color" style="background:#3b82f6"></div>10x</div><div class="liq-legend-item"><div class="liq-legend-color" style="background:#eab308"></div>25x</div><div class="liq-legend-item"><div class="liq-legend-color" style="background:#f97316"></div>50x</div><div class="liq-legend-item"><div class="liq-legend-color" style="background:#ef4444"></div>100x</div></div></div><div class="liq-summary"><div class="liq-summary-card long-card"><div class="liq-summary-label">누적 롱 청산</div><div class="liq-summary-value long" id="liq-total-long">-</div></div><div class="liq-summary-card short-card"><div class="liq-summary-label">누적 숏 청산</div><div class="liq-summary-value short" id="liq-total-short">-</div></div></div><div class="liq-chart-box"><div class="liq-chart-wrapper watermark"><canvas id="liq-chart"></canvas></div></div></div>
             <div class="last-updated" id="liq-last-updated"></div>
         </section>
-
-        <!-- Whales -->
         <section id="whales" class="section">
             <div class="page-header"><h1>🐋 고래 추적기</h1><p>상위 트레이더 포지션 및 PnL 분석</p></div>
-            
-            <!-- Share Bar -->
-            <div class="share-bar" id="share-whales">
-                <span class="share-bar-label">공유하기</span>
-                <button class="share-btn twitter" onclick="shareTwitter('whales')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>트위터</button>
-                <button class="share-btn kakao" onclick="shareKakao('whales')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.724 1.8 5.113 4.508 6.459-.2.742-.723 2.688-.828 3.107-.13.52.19.512.399.373.164-.109 2.612-1.773 3.67-2.492.733.104 1.49.159 2.251.159 5.523 0 10-3.463 10-7.606C22 6.463 17.523 3 12 3z"/></svg>카카오톡</button>
-                <button class="share-btn telegram" onclick="shareTelegram('whales')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>텔레그램</button>
-                <button class="share-btn copy" onclick="copyLink('whales')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>링크복사</button>
-            </div>
-            
-            <div class="dex-tabs" id="whale-dex-tabs">
-                <button class="dex-tab active" data-dex="hyperliquid">
-                    <img src="https://app.hyperliquid.xyz/favicon.ico" alt="HL" onerror="this.style.display='none'">
-                    <span class="dex-name">Hyperliquid</span>
-                </button>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">📊 탑 트레이더 포지션 집계</h3>
-                    <div class="controls-row">
-                        <div class="tabs" id="pos-data-tabs"><button class="tab active" data-v="pnl">PnL 상위 500</button><button class="tab" data-v="size">상위 500 포지션 사이즈</button></div>
-                        <div class="tabs" id="pos-period-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div>
-                        <div class="tabs" id="pos-unit-tabs"><button class="tab active" data-v="value">금액($)</button><button class="tab" data-v="size">수량</button></div>
-                    </div>
-                </div>
-                <div class="chart-legend"><div class="legend-item"><div class="legend-dot short"></div>숏</div><div class="legend-item"><div class="legend-dot long"></div>롱</div></div>
-                <div class="chart-container"><div id="pos-chart" class="bar-chart"></div></div>
-            </div>
+            <div class="share-bar"><span class="share-bar-label">공유하기</span><button class="share-btn twitter" onclick="shareTwitter('whales')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>트위터</button><button class="share-btn kakao" onclick="shareKakao('whales')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.724 1.8 5.113 4.508 6.459-.2.742-.723 2.688-.828 3.107-.13.52.19.512.399.373.164-.109 2.612-1.773 3.67-2.492.733.104 1.49.159 2.251.159 5.523 0 10-3.463 10-7.606C22 6.463 17.523 3 12 3z"/></svg>카카오톡</button><button class="share-btn telegram" onclick="shareTelegram('whales')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>텔레그램</button><button class="share-btn copy" onclick="copyLink()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>링크복사</button></div>
+            <div class="dex-tabs" id="whale-dex-tabs"><button class="dex-tab active" data-dex="hyperliquid"><img src="https://app.hyperliquid.xyz/favicon.ico" alt="HL" onerror="this.style.display='none'"><span class="dex-name">Hyperliquid</span></button></div>
+            <div class="card"><div class="card-header"><h3 class="card-title">📊 탑 트레이더 포지션 집계</h3><div class="controls-row"><div class="tabs" id="pos-data-tabs"><button class="tab active" data-v="pnl">PnL 상위 500</button><button class="tab" data-v="size">상위 500 포지션 사이즈</button></div><div class="tabs" id="pos-period-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div><div class="tabs" id="pos-unit-tabs"><button class="tab active" data-v="value">금액($)</button><button class="tab" data-v="size">수량</button></div></div></div><div class="chart-legend"><div class="legend-item"><div class="legend-dot short"></div>숏</div><div class="legend-item"><div class="legend-dot long"></div>롱</div></div><div class="chart-container watermark"><div id="pos-chart" class="bar-chart"></div></div></div>
             <div class="sub-tabs"><button class="sub-tab active" data-tab="pnl">📈 PnL 상위 트레이더</button><button class="sub-tab" data-tab="biggest">💎 최대 포지션 (OI)</button></div>
             <div id="pnl-section"><div class="card"><div class="card-header"><h3 class="card-title">PnL 상위 500</h3><div class="tabs" id="trader-tabs"><button class="tab active" data-v="daily">일간</button><button class="tab" data-v="weekly">주간</button></div></div><div class="table-container has-mobile"><table id="pnl-table"><thead><tr><th>순위</th><th>트레이더</th><th class="sortable" data-sort="accountValue">계좌 가치</th><th class="sortable" data-sort="pnl">수익 (PnL)</th><th class="sortable" data-sort="roi">수익률</th><th class="sortable" data-sort="volume">거래량</th><th>포지션</th></tr></thead><tbody id="pnl-tbody"><tr><td colspan="7"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div><div class="mobile-cards" id="pnl-mobile"></div></div></div>
-            <div id="biggest-section" style="display:none;"><div class="card"><div class="card-header"><h3 class="card-title">최대 포지션 상위 500 <span style="font-size:0.7rem;color:#22d3ee;font-weight:400;margin-left:8px">클릭해서 차트를 보세요</span></h3></div><div class="table-container has-mobile"><table id="biggest-table"><thead><tr><th>순위</th><th>코인</th><th>방향</th><th class="sortable" data-sort="positionValue">포지션 가치</th><th class="sortable" data-sort="size">수량</th><th>진입가</th><th class="sortable" data-sort="leverage">레버리지</th><th class="sortable" data-sort="unrealizedPnl">미실현 PnL</th><th>트레이더</th></tr></thead><tbody id="biggest-tbody"><tr><td colspan="9"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div><div class="mobile-cards" id="biggest-mobile"></div></div></div>
+            <div id="biggest-section" style="display:none"><div class="card"><div class="card-header"><h3 class="card-title">최대 포지션 상위 500 <span style="font-size:0.7rem;color:#22d3ee;font-weight:400;margin-left:8px">클릭해서 차트를 보세요</span></h3></div><div class="table-container has-mobile"><table id="biggest-table"><thead><tr><th>순위</th><th>코인</th><th>방향</th><th class="sortable" data-sort="positionValue">포지션 가치</th><th class="sortable" data-sort="size">수량</th><th>진입가</th><th class="sortable" data-sort="leverage">레버리지</th><th class="sortable" data-sort="unrealizedPnl">미실현 PnL</th><th>트레이더</th></tr></thead><tbody id="biggest-tbody"><tr><td colspan="9"><div class="loading"><div class="loading-spinner"></div>로딩 중...</div></td></tr></tbody></table></div><div class="mobile-cards" id="biggest-mobile"></div></div></div>
         </section>
-
-        <!-- Sentiment Section -->
         <section id="sentiment" class="section">
             <div class="page-header"><h1>📈 고래 센티먼트</h1><p>상위 트레이더들의 롱/숏 포지션 변화와 가격 추이</p></div>
-            
-            <!-- Share Bar -->
-            <div class="share-bar" id="share-sentiment">
-                <span class="share-bar-label">공유하기</span>
-                <button class="share-btn twitter" onclick="shareTwitter('sentiment')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>트위터</button>
-                <button class="share-btn kakao" onclick="shareKakao('sentiment')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.724 1.8 5.113 4.508 6.459-.2.742-.723 2.688-.828 3.107-.13.52.19.512.399.373.164-.109 2.612-1.773 3.67-2.492.733.104 1.49.159 2.251.159 5.523 0 10-3.463 10-7.606C22 6.463 17.523 3 12 3z"/></svg>카카오톡</button>
-                <button class="share-btn telegram" onclick="shareTelegram('sentiment')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>텔레그램</button>
-                <button class="share-btn copy" onclick="copyLink('sentiment')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>링크복사</button>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">코인별 고래 센티먼트 <span style="font-size:0.7rem;color:#8b8b9a;font-weight:400;margin-left:8px">대형 계좌 500 기준</span></h3>
-                    <div class="controls-row">
-                        <div class="tabs" id="sent-coin-tabs">
-                            <button class="tab active" data-coin="BTC">BTC</button>
-                            <button class="tab" data-coin="ETH">ETH</button>
-                            <button class="tab" data-coin="SOL">SOL</button>
-                            <button class="tab" data-coin="HYPE">HYPE</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="sent-stats" id="sent-stats"></div>
-                
-                <div class="sent-chart-box">
-                    <div class="sent-chart-wrapper">
-                        <canvas id="sent-chart"></canvas>
-                    </div>
-                    <div id="sent-no-data" class="no-data" style="display:none;">
-                        <div style="font-size:2rem;margin-bottom:10px">📊</div>
-                        데이터 수집이 시작되었습니다.<br>
-                        <span style="color:#22d3ee">매일 07:00 KST</span>에 스냅샷이 기록됩니다.<br>
-                        최소 2일 이상 쌓이면 차트가 표시됩니다.
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header"><h3 class="card-title">📋 일별 상세 데이터</h3></div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>날짜</th><th>가격</th><th>롱 수</th><th>숏 수</th><th>롱 비율</th><th>롱 금액</th><th>숏 금액</th><th>금액 롱비율</th></tr></thead>
-                        <tbody id="sent-tbody"><tr><td colspan="8"><div class="no-data">데이터 수집 중...</div></td></tr></tbody>
-                    </table>
-                </div>
-            </div>
+            <div class="share-bar"><span class="share-bar-label">공유하기</span><button class="share-btn twitter" onclick="shareTwitter('sentiment')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>트위터</button><button class="share-btn kakao" onclick="shareKakao('sentiment')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.724 1.8 5.113 4.508 6.459-.2.742-.723 2.688-.828 3.107-.13.52.19.512.399.373.164-.109 2.612-1.773 3.67-2.492.733.104 1.49.159 2.251.159 5.523 0 10-3.463 10-7.606C22 6.463 17.523 3 12 3z"/></svg>카카오톡</button><button class="share-btn telegram" onclick="shareTelegram('sentiment')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>텔레그램</button><button class="share-btn copy" onclick="copyLink()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>링크복사</button></div>
+            <div class="card"><div class="card-header"><h3 class="card-title">코인별 고래 센티먼트 <span style="font-size:0.7rem;color:#6b6b7a;font-weight:400;margin-left:8px">대형 계좌 500 기준</span></h3><div class="controls-row"><div class="tabs" id="sent-coin-tabs"><button class="tab active" data-coin="BTC">BTC</button><button class="tab" data-coin="ETH">ETH</button><button class="tab" data-coin="SOL">SOL</button><button class="tab" data-coin="HYPE">HYPE</button></div></div></div><div class="sent-stats" id="sent-stats"></div><div class="sent-chart-box"><div class="sent-chart-wrapper watermark"><canvas id="sent-chart"></canvas></div><div id="sent-no-data" class="no-data" style="display:none"><div style="font-size:2rem;margin-bottom:10px">📊</div>데이터 수집이 시작되었습니다.<br><span style="color:#22d3ee">매일 07:00 KST</span>에 스냅샷이 기록됩니다.<br>최소 2일 이상 쌓이면 차트가 표시됩니다.</div></div></div>
+            <div class="card"><div class="card-header"><h3 class="card-title">📋 일별 상세 데이터</h3></div><div class="table-container"><table><thead><tr><th>날짜</th><th>가격</th><th>롱 수</th><th>숏 수</th><th>롱 비율</th><th>롱 금액</th><th>숏 금액</th><th>금액 롱비율</th></tr></thead><tbody id="sent-tbody"><tr><td colspan="8"><div class="no-data">데이터 수집 중...</div></td></tr></tbody></table></div></div>
         </section>
-
         <div class="last-updated" id="last-updated"></div>
     </main>
-
     <div class="tooltip" id="tooltip"></div>
     <div class="share-toast" id="share-toast">링크가 복사되었습니다!</div>
-
     <script>
-        // Kakao SDK Init
         Kakao.init('a43ed7b39fac35458f4f9df925a279b5');
+        const SHARE_URL='https://herdvibe.com/43';
+        const SHARE_TEXT={liq:'⚡ 하이퍼리퀴드 청산 지도 - 실시간 청산 가격 분포',whales:'🐋 하이퍼리퀴드 고래 추적기 - 상위 트레이더 포지션 분석',sentiment:'📈 하이퍼리퀴드 고래 센티먼트 - 롱/숏 포지션 변화 추이'};
+        function shareTwitter(s){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(SHARE_TEXT[s]+'\n'+SHARE_URL),'_blank','width=550,height=420');}
+        function shareKakao(s){Kakao.Share.sendDefault({objectType:'feed',content:{title:'하이퍼리퀴드 트래커',description:SHARE_TEXT[s],imageUrl:'https://herdvibe.com/favicon.png',link:{mobileWebUrl:SHARE_URL,webUrl:SHARE_URL}},buttons:[{title:'대시보드 보기',link:{mobileWebUrl:SHARE_URL,webUrl:SHARE_URL}}]});}
+        function shareTelegram(s){window.open('https://t.me/share/url?url='+encodeURIComponent(SHARE_URL)+'&text='+encodeURIComponent(SHARE_TEXT[s]),'_blank');}
+        function copyLink(){navigator.clipboard.writeText(SHARE_URL).then(()=>{const t=document.getElementById('share-toast');t.style.display='block';setTimeout(()=>t.style.display='none',2000);});}
 
-        // Share config
-        const SHARE_URL = 'https://herdvibe.com/43';
-        const SHARE_TEXT = {
-            liq: '⚡ 하이퍼리퀴드 청산 지도 - 실시간 청산 가격 분포',
-            whales: '🐋 하이퍼리퀴드 고래 추적기 - 상위 트레이더 포지션 분석',
-            sentiment: '📈 하이퍼리퀴드 고래 센티먼트 - 롱/숏 포지션 변화 추이'
+        const DEX_CONFIG={hyperliquid:{name:'Hyperliquid',whaleFile:'data/hyperliquid_whales.json',liqFile:'data/hyperliquid_liq.json',explorerUrl:'https://app.hyperliquid.xyz/explorer/address/',color:'#22d3ee'}};
+        let currentWhaleDex='hyperliquid',currentLiqDex='hyperliquid';
+        let whaleData={},liqData={},live=null,liqChart=null,positionChart=null;
+        let posData='pnl',posPeriod='daily',posUnit='value',traderPeriod='daily';
+        let selectedLiqCoin='BTC',liqDataMode='pnl',liqPeriod='daily';
+        let fundingSortField='funding',fundingSortDir='desc';
+        let pnlSortField=null,pnlSortDir='desc';
+        let bigSortField=null,bigSortDir='desc';
+        let currentPosition=null,currentTimeframe='1h';
+        let currentBigIdx=null;
+
+        const fmt={
+            usd:v=>{const n=Math.abs(parseFloat(v)||0);return(v<0?'-':'')+'$'+(n>=1e9?(n/1e9).toFixed(2)+'B':n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n.toFixed(0));},
+            pct:v=>{const n=parseFloat(v)||0;return(n>=0?'+':'')+n.toFixed(2)+'%';},
+            pctDec:v=>{const n=(parseFloat(v)||0)*100;return(n>=0?'+':'')+n.toFixed(2)+'%';},
+            fund:v=>{const n=parseFloat(v)||0;return(n>=0?'+':'')+n.toFixed(4)+'%';},
+            px:(v,coin)=>{const n=parseFloat(v)||0;if(coin==='PEPE'||n<0.001)return '$'+n.toFixed(8);if(n<1)return '$'+n.toFixed(4);if(n<100)return '$'+n.toFixed(2);return '$'+n.toLocaleString('en-US',{maximumFractionDigits:0});},
+            num:v=>{const n=parseFloat(v)||0;return Math.abs(n)>=1e6?(n/1e6).toFixed(2)+'M':Math.abs(n)>=1e3?(n/1e3).toFixed(1)+'K':n.toFixed(2);},
+            addr:a=>a?a.slice(0,6)+'...'+a.slice(-4):'-'
         };
 
-        function shareTwitter(section) {
-            const text = encodeURIComponent(SHARE_TEXT[section] + '\n' + SHARE_URL);
-            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'width=550,height=420');
-        }
-        function shareKakao(section) {
-            Kakao.Share.sendDefault({
-                objectType: 'feed',
-                content: { title: '하이퍼리퀴드 트래커', description: SHARE_TEXT[section], imageUrl: 'https://herdvibe.com/favicon.png', link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL } },
-                buttons: [{ title: '대시보드 보기', link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL } }]
-            });
-        }
-        function shareTelegram(section) {
-            const text = encodeURIComponent(SHARE_TEXT[section]);
-            window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${text}`, '_blank');
-        }
-        function copyLink(section) {
-            navigator.clipboard.writeText(SHARE_URL).then(() => {
-                const toast = document.getElementById('share-toast');
-                toast.style.display = 'block';
-                setTimeout(() => toast.style.display = 'none', 2000);
-            });
-        }
+        function sortFunding(field){if(fundingSortField===field)fundingSortDir=fundingSortDir==='desc'?'asc':'desc';else{fundingSortField=field;fundingSortDir='desc';}document.querySelectorAll('#funding th.sortable').forEach(th=>{th.classList.remove('sort-active');if(th.dataset.sort===field)th.classList.add('sort-active');});renderFunding();}
 
-        // Chart.js Watermark Plugin (global)
-        const watermarkPlugin = {
-            id: 'watermark',
-            afterDraw: function(chart) {
-                const ctx = chart.ctx;
-                ctx.save();
-                ctx.font = '14px JetBrains Mono';
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                const cx = (chart.chartArea.left + chart.chartArea.right) / 2;
-                const cy = (chart.chartArea.top + chart.chartArea.bottom) / 2;
-                ctx.fillText('herdvibe.com', cx, cy);
-                ctx.restore();
-            }
-        };
-        Chart.register(watermarkPlugin);
-
-        // DEX Configuration
-        const DEX_CONFIG = {
-            hyperliquid: { name: 'Hyperliquid', whaleFile: 'data/hyperliquid_whales.json', liqFile: 'data/hyperliquid_liq.json', explorerUrl: 'https://app.hyperliquid.xyz/explorer/address/', color: '#22d3ee' }
-        };
-
-        let currentWhaleDex = 'hyperliquid', currentLiqDex = 'hyperliquid';
-        let whaleData = {}, liqData = {}, live = null, liqChart = null, positionChart = null;
-        let posData = 'pnl', posPeriod = 'daily', posUnit = 'value', traderPeriod = 'daily';
-        let selectedLiqCoin = 'BTC', liqDataMode = 'pnl', liqPeriod = 'daily';
-        let fundingSortField = 'funding', fundingSortDir = 'desc';
-        let pnlSortField = null, pnlSortDir = 'desc';
-        let bigSortField = null, bigSortDir = 'desc';
-        let currentPosition = null, currentTimeframe = '1h';
-        let currentBigIdx = null;
-
-        const fmt = {
-            usd: v => { const n = Math.abs(parseFloat(v)||0); return (v<0?'-':'')+'$'+(n>=1e9?(n/1e9).toFixed(2)+'B':n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n.toFixed(0)); },
-            pct: v => { const n = parseFloat(v)||0; return (n>=0?'+':'')+n.toFixed(2)+'%'; },
-            pctDec: v => { const n = (parseFloat(v)||0)*100; return (n>=0?'+':'')+n.toFixed(2)+'%'; },
-            fund: v => { const n = parseFloat(v)||0; return (n>=0?'+':'')+n.toFixed(4)+'%'; },
-            px: (v, coin) => { const n = parseFloat(v)||0; if (coin === 'PEPE' || n < 0.001) return '$' + n.toFixed(8); if (n < 1) return '$' + n.toFixed(4); if (n < 100) return '$' + n.toFixed(2); return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 }); },
-            num: v => { const n = parseFloat(v)||0; return Math.abs(n)>=1e6?(n/1e6).toFixed(2)+'M':Math.abs(n)>=1e3?(n/1e3).toFixed(1)+'K':n.toFixed(2); },
-            addr: a => a ? a.slice(0,6)+'...'+a.slice(-4) : '-'
-        };
-
-        function sortFunding(field) { if (fundingSortField === field) { fundingSortDir = fundingSortDir === 'desc' ? 'asc' : 'desc'; } else { fundingSortField = field; fundingSortDir = 'desc'; } document.querySelectorAll('#funding th.sortable').forEach(th => { th.classList.remove('sort-active'); if (th.dataset.sort === field) th.classList.add('sort-active'); }); renderFunding(); }
-
-        async function fetchLive() {
-            try {
-                const r = await fetch('https://api.hyperliquid.xyz/info', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({type:'metaAndAssetCtxs'}) });
-                const m = await r.json();
-                if (m?.length >= 2) {
-                    live = {}; let oi = 0, vol = 0;
-                    m[0].universe.forEach((a, i) => { if (i < m[1].length) { const c = m[1][i], mark = parseFloat(c.markPx)||0, o = parseFloat(c.openInterest)||0, v = parseFloat(c.dayNtlVlm)||0, prev = parseFloat(c.prevDayPx)||0; live[a.name] = { name: a.name, markPx: mark, indexPx: parseFloat(c.oraclePx)||mark, change24h: prev>0?((mark-prev)/prev)*100:0, volume24h: v, openInterest: o*mark, openInterestCoins: o, funding: (parseFloat(c.funding)||0)*100, maxLeverage: a.maxLeverage||0 }; oi += o*mark; vol += v; } });
-                    document.getElementById('stat-vol').textContent = fmt.usd(vol); document.getElementById('stat-oi').textContent = fmt.usd(oi); document.getElementById('stat-mkts').textContent = Object.keys(live).length; renderLive(); renderFunding();
+        async function fetchLive(){
+            try{
+                const r=await fetch('https://api.hyperliquid.xyz/info',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'metaAndAssetCtxs'})});
+                const m=await r.json();
+                if(m&&m.length>=2){
+                    live={};let oi=0,vol=0;
+                    m[0].universe.forEach((a,i)=>{if(i<m[1].length){const c=m[1][i],mark=parseFloat(c.markPx)||0,o=parseFloat(c.openInterest)||0,v=parseFloat(c.dayNtlVlm)||0,prev=parseFloat(c.prevDayPx)||0;live[a.name]={name:a.name,markPx:mark,change24h:prev>0?((mark-prev)/prev)*100:0,volume24h:v,openInterest:o*mark,openInterestCoins:o,funding:(parseFloat(c.funding)||0)*100,maxLeverage:a.maxLeverage||0};oi+=o*mark;vol+=v;}});
+                    document.getElementById('stat-vol').textContent=fmt.usd(vol);document.getElementById('stat-oi').textContent=fmt.usd(oi);document.getElementById('stat-mkts').textContent=Object.keys(live).length;renderLive();renderFunding();
                 }
-            } catch(e) { console.error(e); }
+            }catch(e){console.error(e);}
         }
 
-        function getMarkets() { return live ? Object.values(live).sort((a,b) => b.openInterest - a.openInterest) : []; }
-        function renderLive() { if (!live) return; const mode = document.querySelector('#live-tabs .tab.active')?.dataset.v || 'all'; let mkts = getMarkets(); if (mode === 'top') mkts = mkts.slice(0, 10); document.getElementById('live-tbody').innerHTML = mkts.map(m => `<tr><td class="coin-name">${m.name}</td><td>${fmt.px(m.markPx, m.name)}</td><td class="${m.change24h>=0?'positive':'negative'}">${fmt.pct(m.change24h)}</td><td>${fmt.usd(m.openInterest)}</td><td>${fmt.usd(m.volume24h)}</td><td class="${m.funding>=0?'positive':'negative'}">${fmt.fund(m.funding)}</td></tr>`).join(''); }
-        function renderFunding() { if (!live) return; let mkts = getMarkets(); if (fundingSortField === 'funding') { mkts.sort((a,b) => fundingSortDir === 'desc' ? b.funding - a.funding : a.funding - b.funding); } else if (fundingSortField === 'apy') { mkts.sort((a,b) => { const aa = a.funding * 24 * 365, bb = b.funding * 24 * 365; return fundingSortDir === 'desc' ? bb - aa : aa - bb; }); } else if (fundingSortField === 'oi') { mkts.sort((a,b) => fundingSortDir === 'desc' ? b.openInterest - a.openInterest : a.openInterest - b.openInterest); } const now = new Date(), mins = 60 - now.getMinutes(), secs = 60 - now.getSeconds(), countdown = `${mins-1}분 ${secs}초`; document.getElementById('funding-tbody').innerHTML = mkts.map(m => { const apy = m.funding * 24 * 365; return `<tr><td class="coin-name">${m.name}</td><td class="${m.funding>=0?'positive':'negative'}">${fmt.fund(m.funding)}</td><td class="${apy>=0?'positive':'negative'}">${fmt.pct(apy)}</td><td>${countdown}</td><td>${fmt.usd(m.openInterest)}</td></tr>`; }).join(''); }
+        function getMarkets(){return live?Object.values(live).sort((a,b)=>b.openInterest-a.openInterest):[];}
+        function renderLive(){if(!live)return;const mode=document.querySelector('#live-tabs .tab.active')?.dataset.v||'all';let mkts=getMarkets();if(mode==='top')mkts=mkts.slice(0,10);document.getElementById('live-tbody').innerHTML=mkts.map(m=>'<tr><td class="coin-name">'+m.name+'</td><td>'+fmt.px(m.markPx,m.name)+'</td><td class="'+(m.change24h>=0?'positive':'negative')+'">'+fmt.pct(m.change24h)+'</td><td>'+fmt.usd(m.openInterest)+'</td><td>'+fmt.usd(m.volume24h)+'</td><td class="'+(m.funding>=0?'positive':'negative')+'">'+fmt.fund(m.funding)+'</td></tr>').join('');}
+        function renderFunding(){if(!live)return;let mkts=getMarkets();if(fundingSortField==='funding')mkts.sort((a,b)=>fundingSortDir==='desc'?b.funding-a.funding:a.funding-b.funding);else if(fundingSortField==='apy')mkts.sort((a,b)=>{const aa=a.funding*24*365,bb=b.funding*24*365;return fundingSortDir==='desc'?bb-aa:aa-bb;});else if(fundingSortField==='oi')mkts.sort((a,b)=>fundingSortDir==='desc'?b.openInterest-a.openInterest:a.openInterest-b.openInterest);const now=new Date(),mins=60-now.getMinutes(),secs=60-now.getSeconds(),countdown=(mins-1)+'분 '+secs+'초';document.getElementById('funding-tbody').innerHTML=mkts.map(m=>{const apy=m.funding*24*365;return '<tr><td class="coin-name">'+m.name+'</td><td class="'+(m.funding>=0?'positive':'negative')+'">'+fmt.fund(m.funding)+'</td><td class="'+(apy>=0?'positive':'negative')+'">'+fmt.pct(apy)+'</td><td>'+countdown+'</td><td>'+fmt.usd(m.openInterest)+'</td></tr>';}).join('');}
 
-        async function loadWhaleData(dex) { const config = DEX_CONFIG[dex]; if (!config) return; try { const r = await fetch(config.whaleFile); if (!r.ok) throw new Error('Not found'); whaleData[dex] = await r.json(); if (dex === currentWhaleDex) { renderPnL(); renderBiggest(); renderPosChart(); updateWhaleLastUpdated(); } } catch(e) { console.log(`${dex} whale data not found`); whaleData[dex] = null; if (dex === currentWhaleDex) { document.getElementById('pnl-tbody').innerHTML = '<tr><td colspan="7"><div class="no-data">데이터 준비 중... 🔄</div></td></tr>'; document.getElementById('biggest-tbody').innerHTML = '<tr><td colspan="9"><div class="no-data">데이터 준비 중... 🔄</div></td></tr>'; document.getElementById('pos-chart').innerHTML = '<div class="no-data">데이터 준비 중... 🔄</div>'; } } }
-        async function loadLiqData(dex) { const config = DEX_CONFIG[dex]; if (!config) return; try { const r = await fetch(config.liqFile); if (!r.ok) throw new Error('Not found'); liqData[dex] = await r.json(); if (dex === currentLiqDex) { populateLiqCoins(); updateLiqLastUpdated(); } } catch(e) { console.log(`${dex} liquidation data not found`); liqData[dex] = null; if (dex === currentLiqDex) { document.getElementById('liq-coin').innerHTML = '<option value="">데이터 준비 중...</option>'; if (liqChart) { liqChart.destroy(); liqChart = null; } } } }
+        async function loadWhaleData(dex){const config=DEX_CONFIG[dex];if(!config)return;try{const r=await fetch(config.whaleFile);if(!r.ok)throw new Error('Not found');whaleData[dex]=await r.json();if(dex===currentWhaleDex){renderPnL();renderBiggest();renderPosChart();updateWhaleLastUpdated();}}catch(e){whaleData[dex]=null;if(dex===currentWhaleDex){document.getElementById('pnl-tbody').innerHTML='<tr><td colspan="7"><div class="no-data">데이터 준비 중... 🔄</div></td></tr>';document.getElementById('biggest-tbody').innerHTML='<tr><td colspan="9"><div class="no-data">데이터 준비 중... 🔄</div></td></tr>';document.getElementById('pos-chart').innerHTML='<div class="no-data">데이터 준비 중... 🔄</div>';}}}
+        async function loadLiqData(dex){const config=DEX_CONFIG[dex];if(!config)return;try{const r=await fetch(config.liqFile);if(!r.ok)throw new Error('Not found');liqData[dex]=await r.json();if(dex===currentLiqDex){populateLiqCoins();updateLiqLastUpdated();}}catch(e){liqData[dex]=null;if(dex===currentLiqDex){document.getElementById('liq-coin').innerHTML='<option value="">데이터 준비 중...</option>';if(liqChart){liqChart.destroy();liqChart=null;}}}}
 
-        function updateWhaleLastUpdated() { const data = whaleData[currentWhaleDex]; if (data?.lastUpdated) { const d = new Date(data.lastUpdated); document.getElementById('last-updated').textContent = `마지막 업데이트: ${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')} UTC`; } else { document.getElementById('last-updated').textContent = ''; } if (data?.dashboard?.totalTraders) { document.getElementById('stat-traders').textContent = data.dashboard.totalTraders.toLocaleString(); } }
-        function updateLiqLastUpdated() { const data = liqData[currentLiqDex]; if (data?.lastUpdated) { const d = new Date(data.lastUpdated); document.getElementById('liq-last-updated').textContent = `마지막 업데이트: ${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')} (${data.tradersCount || 0}명 트레이더)`; } else { document.getElementById('liq-last-updated').textContent = ''; } }
+        function updateWhaleLastUpdated(){const data=whaleData[currentWhaleDex];if(data&&data.lastUpdated){const d=new Date(data.lastUpdated);document.getElementById('last-updated').textContent='마지막 업데이트: '+d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 '+d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0')+' UTC';}else document.getElementById('last-updated').textContent='';if(data&&data.dashboard&&data.dashboard.totalTraders)document.getElementById('stat-traders').textContent=data.dashboard.totalTraders.toLocaleString();}
+        function updateLiqLastUpdated(){const data=liqData[currentLiqDex];if(data&&data.lastUpdated){const d=new Date(data.lastUpdated);document.getElementById('liq-last-updated').textContent='마지막 업데이트: '+d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 '+d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0')+' ('+(data.tradersCount||0)+'명 트레이더)';}else document.getElementById('liq-last-updated').textContent='';}
+        function getCurrentLiqSection(){const data=liqData[currentLiqDex];if(!data)return null;if(liqDataMode==='pnl')return liqPeriod==='daily'?data.byPnlDaily:data.byPnlWeekly;return data.bySize;}
 
-        function getCurrentLiqSection() { const data = liqData[currentLiqDex]; if (!data) return null; if (liqDataMode === 'pnl') return liqPeriod === 'daily' ? data.byPnlDaily : data.byPnlWeekly; return data.bySize; }
+        function updateLiqChart(){const section=getCurrentLiqSection();if(!section||!section.data||!section.data[selectedLiqCoin]){if(liqChart){liqChart.destroy();liqChart=null;}document.getElementById('liq-current-price').textContent='-';document.getElementById('liq-total-long').textContent='-';document.getElementById('liq-total-short').textContent='-';return;}const coinData=section.data[selectedLiqCoin];document.getElementById('liq-current-price').textContent=fmt.px(coinData.currentPrice,selectedLiqCoin);const longData=coinData.longLiquidations||[],shortData=coinData.shortLiquidations||[];const totalLong=longData.reduce((s,d)=>s+(d['10x']||0)+(d['25x']||0)+(d['50x']||0)+(d['100x']||0),0),totalShort=shortData.reduce((s,d)=>s+(d['10x']||0)+(d['25x']||0)+(d['50x']||0)+(d['100x']||0),0);document.getElementById('liq-total-long').textContent=fmt.usd(totalLong);document.getElementById('liq-total-short').textContent=fmt.usd(totalShort);const allPrices=[...new Set([...longData.map(d=>d.price),...shortData.map(d=>d.price)])].sort((a,b)=>a-b);const longMap={},shortMap={};longData.forEach(d=>longMap[d.price]=d);shortData.forEach(d=>shortMap[d.price]=d);const labels=allPrices.map(p=>fmt.px(p,selectedLiqCoin));const long10x=allPrices.map(p=>longMap[p]?-longMap[p]['10x']:0),long25x=allPrices.map(p=>longMap[p]?-longMap[p]['25x']:0),long50x=allPrices.map(p=>longMap[p]?-longMap[p]['50x']:0),long100x=allPrices.map(p=>longMap[p]?-longMap[p]['100x']:0);const short10x=allPrices.map(p=>shortMap[p]?shortMap[p]['10x']:0),short25x=allPrices.map(p=>shortMap[p]?shortMap[p]['25x']:0),short50x=allPrices.map(p=>shortMap[p]?shortMap[p]['50x']:0),short100x=allPrices.map(p=>shortMap[p]?shortMap[p]['100x']:0);let currentPriceIndex=allPrices.findIndex(p=>p>=coinData.currentPrice);if(currentPriceIndex===-1)currentPriceIndex=allPrices.length-1;if(liqChart)liqChart.destroy();const ctx=document.getElementById('liq-chart').getContext('2d');liqChart=new Chart(ctx,{type:'bar',data:{labels:labels,datasets:[{label:'Long 10x',data:long10x,backgroundColor:'#3b82f6aa',stack:'long',maxBarThickness:50,barPercentage:0.85,categoryPercentage:0.85},{label:'Long 25x',data:long25x,backgroundColor:'#eab308aa',stack:'long',maxBarThickness:50,barPercentage:0.85,categoryPercentage:0.85},{label:'Long 50x',data:long50x,backgroundColor:'#f97316aa',stack:'long',maxBarThickness:50,barPercentage:0.85,categoryPercentage:0.85},{label:'Long 100x',data:long100x,backgroundColor:'#ef4444aa',stack:'long',maxBarThickness:50,barPercentage:0.85,categoryPercentage:0.85},{label:'Short 10x',data:short10x,backgroundColor:'#3b82f6aa',stack:'short',maxBarThickness:50,barPercentage:0.85,categoryPercentage:0.85},{label:'Short 25x',data:short25x,backgroundColor:'#eab308aa',stack:'short',maxBarThickness:50,barPercentage:0.85,categoryPercentage:0.85},{label:'Short 50x',data:short50x,backgroundColor:'#f97316aa',stack:'short',maxBarThickness:50,barPercentage:0.85,categoryPercentage:0.85},{label:'Short 100x',data:short100x,backgroundColor:'#ef4444aa',stack:'short',maxBarThickness:50,barPercentage:0.85,categoryPercentage:0.85}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>'가격: '+items[0].label,label:ctx=>{const v=Math.abs(ctx.raw);return v===0?null:ctx.dataset.label+': '+fmt.usd(v);}},filter:item=>item.raw!==0}},scales:{x:{stacked:true,grid:{color:'#1a1a1a'},ticks:{color:'#6b6b7a',maxRotation:45,minRotation:45,autoSkip:true,maxTicksLimit:15}},y:{stacked:true,grid:{color:'#1a1a1a'},ticks:{color:'#6b6b7a',callback:v=>fmt.usd(Math.abs(v))}}}},plugins:[{id:'currentPriceLine',afterDraw:function(chart){const ctx=chart.ctx;const xAxis=chart.scales.x;const yAxis=chart.scales.y;const x=xAxis.getPixelForValue(currentPriceIndex);ctx.save();ctx.beginPath();ctx.setLineDash([5,5]);ctx.strokeStyle='#22d3ee';ctx.lineWidth=2;ctx.moveTo(x,yAxis.top);ctx.lineTo(x,yAxis.bottom);ctx.stroke();ctx.restore();}}]});}
 
-        function updateLiqChart() { const section = getCurrentLiqSection(); if (!section?.data?.[selectedLiqCoin]) { if (liqChart) { liqChart.destroy(); liqChart = null; } document.getElementById('liq-current-price').textContent = '-'; document.getElementById('liq-total-long').textContent = '-'; document.getElementById('liq-total-short').textContent = '-'; return; } const coinData = section.data[selectedLiqCoin]; document.getElementById('liq-current-price').textContent = fmt.px(coinData.currentPrice, selectedLiqCoin); const longData = coinData.longLiquidations || [], shortData = coinData.shortLiquidations || []; const totalLong = longData.reduce((s, d) => s + (d['10x']||0) + (d['25x']||0) + (d['50x']||0) + (d['100x']||0), 0), totalShort = shortData.reduce((s, d) => s + (d['10x']||0) + (d['25x']||0) + (d['50x']||0) + (d['100x']||0), 0); document.getElementById('liq-total-long').textContent = fmt.usd(totalLong); document.getElementById('liq-total-short').textContent = fmt.usd(totalShort); const allPrices = [...new Set([...longData.map(d => d.price), ...shortData.map(d => d.price)])].sort((a, b) => a - b); const longMap = {}, shortMap = {}; longData.forEach(d => longMap[d.price] = d); shortData.forEach(d => shortMap[d.price] = d); const labels = allPrices.map(p => fmt.px(p, selectedLiqCoin)); const long10x = allPrices.map(p => longMap[p] ? -longMap[p]['10x'] : 0), long25x = allPrices.map(p => longMap[p] ? -longMap[p]['25x'] : 0), long50x = allPrices.map(p => longMap[p] ? -longMap[p]['50x'] : 0), long100x = allPrices.map(p => longMap[p] ? -longMap[p]['100x'] : 0); const short10x = allPrices.map(p => shortMap[p] ? shortMap[p]['10x'] : 0), short25x = allPrices.map(p => shortMap[p] ? shortMap[p]['25x'] : 0), short50x = allPrices.map(p => shortMap[p] ? shortMap[p]['50x'] : 0), short100x = allPrices.map(p => shortMap[p] ? shortMap[p]['100x'] : 0); let currentPriceIndex = allPrices.findIndex(p => p >= coinData.currentPrice); if (currentPriceIndex === -1) currentPriceIndex = allPrices.length - 1; if (liqChart) liqChart.destroy(); const ctx = document.getElementById('liq-chart').getContext('2d'); liqChart = new Chart(ctx, { type: 'bar', data: { labels: labels, datasets: [ { label: 'Long 10x', data: long10x, backgroundColor: '#3b82f6aa', stack: 'long', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Long 25x', data: long25x, backgroundColor: '#eab308aa', stack: 'long', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Long 50x', data: long50x, backgroundColor: '#f97316aa', stack: 'long', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Long 100x', data: long100x, backgroundColor: '#ef4444aa', stack: 'long', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Short 10x', data: short10x, backgroundColor: '#3b82f6aa', stack: 'short', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Short 25x', data: short25x, backgroundColor: '#eab308aa', stack: 'short', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Short 50x', data: short50x, backgroundColor: '#f97316aa', stack: 'short', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 }, { label: 'Short 100x', data: short100x, backgroundColor: '#ef4444aa', stack: 'short', maxBarThickness: 50, barPercentage: 0.85, categoryPercentage: 0.85 } ] }, options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' }, plugins: { legend: { display: false }, tooltip: { callbacks: { title: items => '가격: ' + items[0].label, label: ctx => { const v = Math.abs(ctx.raw); return v === 0 ? null : ctx.dataset.label + ': ' + fmt.usd(v); } }, filter: item => item.raw !== 0 } }, scales: { x: { stacked: true, grid: { color: '#2a2a35' }, ticks: { color: '#8b8b9a', maxRotation: 45, minRotation: 45, autoSkip: true, maxTicksLimit: 15 } }, y: { stacked: true, grid: { color: '#2a2a35' }, ticks: { color: '#8b8b9a', callback: v => fmt.usd(Math.abs(v)) } } } }, plugins: [{ id: 'currentPriceLine', afterDraw: function(chart) { const ctx = chart.ctx; const xAxis = chart.scales.x; const yAxis = chart.scales.y; const x = xAxis.getPixelForValue(currentPriceIndex); ctx.save(); ctx.beginPath(); ctx.setLineDash([5, 5]); ctx.strokeStyle = '#22d3ee'; ctx.lineWidth = 2; ctx.moveTo(x, yAxis.top); ctx.lineTo(x, yAxis.bottom); ctx.stroke(); ctx.restore(); } }] }); }
+        function populateLiqCoins(){const section=getCurrentLiqSection();if(!section){document.getElementById('liq-coin').innerHTML='<option value="">데이터 없음</option>';return;}const sel=document.getElementById('liq-coin');const prevCoin=selectedLiqCoin;sel.innerHTML='';let first=null,foundPrev=false;(section.coins||Object.keys(section.data||{})).forEach(coin=>{const d=section.data&&section.data[coin];if(d&&(d.longLiquidations&&d.longLiquidations.length>0||d.shortLiquidations&&d.shortLiquidations.length>0)){const opt=document.createElement('option');opt.value=coin;opt.textContent=coin+'/USD';if(coin===prevCoin){opt.selected=true;foundPrev=true;}if(!first)first=coin;sel.appendChild(opt);}});if(!first)sel.innerHTML='<option value="">데이터 없음</option>';else{selectedLiqCoin=foundPrev?prevCoin:first;if(!foundPrev&&first)sel.value=first;}updateLiqChart();}
 
-        function populateLiqCoins() { const section = getCurrentLiqSection(); if (!section) { document.getElementById('liq-coin').innerHTML = '<option value="">데이터 없음</option>'; return; } const sel = document.getElementById('liq-coin'); const prevCoin = selectedLiqCoin; sel.innerHTML = ''; let first = null, foundPrev = false; (section.coins || Object.keys(section.data || {})).forEach(coin => { const d = section.data?.[coin]; if (d && (d.longLiquidations?.length > 0 || d.shortLiquidations?.length > 0)) { const opt = document.createElement('option'); opt.value = coin; opt.textContent = coin + '/USD'; if (coin === prevCoin) { opt.selected = true; foundPrev = true; } if (!first) first = coin; sel.appendChild(opt); } }); if (!first) { sel.innerHTML = '<option value="">데이터 없음</option>'; } else { selectedLiqCoin = foundPrev ? prevCoin : first; if (!foundPrev && first) sel.value = first; } updateLiqChart(); }
+        function getExplorerUrl(address){return DEX_CONFIG[currentWhaleDex].explorerUrl+address;}
+        function updateSortHeaders(tableId,field,dir){const table=document.getElementById(tableId);if(!table)return;table.querySelectorAll('th.sortable').forEach(th=>{th.classList.remove('sort-asc','sort-desc','sort-active');if(th.dataset.sort===field)th.classList.add(dir==='asc'?'sort-asc':'sort-desc','sort-active');});}
+        function sortPnL(field){if(pnlSortField===field)pnlSortDir=pnlSortDir==='desc'?'asc':'desc';else{pnlSortField=field;pnlSortDir='desc';}renderPnL();}
+        function sortBig(field){if(bigSortField===field)bigSortDir=bigSortDir==='desc'?'asc':'desc';else{bigSortField=field;bigSortDir='desc';}renderBiggest();}
 
-        function getExplorerUrl(address) { return DEX_CONFIG[currentWhaleDex].explorerUrl + address; }
-
-        function updateSortHeaders(tableId, field, dir) { const table = document.getElementById(tableId); if (!table) return; table.querySelectorAll('th.sortable').forEach(th => { th.classList.remove('sort-asc', 'sort-desc', 'sort-active'); if (th.dataset.sort === field) { th.classList.add(dir === 'asc' ? 'sort-asc' : 'sort-desc', 'sort-active'); } }); }
-
-        function sortPnL(field) { if (pnlSortField === field) pnlSortDir = pnlSortDir === 'desc' ? 'asc' : 'desc'; else { pnlSortField = field; pnlSortDir = 'desc'; } renderPnL(); }
-        function sortBig(field) { if (bigSortField === field) bigSortDir = bigSortDir === 'desc' ? 'asc' : 'desc'; else { bigSortField = field; bigSortDir = 'desc'; } renderBiggest(); }
-
-        function renderPnL() {
-            const data = whaleData[currentWhaleDex];
-            let traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
-            if (!traders) { document.getElementById('pnl-tbody').innerHTML = '<tr><td colspan="7"><div class="no-data">데이터 없음</div></td></tr>'; document.getElementById('pnl-mobile').innerHTML = '<div class="no-data">데이터 없음</div>'; return; }
-            traders = [...traders];
-            if (pnlSortField) { traders.sort((a, b) => { const av = parseFloat(a[pnlSortField]) || 0, bv = parseFloat(b[pnlSortField]) || 0; return pnlSortDir === 'desc' ? bv - av : av - bv; }); }
-            document.getElementById('pnl-tbody').innerHTML = traders.map((t, i) => {
-                const name = t.displayName || fmt.addr(t.address), hasPos = t.positions?.length > 0, posCount = t.positions?.length || 0;
-                const badge = hasPos ? `<span class="pos-badge" onclick="togglePos(${i})"><span class="pos-count">📊 ${posCount}</span> 포지션 보기 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>` : '<span style="color:#3d3d4a;font-size:0.7rem">—</span>';
-                return `<tr><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="address"><a href="${getExplorerUrl(t.address)}" target="_blank">${name}</a></td><td>${fmt.usd(t.accountValue)}</td><td class="${t.pnl>=0?'positive':'negative'}">${fmt.usd(t.pnl)}</td><td class="${t.roi>=0?'positive':'negative'}">${fmt.pctDec(t.roi)}</td><td>${fmt.usd(t.volume)}</td><td>${badge}</td></tr>${hasPos?`<tr class="positions-row" id="pos-${i}"><td colspan="7"><div class="positions-content"><div class="positions-grid">${t.positions.map((p,pi) => `<div class="position-card" id="pcard-${i}-${pi}" onclick="openInlineChart(${i}, ${pi})"><div class="position-header"><span class="position-coin">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">${fmt.usd(p.positionValue)}</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">${p.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">${fmt.px(p.entryPx, p.coin)}</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</span></div></div><div class="position-hint">📈 차트 보기</div></div>`).join('')}</div><div class="inline-chart-section" id="chart-${i}"></div></div></td></tr>`:''}`;
-            }).join('');
-            document.getElementById('pnl-mobile').innerHTML = traders.map((t, i) => {
-                const name = t.displayName || fmt.addr(t.address), hasPos = t.positions?.length > 0, posCount = t.positions?.length || 0;
-                return `<div class="m-card"><div class="m-card-top"><div class="m-card-top-left"><span class="rank ${i<3?'top3':''}">#${i+1}</span><span class="m-card-addr"><a href="${getExplorerUrl(t.address)}" target="_blank">${name}</a></span></div></div><div class="m-card-grid"><div class="m-card-item"><div class="m-card-label">계좌 가치</div><div class="m-card-val">${fmt.usd(t.accountValue)}</div></div><div class="m-card-item"><div class="m-card-label">수익 (PnL)</div><div class="m-card-val ${t.pnl>=0?'positive':'negative'}">${fmt.usd(t.pnl)}</div></div><div class="m-card-item"><div class="m-card-label">수익률</div><div class="m-card-val ${t.roi>=0?'positive':'negative'}">${fmt.pctDec(t.roi)}</div></div><div class="m-card-item"><div class="m-card-label">거래량</div><div class="m-card-val">${fmt.usd(t.volume)}</div></div></div>${hasPos?`<div class="m-card-footer"><div class="m-card-badge" onclick="toggleMobilePos(${i})"><span class="pos-count">📊 ${posCount}</span> 포지션 보기 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="m-card-positions" id="mpos-${i}"><div class="positions-grid">${t.positions.map((p,pi) => `<div class="position-card" id="mpcard-${i}-${pi}" onclick="openMobileInlineChart(${i}, ${pi})"><div class="position-header"><span class="position-coin">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">${fmt.usd(p.positionValue)}</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">${p.leverage}x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">${fmt.px(p.entryPx, p.coin)}</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</span></div></div><div class="position-hint">📈 차트 보기</div></div>`).join('')}</div><div class="inline-chart-section" id="mchart-${i}"></div></div></div>`:''}</div>`;
-            }).join('');
-            updateSortHeaders('pnl-table', pnlSortField, pnlSortDir);
-            document.querySelectorAll('#pnl-table th.sortable').forEach(th => { th.onclick = () => sortPnL(th.dataset.sort); });
+        function renderPnL(){
+            const data=whaleData[currentWhaleDex];let traders=traderPeriod==='daily'?data&&data.whaleTracker&&data.whaleTracker.daily:data&&data.whaleTracker&&data.whaleTracker.weekly;
+            if(!traders){document.getElementById('pnl-tbody').innerHTML='<tr><td colspan="7"><div class="no-data">데이터 없음</div></td></tr>';document.getElementById('pnl-mobile').innerHTML='<div class="no-data">데이터 없음</div>';return;}
+            traders=[...traders];if(pnlSortField)traders.sort((a,b)=>{const av=parseFloat(a[pnlSortField])||0,bv=parseFloat(b[pnlSortField])||0;return pnlSortDir==='desc'?bv-av:av-bv;});
+            document.getElementById('pnl-tbody').innerHTML=traders.map((t,i)=>{const name=t.displayName||fmt.addr(t.address),hasPos=t.positions&&t.positions.length>0,posCount=t.positions?t.positions.length:0;const badge=hasPos?'<span class="pos-badge" onclick="togglePos('+i+')"><span class="pos-count">📊 '+posCount+'</span> 포지션 보기 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>':'<span style="color:#333;font-size:0.7rem">—</span>';return '<tr><td><span class="rank '+(i<3?'top3':'')+'">#'+(i+1)+'</span></td><td class="address"><a href="'+getExplorerUrl(t.address)+'" target="_blank">'+name+'</a></td><td>'+fmt.usd(t.accountValue)+'</td><td class="'+(t.pnl>=0?'positive':'negative')+'">'+fmt.usd(t.pnl)+'</td><td class="'+(t.roi>=0?'positive':'negative')+'">'+fmt.pctDec(t.roi)+'</td><td>'+fmt.usd(t.volume)+'</td><td>'+badge+'</td></tr>'+(hasPos?'<tr class="positions-row" id="pos-'+i+'"><td colspan="7"><div class="positions-content"><div class="positions-grid">'+t.positions.map((p,pi)=>'<div class="position-card" id="pcard-'+i+'-'+pi+'" onclick="openInlineChart('+i+','+pi+')"><div class="position-header"><span class="position-coin">'+p.coin+'</span><span class="direction '+p.direction.toLowerCase()+'">'+(p.direction==='Long'?'롱':'숏')+'</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">'+fmt.usd(p.positionValue)+'</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">'+p.leverage+'x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">'+fmt.px(p.entryPx,p.coin)+'</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value '+(p.unrealizedPnl>=0?'positive':'negative')+'">'+fmt.usd(p.unrealizedPnl)+'</span></div></div><div class="position-hint">📈 차트 보기</div></div>').join('')+'</div><div class="inline-chart-section" id="chart-'+i+'"></div></div></td></tr>':'');}).join('');
+            document.getElementById('pnl-mobile').innerHTML=traders.map((t,i)=>{const name=t.displayName||fmt.addr(t.address),hasPos=t.positions&&t.positions.length>0,posCount=t.positions?t.positions.length:0;return '<div class="m-card"><div class="m-card-top"><div class="m-card-top-left"><span class="rank '+(i<3?'top3':'')+'">#'+(i+1)+'</span><span class="m-card-addr"><a href="'+getExplorerUrl(t.address)+'" target="_blank">'+name+'</a></span></div></div><div class="m-card-grid"><div class="m-card-item"><div class="m-card-label">계좌 가치</div><div class="m-card-val">'+fmt.usd(t.accountValue)+'</div></div><div class="m-card-item"><div class="m-card-label">수익 (PnL)</div><div class="m-card-val '+(t.pnl>=0?'positive':'negative')+'">'+fmt.usd(t.pnl)+'</div></div><div class="m-card-item"><div class="m-card-label">수익률</div><div class="m-card-val '+(t.roi>=0?'positive':'negative')+'">'+fmt.pctDec(t.roi)+'</div></div><div class="m-card-item"><div class="m-card-label">거래량</div><div class="m-card-val">'+fmt.usd(t.volume)+'</div></div></div>'+(hasPos?'<div class="m-card-footer"><div class="m-card-badge" onclick="toggleMobilePos('+i+')"><span class="pos-count">📊 '+posCount+'</span> 포지션 보기 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="m-card-positions" id="mpos-'+i+'"><div class="positions-grid">'+t.positions.map((p,pi)=>'<div class="position-card" id="mpcard-'+i+'-'+pi+'" onclick="openMobileInlineChart('+i+','+pi+')"><div class="position-header"><span class="position-coin">'+p.coin+'</span><span class="direction '+p.direction.toLowerCase()+'">'+(p.direction==='Long'?'롱':'숏')+'</span></div><div class="position-details"><div class="position-detail"><span class="position-detail-label">가치</span><span class="position-detail-value">'+fmt.usd(p.positionValue)+'</span></div><div class="position-detail"><span class="position-detail-label">레버리지</span><span class="position-detail-value">'+p.leverage+'x</span></div><div class="position-detail"><span class="position-detail-label">진입가</span><span class="position-detail-value">'+fmt.px(p.entryPx,p.coin)+'</span></div><div class="position-detail"><span class="position-detail-label">미실현</span><span class="position-detail-value '+(p.unrealizedPnl>=0?'positive':'negative')+'">'+fmt.usd(p.unrealizedPnl)+'</span></div></div><div class="position-hint">📈 차트 보기</div></div>').join('')+'</div><div class="inline-chart-section" id="mchart-'+i+'"></div></div></div>':'')+'</div>';}).join('');
+            updateSortHeaders('pnl-table',pnlSortField,pnlSortDir);document.querySelectorAll('#pnl-table th.sortable').forEach(th=>{th.onclick=()=>sortPnL(th.dataset.sort);});
         }
 
-        function toggleMobilePos(idx) { const el = document.getElementById(`mpos-${idx}`); const badge = el?.previousElementSibling; if (el) { el.classList.toggle('show'); badge?.classList.toggle('expanded'); } }
+        function toggleMobilePos(idx){const el=document.getElementById('mpos-'+idx);const badge=el&&el.previousElementSibling;if(el){el.classList.toggle('show');if(badge)badge.classList.toggle('expanded');}}
+        let mobileChartTraderIdx=null,mobileChartPosIdx=null;
+        function openMobileInlineChart(traderIdx,posIdx){const data=whaleData[currentWhaleDex];let traders=traderPeriod==='daily'?data&&data.whaleTracker&&data.whaleTracker.daily:data&&data.whaleTracker&&data.whaleTracker.weekly;if(pnlSortField){traders=[...traders];traders.sort((a,b)=>{const av=parseFloat(a[pnlSortField])||0,bv=parseFloat(b[pnlSortField])||0;return pnlSortDir==='desc'?bv-av:av-bv;});}if(!traders||!traders[traderIdx]||!traders[traderIdx].positions||!traders[traderIdx].positions[posIdx])return;if(mobileChartTraderIdx===traderIdx&&mobileChartPosIdx===posIdx){closeMobileInlineChart();return;}if(mobileChartTraderIdx!==null){const prev=document.getElementById('mchart-'+mobileChartTraderIdx);if(prev){prev.classList.remove('show');prev.innerHTML='';}const pc=document.getElementById('mpcard-'+mobileChartTraderIdx+'-'+mobileChartPosIdx);if(pc)pc.classList.remove('selected');}mobileChartTraderIdx=traderIdx;mobileChartPosIdx=posIdx;currentPosition=traders[traderIdx].positions[posIdx];currentTimeframe='1h';const card=document.getElementById('mpcard-'+traderIdx+'-'+posIdx);if(card)card.classList.add('selected');const container=document.getElementById('mchart-'+traderIdx);renderInlineChartHTML(container,currentPosition);container.classList.add('show');setTimeout(()=>container.scrollIntoView({behavior:'smooth',block:'nearest'}),100);}
+        function closeMobileInlineChart(){if(mobileChartTraderIdx!==null){const c=document.getElementById('mchart-'+mobileChartTraderIdx);if(c){c.classList.remove('show');c.innerHTML='';}const pc=document.getElementById('mpcard-'+mobileChartTraderIdx+'-'+mobileChartPosIdx);if(pc)pc.classList.remove('selected');}if(positionChart){positionChart.destroy();positionChart=null;}currentPosition=null;mobileChartTraderIdx=null;mobileChartPosIdx=null;}
 
-        let mobileChartTraderIdx = null, mobileChartPosIdx = null;
-        function openMobileInlineChart(traderIdx, posIdx) {
-            const data = whaleData[currentWhaleDex];
-            let traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
-            if (pnlSortField) { traders = [...traders]; traders.sort((a, b) => { const av = parseFloat(a[pnlSortField]) || 0, bv = parseFloat(b[pnlSortField]) || 0; return pnlSortDir === 'desc' ? bv - av : av - bv; }); }
-            if (!traders?.[traderIdx]?.positions?.[posIdx]) return;
-            if (mobileChartTraderIdx === traderIdx && mobileChartPosIdx === posIdx) { closeMobileInlineChart(); return; }
-            if (mobileChartTraderIdx !== null) { const prev = document.getElementById(`mchart-${mobileChartTraderIdx}`); if (prev) { prev.classList.remove('show'); prev.innerHTML = ''; } const pc = document.getElementById(`mpcard-${mobileChartTraderIdx}-${mobileChartPosIdx}`); if (pc) pc.classList.remove('selected'); }
-            mobileChartTraderIdx = traderIdx; mobileChartPosIdx = posIdx;
-            currentPosition = traders[traderIdx].positions[posIdx]; currentTimeframe = '1h';
-            const card = document.getElementById(`mpcard-${traderIdx}-${posIdx}`); if (card) card.classList.add('selected');
-            const container = document.getElementById(`mchart-${traderIdx}`);
-            renderInlineChartHTML(container, currentPosition, 'mobile');
-            container.classList.add('show');
-            setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-        }
-        function closeMobileInlineChart() {
-            if (mobileChartTraderIdx !== null) { const c = document.getElementById(`mchart-${mobileChartTraderIdx}`); if (c) { c.classList.remove('show'); c.innerHTML = ''; } const pc = document.getElementById(`mpcard-${mobileChartTraderIdx}-${mobileChartPosIdx}`); if (pc) pc.classList.remove('selected'); }
-            if (positionChart) { positionChart.destroy(); positionChart = null; }
-            currentPosition = null; mobileChartTraderIdx = null; mobileChartPosIdx = null;
+        function renderBiggest(){
+            const data=whaleData[currentWhaleDex];let pos=data&&data.whaleTracker&&data.whaleTracker.biggestPositions||[];
+            if(!pos.length){document.getElementById('biggest-tbody').innerHTML='<tr><td colspan="9"><div class="no-data">데이터 없음</div></td></tr>';document.getElementById('biggest-mobile').innerHTML='<div class="no-data">데이터 없음</div>';return;}
+            pos=[...pos];if(bigSortField)pos.sort((a,b)=>{const av=parseFloat(a[bigSortField])||0,bv=parseFloat(b[bigSortField])||0;return bigSortDir==='desc'?bv-av:av-bv;});
+            document.getElementById('biggest-tbody').innerHTML=pos.map((p,i)=>'<tr class="biggest-row" onclick="openBiggestChart('+i+')"><td><span class="rank '+(i<3?'top3':'')+'">#'+(i+1)+'</span></td><td class="coin-name">'+p.coin+'</td><td><span class="direction '+p.direction.toLowerCase()+'">'+(p.direction==='Long'?'롱':'숏')+'</span></td><td>'+fmt.usd(p.positionValue)+'</td><td>'+fmt.num(p.size)+'</td><td>'+fmt.px(p.entryPx,p.coin)+'</td><td>'+p.leverage+'x</td><td class="'+(p.unrealizedPnl>=0?'positive':'negative')+'">'+fmt.usd(p.unrealizedPnl)+'</td><td class="address"><a href="'+getExplorerUrl(p.traderAddress)+'" target="_blank" onclick="event.stopPropagation()">'+(p.traderName||fmt.addr(p.traderAddress))+'</a></td></tr><tr class="biggest-chart-row" id="bigchart-'+i+'"><td colspan="9"><div class="positions-content"><div class="inline-chart-section" id="bigchartc-'+i+'"></div></div></td></tr>').join('');
+            document.getElementById('biggest-mobile').innerHTML=pos.map((p,i)=>'<div class="m-card"><div class="m-biggest-top"><span class="rank '+(i<3?'top3':'')+'">#'+(i+1)+'</span><span class="coin-name" style="font-size:0.9rem">'+p.coin+'</span><span class="direction '+p.direction.toLowerCase()+'">'+(p.direction==='Long'?'롱':'숏')+'</span><span style="color:#6b6b7a;font-size:0.75rem">'+p.leverage+'x</span></div><div class="m-card-grid"><div class="m-card-item"><div class="m-card-label">포지션 가치</div><div class="m-card-val">'+fmt.usd(p.positionValue)+'</div></div><div class="m-card-item"><div class="m-card-label">진입가</div><div class="m-card-val">'+fmt.px(p.entryPx,p.coin)+'</div></div><div class="m-card-item"><div class="m-card-label">미실현 PnL</div><div class="m-card-val '+(p.unrealizedPnl>=0?'positive':'negative')+'">'+fmt.usd(p.unrealizedPnl)+'</div></div><div class="m-card-item"><div class="m-card-label">트레이더</div><div class="m-card-val"><a href="'+getExplorerUrl(p.traderAddress)+'" target="_blank" style="color:#22d3ee;text-decoration:none;font-size:0.7rem">'+(p.traderName||fmt.addr(p.traderAddress))+'</a></div></div></div><div class="m-card-chart-btn" onclick="openBiggestMobileChart('+i+')">📈 차트 보기</div><div class="inline-chart-section" id="mbigchartc-'+i+'"></div></div>').join('');
+            updateSortHeaders('biggest-table',bigSortField,bigSortDir);document.querySelectorAll('#biggest-table th.sortable').forEach(th=>{th.onclick=()=>sortBig(th.dataset.sort);});
         }
 
-        function renderBiggest() {
-            const data = whaleData[currentWhaleDex];
-            let pos = data?.whaleTracker?.biggestPositions || [];
-            if (!pos.length) { document.getElementById('biggest-tbody').innerHTML = '<tr><td colspan="9"><div class="no-data">데이터 없음</div></td></tr>'; document.getElementById('biggest-mobile').innerHTML = '<div class="no-data">데이터 없음</div>'; return; }
-            pos = [...pos];
-            if (bigSortField) { pos.sort((a, b) => { const av = parseFloat(a[bigSortField]) || 0, bv = parseFloat(b[bigSortField]) || 0; return bigSortDir === 'desc' ? bv - av : av - bv; }); }
-            document.getElementById('biggest-tbody').innerHTML = pos.map((p, i) => {
-                return `<tr class="biggest-row" onclick="openBiggestChart(${i})"><td><span class="rank ${i<3?'top3':''}">#${i+1}</span></td><td class="coin-name">${p.coin}</td><td><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span></td><td>${fmt.usd(p.positionValue)}</td><td>${fmt.num(p.size)}</td><td>${fmt.px(p.entryPx, p.coin)}</td><td>${p.leverage}x</td><td class="${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</td><td class="address"><a href="${getExplorerUrl(p.traderAddress)}" target="_blank" onclick="event.stopPropagation()">${p.traderName||fmt.addr(p.traderAddress)}</a></td></tr><tr class="biggest-chart-row" id="bigchart-${i}"><td colspan="9"><div class="positions-content"><div class="inline-chart-section" id="bigchartc-${i}"></div></div></td></tr>`;
-            }).join('');
-            document.getElementById('biggest-mobile').innerHTML = pos.map((p, i) => {
-                return `<div class="m-card"><div class="m-biggest-top"><span class="rank ${i<3?'top3':''}">#${i+1}</span><span class="coin-name" style="font-size:0.9rem">${p.coin}</span><span class="direction ${p.direction.toLowerCase()}">${p.direction==='Long'?'롱':'숏'}</span><span style="color:#8b8b9a;font-size:0.75rem">${p.leverage}x</span></div><div class="m-card-grid"><div class="m-card-item"><div class="m-card-label">포지션 가치</div><div class="m-card-val">${fmt.usd(p.positionValue)}</div></div><div class="m-card-item"><div class="m-card-label">진입가</div><div class="m-card-val">${fmt.px(p.entryPx, p.coin)}</div></div><div class="m-card-item"><div class="m-card-label">미실현 PnL</div><div class="m-card-val ${p.unrealizedPnl>=0?'positive':'negative'}">${fmt.usd(p.unrealizedPnl)}</div></div><div class="m-card-item"><div class="m-card-label">트레이더</div><div class="m-card-val"><a href="${getExplorerUrl(p.traderAddress)}" target="_blank" style="color:#22d3ee;text-decoration:none;font-size:0.7rem">${p.traderName||fmt.addr(p.traderAddress)}</a></div></div></div><div class="m-card-chart-btn" onclick="openBiggestMobileChart(${i})">📈 차트 보기</div><div class="inline-chart-section" id="mbigchartc-${i}"></div></div>`;
-            }).join('');
-            updateSortHeaders('biggest-table', bigSortField, bigSortDir);
-            document.querySelectorAll('#biggest-table th.sortable').forEach(th => { th.onclick = () => sortBig(th.dataset.sort); });
-        }
+        function openBiggestChart(idx){const data=whaleData[currentWhaleDex];let pos=data&&data.whaleTracker&&data.whaleTracker.biggestPositions||[];if(bigSortField){pos=[...pos];pos.sort((a,b)=>{const av=parseFloat(a[bigSortField])||0,bv=parseFloat(b[bigSortField])||0;return bigSortDir==='desc'?bv-av:av-bv;});}if(!pos[idx])return;if(currentBigIdx===idx){closeBiggestChart();return;}if(currentBigIdx!==null)closeBiggestChart();currentBigIdx=idx;currentPosition={coin:pos[idx].coin,direction:pos[idx].direction,positionValue:pos[idx].positionValue,entryPx:pos[idx].entryPx,leverage:pos[idx].leverage,unrealizedPnl:pos[idx].unrealizedPnl};currentTimeframe='1h';const rows=document.querySelectorAll('.biggest-row');if(rows[idx])rows[idx].classList.add('selected');const chartRow=document.getElementById('bigchart-'+idx);const container=document.getElementById('bigchartc-'+idx);renderInlineChartHTML(container,currentPosition);container.classList.add('show');chartRow.classList.add('show');setTimeout(()=>chartRow.scrollIntoView({behavior:'smooth',block:'nearest'}),100);}
+        function closeBiggestChart(){if(currentBigIdx!==null){const rows=document.querySelectorAll('.biggest-row');if(rows[currentBigIdx])rows[currentBigIdx].classList.remove('selected');const chartRow=document.getElementById('bigchart-'+currentBigIdx);if(chartRow)chartRow.classList.remove('show');const container=document.getElementById('bigchartc-'+currentBigIdx);if(container){container.classList.remove('show');container.innerHTML='';}}if(positionChart){positionChart.destroy();positionChart=null;}currentPosition=null;currentBigIdx=null;}
+        function openBiggestMobileChart(idx){const data=whaleData[currentWhaleDex];let pos=data&&data.whaleTracker&&data.whaleTracker.biggestPositions||[];if(bigSortField){pos=[...pos];pos.sort((a,b)=>{const av=parseFloat(a[bigSortField])||0,bv=parseFloat(b[bigSortField])||0;return bigSortDir==='desc'?bv-av:av-bv;});}if(!pos[idx])return;if(currentBigIdx===idx){closeBiggestChart();return;}if(currentBigIdx!==null){const prev=document.getElementById('mbigchartc-'+currentBigIdx);if(prev){prev.classList.remove('show');prev.innerHTML='';}}currentBigIdx=idx;currentPosition={coin:pos[idx].coin,direction:pos[idx].direction,positionValue:pos[idx].positionValue,entryPx:pos[idx].entryPx,leverage:pos[idx].leverage,unrealizedPnl:pos[idx].unrealizedPnl};currentTimeframe='1h';const container=document.getElementById('mbigchartc-'+idx);renderInlineChartHTML(container,currentPosition);container.classList.add('show');setTimeout(()=>container.scrollIntoView({behavior:'smooth',block:'nearest'}),100);}
 
-        function openBiggestChart(idx) {
-            const data = whaleData[currentWhaleDex];
-            let pos = data?.whaleTracker?.biggestPositions || [];
-            if (bigSortField) { pos = [...pos]; pos.sort((a, b) => { const av = parseFloat(a[bigSortField]) || 0, bv = parseFloat(b[bigSortField]) || 0; return bigSortDir === 'desc' ? bv - av : av - bv; }); }
-            if (!pos[idx]) return;
-            if (currentBigIdx === idx) { closeBiggestChart(); return; }
-            if (currentBigIdx !== null) { closeBiggestChart(); }
-            currentBigIdx = idx;
-            currentPosition = { coin: pos[idx].coin, direction: pos[idx].direction, positionValue: pos[idx].positionValue, entryPx: pos[idx].entryPx, leverage: pos[idx].leverage, unrealizedPnl: pos[idx].unrealizedPnl };
-            currentTimeframe = '1h';
-            const rows = document.querySelectorAll('.biggest-row'); rows[idx]?.classList.add('selected');
-            const chartRow = document.getElementById(`bigchart-${idx}`);
-            const container = document.getElementById(`bigchartc-${idx}`);
-            renderInlineChartHTML(container, currentPosition, 'biggest');
-            container.classList.add('show');
-            chartRow.classList.add('show');
-            setTimeout(() => chartRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-        }
-        function closeBiggestChart() {
-            if (currentBigIdx !== null) {
-                const rows = document.querySelectorAll('.biggest-row'); rows[currentBigIdx]?.classList.remove('selected');
-                const chartRow = document.getElementById(`bigchart-${currentBigIdx}`); if (chartRow) chartRow.classList.remove('show');
-                const container = document.getElementById(`bigchartc-${currentBigIdx}`); if (container) { container.classList.remove('show'); container.innerHTML = ''; }
-            }
-            if (positionChart) { positionChart.destroy(); positionChart = null; }
-            currentPosition = null; currentBigIdx = null;
-        }
+        let activeChartContainer=null;
+        function renderInlineChartHTML(container,p){activeChartContainer=container;container.innerHTML='<div class="inline-chart-header"><div class="inline-chart-title"><span class="inline-chart-coin">'+p.coin+'</span><span class="inline-chart-dir '+p.direction.toLowerCase()+'">'+(p.direction==='Long'?'LONG':'SHORT')+'</span></div><div style="display:flex;gap:4px;align-items:center;"><button class="inline-tf-btn" data-tf="5m">5m</button><button class="inline-tf-btn" data-tf="15m">15m</button><button class="inline-tf-btn active" data-tf="1h">1h</button><button class="inline-tf-btn" data-tf="4h">4h</button><button class="inline-tf-btn" data-tf="1D">1D</button><button class="inline-chart-close" onclick="closeAllCharts()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div><div class="inline-chart-stats"><div class="inline-chart-stat"><div class="inline-chart-stat-label">포지션</div><div class="inline-chart-stat-value">'+fmt.usd(p.positionValue)+'</div></div><div class="inline-chart-stat"><div class="inline-chart-stat-label">진입가</div><div class="inline-chart-stat-value">'+fmt.px(p.entryPx,p.coin)+'</div></div><div class="inline-chart-stat"><div class="inline-chart-stat-label">현재가</div><div class="inline-chart-stat-value data-current">-</div></div><div class="inline-chart-stat"><div class="inline-chart-stat-label">레버리지</div><div class="inline-chart-stat-value">'+p.leverage+'x</div></div><div class="inline-chart-stat"><div class="inline-chart-stat-label">미실현 PnL</div><div class="inline-chart-stat-value '+(p.unrealizedPnl>=0?'positive':'negative')+'">'+fmt.usd(p.unrealizedPnl)+'</div></div></div><div class="inline-chart-body watermark"><canvas></canvas><div class="inline-chart-loading"><div class="loading-spinner"></div>차트 로딩 중...</div></div><div class="inline-chart-legend"><div class="inline-chart-legend-item"><div class="inline-chart-legend-line entry"></div>진입가</div><div class="inline-chart-legend-item"><div class="inline-chart-legend-line current"></div>현재가</div></div>';container.querySelectorAll('.inline-tf-btn').forEach(btn=>{btn.onclick=(e)=>{e.stopPropagation();container.querySelectorAll('.inline-tf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentTimeframe=btn.dataset.tf;loadInlineChart();};});loadInlineChart();}
 
-        function openBiggestMobileChart(idx) {
-            const data = whaleData[currentWhaleDex];
-            let pos = data?.whaleTracker?.biggestPositions || [];
-            if (bigSortField) { pos = [...pos]; pos.sort((a, b) => { const av = parseFloat(a[bigSortField]) || 0, bv = parseFloat(b[bigSortField]) || 0; return bigSortDir === 'desc' ? bv - av : av - bv; }); }
-            if (!pos[idx]) return;
-            if (currentBigIdx === idx) { closeBiggestChart(); return; }
-            if (currentBigIdx !== null) { const prev = document.getElementById(`mbigchartc-${currentBigIdx}`); if (prev) { prev.classList.remove('show'); prev.innerHTML = ''; } }
-            currentBigIdx = idx;
-            currentPosition = { coin: pos[idx].coin, direction: pos[idx].direction, positionValue: pos[idx].positionValue, entryPx: pos[idx].entryPx, leverage: pos[idx].leverage, unrealizedPnl: pos[idx].unrealizedPnl };
-            currentTimeframe = '1h';
-            const container = document.getElementById(`mbigchartc-${idx}`);
-            renderInlineChartHTML(container, currentPosition, 'mbiggest');
-            container.classList.add('show');
-            setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-        }
+        function closeAllCharts(){closeInlineChart();closeMobileInlineChart();closeBiggestChart();activeChartContainer=null;}
+        function getPosAgg(){const data=whaleData[currentWhaleDex];if(!data||!data.positionAggregation)return[];if(posData==='pnl')return posPeriod==='daily'?data.positionAggregation.byPnlDaily:data.positionAggregation.byPnlWeekly;return data.positionAggregation.bySize;}
+        function renderPosChart(){const agg=getPosAgg();if(!agg||!agg.length){document.getElementById('pos-chart').innerHTML='<div class="no-data">데이터 없음</div>';return;}const useVal=posUnit==='value';const max=Math.max(...agg.map(d=>Math.max(useVal?d.long:d.longSize,useVal?d.short:d.shortSize)));document.getElementById('pos-chart').innerHTML=agg.map(d=>{const lv=useVal?d.long:d.longSize,sv=useVal?d.short:d.shortSize;const lw=max>0?(lv/max)*100:0,sw=max>0?(sv/max)*100:0;return '<div class="bar-row"><div class="bar-label">'+d.coin+'</div><div class="bar-container"><div class="bar-negative"><div class="bar short" style="width:'+sw+'%">'+(sv>0?(useVal?fmt.usd(sv):fmt.num(sv)):'')+'</div></div><div class="bar-positive"><div class="bar long" style="width:'+lw+'%">'+(lv>0?(useVal?fmt.usd(lv):fmt.num(lv)):'')+'</div></div></div></div>';}).join('');}
 
-        let activeChartContainer = null;
+        function togglePos(idx){const row=document.getElementById('pos-'+idx);const badge=row&&row.previousElementSibling&&row.previousElementSibling.querySelector('.pos-badge');if(row){const wasOpen=row.classList.contains('show');row.classList.toggle('show');if(badge)badge.classList.toggle('expanded');if(wasOpen&&currentChartTraderIdx===idx)closeInlineChart();}}
+        let currentChartTraderIdx=null,currentChartPosIdx=null;
+        function getSortedTraders(){const data=whaleData[currentWhaleDex];let traders=traderPeriod==='daily'?data&&data.whaleTracker&&data.whaleTracker.daily:data&&data.whaleTracker&&data.whaleTracker.weekly;if(!traders)return null;if(pnlSortField){traders=[...traders];traders.sort((a,b)=>{const av=parseFloat(a[pnlSortField])||0,bv=parseFloat(b[pnlSortField])||0;return pnlSortDir==='desc'?bv-av:av-bv;});}return traders;}
+        function openInlineChart(traderIdx,posIdx){const traders=getSortedTraders();if(!traders||!traders[traderIdx]||!traders[traderIdx].positions||!traders[traderIdx].positions[posIdx])return;if(currentChartTraderIdx===traderIdx&&currentChartPosIdx===posIdx){closeInlineChart();return;}if(currentChartTraderIdx!==null&&currentChartTraderIdx!==traderIdx){const prevChart=document.getElementById('chart-'+currentChartTraderIdx);if(prevChart){prevChart.classList.remove('show');prevChart.innerHTML='';}const prevCard=document.getElementById('pcard-'+currentChartTraderIdx+'-'+currentChartPosIdx);if(prevCard)prevCard.classList.remove('selected');}if(currentChartPosIdx!==null){const prevCard=document.getElementById('pcard-'+currentChartTraderIdx+'-'+currentChartPosIdx);if(prevCard)prevCard.classList.remove('selected');}currentChartTraderIdx=traderIdx;currentChartPosIdx=posIdx;currentPosition=traders[traderIdx].positions[posIdx];currentTimeframe='1h';const card=document.getElementById('pcard-'+traderIdx+'-'+posIdx);if(card)card.classList.add('selected');const container=document.getElementById('chart-'+traderIdx);renderInlineChartHTML(container,currentPosition);container.classList.add('show');setTimeout(()=>container.scrollIntoView({behavior:'smooth',block:'nearest'}),100);}
+        function closeInlineChart(){if(currentChartTraderIdx!==null){const container=document.getElementById('chart-'+currentChartTraderIdx);if(container){container.classList.remove('show');container.innerHTML='';}const card=document.getElementById('pcard-'+currentChartTraderIdx+'-'+currentChartPosIdx);if(card)card.classList.remove('selected');}if(positionChart){positionChart.destroy();positionChart=null;}currentPosition=null;currentChartTraderIdx=null;currentChartPosIdx=null;}
 
-        function renderInlineChartHTML(container, p, prefix) {
-            activeChartContainer = container;
-            container.innerHTML = `
-                <div class="inline-chart-header">
-                    <div class="inline-chart-title"><span class="inline-chart-coin">${p.coin}</span><span class="inline-chart-dir ${p.direction.toLowerCase()}">${p.direction === 'Long' ? 'LONG' : 'SHORT'}</span></div>
-                    <div style="display:flex;gap:4px;align-items:center;">
-                        <button class="inline-tf-btn" data-tf="5m">5m</button><button class="inline-tf-btn" data-tf="15m">15m</button><button class="inline-tf-btn active" data-tf="1h">1h</button><button class="inline-tf-btn" data-tf="4h">4h</button><button class="inline-tf-btn" data-tf="1D">1D</button>
-                        <button class="inline-chart-close" onclick="closeAllCharts()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-                    </div>
-                </div>
-                <div class="inline-chart-stats">
-                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">포지션</div><div class="inline-chart-stat-value">${fmt.usd(p.positionValue)}</div></div>
-                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">진입가</div><div class="inline-chart-stat-value">${fmt.px(p.entryPx, p.coin)}</div></div>
-                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">현재가</div><div class="inline-chart-stat-value data-current">-</div></div>
-                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">레버리지</div><div class="inline-chart-stat-value">${p.leverage}x</div></div>
-                    <div class="inline-chart-stat"><div class="inline-chart-stat-label">미실현 PnL</div><div class="inline-chart-stat-value ${p.unrealizedPnl >= 0 ? 'positive' : 'negative'}">${fmt.usd(p.unrealizedPnl)}</div></div>
-                </div>
-                <div class="inline-chart-body"><canvas></canvas><div class="inline-chart-loading"><div class="loading-spinner"></div>차트 로딩 중...</div></div>
-                <div class="inline-chart-legend"><div class="inline-chart-legend-item"><div class="inline-chart-legend-line entry"></div>진입가</div><div class="inline-chart-legend-item"><div class="inline-chart-legend-line current"></div>현재가</div></div>`;
-            container.querySelectorAll('.inline-tf-btn').forEach(btn => { btn.onclick = (e) => { e.stopPropagation(); container.querySelectorAll('.inline-tf-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentTimeframe = btn.dataset.tf; loadInlineChart(); }; });
-            loadInlineChart();
-        }
-
-        function closeAllCharts() { closeInlineChart(); closeMobileInlineChart(); closeBiggestChart(); activeChartContainer = null; }
-        function getPosAgg() { const data = whaleData[currentWhaleDex]; if (!data?.positionAggregation) return []; if (posData === 'pnl') return posPeriod === 'daily' ? data.positionAggregation.byPnlDaily : data.positionAggregation.byPnlWeekly; return data.positionAggregation.bySize; }
-        function renderPosChart() { const agg = getPosAgg(); if (!agg?.length) { document.getElementById('pos-chart').innerHTML = '<div class="no-data">데이터 없음</div>'; return; } const useVal = posUnit === 'value'; const max = Math.max(...agg.map(d => Math.max(useVal?d.long:d.longSize, useVal?d.short:d.shortSize))); document.getElementById('pos-chart').innerHTML = agg.map(d => { const lv = useVal?d.long:d.longSize, sv = useVal?d.short:d.shortSize; const lw = max>0?(lv/max)*100:0, sw = max>0?(sv/max)*100:0; return `<div class="bar-row"><div class="bar-label">${d.coin}</div><div class="bar-container"><div class="bar-negative"><div class="bar short" style="width:${sw}%">${sv>0?(useVal?fmt.usd(sv):fmt.num(sv)):''}</div></div><div class="bar-positive"><div class="bar long" style="width:${lw}%">${lv>0?(useVal?fmt.usd(lv):fmt.num(lv)):''}</div></div></div></div>`; }).join(''); }
-
-        function togglePos(idx) { const row = document.getElementById(`pos-${idx}`); const badge = row?.previousElementSibling?.querySelector('.pos-badge'); if (row) { const wasOpen = row.classList.contains('show'); row.classList.toggle('show'); badge?.classList.toggle('expanded'); if (wasOpen && currentChartTraderIdx === idx) { closeInlineChart(); } } }
-        let currentChartTraderIdx = null, currentChartPosIdx = null;
-
-        function getSortedTraders() {
-            const data = whaleData[currentWhaleDex];
-            let traders = traderPeriod === 'daily' ? data?.whaleTracker?.daily : data?.whaleTracker?.weekly;
-            if (!traders) return null;
-            if (pnlSortField) { traders = [...traders]; traders.sort((a, b) => { const av = parseFloat(a[pnlSortField]) || 0, bv = parseFloat(b[pnlSortField]) || 0; return pnlSortDir === 'desc' ? bv - av : av - bv; }); }
-            return traders;
-        }
-
-        function openInlineChart(traderIdx, posIdx) {
-            const traders = getSortedTraders();
-            if (!traders?.[traderIdx]?.positions?.[posIdx]) return;
-            if (currentChartTraderIdx === traderIdx && currentChartPosIdx === posIdx) { closeInlineChart(); return; }
-            if (currentChartTraderIdx !== null && currentChartTraderIdx !== traderIdx) { const prevChart = document.getElementById(`chart-${currentChartTraderIdx}`); if (prevChart) { prevChart.classList.remove('show'); prevChart.innerHTML = ''; } const prevCard = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`); if (prevCard) prevCard.classList.remove('selected'); }
-            if (currentChartPosIdx !== null) { const prevCard = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`); if (prevCard) prevCard.classList.remove('selected'); }
-            currentChartTraderIdx = traderIdx; currentChartPosIdx = posIdx;
-            currentPosition = traders[traderIdx].positions[posIdx]; currentTimeframe = '1h';
-            const card = document.getElementById(`pcard-${traderIdx}-${posIdx}`); if (card) card.classList.add('selected');
-            const container = document.getElementById(`chart-${traderIdx}`);
-            renderInlineChartHTML(container, currentPosition, 'desktop');
-            container.classList.add('show');
-            setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-        }
-
-        function closeInlineChart() {
-            if (currentChartTraderIdx !== null) { const container = document.getElementById(`chart-${currentChartTraderIdx}`); if (container) { container.classList.remove('show'); container.innerHTML = ''; } const card = document.getElementById(`pcard-${currentChartTraderIdx}-${currentChartPosIdx}`); if (card) card.classList.remove('selected'); }
-            if (positionChart) { positionChart.destroy(); positionChart = null; }
-            currentPosition = null; currentChartTraderIdx = null; currentChartPosIdx = null;
-        }
-
-        async function loadInlineChart() {
-            if (!currentPosition || !activeChartContainer) return;
-            const loading = activeChartContainer.querySelector('.inline-chart-loading');
-            if (loading) loading.style.display = 'flex';
-            try {
-                const coin = currentPosition.coin, entryPrice = currentPosition.entryPx, symbol = coin + 'USDT';
-                const interval = currentTimeframe === '1D' ? '1d' : currentTimeframe;
-                const response = await fetch(`https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=100`);
-                const data = await response.json();
-                if (data && data.length > 0) {
-                    const labels = data.map(d => { const date = new Date(d[0]); if (currentTimeframe === '1D') return date.toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' }); return date.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }); });
-                    const prices = data.map(d => parseFloat(d[4]));
-                    const currentPrice = prices[prices.length - 1];
-                    const currentEl = activeChartContainer.querySelector('.data-current');
-                    if (currentEl) currentEl.textContent = fmt.px(currentPrice, coin);
-                    if (positionChart) positionChart.destroy();
-                    const canvas = activeChartContainer.querySelector('canvas');
-                    if (!canvas) return;
-                    const ctx = canvas.getContext('2d');
-                    positionChart = new Chart(ctx, { type: 'line', data: { labels: labels, datasets: [{ label: coin + ' Price', data: prices, borderColor: '#22d3ee', backgroundColor: 'rgba(34, 211, 238, 0.1)', borderWidth: 2, fill: true, tension: 0.1, pointRadius: 0, pointHoverRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => fmt.px(ctx.raw, coin) } } }, scales: { x: { grid: { color: '#1a1a1a' }, ticks: { color: '#71717a', maxTicksLimit: 6, font: { size: 10 } } }, y: { grid: { color: '#1a1a1a' }, ticks: { color: '#71717a', callback: v => fmt.px(v, coin), font: { size: 10 } } } } }, plugins: [{ id: 'priceLines', afterDraw: function(chart) { const ctx = chart.ctx; const xAxis = chart.scales.x; const yAxis = chart.scales.y; const entryY = yAxis.getPixelForValue(entryPrice); if (entryY >= yAxis.top && entryY <= yAxis.bottom) { ctx.save(); ctx.beginPath(); ctx.setLineDash([5, 5]); ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2; ctx.moveTo(xAxis.left, entryY); ctx.lineTo(xAxis.right, entryY); ctx.stroke(); ctx.fillStyle = '#ef4444'; ctx.fillRect(xAxis.right - 70, entryY - 9, 70, 18); ctx.fillStyle = '#fff'; ctx.font = '9px JetBrains Mono'; ctx.textAlign = 'center'; ctx.fillText('Entry: ' + fmt.px(entryPrice, currentPosition.coin).replace('$',''), xAxis.right - 35, entryY + 3); ctx.restore(); } const currentY = yAxis.getPixelForValue(currentPrice); if (currentY >= yAxis.top && currentY <= yAxis.bottom) { ctx.save(); ctx.beginPath(); ctx.strokeStyle = '#22d3ee'; ctx.lineWidth = 2; ctx.moveTo(xAxis.left, currentY); ctx.lineTo(xAxis.right, currentY); ctx.stroke(); ctx.fillStyle = '#22d3ee'; ctx.fillRect(xAxis.right - 70, currentY - 9, 70, 18); ctx.fillStyle = '#000'; ctx.font = '9px JetBrains Mono'; ctx.textAlign = 'center'; ctx.fillText('Now: ' + fmt.px(currentPrice, currentPosition.coin).replace('$',''), xAxis.right - 35, currentY + 3); ctx.restore(); } } }] });
+        async function loadInlineChart(){
+            if(!currentPosition||!activeChartContainer)return;const loading=activeChartContainer.querySelector('.inline-chart-loading');if(loading)loading.style.display='flex';
+            try{const coin=currentPosition.coin,entryPrice=currentPosition.entryPx,symbol=coin+'USDT';const interval=currentTimeframe==='1D'?'1d':currentTimeframe;const response=await fetch('https://api.binance.com/api/v3/klines?symbol='+symbol+'&interval='+interval+'&limit=100');const data=await response.json();
+                if(data&&data.length>0){const labels=data.map(d=>{const date=new Date(d[0]);if(currentTimeframe==='1D')return date.toLocaleDateString('ko-KR',{month:'short',day:'numeric'});return date.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});});const prices=data.map(d=>parseFloat(d[4]));const currentPrice=prices[prices.length-1];const currentEl=activeChartContainer.querySelector('.data-current');if(currentEl)currentEl.textContent=fmt.px(currentPrice,coin);if(positionChart)positionChart.destroy();const canvas=activeChartContainer.querySelector('canvas');if(!canvas)return;const ctx=canvas.getContext('2d');
+                    positionChart=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{label:coin+' Price',data:prices,borderColor:'#22d3ee',backgroundColor:'rgba(34,211,238,0.08)',borderWidth:2,fill:true,tension:0.1,pointRadius:0,pointHoverRadius:4}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>fmt.px(ctx.raw,coin)}}},scales:{x:{grid:{color:'#111'},ticks:{color:'#555',maxTicksLimit:6,font:{size:10}}},y:{grid:{color:'#111'},ticks:{color:'#555',callback:v=>fmt.px(v,coin),font:{size:10}}}}},plugins:[{id:'priceLines',afterDraw:function(chart){const ctx2=chart.ctx;const xAxis=chart.scales.x;const yAxis=chart.scales.y;const entryY=yAxis.getPixelForValue(entryPrice);if(entryY>=yAxis.top&&entryY<=yAxis.bottom){ctx2.save();ctx2.beginPath();ctx2.setLineDash([5,5]);ctx2.strokeStyle='#ef4444';ctx2.lineWidth=2;ctx2.moveTo(xAxis.left,entryY);ctx2.lineTo(xAxis.right,entryY);ctx2.stroke();ctx2.fillStyle='#ef4444';ctx2.fillRect(xAxis.right-70,entryY-9,70,18);ctx2.fillStyle='#fff';ctx2.font='9px JetBrains Mono';ctx2.textAlign='center';ctx2.fillText('Entry: '+fmt.px(entryPrice,currentPosition.coin).replace('$',''),xAxis.right-35,entryY+3);ctx2.restore();}const currentY=yAxis.getPixelForValue(currentPrice);if(currentY>=yAxis.top&&currentY<=yAxis.bottom){ctx2.save();ctx2.beginPath();ctx2.strokeStyle='#22d3ee';ctx2.lineWidth=2;ctx2.moveTo(xAxis.left,currentY);ctx2.lineTo(xAxis.right,currentY);ctx2.stroke();ctx2.fillStyle='#22d3ee';ctx2.fillRect(xAxis.right-70,currentY-9,70,18);ctx2.fillStyle='#000';ctx2.font='9px JetBrains Mono';ctx2.textAlign='center';ctx2.fillText('Now: '+fmt.px(currentPrice,currentPosition.coin).replace('$',''),xAxis.right-35,currentY+3);ctx2.restore();}}}]});
                 }
-            } catch(e) { console.error('Chart error:', e); }
-            if (loading) loading.style.display = 'none';
+            }catch(e){console.error('Chart error:',e);}
+            if(loading)loading.style.display='none';
         }
 
         // Event listeners
-        document.querySelectorAll('.nav-item').forEach(n => n.onclick = () => { document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active')); document.querySelectorAll('.section').forEach(x => x.classList.remove('active')); n.classList.add('active'); document.getElementById(n.dataset.section).classList.add('active'); });
-        document.querySelectorAll('.sub-tab').forEach(t => t.onclick = () => { document.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); document.getElementById('pnl-section').style.display = t.dataset.tab === 'pnl' ? 'block' : 'none'; document.getElementById('biggest-section').style.display = t.dataset.tab === 'biggest' ? 'block' : 'none'; });
-        document.querySelectorAll('#trader-tabs .tab').forEach(t => t.onclick = () => { document.querySelectorAll('#trader-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); traderPeriod = t.dataset.v; renderPnL(); });
-        document.querySelectorAll('#pos-data-tabs .tab').forEach(t => t.onclick = () => { document.querySelectorAll('#pos-data-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); posData = t.dataset.v; renderPosChart(); });
-        document.querySelectorAll('#pos-period-tabs .tab').forEach(t => t.onclick = () => { document.querySelectorAll('#pos-period-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); posPeriod = t.dataset.v; renderPosChart(); });
-        document.querySelectorAll('#pos-unit-tabs .tab').forEach(t => t.onclick = () => { document.querySelectorAll('#pos-unit-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); posUnit = t.dataset.v; renderPosChart(); });
-        document.querySelectorAll('#live-tabs .tab').forEach(t => t.onclick = () => { document.querySelectorAll('#live-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); renderLive(); });
-        document.querySelectorAll('#funding th.sortable').forEach(th => th.onclick = () => sortFunding(th.dataset.sort));
-        document.getElementById('liq-coin').onchange = e => { selectedLiqCoin = e.target.value; updateLiqChart(); };
-        document.querySelectorAll('#liq-data-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#liq-data-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); liqDataMode = t.dataset.v; document.getElementById('liq-period-tabs').style.display = liqDataMode === 'pnl' ? 'flex' : 'none'; populateLiqCoins(); }; });
-        document.querySelectorAll('#liq-period-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#liq-period-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); liqPeriod = t.dataset.v; populateLiqCoins(); }; });
+        document.querySelectorAll('.nav-item').forEach(n=>n.onclick=()=>{document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));n.classList.add('active');document.getElementById(n.dataset.section).classList.add('active');});
+        document.querySelectorAll('.sub-tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.sub-tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById('pnl-section').style.display=t.dataset.tab==='pnl'?'block':'none';document.getElementById('biggest-section').style.display=t.dataset.tab==='biggest'?'block':'none';});
+        document.querySelectorAll('#trader-tabs .tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('#trader-tabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');traderPeriod=t.dataset.v;renderPnL();});
+        document.querySelectorAll('#pos-data-tabs .tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('#pos-data-tabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');posData=t.dataset.v;renderPosChart();});
+        document.querySelectorAll('#pos-period-tabs .tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('#pos-period-tabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');posPeriod=t.dataset.v;renderPosChart();});
+        document.querySelectorAll('#pos-unit-tabs .tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('#pos-unit-tabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');posUnit=t.dataset.v;renderPosChart();});
+        document.querySelectorAll('#live-tabs .tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('#live-tabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');renderLive();});
+        document.querySelectorAll('#funding th.sortable').forEach(th=>th.onclick=()=>sortFunding(th.dataset.sort));
+        document.getElementById('liq-coin').onchange=e=>{selectedLiqCoin=e.target.value;updateLiqChart();};
+        document.querySelectorAll('#liq-data-tabs .tab').forEach(t=>{t.onclick=()=>{document.querySelectorAll('#liq-data-tabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');liqDataMode=t.dataset.v;document.getElementById('liq-period-tabs').style.display=liqDataMode==='pnl'?'flex':'none';populateLiqCoins();};});
+        document.querySelectorAll('#liq-period-tabs .tab').forEach(t=>{t.onclick=()=>{document.querySelectorAll('#liq-period-tabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');liqPeriod=t.dataset.v;populateLiqCoins();};});
 
-        // === Sentiment Section ===
-        let sentHistory = [], sentCoin = 'BTC', sentChart = null;
-
-        async function loadSentiment() {
-            try { const r = await fetch('data/history.json'); if (!r.ok) throw new Error('No history'); sentHistory = await r.json(); } catch(e) { sentHistory = []; }
-            renderSentiment();
+        // Sentiment
+        let sentHistory=[],sentCoin='BTC',sentChart=null;
+        async function loadSentiment(){try{const r=await fetch('data/history.json');if(!r.ok)throw new Error();sentHistory=await r.json();}catch(e){sentHistory=[];}renderSentiment();}
+        async function renderSentiment(){
+            const data=sentHistory.filter(d=>d[sentCoin]);const noDataEl=document.getElementById('sent-no-data');const chartWrapper=document.querySelector('.sent-chart-wrapper');
+            if(data.length<1){noDataEl.style.display='block';chartWrapper.style.display='none';document.getElementById('sent-stats').innerHTML='';document.getElementById('sent-tbody').innerHTML='<tr><td colspan="8"><div class="no-data">데이터 수집 중... 매일 07:00 KST에 업데이트됩니다.</div></td></tr>';return;}
+            noDataEl.style.display='none';chartWrapper.style.display='block';
+            const groupKey='top500';const latest=data[data.length-1],c=latest[sentCoin],g=c[groupKey];const totalCount=g.longCount+g.shortCount,longPct=totalCount>0?(g.longCount/totalCount*100):0;const totalVal=g.longVal+g.shortVal,longValPct=totalVal>0?(g.longVal/totalVal*100):0;
+            const prev=data.length>=2?data[data.length-2]:null;let pctChange='';if(prev&&prev[sentCoin]){const pg=prev[sentCoin][groupKey];const prevTotal=pg.longCount+pg.shortCount;const prevPct=prevTotal>0?(pg.longCount/prevTotal*100):0;const diff=longPct-prevPct;pctChange=diff!==0?'<span class="'+(diff>0?'positive':'negative')+'" style="font-size:0.7rem;margin-left:4px">'+(diff>0?'▲':'▼')+Math.abs(diff).toFixed(1)+'%p</span>':'';}
+            document.getElementById('sent-stats').innerHTML='<div class="sent-stat"><div class="sent-stat-label">현재 가격</div><div class="sent-stat-value" style="color:#22d3ee">'+fmt.px(c.price,sentCoin)+'</div></div><div class="sent-stat"><div class="sent-stat-label">롱 비율 (수)</div><div class="sent-stat-value '+(longPct>=50?'positive':'negative')+'">'+longPct.toFixed(1)+'%'+pctChange+'</div></div><div class="sent-stat"><div class="sent-stat-label">롱 비율 (금액)</div><div class="sent-stat-value '+(longValPct>=50?'positive':'negative')+'">'+longValPct.toFixed(1)+'%</div></div><div class="sent-stat"><div class="sent-stat-label">롱 / 숏</div><div class="sent-stat-value" style="color:#e4e4e7;font-size:0.85rem"><span class="positive">'+g.longCount+'</span> / <span class="negative">'+g.shortCount+'</span></div></div><div class="sent-stat"><div class="sent-stat-label">기록일수</div><div class="sent-stat-value" style="color:#6b6b7a">'+data.length+'일</div></div>';
+            const tableRows=[...data].reverse().map(d=>{const cd=d[sentCoin];const gd=cd[groupKey];const tc=gd.longCount+gd.shortCount;const lp=tc>0?(gd.longCount/tc*100):0;const tv=gd.longVal+gd.shortVal;const lvp=tv>0?(gd.longVal/tv*100):0;return '<tr><td>'+d.date+'</td><td>'+fmt.px(cd.price,sentCoin)+'</td><td class="positive">'+gd.longCount+'</td><td class="negative">'+gd.shortCount+'</td><td class="'+(lp>=50?'positive':'negative')+'">'+lp.toFixed(1)+'%</td><td class="positive">'+fmt.usd(gd.longVal)+'</td><td class="negative">'+fmt.usd(gd.shortVal)+'</td><td class="'+(lvp>=50?'positive':'negative')+'">'+lvp.toFixed(1)+'%</td></tr>';}).join('');
+            document.getElementById('sent-tbody').innerHTML=tableRows||'<tr><td colspan="8"><div class="no-data">데이터 없음</div></td></tr>';
+            const labels=data.map(d=>{const dt=new Date(d.date);return(dt.getMonth()+1)+'/'+dt.getDate();});const prices=data.map(d=>d[sentCoin].price);const longRatios=data.map(d=>{const gd=d[sentCoin][groupKey];const tc=gd.longCount+gd.shortCount;return tc>0?(gd.longCount/tc*100):50;});
+            if(sentChart)sentChart.destroy();const ctx=document.getElementById('sent-chart').getContext('2d');
+            sentChart=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{label:sentCoin+' 가격',data:prices,borderColor:'#22d3ee',backgroundColor:'rgba(34,211,238,0.06)',borderWidth:2,fill:true,tension:0.3,pointRadius:data.length>30?0:4,pointHoverRadius:5,pointBackgroundColor:'#22d3ee',yAxisID:'yPrice'},{label:'고래 롱 비율 (%)',data:longRatios,borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,0.06)',borderWidth:2,fill:true,tension:0.3,pointRadius:data.length>30?0:4,pointHoverRadius:5,pointBackgroundColor:'#f59e0b',borderDash:[4,2],yAxisID:'yRatio'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{display:true,position:'top',labels:{color:'#6b6b7a',font:{size:11},usePointStyle:true,pointStyle:'line'}},tooltip:{callbacks:{label:ctx=>ctx.dataset.yAxisID==='yPrice'?sentCoin+': '+fmt.px(ctx.raw,sentCoin):'롱 비율: '+ctx.raw.toFixed(1)+'%'}}},scales:{x:{grid:{color:'#111'},ticks:{color:'#555',font:{size:10},maxTicksLimit:12}},yPrice:{type:'linear',position:'left',grid:{color:'#111'},ticks:{color:'#22d3ee',font:{size:10},callback:v=>fmt.px(v,sentCoin)},title:{display:true,text:'가격',color:'#22d3ee',font:{size:11}}},yRatio:{type:'linear',position:'right',min:0,max:100,grid:{display:false},ticks:{color:'#f59e0b',font:{size:10},callback:v=>v+'%'},title:{display:true,text:'롱 비율 (%)',color:'#f59e0b',font:{size:11}}}}},plugins:[{id:'sentimentZone',beforeDraw:function(chart){const ctx2=chart.ctx;const yRatio=chart.scales.yRatio;const xAxis=chart.scales.x;const y50=yRatio.getPixelForValue(50);ctx2.save();ctx2.fillStyle='rgba(248,113,113,0.03)';ctx2.fillRect(xAxis.left,y50,xAxis.right-xAxis.left,yRatio.bottom-y50);ctx2.fillStyle='rgba(74,222,128,0.03)';ctx2.fillRect(xAxis.left,yRatio.top,xAxis.right-xAxis.left,y50-yRatio.top);ctx2.beginPath();ctx2.setLineDash([3,3]);ctx2.strokeStyle='#222';ctx2.lineWidth=1;ctx2.moveTo(xAxis.left,y50);ctx2.lineTo(xAxis.right,y50);ctx2.stroke();ctx2.restore();}}]});
         }
+        document.querySelectorAll('#sent-coin-tabs .tab').forEach(t=>{t.onclick=()=>{document.querySelectorAll('#sent-coin-tabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');sentCoin=t.dataset.coin;renderSentiment();};});
 
-        async function renderSentiment() {
-            const data = sentHistory.filter(d => d[sentCoin]);
-            const noDataEl = document.getElementById('sent-no-data');
-            const chartWrapper = document.querySelector('.sent-chart-wrapper');
-            if (data.length < 1) { noDataEl.style.display = 'block'; chartWrapper.style.display = 'none'; document.getElementById('sent-stats').innerHTML = ''; document.getElementById('sent-tbody').innerHTML = '<tr><td colspan="8"><div class="no-data">데이터 수집 중... 매일 07:00 KST에 업데이트됩니다.</div></td></tr>'; return; }
-            noDataEl.style.display = 'none'; chartWrapper.style.display = 'block';
-            const groupKey = 'top500';
-            const latest = data[data.length - 1], c = latest[sentCoin], g = c[groupKey];
-            const totalCount = g.longCount + g.shortCount, longPct = totalCount > 0 ? (g.longCount / totalCount * 100) : 0;
-            const totalVal = g.longVal + g.shortVal, longValPct = totalVal > 0 ? (g.longVal / totalVal * 100) : 0;
-            const prev = data.length >= 2 ? data[data.length - 2] : null;
-            let pctChange = '';
-            if (prev && prev[sentCoin]) { const pg = prev[sentCoin][groupKey]; const prevTotal = pg.longCount + pg.shortCount; const prevPct = prevTotal > 0 ? (pg.longCount / prevTotal * 100) : 0; const diff = longPct - prevPct; pctChange = diff !== 0 ? `<span class="${diff > 0 ? 'positive' : 'negative'}" style="font-size:0.7rem;margin-left:4px">${diff > 0 ? '▲' : '▼'}${Math.abs(diff).toFixed(1)}%p</span>` : ''; }
-            document.getElementById('sent-stats').innerHTML = `
-                <div class="sent-stat"><div class="sent-stat-label">현재 가격</div><div class="sent-stat-value" style="color:#22d3ee">${fmt.px(c.price, sentCoin)}</div></div>
-                <div class="sent-stat"><div class="sent-stat-label">롱 비율 (수)</div><div class="sent-stat-value ${longPct >= 50 ? 'positive' : 'negative'}">${longPct.toFixed(1)}%${pctChange}</div></div>
-                <div class="sent-stat"><div class="sent-stat-label">롱 비율 (금액)</div><div class="sent-stat-value ${longValPct >= 50 ? 'positive' : 'negative'}">${longValPct.toFixed(1)}%</div></div>
-                <div class="sent-stat"><div class="sent-stat-label">롱 / 숏</div><div class="sent-stat-value" style="color:#e4e4e7;font-size:0.85rem"><span class="positive">${g.longCount}</span> / <span class="negative">${g.shortCount}</span></div></div>
-                <div class="sent-stat"><div class="sent-stat-label">기록일수</div><div class="sent-stat-value" style="color:#8b8b9a">${data.length}일</div></div>`;
-            const tableRows = [...data].reverse().map(d => { const cd = d[sentCoin]; const gd = cd[groupKey]; const tc = gd.longCount + gd.shortCount; const lp = tc > 0 ? (gd.longCount / tc * 100) : 0; const tv = gd.longVal + gd.shortVal; const lvp = tv > 0 ? (gd.longVal / tv * 100) : 0; return `<tr><td>${d.date}</td><td>${fmt.px(cd.price, sentCoin)}</td><td class="positive">${gd.longCount}</td><td class="negative">${gd.shortCount}</td><td class="${lp >= 50 ? 'positive' : 'negative'}">${lp.toFixed(1)}%</td><td class="positive">${fmt.usd(gd.longVal)}</td><td class="negative">${fmt.usd(gd.shortVal)}</td><td class="${lvp >= 50 ? 'positive' : 'negative'}">${lvp.toFixed(1)}%</td></tr>`; }).join('');
-            document.getElementById('sent-tbody').innerHTML = tableRows || '<tr><td colspan="8"><div class="no-data">데이터 없음</div></td></tr>';
-            const labels = data.map(d => { const dt = new Date(d.date); return `${dt.getMonth()+1}/${dt.getDate()}`; });
-            const prices = data.map(d => d[sentCoin].price);
-            const longRatios = data.map(d => { const gd = d[sentCoin][groupKey]; const tc = gd.longCount + gd.shortCount; return tc > 0 ? (gd.longCount / tc * 100) : 50; });
-            if (sentChart) sentChart.destroy();
-            const ctx = document.getElementById('sent-chart').getContext('2d');
-            sentChart = new Chart(ctx, {
-                type: 'line',
-                data: { labels: labels, datasets: [
-                    { label: sentCoin + ' 가격', data: prices, borderColor: '#22d3ee', backgroundColor: 'rgba(34, 211, 238, 0.08)', borderWidth: 2, fill: true, tension: 0.3, pointRadius: data.length > 30 ? 0 : 4, pointHoverRadius: 5, pointBackgroundColor: '#22d3ee', yAxisID: 'yPrice' },
-                    { label: '고래 롱 비율 (%)', data: longRatios, borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.1)', borderWidth: 2, fill: true, tension: 0.3, pointRadius: data.length > 30 ? 0 : 4, pointHoverRadius: 5, pointBackgroundColor: '#f59e0b', borderDash: [4, 2], yAxisID: 'yRatio' }
-                ] },
-                options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' },
-                    plugins: { legend: { display: true, position: 'top', labels: { color: '#8b8b9a', font: { size: 11 }, usePointStyle: true, pointStyle: 'line' } }, tooltip: { callbacks: { label: ctx => ctx.dataset.yAxisID === 'yPrice' ? sentCoin + ': ' + fmt.px(ctx.raw, sentCoin) : '롱 비율: ' + ctx.raw.toFixed(1) + '%' } } },
-                    scales: { x: { grid: { color: '#1e1e26' }, ticks: { color: '#71717a', font: { size: 10 }, maxTicksLimit: 12 } }, yPrice: { type: 'linear', position: 'left', grid: { color: '#1e1e26' }, ticks: { color: '#22d3ee', font: { size: 10 }, callback: v => fmt.px(v, sentCoin) }, title: { display: true, text: '가격', color: '#22d3ee', font: { size: 11 } } }, yRatio: { type: 'linear', position: 'right', min: 0, max: 100, grid: { display: false }, ticks: { color: '#f59e0b', font: { size: 10 }, callback: v => v + '%' }, title: { display: true, text: '롱 비율 (%)', color: '#f59e0b', font: { size: 11 } } } }
-                },
-                plugins: [{ id: 'sentimentZone', beforeDraw: function(chart) { const ctx = chart.ctx; const yRatio = chart.scales.yRatio; const xAxis = chart.scales.x; const y50 = yRatio.getPixelForValue(50); ctx.save(); ctx.fillStyle = 'rgba(248, 113, 113, 0.04)'; ctx.fillRect(xAxis.left, y50, xAxis.right - xAxis.left, yRatio.bottom - y50); ctx.fillStyle = 'rgba(74, 222, 128, 0.04)'; ctx.fillRect(xAxis.left, yRatio.top, xAxis.right - xAxis.left, y50 - yRatio.top); ctx.beginPath(); ctx.setLineDash([3, 3]); ctx.strokeStyle = '#3d3d4a'; ctx.lineWidth = 1; ctx.moveTo(xAxis.left, y50); ctx.lineTo(xAxis.right, y50); ctx.stroke(); ctx.restore(); } }]
-            });
-        }
-
-        document.querySelectorAll('#sent-coin-tabs .tab').forEach(t => { t.onclick = () => { document.querySelectorAll('#sent-coin-tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); sentCoin = t.dataset.coin; renderSentiment(); }; });
-
-        async function init() { await Promise.all([loadWhaleData('hyperliquid'), loadLiqData('hyperliquid'), loadSentiment()]); fetchLive(); }
-        setInterval(fetchLive, 30000);
+        async function init(){await Promise.all([loadWhaleData('hyperliquid'),loadLiqData('hyperliquid'),loadSentiment()]);fetchLive();}
+        setInterval(fetchLive,30000);
         init();
     </script>
 </body>
