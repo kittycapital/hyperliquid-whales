@@ -3937,5 +3937,44 @@
         "shortVal": 346429623
       }
     }
+  },
+  {
+    "date": "2026-05-24",
+    "BTC": {
+      "price": 76718.0,
+      "top500": {
+        "longCount": 40,
+        "shortCount": 36,
+        "longVal": 332635510,
+        "shortVal": 307409020
+      }
+    },
+    "ETH": {
+      "price": 2117.0,
+      "top500": {
+        "longCount": 24,
+        "shortCount": 36,
+        "longVal": 333626332,
+        "shortVal": 287443900
+      }
+    },
+    "SOL": {
+      "price": 85.83,
+      "top500": {
+        "longCount": 21,
+        "shortCount": 29,
+        "longVal": 76308718,
+        "shortVal": 68326443
+      }
+    },
+    "HYPE": {
+      "price": 59.48,
+      "top500": {
+        "longCount": 37,
+        "shortCount": 46,
+        "longVal": 237181050,
+        "shortVal": 381943647
+      }
+    }
   }
 ]
